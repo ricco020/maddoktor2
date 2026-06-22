@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import HomeFeed from '../components/HomeFeed.astro';
+import { SITE } from '../lib/site';
+import { hreflangAlternates } from '../lib/hreflang';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const schema = [{
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  name: SITE.name, url: SITE.url, description: SITE.description, inLanguage: 'en',
+}];
+const alternates = hreflangAlternates('/');
+---
+<Base title={SITE.title} description={SITE.description} schema={schema} lang="en" alternates={alternates} canonicalPath="/">
+  <HomeFeed lang="en" articles={articles} />
+</Base>

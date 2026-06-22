@@ -1,0 +1,87 @@
+---
+title: "How to Remove a Trojan Virus from Windows (Step by Step)"
+description: "A clear, step-by-step guide to removing a trojan virus from Windows — Safe Mode, Defender and Malwarebytes scans, cleanup, and how to stay clean."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/gfb18e2f3a42865e310aeca410505c15eefaaf3b24c51768b51bc488d95f1aecb29d57157cfc5d1d659d4f8432a17c9f240ebe6c90492b90aff5bba1ac28a7300_1280.jpg"
+heroAlt: "Lines of programming code on a dark computer screen, representing trojan malware code"
+keyword: "how to remove trojan virus"
+tags: ["malware-removal", "trojan", "virus", "windows", "scanner", "defender"]
+translationKey: "remove-trojan"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+A trojan is malware that disguises itself as something legitimate — a cracked game, a fake installer, a "codec" you needed for a video. Once it runs, it can open a backdoor, steal data, or pull down more malware. The good news: most consumer trojans on Windows can be removed with built-in and free tools if you follow the steps in order. Here's how to do it carefully.
+
+## Signs you may have a trojan
+
+- Your PC is suddenly slow, with fans spinning hard while idle.
+- Unknown programs start at boot, or your firewall flags outbound connections you didn't make.
+- Security tools get disabled or won't open.
+- Files appear or disappear, or settings change on their own.
+
+None of these alone confirms a trojan, but together they're a strong hint that a scan is overdue.
+
+## Step 1 — Disconnect from the internet
+
+If you suspect an active trojan, disconnect from Wi-Fi or unplug the Ethernet cable. Many trojans phone home to a command-and-control server to receive instructions or exfiltrate data. Cutting the connection limits the damage while you clean up. Reconnect only when you need to download tools or updates.
+
+## Step 2 — Boot into Safe Mode with Networking
+
+Safe Mode loads Windows with a minimal set of drivers and services, which often stops the malware from running and makes it easier to remove.
+
+1. Open **Settings → System → Recovery** and click **Restart now** under *Advanced startup*.
+2. After the reboot, go to **Troubleshoot → Advanced options → Startup Settings → Restart**.
+3. When the list appears, press **5** (or **F5**) for **Safe Mode with Networking**.
+
+Networking lets you update your scanners; if you already have everything downloaded, plain Safe Mode is fine.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="After cleaning an infection, change your passwords from a clean device. Proton Pass stores them end-to-end encrypted." />
+
+## Step 3 — Run a full Microsoft Defender scan
+
+Windows includes Microsoft Defender Antivirus, which is capable against common trojans.
+
+1. Open **Windows Security → Virus & threat protection**.
+2. Click **Scan options**, choose **Full scan**, and run it.
+3. For stubborn infections, use **Microsoft Defender Offline scan** — it reboots and scans before Windows fully loads, catching malware that hides at runtime.
+
+Quarantine or remove anything it detects.
+
+![A close-up of a laptop keyboard on a dark desk, representing a Windows PC being cleaned of malware](https://pixabay.com/get/ge55d59d6f479a82bbc923213637c8363bc1c1b4ba0614af4591d0fa0bc6c4c8c5d20558030b72502b14b1ab182087d710d2c9f7b4297978b21921d9d4179210b_1280.jpg)
+
+## Step 4 — Get a second opinion with Malwarebytes Free
+
+No single engine catches everything, so run a second scanner. **Malwarebytes Free** is a well-known on-demand cleaner that's good at catching what general antivirus misses.
+
+1. Download it from the official site (malwarebytes.com).
+2. Run a scan, review the detections, and quarantine them.
+3. Reboot when prompted.
+
+## Step 5 — Remove suspicious programs and startup entries
+
+After scanning, check for leftovers:
+
+- **Apps:** Go to **Settings → Apps → Installed apps** and uninstall anything you don't recognize or didn't install.
+- **Startup:** Open **Task Manager → Startup apps** and disable unfamiliar entries that launch at boot.
+
+Don't delete things you're unsure about — search the exact name first so you don't disable a legitimate Windows component.
+
+## Step 6 — Reboot, reconnect, and re-scan
+
+Restart into normal mode, reconnect to the internet, install the latest Windows updates, and run **one more full scan** with Defender. A clean result on a fresh scan after a reboot is your confirmation that the trojan is gone.
+
+## Step 7 — Secure your accounts
+
+Trojans frequently steal saved passwords and session cookies. Once your PC is verified clean:
+
+- Change passwords for your important accounts (email first — it's the recovery hub for everything else) from a device you trust.
+- Turn on two-factor authentication everywhere it's offered.
+- Review your email for any rules or forwarding the attacker may have added.
+
+A password manager makes rotating dozens of credentials far less painful, and using one means you're not reusing the same password across sites.
+
+## When to consider a clean reinstall
+
+If scans keep finding the same threat, security tools won't run, or you suspect a rootkit-level trojan, the safest path is to back up your personal files (not programs), then reinstall Windows from official media. It's more work, but it guarantees a clean slate when removal tools can't fully evict the infection.
+
+Take the steps in order — disconnect, Safe Mode, scan twice, clean up, re-scan, secure accounts — and most trojans come off without a full reinstall.

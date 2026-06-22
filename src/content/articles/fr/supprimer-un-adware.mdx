@@ -1,0 +1,89 @@
+---
+title: "Comment supprimer un adware sous Windows (anti pop-ups)"
+description: "Stop aux pop-ups : guide pas à pas pour supprimer un adware sous Windows — désinstaller les PUP, nettoyer les extensions, analyser avec des outils gratuits."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/ge530c4797f842284915ae2d220dde0aad7da2f1ad1280b75dfb20d05dd59807a06d82e307e6db74dbccbdc55065cc354702be68b40c069f8b88a047568db5701_1280.jpg"
+heroAlt: "Un ordinateur portable ouvert sur un bureau, représentant un PC Windows touché par les pop-ups d'un adware"
+keyword: "how to remove adware"
+tags: ["spyware-adware", "adware", "pup", "browser", "malware-removal", "windows"]
+translationKey: "remove-adware"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Un adware est un logiciel qui vous inonde de publicités — pop-ups, bannières injectées dans les pages web, redirections, et parfois notifications du bureau. Il se greffe généralement sur les installeurs de logiciels gratuits ou arrive sous forme d'extension de navigateur. Même si la plupart des adwares sont moins dangereux qu'un cheval de Troie, ils pistent votre navigation, ralentissent votre machine et peuvent vous mener vers des sites réellement malveillants. Voici comment le supprimer de Windows, étape par étape.
+
+## Signes d'une infection par adware
+
+- Des pop-ups publicitaires apparaissent même sans navigateur ouvert, ou sur des sites qui n'en ont normalement pas.
+- De nouveaux onglets s'ouvrent seuls avec des publicités ou des pages « vous avez gagné ».
+- Votre navigateur est plus lent, avec des barres d'outils supplémentaires ou une barre de recherche que vous n'avez pas ajoutée.
+- Des notifications du bureau diffusent des pubs ou de fausses alertes de virus.
+
+## Étape 1 — Désinstallez les programmes suspects
+
+L'adware installe souvent un programme Windows à côté des éléments parasites du navigateur.
+
+1. Ouvrez **Paramètres → Applications → Applications installées**.
+2. Triez par **date d'installation** et regardez ce qui est arrivé au moment où les pubs ont commencé.
+3. Désinstallez tout ce que vous ne reconnaissez pas — surtout les « économies », « coupons », « bons plans », « lecteurs » média ou utilitaires inconnus.
+
+Si un programme refuse de se désinstaller, notez son nom et continuez ; l'analyse de l'étape 4 devrait s'en charger.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Après avoir nettoyé une infection, changez vos mots de passe depuis un appareil sain. Proton Pass les stocke chiffrés de bout en bout." />
+
+## Étape 2 — Supprimez les extensions adware du navigateur
+
+Ouvrez la page des extensions de votre navigateur et supprimez tout ce qui est inconnu :
+
+- **Chrome / Edge :** Menu → **Extensions → Gérer les extensions** → supprimez les éléments inconnus.
+- **Firefox :** Menu → **Modules et thèmes → Extensions** → supprimez ce que vous n'avez pas installé.
+
+Méfiez-vous des extensions prétendant « bloquer les pubs », « économiser avec des coupons » ou « améliorer la recherche » que vous ne vous souvenez pas avoir ajoutées — ce sont des vecteurs d'adware courants.
+
+![Un ordinateur portable sur un bureau à côté d'une tasse de café, représentant une navigation quotidienne interrompue par un adware](https://pixabay.com/get/g2e3fb5f859cab9c348935afa6e56f9ce4a0f6319f918ba6cb0bdc3b18902f917dbd24e123bef0586fe4baabf7285534486e01b6e4f508733c590e507912cbc38_1280.jpg)
+
+## Étape 3 — Révoquez les permissions de notification et videz les données
+
+Beaucoup de « pop-ups » sont en fait des notifications de site que vous avez été piégé à autoriser.
+
+- Allez dans **Paramètres → Confidentialité et sécurité → Paramètres des sites → Notifications** (Chrome/Edge) ou **Paramètres → Vie privée et sécurité → Permissions → Notifications** (Firefox).
+- Supprimez ou bloquez tout site que vous ne reconnaissez pas.
+- Puis effacez vos **fichiers en cache et cookies** pour retirer les traceurs.
+
+## Étape 4 — Analysez avec des outils anti-adware gratuits
+
+Pour supprimer la source et les résidus, lancez des outils gratuits dédiés :
+
+- **AdwCleaner** (par Malwarebytes) est conçu spécifiquement pour les adwares, PUP et barres d'outils, et réinitialise les détournements courants de navigateur.
+- **Malwarebytes Free** attrape l'adware qui se cache sous forme de programme.
+- **Microsoft Defender** (Sécurité Windows → Protection contre les virus et menaces → **Analyse complète**) couvre le reste.
+
+Mettez tout en quarantaine, puis redémarrez et vérifiez que les pubs ont disparu.
+
+## Étape 5 — Réinitialisez le navigateur si les pubs persistent
+
+Si les pubs réapparaissent, réinitialisez le navigateur pour effacer les réglages tenaces :
+
+- **Chrome :** Paramètres → **Réinitialiser les paramètres → Restaurer les valeurs par défaut d'origine**.
+- **Edge :** Paramètres → **Réinitialiser les paramètres → Restaurer les valeurs par défaut**.
+- **Firefox :** Aide → **Plus d'informations de dépannage → Réparer Firefox**.
+
+Cela conserve les favoris et mots de passe enregistrés mais supprime les extensions et réglages modifiés — souvent le coup de grâce d'un adware persistant.
+
+## Étape 6 — Vérifiez le fichier hosts et les tâches planifiées (avancé)
+
+Certains adwares ajoutent des redirections via le fichier **hosts** de Windows ou créent une **tâche planifiée** pour se relancer.
+
+- Ouvrez le **Bloc-notes en administrateur** et vérifiez `C:\Windows\System32\drivers\etc\hosts` pour des entrées inattendues (un fichier hosts normal ne contient que des commentaires et éventuellement des lignes localhost).
+- Ouvrez le **Planificateur de tâches** et désactivez toute tâche pointant vers un programme inconnu dans un dossier temporaire ou au nom aléatoire.
+
+Ne modifiez ces éléments que si vous êtes sûr ; en cas de doute, laissez un scanner s'en occuper.
+
+## Comment éviter l'adware la prochaine fois
+
+- Téléchargez les logiciels uniquement sur les sites officiels, et choisissez l'installation **Personnalisée/Avancée** pour décocher les extras groupés.
+- Évitez les portails de « téléchargement gratuit » qui enrobent les installeurs dans leur propre bundler.
+- N'installez des extensions que depuis les boutiques officielles et examinez leurs permissions.
+- Maintenez Windows et votre navigateur à jour.
+
+L'adware se bat généralement avec des outils gratuits et un nettoyage soigneux. Une fois les pubs stoppées, si l'une d'elles vous a amené à saisir des identifiants sur une fausse page, changez ces mots de passe depuis un appareil sain — un gestionnaire de mots de passe rend cela rapide et garde chaque identifiant unique.

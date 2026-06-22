@@ -1,0 +1,144 @@
+---
+import Base from './Base.astro';
+import { SITE } from '../lib/site';
+import { extractFaq } from '../lib/faq';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { ui } from '../lib/ui';
+
+interface Props {
+  entry: CollectionEntry<'articles'> | CollectionEntry<'articlesFr'> | CollectionEntry<'articlesEs'> | CollectionEntry<'articlesDe'> | CollectionEntry<'articlesIt'> | CollectionEntry<'articlesPt'>;
+  lang?: string;
+  slug: string;
+}
+
+const { entry, lang = 'en', slug } = Astro.props;
+const { title, description, pubDate, updatedDate, hero, heroAlt, tags, newsArticle } = entry.data;
+
+const words = (entry.body ?? '').split(/\s+/).filter(Boolean).length;
+const readMin = Math.max(1, Math.round(words / 200));
+
+// Hero = the article's own thematic graphic from frontmatter (`hero`).
+
+const prefix = lang === 'en' ? '' : `/${lang}`;
+const t = ui[lang] || ui.en;
+
+// Kicker = the first tag, shown as a colored pill above the title.
+const kicker = (tags && tags[0]) ? tags[0].replace(/-/g, ' ') : '';
+
+// "Keep reading" — related articles in the same locale that share at least one
+// tag, then top up to 4 with the most recent others.
+const COLL_BY_LANG: Record<string, string> = {
+  en: 'articles', fr: 'articlesFr', es: 'articlesEs',
+  de: 'articlesDe', it: 'articlesIt', pt: 'articlesPt',
+};
+const collName = COLL_BY_LANG[lang] || 'articles';
+const all = (await getCollection(collName as any))
+  .filter((a: any) => a.id !== slug)
+  .sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const tagSet = new Set((tags || []).map((x) => x.toLowerCase()));
+const scored = all.map((a: any) => ({
+  a,
+  score: (a.data.tags || []).filter((x: string) => tagSet.has(x.toLowerCase())).length,
+}));
+const relatedEntries = [
+  ...scored.filter((s) => s.score > 0).sort((x, y) => y.score - x.score),
+  ...scored.filter((s) => s.score === 0),
+].slice(0, 4).map((s) => s.a);
+const related = relatedEntries.map((a: any) => ({
+  href: `${prefix}/articles/${a.id}/`,
+  title: a.data.title,
+}));
+const articleUrl = `${SITE.url}${prefix}/articles/${slug}/`;
+const canonicalPath = `${prefix}/articles/${slug}/`;
+
+const DATE_LOCALE: Record<string, string> = {
+  en: 'en-US', fr: 'fr-FR', es: 'es-ES',
+  de: 'de-DE', it: 'it-IT', pt: 'pt-PT',
+};
+const fmt = (d: Date) => {
+  const locale = DATE_LOCALE[lang] || 'en-US';
+  return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+// hreflang alternates
+const alternates = [
+  { lang: 'x-default', href: `${SITE.url}/articles/${slug}/` },
+  { lang: 'en', href: `${SITE.url}/articles/${slug}/` },
+  { lang: 'fr', href: `${SITE.url}/fr/articles/${slug}/` },
+  { lang: 'es', href: `${SITE.url}/es/articles/${slug}/` },
+  { lang: 'de', href: `${SITE.url}/de/articles/${slug}/` },
+  { lang: 'it', href: `${SITE.url}/it/articles/${slug}/` },
+  { lang: 'pt', href: `${SITE.url}/pt/articles/${slug}/` },
+];
+
+const articleSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': newsArticle ? 'NewsArticle' : 'Article',
+    headline: title,
+    description,
+    inLanguage: lang,
+    image: new URL(hero, SITE.url).href,
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate ?? pubDate).toISOString(),
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: articleUrl,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.crumb_home, item: `${SITE.url}${prefix}/` },
+      { '@type': 'ListItem', position: 2, name: t.nav_guides, item: `${SITE.url}${prefix}/articles/` },
+      { '@type': 'ListItem', position: 3, name: title, item: articleUrl },
+    ],
+  },
+];
+
+// FAQPage — built ONLY from real Q/A pairs in the article's own body (no
+// invented questions). Emitted only when the article actually has a FAQ section.
+const faqPairs = extractFaq(entry.body);
+if (faqPairs.length > 0) {
+  articleSchema.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqPairs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  } as any);
+}
+---
+
+<Base
+  {title}
+  {description}
+  ogImage={`/og/${slug}.png`}
+  ogType="article"
+  schema={articleSchema}
+  {lang}
+  canonicalPath={canonicalPath}
+  {alternates}
+  preloadImage={hero}
+  isArticle={true}
+  {related}
+>
+  <article class="reading">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href={`${prefix}/`}>{t.crumb_home}</a><span>/</span><a href={`${prefix}/articles/`}>{t.nav_guides}</a><span>/</span>{title}
+    </nav>
+    {kicker && <span class="kicker">{kicker}</span>}
+    <h1>{title}</h1>
+    <div class="artmeta">
+      <span class="by">MadDoktor2</span><span class="dot">·</span>
+      <span>{t.updated} {fmt(updatedDate ?? pubDate)}</span><span class="dot">·</span>
+      <span>{readMin} {ui[lang]?.min_read || "min read"}</span>
+      {tags.map((t) => <span class="tag">#{t}</span>)}
+    </div>
+    <img class="hero" src={hero} alt={heroAlt} width="1280" height="720" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio:16/9;object-fit:cover" />
+    <slot />
+  </article>
+</Base>

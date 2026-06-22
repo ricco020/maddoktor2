@@ -1,0 +1,88 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SITE } from '../../../lib/site';
+import { hreflangAlternates } from '../../../lib/hreflang';
+
+const title = 'Unsere Charta — wie MadDoktor2 testet und schreibt';
+const description =
+  'Die redaktionelle Charta von MadDoktor2: wie wir unsere Anleitungen zur Malware-Entfernung und PC-Sicherheit recherchieren, testen und verfassen — Ehrlichkeit zuerst, keine Panikmache, keine falschen Behauptungen und eine klare Affiliate-Offenlegung.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Redaktionelle Charta von MadDoktor2',
+    description,
+    inLanguage: 'de',
+    datePublished: '2026-06-22',
+    dateModified: '2026-06-22',
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: `${SITE.url}/de/charter/`,
+  },
+];
+
+const alternates = hreflangAlternates('/charter/');
+---
+
+<Base {title} {description} {schema} lang="de" {alternates} canonicalPath="/de/charter/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / charta</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">
+      Unsere Charta — wie wir testen und schreiben
+    </h1>
+
+    <p class="mt-6 text-lg text-ink-dim">
+      MadDoktor2 ist eine unabhängige Ressource für Malware-Entfernung, Anti-Spyware sowie PC-Sicherheit
+      und Datenschutz. Diese Charta ist das Regelwerk, das wir uns selbst auferlegen. Wenn eine Anleitung
+      eine Regel verletzt, ist das ein Fehler — melden Sie ihn auf der <a href="/de/contact/">Kontaktseite</a>.
+    </p>
+
+    <h2>1. Ehrlichkeit vor Klicks</h2>
+    <p>
+      Wir erfinden niemals Statistiken, Testergebnisse, Prüfstände, Auszeichnungen oder Nutzerzahlen. Wir
+      behaupten nicht, Software persönlich getestet zu haben, die wir nicht ausprobiert haben, und geben
+      das Marketing eines Anbieters nicht als unsere eigenen Erkenntnisse aus. Alle zitierten Daten stammen
+      aus einer benannten, überprüfbaren Quelle.
+    </p>
+
+    <h2>2. Keine Panikmache</h2>
+    <p>
+      Texte über Sicherheit strotzen vor Angsttaktiken, die zum Kauf drängen sollen. Das tun wir nicht. Wir
+      erklären, was eine Bedrohung wirklich ist, wie wahrscheinlich sie Sie trifft, was tatsächlich hilft —
+      und, ebenso wichtig, was <em>nicht</em> hilft. Ein kostenloses, integriertes Tool, das Ihr Problem
+      löst, ist besser als eine teure Suite, die Sie nicht brauchen.
+    </p>
+
+    <h2>3. Klare, nützliche Schritte</h2>
+    <p>
+      Jede Entfernungsanleitung soll auf einem echten, womöglich infizierten Windows-PC wirklich
+      nachvollziehbar sein: wie das Symptom aussieht, welches Tool zu verwenden ist, die genauen Schritte
+      und wie man danach bestätigt, dass die Maschine sauber ist. Die Grenzen jeder Methode benennen wir
+      klar.
+    </p>
+
+    <h2>4. Transparenz bei Affiliate-Links</h2>
+    <p>
+      Einige Links auf dieser Website sind Affiliate-Links, das heißt, wir können eine Provision erhalten,
+      ohne dass für Sie zusätzliche Kosten entstehen. Wir empfehlen nur Tools, die wir selbst guten
+      Gewissens nutzen würden, ob mit Affiliate-Vergütung oder nicht, und kennzeichnen gesponserte Links
+      deutlich. Lesen Sie die vollständige <a href="/de/affiliate-disclosure/">Affiliate-Offenlegung</a>.
+    </p>
+
+    <h2>5. Unabhängigkeit</h2>
+    <p>
+      MadDoktor2 wird unabhängig betrieben. Wir sind nicht das alte Forum oder die Community, die diese
+      Domain einst nutzte, und beanspruchen keinerlei Verbindung zu ihnen — siehe die
+      <a href="/de/heritage/">Geschichtsseite</a> für die ehrliche Geschichte. Unsere Empfehlungen sind
+      keine bezahlten Platzierungen: Ein Anbieter kann sich hier keine bessere Bewertung erkaufen.
+    </p>
+
+    <h2>6. Die Privatsphäre unserer eigenen Leser</h2>
+    <p>
+      Wir leben, was wir schreiben. Statistiken laden erst nach Ihrer Zustimmung, IP-Adressen werden
+      anonymisiert, und wir erheben nicht mehr als nötig. Siehe unsere
+      <a href="/de/privacy-policy/">Datenschutzerklärung</a>.
+    </p>
+  </article>
+</Base>

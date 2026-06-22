@@ -1,0 +1,72 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { categories, catLabel, articleMatchesCat, ui } from '../../../lib/ui';
+import { hreflangAlternates } from '../../../lib/hreflang';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('articlesDe')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return categories.map((c) => ({
+    params: { cat: c.slug },
+    props: { c, stories: articles.filter((a) => articleMatchesCat(a.data.tags, c)) },
+  }));
+}
+const lang = 'de';
+const t = ui[lang];
+const { c, stories } = Astro.props;
+const label = catLabel(c, lang);
+const related = categories.filter((x) => x.slug !== c.slug);
+const fmt = (d: Date) => d.toLocaleDateString('de-DE', { month: 'short', day: 'numeric', year: 'numeric' });
+const readMin = (e: { body?: string }) => Math.max(1, Math.round((e.body || '').split(/\s+/).filter(Boolean).length / 200));
+const AV: Record<string,{color:string;svg:string}> = {
+  os:     { color:'#0f766e', svg:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>' },
+  tor:    { color:'#7b3fb5', svg:'<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6 6l12 12M18 6L6 18"/>' },
+  enc:    { color:'#c2680f', svg:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>' },
+  phone:  { color:'#1d6fe0', svg:'<rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>' },
+  msg:    { color:'#0e9e90', svg:'<path d="M4 5h16v11H8l-4 4z"/>' },
+  linux:  { color:'#3a7d3a', svg:'<polyline points="5 8 9 12 5 16"/><line x1="12" y1="16" x2="19" y2="16"/>' },
+  browser:{ color:'#2563eb', svg:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>' },
+  shield: { color:'#0c7d72', svg:'<path d="M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><polyline points="9 12 11 14 15 9.5"/>' },
+};
+function tagAvatar(tags: string[] = []) {
+  const tg = tags.join(' ').toLowerCase();
+  if (/(ransomware|extortion|decrypt)/.test(tg)) return AV.enc;
+  if (/(spyware|adware|keylogger|stalkerware|tracking)/.test(tg)) return AV.browser;
+  if (/(antivirus|scanner|tool|defender)/.test(tg)) return AV.os;
+  if (/(phishing|scam|email)/.test(tg)) return AV.msg;
+  if (/(android|ios|mobile|phone)/.test(tg)) return AV.phone;
+  if (/(windows|firewall|harden|update|account)/.test(tg)) return AV.linux;
+  return AV.shield;
+}
+const alternates = hreflangAlternates(`/c/${c.slug}/`);
+---
+<Base title={`${label} — MadDoktor2-Anleitungen`} description={`Alle MadDoktor2-Anleitungen zu ${label} — unabhängig, ehrlich, ohne Panikmache.`} lang={lang} alternates={alternates} canonicalPath={`/de/c/${c.slug}/`}>
+  <div class="wrap">
+    <div class="cathead">
+      <p class="k">{t.category}</p>
+      <h1>{label}</h1>
+      <div class="relrow"><span class="lbl">{t.other_topics}</span>
+        {related.map((r) => <a class="reltag" href={`/de/c/${r.slug}/`}>{catLabel(r, lang)}</a>)}
+      </div>
+      <p class="count"><b>{stories.length}</b> <span class="lbl">{stories.length === 1 ? 'Anleitung' : 'Anleitungen'}</span></p>
+    </div>
+    <div class="layout" style="grid-template-columns:1fr">
+      <div class="main">
+        {stories.map((a) => (
+          <article class="story">
+            <span class="ava cat-ava" style={`background:${tagAvatar(a.data.tags).color}`} aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={tagAvatar(a.data.tags).svg} /></span>
+            <div>
+              <p class="by"><a href="/de/about/">MadDoktor2</a> <em>{t.wrote}</em></p>
+              <h3><a href={`/de/articles/${a.id}/`}>{a.data.title}</a></h3>
+              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> · {a.data.tags.slice(0,3).join(', ')} — {a.data.description}</p>
+              <a class="more" href={`/de/articles/${a.id}/`}>{t.read_more}</a>
+              <div class="metab"><span>📅 {readMin(a)} min</span><span>🛡️ Sicherheit verständlich erklärt</span></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>

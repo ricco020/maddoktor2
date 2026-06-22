@@ -1,0 +1,87 @@
+---
+title: "Come rimuovere un trojan da Windows (passo dopo passo)"
+description: "Una guida chiara e passo dopo passo per rimuovere un trojan da Windows: modalità provvisoria, scansioni con Defender e Malwarebytes, pulizia e come restare al sicuro."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/gfb18e2f3a42865e310aeca410505c15eefaaf3b24c51768b51bc488d95f1aecb29d57157cfc5d1d659d4f8432a17c9f240ebe6c90492b90aff5bba1ac28a7300_1280.jpg"
+heroAlt: "Righe di codice di programmazione su uno schermo scuro, che rappresentano il codice di un trojan"
+keyword: "how to remove trojan virus"
+tags: ["malware-removal", "trojan", "virus", "windows", "scanner", "defender"]
+translationKey: "remove-trojan"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Un trojan è un malware che si maschera da qualcosa di legittimo: un gioco craccato, un falso programma di installazione, un "codec" di cui avevi bisogno per un video. Una volta avviato, può aprire una backdoor, rubare dati o scaricare altro malware. La buona notizia: la maggior parte dei trojan rivolti ai consumatori su Windows può essere rimossa con strumenti integrati e gratuiti, se segui i passaggi nell'ordine giusto. Ecco come procedere con attenzione.
+
+## Segnali che potresti avere un trojan
+
+- Il PC è improvvisamente lento, con le ventole che girano forte anche da fermo.
+- Programmi sconosciuti si avviano all'accensione, oppure il firewall segnala connessioni in uscita che non hai avviato tu.
+- Gli strumenti di sicurezza vengono disattivati o non si aprono.
+- File compaiono o scompaiono, oppure le impostazioni cambiano da sole.
+
+Nessuno di questi segnali da solo conferma un trojan, ma insieme indicano con forza che una scansione è ormai necessaria.
+
+## Passaggio 1 – Disconnettiti da internet
+
+Se sospetti un trojan attivo, disconnetti il Wi-Fi o stacca il cavo Ethernet. Molti trojan contattano un server di comando e controllo per ricevere istruzioni o esfiltrare dati. Tagliare la connessione limita i danni durante la pulizia. Riconnettiti solo quando devi scaricare strumenti o aggiornamenti.
+
+## Passaggio 2 – Avvia in modalità provvisoria con rete
+
+La modalità provvisoria carica Windows con un set minimo di driver e servizi, il che spesso impedisce al malware di funzionare e ne facilita la rimozione.
+
+1. Apri **Impostazioni → Sistema → Ripristino** e fai clic su **Riavvia ora** sotto *Avvio avanzato*.
+2. Dopo il riavvio, vai su **Risoluzione dei problemi → Opzioni avanzate → Impostazioni di avvio → Riavvia**.
+3. Quando appare l'elenco, premi **5** (o **F5**) per **Modalità provvisoria con rete**.
+
+La rete ti permette di aggiornare gli scanner; se hai già scaricato tutto, va bene anche la modalità provvisoria semplice.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Dopo aver ripulito un'infezione, cambia le password da un dispositivo pulito. Proton Pass le conserva con crittografia end-to-end." />
+
+## Passaggio 3 – Esegui una scansione completa con Microsoft Defender
+
+Windows include Microsoft Defender Antivirus, capace di affrontare i trojan più comuni.
+
+1. Apri **Sicurezza di Windows → Protezione da virus e minacce**.
+2. Fai clic su **Opzioni di analisi**, scegli **Analisi completa** ed eseguila.
+3. Per le infezioni ostinate, usa l'**Analisi offline di Microsoft Defender**: riavvia e analizza prima che Windows si carichi del tutto, intercettando il malware che si nasconde durante l'esecuzione.
+
+Metti in quarantena o rimuovi tutto ciò che rileva.
+
+![Primo piano di una tastiera di laptop su una scrivania scura, che rappresenta un PC Windows in fase di pulizia dal malware](https://pixabay.com/get/ge55d59d6f479a82bbc923213637c8363bc1c1b4ba0614af4591d0fa0bc6c4c8c5d20558030b72502b14b1ab182087d710d2c9f7b4297978b21921d9d4179210b_1280.jpg)
+
+## Passaggio 4 – Chiedi un secondo parere con Malwarebytes Free
+
+Nessun motore intercetta tutto, quindi esegui un secondo scanner. **Malwarebytes Free** è un noto strumento di pulizia su richiesta, bravo a catturare ciò che gli antivirus generici si lasciano sfuggire.
+
+1. Scaricalo dal sito ufficiale (malwarebytes.com).
+2. Esegui una scansione, esamina i rilevamenti e mettili in quarantena.
+3. Riavvia quando richiesto.
+
+## Passaggio 5 – Rimuovi programmi e voci di avvio sospetti
+
+Dopo la scansione, controlla i residui:
+
+- **App:** vai su **Impostazioni → App → App installate** e disinstalla tutto ciò che non riconosci o che non hai installato.
+- **Avvio:** apri **Gestione attività → App di avvio** e disattiva le voci sconosciute che partono all'accensione.
+
+Non eliminare nulla di cui non sei sicuro: cerca prima il nome esatto, così non disattivi un componente legittimo di Windows.
+
+## Passaggio 6 – Riavvia, riconnetti ed esegui di nuovo la scansione
+
+Riavvia in modalità normale, riconnettiti a internet, installa gli ultimi aggiornamenti di Windows ed esegui **un'altra scansione completa** con Defender. Un risultato pulito su una scansione nuova dopo il riavvio è la conferma che il trojan è sparito.
+
+## Passaggio 7 – Metti in sicurezza i tuoi account
+
+I trojan rubano spesso le password salvate e i cookie di sessione. Una volta verificato che il PC è pulito:
+
+- Cambia le password dei tuoi account importanti (prima l'email: è il centro di recupero di tutto il resto) da un dispositivo di cui ti fidi.
+- Attiva l'autenticazione a due fattori ovunque sia disponibile.
+- Controlla l'email: nessuna regola o inoltro aggiunto dall'aggressore.
+
+Un gestore di password rende molto meno faticoso il rinnovo di decine di credenziali, e usarne uno significa non riutilizzare la stessa password su più siti.
+
+## Quando valutare una reinstallazione pulita
+
+Se le scansioni continuano a trovare la stessa minaccia, gli strumenti di sicurezza non partono, o sospetti un trojan a livello rootkit, la via più sicura è fare il backup dei file personali (non dei programmi) e poi reinstallare Windows da supporti ufficiali. È più lavoro, ma garantisce un punto di partenza pulito quando gli strumenti di rimozione non riescono a sfrattare del tutto l'infezione.
+
+Segui i passaggi nell'ordine giusto – disconnessione, modalità provvisoria, doppia scansione, pulizia, nuova scansione, messa in sicurezza degli account – e la maggior parte dei trojan se ne va senza una reinstallazione completa.

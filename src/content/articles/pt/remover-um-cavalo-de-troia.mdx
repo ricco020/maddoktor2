@@ -1,0 +1,87 @@
+---
+title: "Como remover um cavalo de Troia do Windows (passo a passo)"
+description: "Um guia claro e passo a passo para remover um cavalo de Troia do Windows: modo de segurança, varreduras com Defender e Malwarebytes, limpeza e como permanecer protegido."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/gfb18e2f3a42865e310aeca410505c15eefaaf3b24c51768b51bc488d95f1aecb29d57157cfc5d1d659d4f8432a17c9f240ebe6c90492b90aff5bba1ac28a7300_1280.jpg"
+heroAlt: "Linhas de código de programação em uma tela escura de computador, representando o código de um cavalo de Troia"
+keyword: "how to remove trojan virus"
+tags: ["malware-removal", "trojan", "virus", "windows", "scanner", "defender"]
+translationKey: "remove-trojan"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Um cavalo de Troia é um malware que se disfarça de algo legítimo — um jogo pirateado, um instalador falso, um "codec" de que você supostamente precisava para um vídeo. Assim que é executado, pode abrir uma porta dos fundos, roubar dados ou baixar mais malware. A boa notícia: a maioria dos cavalos de Troia voltados ao consumidor no Windows pode ser removida com ferramentas integradas e gratuitas, desde que você siga os passos na ordem. Veja como fazer isso com cuidado.
+
+## Sinais de que você pode ter um cavalo de Troia
+
+- Seu PC fica de repente lento, com as ventoinhas girando forte mesmo parado.
+- Programas desconhecidos iniciam na inicialização, ou seu firewall sinaliza conexões de saída que você não fez.
+- Ferramentas de segurança são desativadas ou não abrem.
+- Arquivos aparecem ou desaparecem, ou configurações mudam sozinhas.
+
+Nenhum desses sinais sozinho confirma um cavalo de Troia, mas juntos são um forte indício de que uma varredura está atrasada.
+
+## Passo 1 – Desconecte-se da internet
+
+Se você suspeita de um cavalo de Troia ativo, desconecte o Wi-Fi ou desligue o cabo Ethernet. Muitos cavalos de Troia entram em contato com um servidor de comando e controle para receber instruções ou exfiltrar dados. Cortar a conexão limita os danos durante a limpeza. Reconecte-se apenas quando precisar baixar ferramentas ou atualizações.
+
+## Passo 2 – Inicialize no modo de segurança com rede
+
+O modo de segurança carrega o Windows com um conjunto mínimo de drivers e serviços, o que muitas vezes impede o malware de funcionar e facilita a remoção.
+
+1. Abra **Configurações → Sistema → Recuperação** e clique em **Reiniciar agora** em *Inicialização avançada*.
+2. Após reiniciar, vá em **Solução de problemas → Opções avançadas → Configurações de inicialização → Reiniciar**.
+3. Quando a lista aparecer, pressione **5** (ou **F5**) para o **Modo de segurança com rede**.
+
+A rede permite atualizar seus scanners; se você já baixou tudo, o modo de segurança simples basta.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Depois de limpar uma infecção, altere suas senhas a partir de um dispositivo limpo. O Proton Pass as armazena com criptografia de ponta a ponta." />
+
+## Passo 3 – Execute uma varredura completa com o Microsoft Defender
+
+O Windows inclui o Microsoft Defender Antivírus, capaz de lidar com cavalos de Troia comuns.
+
+1. Abra **Segurança do Windows → Proteção contra vírus e ameaças**.
+2. Clique em **Opções de verificação**, escolha **Verificação completa** e execute-a.
+3. Para infecções teimosas, use a **Verificação Offline do Microsoft Defender** — ela reinicia e verifica antes de o Windows carregar por completo, capturando malware que se esconde durante a execução.
+
+Coloque em quarentena ou remova tudo o que for detectado.
+
+![Close-up de um teclado de laptop sobre uma mesa escura, representando um PC com Windows sendo limpo de malware](https://pixabay.com/get/ge55d59d6f479a82bbc923213637c8363bc1c1b4ba0614af4591d0fa0bc6c4c8c5d20558030b72502b14b1ab182087d710d2c9f7b4297978b21921d9d4179210b_1280.jpg)
+
+## Passo 4 – Obtenha uma segunda opinião com o Malwarebytes Free
+
+Nenhum mecanismo sozinho detecta tudo, então execute um segundo scanner. O **Malwarebytes Free** é um limpador sob demanda muito conhecido, bom em capturar o que os antivírus gerais deixam passar.
+
+1. Baixe-o do site oficial (malwarebytes.com).
+2. Execute uma varredura, revise as detecções e coloque-as em quarentena.
+3. Reinicie quando solicitado.
+
+## Passo 5 – Remova programas e entradas de inicialização suspeitos
+
+Após a varredura, verifique os resíduos:
+
+- **Aplicativos:** vá em **Configurações → Aplicativos → Aplicativos instalados** e desinstale tudo o que você não reconhece ou não instalou.
+- **Inicialização:** abra **Gerenciador de Tarefas → Aplicativos de inicialização** e desative as entradas desconhecidas que iniciam ao ligar.
+
+Não exclua nada de que não tenha certeza — pesquise primeiro o nome exato para não desativar um componente legítimo do Windows.
+
+## Passo 6 – Reinicie, reconecte e faça uma nova varredura
+
+Reinicie no modo normal, reconecte-se à internet, instale as atualizações mais recentes do Windows e execute **mais uma varredura completa** com o Defender. Um resultado limpo em uma varredura nova após a reinicialização é a sua confirmação de que o cavalo de Troia se foi.
+
+## Passo 7 – Proteja suas contas
+
+Os cavalos de Troia frequentemente roubam senhas salvas e cookies de sessão. Depois que seu PC for verificado como limpo:
+
+- Altere as senhas das suas contas importantes (o e-mail primeiro — é o centro de recuperação de todo o resto) a partir de um dispositivo em que você confia.
+- Ative a autenticação de dois fatores em todos os lugares onde ela for oferecida.
+- Verifique seu e-mail em busca de regras ou encaminhamentos que o invasor possa ter adicionado.
+
+Um gerenciador de senhas torna bem menos penoso renovar dezenas de credenciais, e usar um significa que você não reutiliza a mesma senha em vários sites.
+
+## Quando considerar uma reinstalação limpa
+
+Se as varreduras continuam encontrando a mesma ameaça, as ferramentas de segurança não funcionam, ou você suspeita de um cavalo de Troia em nível de rootkit, o caminho mais seguro é fazer backup dos seus arquivos pessoais (não dos programas) e então reinstalar o Windows a partir de mídia oficial. Dá mais trabalho, mas garante um recomeço limpo quando as ferramentas de remoção não conseguem expulsar totalmente a infecção.
+
+Siga os passos na ordem — desconectar, modo de segurança, varrer duas vezes, limpar, varrer de novo, proteger as contas — e a maioria dos cavalos de Troia some sem uma reinstalação completa.

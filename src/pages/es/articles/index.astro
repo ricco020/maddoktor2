@@ -1,0 +1,41 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { hreflangAlternates } from '../../../lib/hreflang';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articlesEs')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const title = 'Guías — MadDoktor2';
+const description =
+  'Todas las guías de MadDoktor2 sobre eliminación de malware, anti-spyware y seguridad & privacidad del PC — independientes, honestas, sin alarmismo.';
+
+const alternates = hreflangAlternates('/articles/');
+---
+
+<Base {title} {description} lang="es" {alternates} canonicalPath="/es/articles/">
+  <section class="rise">
+    <p class="mono text-xs text-ink-faint">~ / articles</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">ls ./guides</h1>
+    <div class="mt-8 space-y-4">
+      {
+        articles.map((a) => (
+          <a
+            href={`/es/articles/${a.id}/`}
+            class="group block border border-edge bg-panel p-5 no-underline transition-colors hover:border-phosphor-dim"
+            style="border-radius: 6px"
+          >
+            <p class="mono text-xs text-ink-faint">
+              {a.data.pubDate.toISOString().slice(0, 10)} · {a.data.tags.map((t) => `#${t}`).join(' ')}
+            </p>
+            <h2 class="mt-2 text-xl font-semibold text-ink transition-colors group-hover:text-phosphor">
+              {a.data.title}
+            </h2>
+            <p class="mt-2 text-ink-dim">{a.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

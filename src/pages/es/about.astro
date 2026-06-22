@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Acerca de — MadDoktor2';
+const description =
+  'Quién está detrás de MadDoktor2, nuestra metodología editorial, cómo se financia el sitio y qué cubrimos: eliminación de malware, anti-spyware y seguridad y privacidad del PC.';
+
+const alternates = hreflangAlternates('/about/');
+---
+
+<Base {title} {description} lang="es" {alternates} canonicalPath="/es/about/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / about</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Acerca de MadDoktor2</h1>
+
+    <h2>Qué es este sitio</h2>
+    <p>
+      MadDoktor2 publica guías prácticas, en lenguaje claro, para limpiar y proteger PCs con Windows:
+      eliminar malware, spyware, adware y secuestradores del navegador, entender el ransomware, y los
+      hábitos cotidianos de seguridad y privacidad que mantienen una máquina fuera de problemas.
+      Escribimos para personas normales que se enfrentan a un problema real — no solo para
+      profesionales de la seguridad, y nunca para vender miedo.
+    </p>
+    <p>
+      Este dominio tiene una larga historia ligada a la ayuda para la eliminación de malware (consulta
+      la <a href="/es/heritage/">página de legado</a>), pero para que quede claro: se trata de una
+      <strong>reconstrucción independiente</strong> — no somos el antiguo foro ni la comunidad, y no
+      afirmamos serlo.
+    </p>
+
+    <h2>Qué cubrimos</h2>
+    <ul>
+      <li><strong>Eliminación de malware.</strong> Virus, troyanos, gusanos, rootkits y secuestradores del navegador — cómo detectarlos y eliminarlos paso a paso.</li>
+      <li><strong>Ransomware y spyware.</strong> Cómo funcionan, las señales de alerta, qué ayuda de verdad a recuperarse y cómo reducir el riesgo.</li>
+      <li><strong>Seguridad y privacidad de Windows.</strong> Las herramientas gratuitas adecuadas, un endurecimiento sensato, la protección de cuentas y los hábitos que mantienen limpio un PC después.</li>
+    </ul>
+
+    <h2>Metodología editorial</h2>
+    <ul>
+      <li><strong>Honesta, nunca inventada.</strong> Sin resultados de pruebas falsos, estadísticas fabricadas, premios o número de usuarios. Los datos proceden de fuentes nombradas y verificables.</li>
+      <li><strong>Sin alarmismo.</strong> Explicamos la probabilidad real de una amenaza, qué ayuda y qué no — una herramienta gratuita integrada suele superar a una suite cara que no necesitas.</li>
+      <li><strong>Pasos seguibles.</strong> Las guías están escritas para ser usables en un PC Windows real, quizá infectado, con una forma de confirmar que la máquina está limpia después.</li>
+      <li><strong>Limitaciones honestas.</strong> Cada guía indica lo que un método no puede hacer. Consulta nuestra <a href="/es/charter/">carta editorial</a> completa.</li>
+    </ul>
+
+    <h2>Cómo se financia el sitio</h2>
+    <p>
+      Algunos enlaces a productos de seguridad y privacidad son de afiliados — si te registras a través
+      de ellos, ganamos una comisión sin coste adicional para ti. Los enlaces de afiliados siempre van
+      marcados, nunca se colocan en las introducciones y nunca influyen en una recomendación. Detalles
+      en nuestra <a href="/es/affiliate-disclosure/">divulgación de afiliación</a>.
+    </p>
+
+    <p>
+      ¿Preguntas, correcciones, enlaces rotos? <a href="/es/contact/">Escríbenos</a>.
+    </p>
+  </article>
+</Base>

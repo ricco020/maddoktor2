@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+import { hreflangAlternates } from '../lib/hreflang';
+
+const title = 'Heritage — the history of maddoktor2.com';
+const description =
+  'maddoktor2.com historically hosted a malware-removal help resource. This site is an independent reconstruction focused on malware removal, anti-spyware and PC security — not a continuation of the old forum or community.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'The history of maddoktor2.com',
+    description,
+    inLanguage: 'en',
+    datePublished: '2026-06-22',
+    dateModified: '2026-06-22',
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: `${SITE.url}/heritage/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Heritage', item: `${SITE.url}/heritage/` },
+    ],
+  },
+];
+
+const alternates = hreflangAlternates('/heritage/');
+---
+
+<Base {title} {description} {schema} lang="en" {alternates} canonicalPath="/heritage/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / heritage</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">
+      The history of maddoktor2.com
+    </h1>
+
+    <p class="mt-6 text-lg text-ink-dim">
+      If you followed an old link or bookmark to get here, this page explains honestly what this
+      domain used to be and what it is now.
+    </p>
+
+    <h2>What this domain used to be</h2>
+    <p>
+      For many years, <strong class="text-ink">maddoktor2.com</strong> was associated with helping
+      people clean up infected Windows PCs — a corner of the early-2000s web where users were walked
+      through removing spyware, adware and malware step by step. That help resource is no longer
+      running, and the domain eventually lapsed.
+    </p>
+
+    <h2>What this site is now</h2>
+    <p>
+      This site is an <strong class="text-ink">independent reconstruction</strong>. We rebuilt
+      maddoktor2.com as a fresh, modern resource on the same subject — malware removal, anti-spyware,
+      and PC security and privacy — because the need it served hasn't gone away.
+    </p>
+    <p>
+      To be completely clear: <strong class="text-ink">we are not the original community, forum, team
+      or any of the people who ran the old site</strong>, and we don't claim to be. We have no
+      affiliation with them and we make no claim to inherit their reputation or membership in any group.
+      Everything published here is our own independent work, written under the rules in our
+      <a href="/charter/">editorial charter</a>.
+    </p>
+
+    <h2>Why keep the domain alive</h2>
+    <p>
+      Rather than let a domain with a long history of helping people simply disappear, we chose to
+      build something useful on it again. Old inbound links that pointed at forum or index pages now
+      lead here, to current guides, instead of dead ends.
+    </p>
+
+    <h2>Where to start</h2>
+    <p>
+      Our <a href="/articles/">guides</a> cover the practical questions: how to tell if a PC is
+      infected, how to remove malware and browser hijackers, what ransomware and spyware really are,
+      and how to keep a Windows machine clean afterwards.
+    </p>
+  </article>
+</Base>

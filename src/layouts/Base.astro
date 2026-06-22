@@ -1,0 +1,204 @@
+---
+import '../styles/global.css';
+// Self-hosted (CSP font-src 'self' bloque Google Fonts en prod) : Baloo 2 + Source Serif 4 + JetBrains Mono
+import '@fontsource/baloo-2/500.css';
+import '@fontsource/baloo-2/600.css';
+import '@fontsource/baloo-2/700.css';
+import '@fontsource/baloo-2/800.css';
+import '@fontsource/source-serif-4/400.css';
+import '@fontsource/source-serif-4/400-italic.css';
+import '@fontsource/source-serif-4/600.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/700.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, AFFILIATE } from '../lib/site';
+import { ui, localized, categories, catLabel } from '../lib/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  schema?: object[];
+  lang?: string;
+  /** Canonical path (without locale prefix), e.g. "/articles/how-to-remove-malware/" */
+  canonicalPath?: string;
+  /** Alternate URLs for hreflang — pass only when the page has FR/ES equivalents */
+  alternates?: { lang: string; href: string }[];
+  /** Image to preload (LCP hero) */
+  preloadImage?: string;
+  /** When true, wrap the slot in the 2-column article grid with a sticky right rail. */
+  isArticle?: boolean;
+  /** Related articles for the right-rail "Keep reading" list. */
+  related?: { href: string; title: string }[];
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og/default.png',
+  ogType = 'website',
+  schema = [],
+  lang = 'en',
+  canonicalPath,
+  alternates = [],
+  preloadImage,
+  isArticle = false,
+  related = [],
+} = Astro.props;
+
+const t = ui[lang] || ui.en;
+
+// Canonical: use explicit canonicalPath if provided, else derive from request URL
+const canonical = canonicalPath
+  ? new URL(canonicalPath, SITE.url).href
+  : new URL(Astro.url.pathname, SITE.url).href;
+
+const ogImageUrl = new URL(ogImage, SITE.url).href;
+
+const baseSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${SITE.url}/#org`,
+    name: SITE.name,
+    url: SITE.url,
+    logo: `${SITE.url}/og/default.png`,
+    description: SITE.description,
+    inLanguage: lang,
+  },
+  ...schema,
+];
+
+// Default hreflang alternates (x-default + en) if not explicitly provided
+const hreflangLinks: { lang: string; href: string }[] = alternates.length > 0
+  ? alternates
+  : [];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="c00bEnat_KrY2lW7LvFvcZTag1NWeQFU5wdOrCB-3RI" />
+    <meta name="google-site-verification" content="OGVEge5KMFpQixs71JVtAbpj0r5XMftGSEqsb54BPyw" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {/* Polices self-hosted via @fontsource (voir imports frontmatter) — la CSP font-src 'self' bloquerait Google Fonts */}
+    {preloadImage &&<link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {hreflangLinks.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(baseSchema).replace(/<\//g, '<\\/')} />
+    <!-- GA4 — loaded ONLY after explicit cookie consent. /ga.js gates analytics
+         and wires the banner. CSP (script-src 'self' googletagmanager) bars inline. -->
+    <script src="/ga.js" defer></script>
+  </head>
+  <body>
+    <Header lang={lang} />
+    {isArticle ? (
+      <div class="artgrid">
+        <main class="artmain" style="min-height:60vh"><slot /></main>
+        <aside class="artside">
+          <div class="sticky">
+            <nav class="toc2" id="toc2" aria-label="On this page"></nav>
+            <div class="affmini">
+              <span class="tag">{t.reco}</span>
+              <h4 class="amh">{t.art_aff_h}</h4>
+              <p>{t.art_aff_p}</p>
+              <a class="go" href={AFFILIATE.protonMail} rel="sponsored nofollow noopener" target="_blank">{t.aff_cta}</a>
+              <p class="disc">{t.aff_disc}</p>
+            </div>
+            {related.length > 0 && (
+              <div class="sidebox relmini">
+                <h4>{t.keep_reading}</h4>
+                <ul>
+                  {related.map((g) => <li><a href={g.href}>{g.title}</a></li>)}
+                </ul>
+              </div>
+            )}
+            <div class="sidebox topicmini">
+              <h4>{t.browse_topic}</h4>
+              <div class="chiprow">
+                {categories.map((c) => <a class="chip" href={localized(`/c/${c.slug}/`, lang)}>{catLabel(c, lang)}</a>)}
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    ) : (
+      <main style="min-height:60vh">
+        <slot />
+      </main>
+    )}
+    <Footer lang={lang} />
+    <script>
+      // Copy buttons on every command/code block (sector standard)
+      document.querySelectorAll('main pre').forEach((pre) => {
+        if (pre.parentElement?.classList.contains('codewrap')) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'codewrap';
+        pre.parentNode.insertBefore(wrap, pre);
+        wrap.appendChild(pre);
+        const btn = document.createElement('button');
+        btn.className = 'copybtn';
+        btn.type = 'button';
+        btn.textContent = 'copy';
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(pre.innerText);
+            btn.textContent = 'copied'; btn.classList.add('ok');
+            setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('ok'); }, 1600);
+          } catch {}
+        });
+        wrap.appendChild(btn);
+      });
+      // Auto "on this page" TOC (safe DOM construction). Prefer the right-rail
+      // #toc2; fall back to the inline #toc. textContent only (never innerHTML).
+      const tocEl = document.getElementById('toc2') || document.getElementById('toc');
+      if (tocEl) {
+        const heads = document.querySelectorAll('main .reading h2');
+        if (heads.length >= 3) {
+          const _lg = document.documentElement.lang || 'en';
+          const _tl = ({ fr: 'Sur cette page', es: 'En esta página', de: 'Auf dieser Seite', it: 'In questa pagina', pt: 'Nesta página' })[_lg] || 'On this page';
+          const label = document.createElement('p');
+          label.textContent = _tl;
+          tocEl.appendChild(label);
+          heads.forEach((h) => {
+            if (!h.id) h.id = (h.textContent || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            tocEl.appendChild(a);
+          });
+        }
+      }
+    </script>
+    <div class="cookiebar" id="cookiebar" hidden>
+      <p>{t.cookie} <a href={localized('/privacy-policy/', lang)}>{t.cookie_policy}</a>.</p>
+      <div class="btns">
+        <button type="button" id="ck-decline">{t.cookie_decline}</button>
+        <button type="button" class="acc" id="ck-accept">{t.cookie_accept}</button>
+      </div>
+    </div>
+  </body>
+</html>

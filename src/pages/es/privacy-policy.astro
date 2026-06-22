@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Política de privacidad — MadDoktor2';
+const description =
+  'Política de privacidad de maddoktor2.com: qué recopilamos (muy poco), analítica, enlaces de afiliados y sus derechos.';
+
+const alternates = hreflangAlternates('/privacy-policy/');
+---
+
+<Base {title} {description} lang="es" {alternates} canonicalPath="/es/privacy-policy/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / privacy-policy</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Política de privacidad</h1>
+    <p class="mono text-xs text-ink-faint">Última actualización: 12 de junio de 2026</p>
+
+    <p>
+      Un sitio centrado en la privacidad debería mantenerse al estándar sobre el que escribe. Aquí está exactamente
+      lo que maddoktor2.com hace con sus datos.
+    </p>
+
+    <h2>Qué recopilamos</h2>
+    <ul>
+      <li><strong>Sin cuentas, sin comentarios, sin boletines</strong> — no tenemos base de datos de usuarios.</li>
+      <li><strong>Registros del servidor</strong> — nuestro proveedor de alojamiento (Vercel) procesa direcciones IP y metadatos de solicitudes para servir y asegurar el sitio.</li>
+      <li><strong>Analítica</strong> — usamos Google Analytics 4 con anonimización de IP para entender el tráfico agregado. No lo usamos para publicidad ni seguimiento entre sitios.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      El sitio en sí no establece cookies. Google Analytics establece cookies de origen para medición agregada.
+      Puede bloquearlas con cualquier bloqueador de contenido — el sitio funciona de forma idéntica sin ellas.
+    </p>
+
+    <h2>Sus derechos</h2>
+    <p>
+      Bajo el RGPD y leyes similares puede solicitar acceso o eliminación de datos personales.
+      <a href="/es/contact/">Contáctenos</a> y le ayudaremos.
+    </p>
+
+    <h2>Cambios</h2>
+    <p>Los cambios importantes en esta política se reflejarán en la fecha anterior.</p>
+  </article>
+</Base>

@@ -1,0 +1,205 @@
+---
+// Flux de la page d'accueil — design éditorial (lead + stories + aside), PARTAGÉ par les 3
+// locales (en /, fr /fr, es /es) pour qu'elles restent strictement identiques (seul le
+// texte change). Évite la divergence EN-refondu / FR-ES-ancien-design (Eric 2026-06-15).
+import { AFFILIATE } from '../lib/site';
+import { ui, categories, catLabel, type Lang } from '../lib/ui';
+
+interface Props {
+  lang: Lang;
+  articles: any[];
+  page?: number;      // page courante (1-based) — pagination de la liste
+  pageSize?: number;  // nb d'articles par page
+}
+const { lang, articles, page = 1, pageSize = 12 } = Astro.props as Props;
+const t = ui[lang];
+const p = lang === 'en' ? '' : '/' + lang;
+
+// Mots/contenus localisés non présents dans ui.ts
+const WORD_IN: Record<string, string> = { en: 'in', fr: 'dans', es: 'en', de: 'in', it: 'in', pt: 'em' };
+const BADGE: Record<string, string> = {
+  en: '🛡️ Plain-English security',
+  fr: '🛡️ Sécurité en clair',
+  es: '🛡️ Seguridad sin jerga',
+  de: '🛡️ Sicherheit verständlich erklärt',
+  it: '🛡️ Sicurezza spiegata semplice',
+  pt: '🛡️ Segurança em linguagem clara',
+};
+const inWord = WORD_IN[lang];
+const badge = BADGE[lang];
+
+const START_HERE: Record<string, { n: number; label: string; slug: string }[]> = {
+  en: [
+    { n: 1, label: 'How to tell if your PC is infected', slug: 'is-my-pc-infected' },
+    { n: 2, label: 'How to remove malware from Windows', slug: 'how-to-remove-malware' },
+    { n: 3, label: 'What to do after a ransomware attack', slug: 'what-is-ransomware' },
+  ],
+  fr: [
+    { n: 1, label: 'Comment savoir si votre PC est infecté', slug: 'is-my-pc-infected' },
+    { n: 2, label: 'Comment supprimer un malware sous Windows', slug: 'how-to-remove-malware' },
+    { n: 3, label: 'Que faire après une attaque par rançongiciel', slug: 'what-is-ransomware' },
+  ],
+  es: [
+    { n: 1, label: 'Cómo saber si tu PC está infectado', slug: 'is-my-pc-infected' },
+    { n: 2, label: 'Cómo eliminar malware en Windows', slug: 'how-to-remove-malware' },
+    { n: 3, label: 'Qué hacer tras un ataque de ransomware', slug: 'what-is-ransomware' },
+  ],
+  de: [
+    { n: 1, label: 'So erkennen Sie, ob Ihr PC infiziert ist', slug: 'is-my-pc-infected' },
+    { n: 2, label: 'So entfernen Sie Malware unter Windows', slug: 'how-to-remove-malware' },
+    { n: 3, label: 'Was nach einem Ransomware-Angriff zu tun ist', slug: 'what-is-ransomware' },
+  ],
+  it: [
+    { n: 1, label: 'Come capire se il tuo PC è infetto', slug: 'is-my-pc-infected' },
+    { n: 2, label: 'Come rimuovere malware da Windows', slug: 'how-to-remove-malware' },
+    { n: 3, label: 'Cosa fare dopo un attacco ransomware', slug: 'what-is-ransomware' },
+  ],
+  pt: [
+    { n: 1, label: 'Como saber se o seu PC está infetado', slug: 'is-my-pc-infected' },
+    { n: 2, label: 'Como remover malware do Windows', slug: 'how-to-remove-malware' },
+    { n: 3, label: 'O que fazer após um ataque de ransomware', slug: 'what-is-ransomware' },
+  ],
+};
+const startHere = START_HERE[lang];
+
+const BLOCKS: Record<string, { c: string; k: string; h: string; p: string; a: string }[]> = {
+  en: [
+    { c: 'b1', k: 'Malware removal', h: 'Clean an infected PC', p: 'Step-by-step removal of viruses, trojans, rootkits and browser hijackers — without paying for bloated suites.', a: 'Read the guides →' },
+    { c: 'b2', k: 'Ransomware & spyware', h: 'When it gets serious', p: 'How ransomware and spyware actually work, the warning signs, and what genuinely helps recover.', a: 'Read the guide →' },
+    { c: 'b3', k: 'Windows security', h: 'Stay clean afterwards', p: 'Practical hardening, the right free tools, and the habits that keep a Windows PC out of trouble.', a: 'Read the guide →' },
+  ],
+  fr: [
+    { c: 'b1', k: 'Suppression de malware', h: 'Nettoyer un PC infecté', p: 'Suppression pas à pas des virus, chevaux de Troie, rootkits et pirates de navigateur — sans payer une suite lourde.', a: 'Lire les guides →' },
+    { c: 'b2', k: 'Rançongiciels & spyware', h: 'Quand ça devient sérieux', p: 'Comment fonctionnent vraiment les rançongiciels et les spywares, les signes d’alerte, et ce qui aide réellement à récupérer.', a: 'Lire le guide →' },
+    { c: 'b3', k: 'Sécurité Windows', h: 'Rester propre ensuite', p: 'Durcissement pratique, les bons outils gratuits et les habitudes qui gardent un PC Windows hors de danger.', a: 'Lire le guide →' },
+  ],
+  es: [
+    { c: 'b1', k: 'Eliminación de malware', h: 'Limpia un PC infectado', p: 'Eliminación paso a paso de virus, troyanos, rootkits y secuestradores del navegador — sin pagar suites pesadas.', a: 'Leer las guías →' },
+    { c: 'b2', k: 'Ransomware y spyware', h: 'Cuando se pone serio', p: 'Cómo funcionan realmente el ransomware y el spyware, las señales de alerta y lo que ayuda de verdad a recuperarse.', a: 'Leer la guía →' },
+    { c: 'b3', k: 'Seguridad de Windows', h: 'Mantente limpio después', p: 'Endurecimiento práctico, las herramientas gratuitas adecuadas y los hábitos que mantienen un PC Windows a salvo.', a: 'Leer la guía →' },
+  ],
+  de: [
+    { c: 'b1', k: 'Malware-Entfernung', h: 'Einen infizierten PC bereinigen', p: 'Schritt-für-Schritt-Entfernung von Viren, Trojanern, Rootkits und Browser-Hijackern — ohne überladene Suiten zu kaufen.', a: 'Anleitungen lesen →' },
+    { c: 'b2', k: 'Ransomware & Spyware', h: 'Wenn es ernst wird', p: 'Wie Ransomware und Spyware wirklich funktionieren, die Warnzeichen und was bei der Wiederherstellung tatsächlich hilft.', a: 'Anleitung lesen →' },
+    { c: 'b3', k: 'Windows-Sicherheit', h: 'Danach sauber bleiben', p: 'Praktisches Härten, die richtigen kostenlosen Tools und die Gewohnheiten, die einen Windows-PC aus Schwierigkeiten halten.', a: 'Anleitung lesen →' },
+  ],
+  it: [
+    { c: 'b1', k: 'Rimozione malware', h: 'Ripulisci un PC infetto', p: 'Rimozione passo dopo passo di virus, trojan, rootkit e dirottatori del browser — senza pagare suite pesanti.', a: 'Leggi le guide →' },
+    { c: 'b2', k: 'Ransomware e spyware', h: 'Quando si fa serio', p: 'Come funzionano davvero ransomware e spyware, i segnali di allarme e ciò che aiuta veramente a recuperare.', a: 'Leggi la guida →' },
+    { c: 'b3', k: 'Sicurezza di Windows', h: 'Restare puliti dopo', p: 'Rafforzamento pratico, gli strumenti gratuiti giusti e le abitudini che tengono un PC Windows fuori dai guai.', a: 'Leggi la guida →' },
+  ],
+  pt: [
+    { c: 'b1', k: 'Remoção de malware', h: 'Limpe um PC infetado', p: 'Remoção passo a passo de vírus, trojans, rootkits e sequestradores de navegador — sem pagar por suites pesadas.', a: 'Ler os guias →' },
+    { c: 'b2', k: 'Ransomware e spyware', h: 'Quando fica sério', p: 'Como o ransomware e o spyware funcionam de facto, os sinais de alerta e o que realmente ajuda a recuperar.', a: 'Ler o guia →' },
+    { c: 'b3', k: 'Segurança do Windows', h: 'Manter-se limpo depois', p: 'Reforço prático, as ferramentas gratuitas certas e os hábitos que mantêm um PC Windows longe de problemas.', a: 'Ler o guia →' },
+  ],
+};
+const blocks = BLOCKS[lang];
+
+const LOCALE_CODE: Record<string, string> = { en: 'en-US', fr: 'fr-FR', es: 'es-ES', de: 'de-DE', it: 'it-IT', pt: 'pt-PT' };
+const fmt = (d: Date) => d.toLocaleDateString(LOCALE_CODE[lang], { month: 'short', day: 'numeric', year: 'numeric' });
+const readMin = (e: { body?: string }) => Math.max(1, Math.round((e.body || '').split(/\s+/).filter(Boolean).length / 200));
+
+const AV: Record<string, { color: string; svg: string }> = {
+  os:      { color: '#0f766e', svg: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>' },
+  tor:     { color: '#7b3fb5', svg: '<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6 6l12 12M18 6L6 18"/>' },
+  enc:     { color: '#c2680f', svg: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>' },
+  phone:   { color: '#1d6fe0', svg: '<rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>' },
+  msg:     { color: '#0e9e90', svg: '<path d="M4 5h16v11H8l-4 4z"/>' },
+  linux:   { color: '#3a7d3a', svg: '<polyline points="5 8 9 12 5 16"/><line x1="12" y1="16" x2="19" y2="16"/>' },
+  browser: { color: '#2563eb', svg: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>' },
+  shield:  { color: '#0c7d72', svg: '<path d="M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><polyline points="9 12 11 14 15 9.5"/>' },
+};
+function tagAvatar(tags: string[] = []) {
+  const s = tags.join(' ').toLowerCase();
+  if (/(ransomware|extortion|decrypt)/.test(s)) return AV.enc;
+  if (/(spyware|adware|keylogger|stalkerware|tracking)/.test(s)) return AV.browser;
+  if (/(antivirus|scanner|tool|defender)/.test(s)) return AV.os;
+  if (/(phishing|scam|email)/.test(s)) return AV.msg;
+  if (/(android|ios|mobile|phone)/.test(s)) return AV.phone;
+  if (/(windows|firewall|harden|update|account)/.test(s)) return AV.linux;
+  return AV.shield;
+}
+const popular = articles.slice(0, 4);
+const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
+const cur = Math.min(Math.max(1, page), totalPages);
+const pageArticles = articles.slice((cur - 1) * pageSize, cur * pageSize);
+const lead = pageArticles[0];
+const homeStories = pageArticles.slice(1);
+const pageHref = (n: number) => (n <= 1 ? (p || '/') : `${p}/page/${n}/`);
+---
+<div class="wrap">
+  <div class="layout">
+    <div class="main">
+      {lead && (
+        <article class="lead">
+          <a href={`${p}/articles/${lead.id}/`} class="lead-media"><img src={lead.data.hero} alt={lead.data.heroAlt} width="1280" height="720" loading="eager" /></a>
+          <p class="by"><a href={`${p}/about/`}>MadDoktor2</a> <em>{t.wrote}</em></p>
+          <h2><a href={`${p}/articles/${lead.id}/`}>{lead.data.title}</a></h2>
+          <p class="ex"><span class="date">{fmt(lead.data.pubDate)}</span> {inWord} {lead.data.tags.slice(0,3).join(', ')} — {lead.data.description}</p>
+          <a class="more" href={`${p}/articles/${lead.id}/`}>{t.read_more}</a>
+          <div class="metab"><span>📅 {readMin(lead)} {t.min_read}</span><span>{badge}</span></div>
+        </article>
+      )}
+      {homeStories.map((a) => (
+        <article class="story">
+          <span class="ava cat-ava" style={`background:${tagAvatar(a.data.tags).color}`} aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={tagAvatar(a.data.tags).svg} /></span>
+          <div>
+            <p class="by"><a href={`${p}/about/`}>MadDoktor2</a> <em>{t.wrote}</em></p>
+            <h3><a href={`${p}/articles/${a.id}/`}>{a.data.title}</a></h3>
+            <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> {inWord} {a.data.tags.slice(0, 3).join(', ')} — {a.data.description}</p>
+            <a class="more" href={`${p}/articles/${a.id}/`}>{t.read_more}</a>
+            <div class="metab"><span>📅 {readMin(a)} {t.min_read}</span><span>{badge}</span></div>
+          </div>
+        </article>
+      ))}
+      {totalPages > 1 && (
+        <nav class="pagination" aria-label="Pagination" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center;margin:30px 0 10px;">
+          {cur > 1 && (<a href={pageHref(cur - 1)} aria-label="Previous" style="padding:8px 14px;border:1px solid rgba(128,128,128,.3);border-radius:8px;text-decoration:none;font-weight:700;">&larr;</a>)}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+            n === cur
+              ? (<span aria-current="page" style="padding:8px 14px;border-radius:8px;font-weight:800;background:#178f7e;color:#fff;">{n}</span>)
+              : (<a href={pageHref(n)} style="padding:8px 14px;border:1px solid rgba(128,128,128,.3);border-radius:8px;text-decoration:none;font-weight:700;">{n}</a>)
+          ))}
+          {cur < totalPages && (<a href={pageHref(cur + 1)} aria-label="Next" style="padding:8px 14px;border:1px solid rgba(128,128,128,.3);border-radius:8px;text-decoration:none;font-weight:700;">&rarr;</a>)}
+        </nav>
+      )}
+    </div>
+    <aside class="side">
+      <div class="affbox">
+        <span class="tag">{t.reco}</span>
+        <h3>{t.aff_h}</h3>
+        <p>{t.aff_p}</p>
+        <a class="go" href={AFFILIATE.protonMail} rel="sponsored nofollow noopener" target="_blank">{t.aff_cta}</a>
+        <p class="disc">{t.aff_disc}</p>
+      </div>
+      <div class="starthere">
+        <h4>{t.start_here}</h4>
+        <ul class="steps">
+          {startHere.map((s) => <li><span class="n">{s.n}</span><a href={`${p}/articles/${s.slug}/`}>{s.label}</a></li>)}
+        </ul>
+      </div>
+      <div class="sidecard">
+        <h4>{t.popular}</h4>
+        <ul>{popular.map((pp) => <li><a href={`${p}/articles/${pp.id}/`}>{pp.data.title}</a></li>)}</ul>
+      </div>
+      <div class="topicbox">
+        <h4>{t.browse_topic}</h4>
+        <div class="chiprow">
+          {categories.map((c) => <a class="chip" href={`${p}/c/${c.slug}/`}>{catLabel(c, lang)}</a>)}
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="blocks">
+    {blocks.map((b) => (
+      <div class:list={['block', b.c]}>
+        <p class="k">{b.k}</p>
+        <h3>{b.h}</h3>
+        <p>{b.p}</p>
+        <a href={`${p}/articles/`}>{b.a}</a>
+      </div>
+    ))}
+  </div>
+</div>

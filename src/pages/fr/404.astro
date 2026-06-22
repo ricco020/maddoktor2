@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = '404 — MadDoktor2';
+const description = 'Page non trouvée.';
+---
+
+<Base {title} {description} lang="fr">
+  <section class="rise mx-auto max-w-xl py-16 text-center">
+    <p class="mono text-6xl font-semibold text-phosphor">404</p>
+    <p class="mono mt-4 text-sm text-ink-dim">
+      $ stat: cannot stat this path: No such file or directory
+    </p>
+    <p class="mt-6 text-ink-dim">
+      Si vous avez suivi un ancien lien vers ce domaine, voici l'<a href="/fr/heritage/" class="text-amber underline">histoire honnête de maddoktor2.com</a>.
+    </p>
+    <div class="mono mt-8 flex justify-center gap-4 text-sm">
+      <a
+        href="/fr/"
+        class="border border-phosphor-dim px-5 py-2.5 font-semibold text-phosphor no-underline transition-colors hover:bg-phosphor hover:text-void"
+        style="border-radius: 4px">cd ~</a
+      >
+      <a
+        href="/fr/articles/"
+        class="border border-edge-bright px-5 py-2.5 text-ink-dim no-underline transition-colors hover:border-phosphor-dim hover:text-phosphor"
+        style="border-radius: 4px">ls ./guides</a
+      >
+    </div>
+  </section>
+</Base>

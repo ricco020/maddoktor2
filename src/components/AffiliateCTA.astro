@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  product: string;
+  blurb: string;
+}
+const { href, product, blurb } = Astro.props;
+---
+
+<aside class="not-prose my-8 border border-edge-bright bg-panel-2 p-5" style="border-radius: 6px">
+  <p class="mono text-xs tracking-wide text-ink-faint uppercase">sponsored · affiliate link</p>
+  <p class="mt-2 font-serif text-ink">{blurb}</p>
+  <a
+    href={href}
+    rel="sponsored nofollow noopener noreferrer"
+    class="mono mt-3 inline-block border border-phosphor-dim px-4 py-2 text-sm font-semibold text-phosphor no-underline transition-colors hover:bg-phosphor hover:text-void"
+    style="border-radius: 4px"
+  >
+    → try {product}
+  </a>
+</aside>

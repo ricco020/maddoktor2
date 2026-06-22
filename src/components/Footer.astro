@@ -1,0 +1,103 @@
+---
+import { SITE } from '../lib/site';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const year = new Date().getFullYear();
+const p = lang === 'en' ? '' : `/${lang}`;
+
+const labels: Record<string, Record<string, string>> = {
+  en: {
+    heritage: 'heritage',
+    charter: 'charter',
+    about: 'about',
+    contact: 'contact',
+    privacy: 'privacy',
+    affiliate: 'affiliate disclosure',
+    rss: 'rss',
+    tagline: `${SITE.name} — independent malware removal & PC security guides.`,
+    footer: `© ${year} ${SITE.name}. Some links are affiliate links — see our`,
+    disclosure: 'disclosure',
+  },
+  fr: {
+    heritage: 'historique',
+    charter: 'charte',
+    about: 'à propos',
+    contact: 'contact',
+    privacy: 'confidentialité',
+    affiliate: 'liens affiliés',
+    rss: 'rss',
+    tagline: `${SITE.name} — guides indépendants de suppression de malwares et de sécurité PC.`,
+    footer: `© ${year} ${SITE.name}. Certains liens sont affiliés — voir notre`,
+    disclosure: 'divulgation',
+  },
+  es: {
+    heritage: 'historia',
+    charter: 'carta',
+    about: 'acerca de',
+    contact: 'contacto',
+    privacy: 'privacidad',
+    affiliate: 'divulgación de afiliados',
+    rss: 'rss',
+    tagline: `${SITE.name} — guías independientes de eliminación de malware y seguridad del PC.`,
+    footer: `© ${year} ${SITE.name}. Algunos enlaces son de afiliados — ver nuestra`,
+    disclosure: 'divulgación',
+  },
+  de: {
+    heritage: 'geschichte',
+    charter: 'charta',
+    about: 'über uns',
+    contact: 'kontakt',
+    privacy: 'datenschutz',
+    affiliate: 'affiliate-hinweis',
+    rss: 'rss',
+    tagline: `${SITE.name} — unabhängige Anleitungen zur Malware-Entfernung und PC-Sicherheit.`,
+    footer: `© ${year} ${SITE.name}. Einige Links sind Affiliate-Links — siehe unseren`,
+    disclosure: 'hinweis',
+  },
+  it: {
+    heritage: 'storia',
+    charter: 'statuto',
+    about: 'chi siamo',
+    contact: 'contatti',
+    privacy: 'privacy',
+    affiliate: 'informativa affiliati',
+    rss: 'rss',
+    tagline: `${SITE.name} — guide indipendenti per la rimozione di malware e la sicurezza del PC.`,
+    footer: `© ${year} ${SITE.name}. Alcuni link sono di affiliazione — consulta la nostra`,
+    disclosure: 'informativa',
+  },
+  pt: {
+    heritage: 'história',
+    charter: 'carta',
+    about: 'sobre',
+    contact: 'contacto',
+    privacy: 'privacidade',
+    affiliate: 'divulgação de afiliados',
+    rss: 'rss',
+    tagline: `${SITE.name} — guias independentes de remoção de malware e segurança do PC.`,
+    footer: `© ${year} ${SITE.name}. Alguns links são de afiliados — consulte a nossa`,
+    disclosure: 'divulgação',
+  },
+};
+
+const t = labels[lang] ?? labels['en'];
+---
+
+<footer class="site">
+  <div class="wrap">
+    <p style="color:var(--ink);font-weight:600">{t.tagline}</p>
+    <nav style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px 22px">
+      <a href={`${p}/heritage/`}>{t.heritage}</a>
+      <a href={`${p}/charter/`}>{t.charter}</a>
+      <a href={`${p}/about/`}>{t.about}</a>
+      <a href={`${p}/contact/`}>{t.contact}</a>
+      <a href={`${p}/privacy-policy/`}>{t.privacy}</a>
+      <a href={`${p}/affiliate-disclosure/`}>{t.affiliate}</a>
+      <a href="/rss.xml">{t.rss}</a>
+    </nav>
+    <p style="margin-top:16px">{t.footer} <a href={`${p}/affiliate-disclosure/`} style="text-decoration:underline">{t.disclosure}</a>.</p>
+  </div>
+</footer>

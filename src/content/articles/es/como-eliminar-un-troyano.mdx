@@ -1,0 +1,87 @@
+---
+title: "Cómo eliminar un troyano de Windows (paso a paso)"
+description: "Guía clara y paso a paso para eliminar un troyano de Windows: modo seguro, análisis con Defender y Malwarebytes, limpieza y cómo seguir protegido."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/gfb18e2f3a42865e310aeca410505c15eefaaf3b24c51768b51bc488d95f1aecb29d57157cfc5d1d659d4f8432a17c9f240ebe6c90492b90aff5bba1ac28a7300_1280.jpg"
+heroAlt: "Líneas de código de programación en una pantalla de ordenador oscura, representando el código de un troyano"
+keyword: "how to remove trojan virus"
+tags: ["malware-removal", "trojan", "virus", "windows", "scanner", "defender"]
+translationKey: "remove-trojan"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Un troyano es malware que se disfraza de algo legítimo — un juego pirateado, un instalador falso, un «códec» que necesitabas para un vídeo. Una vez se ejecuta, puede abrir una puerta trasera, robar datos o descargar más malware. La buena noticia: la mayoría de los troyanos domésticos en Windows se pueden eliminar con herramientas integradas y gratuitas si sigues los pasos en orden. Así se hace con cuidado.
+
+## Señales de que puedes tener un troyano
+
+- Tu PC va de repente lento, con los ventiladores a tope estando inactivo.
+- Programas desconocidos arrancan al inicio, o tu firewall avisa de conexiones salientes que no hiciste.
+- Las herramientas de seguridad se desactivan o no abren.
+- Aparecen o desaparecen archivos, o cambian ajustes por sí solos.
+
+Ninguna de estas señales por sí sola confirma un troyano, pero juntas indican que toca un análisis.
+
+## Paso 1 — Desconéctate de internet
+
+Si sospechas de un troyano activo, desconecta el Wi-Fi o desenchufa el cable Ethernet. Muchos troyanos se comunican con un servidor de mando y control para recibir instrucciones o exfiltrar datos. Cortar la conexión limita el daño durante la limpieza. Reconéctate solo cuando necesites descargar herramientas o actualizaciones.
+
+## Paso 2 — Arranca en Modo seguro con funciones de red
+
+El Modo seguro carga Windows con un conjunto mínimo de controladores y servicios, lo que a menudo impide que el malware se ejecute y facilita su eliminación.
+
+1. Abre **Configuración → Sistema → Recuperación** y haz clic en **Reiniciar ahora** bajo *Inicio avanzado*.
+2. Tras el reinicio, ve a **Solucionar problemas → Opciones avanzadas → Configuración de inicio → Reiniciar**.
+3. Cuando aparezca la lista, pulsa **5** (o **F5**) para **Modo seguro con funciones de red**.
+
+La red permite actualizar tus escáneres; si ya lo tienes todo descargado, basta con el Modo seguro normal.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Tras limpiar una infección, cambia tus contraseñas desde un dispositivo limpio. Proton Pass las guarda cifradas de extremo a extremo." />
+
+## Paso 3 — Ejecuta un análisis completo de Microsoft Defender
+
+Windows incluye Microsoft Defender Antivirus, capaz frente a troyanos comunes.
+
+1. Abre **Seguridad de Windows → Protección antivirus y contra amenazas**.
+2. Haz clic en **Opciones de análisis**, elige **Análisis completo** y ejecútalo.
+3. Para infecciones persistentes, usa el **Análisis sin conexión de Microsoft Defender** — reinicia y analiza antes de que Windows cargue del todo, atrapando malware que se oculta en ejecución.
+
+Pon en cuarentena o elimina todo lo que detecte.
+
+![Primer plano de un teclado de portátil sobre un escritorio oscuro, representando un PC con Windows en proceso de limpieza](https://pixabay.com/get/ge55d59d6f479a82bbc923213637c8363bc1c1b4ba0614af4591d0fa0bc6c4c8c5d20558030b72502b14b1ab182087d710d2c9f7b4297978b21921d9d4179210b_1280.jpg)
+
+## Paso 4 — Pide una segunda opinión con Malwarebytes Free
+
+Ningún motor lo detecta todo, así que ejecuta un segundo escáner. **Malwarebytes Free** es un limpiador bajo demanda muy conocido, bueno para atrapar lo que los antivirus generales pasan por alto.
+
+1. Descárgalo del sitio oficial (malwarebytes.com).
+2. Ejecuta un análisis, revisa las detecciones y ponlas en cuarentena.
+3. Reinicia cuando te lo pida.
+
+## Paso 5 — Elimina programas y entradas de inicio sospechosos
+
+Tras el análisis, busca restos:
+
+- **Aplicaciones:** Ve a **Configuración → Aplicaciones → Aplicaciones instaladas** y desinstala lo que no reconozcas o no instalaras.
+- **Inicio:** Abre **Administrador de tareas → Aplicaciones de inicio** y desactiva las entradas desconocidas que arrancan al inicio.
+
+No borres nada de lo que no estés seguro — busca el nombre exacto primero para no desactivar un componente legítimo de Windows.
+
+## Paso 6 — Reinicia, reconéctate y vuelve a analizar
+
+Reinicia en modo normal, reconéctate a internet, instala las últimas actualizaciones de Windows y ejecuta **un análisis completo más** con Defender. Un resultado limpio en un análisis nuevo tras reiniciar es tu confirmación de que el troyano ha desaparecido.
+
+## Paso 7 — Asegura tus cuentas
+
+Los troyanos roban con frecuencia contraseñas guardadas y cookies de sesión. Una vez verificado que el PC está limpio:
+
+- Cambia las contraseñas de tus cuentas importantes (el correo primero — es el centro de recuperación de todo lo demás) desde un dispositivo de confianza.
+- Activa la autenticación de dos factores en todo lo que la ofrezca.
+- Revisa tu correo: ninguna regla ni reenvío añadido por el atacante.
+
+Un gestor de contraseñas hace mucho menos doloroso renovar decenas de credenciales, y usar uno significa que no reutilizas la misma contraseña en varios sitios.
+
+## Cuándo plantearse una reinstalación limpia
+
+Si los análisis siguen encontrando la misma amenaza, las herramientas de seguridad no se ejecutan, o sospechas de un troyano a nivel de rootkit, lo más seguro es respaldar tus archivos personales (no los programas) y luego reinstalar Windows desde un soporte oficial. Es más trabajo, pero garantiza empezar de cero cuando las herramientas de eliminación no logran expulsar del todo la infección.
+
+Sigue los pasos en orden — desconectar, Modo seguro, analizar dos veces, limpiar, volver a analizar, asegurar cuentas — y la mayoría de los troyanos se quitan sin una reinstalación completa.

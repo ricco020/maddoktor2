@@ -1,0 +1,92 @@
+---
+title: "Como remover spyware de um PC: guia passo a passo (2026)"
+description: "Um guia claro e passo a passo para detectar e remover spyware de um PC com Windows usando o Defender, scanners sob demanda, limpeza do navegador e recuperação de contas."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/g0c8b88e45068e3e5fd795a6d09f38d054b2beb01271d34d65d69bc067095b1af3179386caf618586ac8e336c4bfbd77cde0ba08b63f5ab11e366ad5718586e96_1280.jpg"
+heroAlt: "Um olho estilizado sobre código de computador, representando spyware e vigilância em um PC"
+keyword: "how to remove spyware"
+tags: ["spyware", "malware-removal", "windows-security", "privacy"]
+translationKey: "how-to-remove-spyware"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Spyware é um malware projetado para vigiá-lo silenciosamente — registrando as teclas digitadas, capturando telas, coletando senhas ou rastreando sua navegação — e enviar esses dados a outra pessoa. Como ele tenta permanecer oculto, você muitas vezes só o percebe pelos efeitos colaterais: um PC lento, pop-ups inesperados, uma página inicial do navegador que você não definiu ou atividade de rede estranha. Este guia mostra como removê-lo de forma limpa.
+
+Estes passos foram escritos para o Windows, o alvo mais comum. Siga-os na ordem — cada um fecha um esconderijo que o passo anterior pode ter deixado passar.
+
+## Sinais de que você pode ter spyware
+
+- O PC fica de repente lento ou a ventoinha gira constantemente quando ocioso.
+- A página inicial do seu navegador ou o mecanismo de busca padrão mudou sozinho.
+- Aparecem novas barras de ferramentas ou extensões que você não instalou.
+- Você vê programas desconhecidos no menu Iniciar ou no gerenciador de tarefas.
+- Amigos relatam mensagens das suas contas que você não enviou.
+
+Nenhum desses sozinho prova uma infecção, mas vários juntos são um forte sinal.
+
+## Passo 1: Desconecte-se e faça backup do que está limpo
+
+Se você suspeita de spyware ativo (especialmente keyloggers ou ladrões de informações), desconecte-se da internet para impedi-lo de enviar dados. Se você tiver arquivos importantes, copie-os para uma unidade externa — mas não copie executáveis ou instaladores dos quais você não tem certeza.
+
+## Passo 2: Execute uma varredura completa com o Microsoft Defender
+
+O Windows inclui o Microsoft Defender, que pode capturar a maior parte do spyware comum:
+
+1. Abra a **Segurança do Windows** (procure por ela no menu Iniciar).
+2. Vá em **Proteção contra vírus e ameaças → Opções de verificação**.
+3. Escolha **Verificação completa** (não Rápida) e inicie-a. Uma verificação completa checa cada arquivo e leva um tempo — deixe-a terminar.
+4. Siga as instruções para colocar em quarentena ou remover o que ela encontrar, depois reinicie.
+
+![Uma lupa examinando detalhes — como executar uma varredura completa para inspecionar cada arquivo de um PC.](https://pixabay.com/get/gdd4e32bf8f16b4002d13b61b3fe9c8d32622963dfcb697903170e1de5b2f71eda8831e8d5ddf0bae61adee28c660168e3877bd3783f52d10e0c1f454d43d81fb_1280.jpg)
+
+## Passo 3: Execute um scanner sob demanda para uma segunda opinião
+
+Parte do spyware passa despercebida por qualquer mecanismo isolado. Execute um scanner sob demanda respeitável como segunda opinião — opções conhecidas incluem o scanner gratuito do Malwarebytes e o ADWCleaner (que mira adware, PUPs e sequestradores de navegador). Executar um scanner sob demanda ao lado do Defender não há problema, pois ele verifica sob solicitação em vez de rodar um segundo mecanismo em tempo real. Coloque em quarentena o que ele sinalizar e reinicie.
+
+## Passo 4: Para infecções profundas, use o Microsoft Defender Offline
+
+Parte do spyware carrega cedo e se esconde de uma varredura normal. O **Microsoft Defender Offline** reinicia o PC em um ambiente mínimo e verifica antes de o Windows (e o malware) carregarem por completo:
+
+1. **Segurança do Windows → Proteção contra vírus e ameaças → Opções de verificação**.
+2. Escolha **Verificação Offline do Microsoft Defender** e execute-a.
+3. O PC reinicia, verifica e remove as ameaças que encontrar antes de voltar ao Windows.
+
+## Passo 5: Limpe o navegador
+
+Spyware e adware frequentemente se prendem ao navegador. Em **cada** navegador que você usa:
+
+- Abra a página de extensões/complementos e **remova tudo o que você não reconhece**.
+- Redefina a **página inicial** e o **mecanismo de busca padrão** para o que você quiser.
+- Limpe cookies e cache.
+- Se os problemas persistirem, use a opção **Redefinir configurações** do navegador (Chrome: Configurações → Redefinir configurações; Edge: Configurações → Redefinir configurações) para restaurar os padrões sem perder os favoritos.
+
+## Passo 6: Verifique os programas instalados e os itens de inicialização
+
+- **Configurações → Aplicativos → Aplicativos instalados**: ordene por data de instalação e desinstale tudo o que for suspeito e que você não reconhece de quando os problemas começaram.
+- **Gerenciador de Tarefas → Aplicativos de inicialização**: desative itens desconhecidos que iniciam ao ligar.
+- Opcionalmente, verifique o **arquivo hosts** (`C:\Windows\System32\drivers\etc\hosts`) — alguns malwares adicionam entradas para redirecionar sites. Ele deve normalmente conter apenas comentários e linhas de localhost; remova redirecionamentos desconhecidos se você entender o que está editando.
+
+## Passo 7: Atualize tudo e reinicie
+
+Instale as atualizações pendentes do Windows e atualize seu navegador. Muitas infecções por spyware exploram software desatualizado, então fechar esses buracos previne a reinfecção.
+
+## Passo 8: Altere suas senhas a partir de um dispositivo limpo
+
+Este passo é o mais importante e é o que as pessoas pulam. Se o spyware estava ativo, presuma que ele capturou senhas que você digitou ou que estavam salvas no seu navegador. Depois que o PC estiver limpo, altere as senhas das contas importantes — primeiro o e-mail, depois o banco e tudo o que reutiliza a mesma senha. **Faça isso a partir de um dispositivo em que você confia**, não do PC recém-limpo, até ter certeza de que ele está limpo. Ative a autenticação de dois fatores sempre que possível.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Depois de remover a infecção, altere suas senhas a partir de um dispositivo limpo — o Proton Pass as armazena com criptografia de ponta a ponta." />
+
+## Quando considerar uma reinstalação limpa
+
+Se as varreduras continuam encontrando a mesma ameaça, o PC se comporta de forma estranha após a limpeza, ou ele foi infectado por algo sério como um rootkit, a correção mais confiável é **fazer backup dos seus arquivos, redefinir o Windows e reinstalar**. O Windows 10/11 inclui uma redefinição integrada (Configurações → Sistema → Recuperação → Redefinir este PC) que pode remover tudo e começar do zero.
+
+## Perguntas frequentes
+
+**Ferramentas gratuitas podem remover spyware?**
+Sim — o Microsoft Defender mais um scanner gratuito sob demanda remove a maior parte do spyware comum. Infecções profundas podem precisar do Defender Offline ou de uma reinstalação limpa.
+
+**Redefinir meu navegador remove o spyware?**
+Remove sequestradores baseados no navegador e extensões indesejadas, mas não o spyware que vive em outro lugar do sistema. Execute também varreduras completas do sistema.
+
+**Como impeço o spyware de voltar?**
+Mantenha o Windows e o seu navegador atualizados, evite software pirateado e downloads duvidosos, não abra anexos inesperados e não conceda direitos de administrador a programas em que você não confia.

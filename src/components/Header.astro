@@ -1,0 +1,51 @@
+---
+import { ui, localized, categories, catLabel } from '../lib/ui';
+interface Props { lang?: string; }
+const { lang = 'en' } = Astro.props;
+const t = ui[lang] || ui.en;
+const prefix = lang === 'en' ? '' : `/${lang}`;
+
+// Catbar: "All guides" + each category. Slugs identical across locales.
+const cats = [
+  { l: t.all_guides, h: '/articles/' },
+  ...categories.map((c) => ({ l: catLabel(c, lang), h: `/c/${c.slug}/` })),
+];
+
+const path = Astro.url.pathname;
+const stripLocale = (p: string) => p.replace(/^\/(fr|es|de|it|pt)\//, '/').replace(/^\/(fr|es|de|it|pt)$/, '/');
+const basePath = stripLocale(path);
+const cur = path.replace(/\/$/, '');
+const langLinks = [
+  { code: 'en', label: 'EN', href: basePath },
+  { code: 'fr', label: 'FR', href: `/fr${basePath === '/' ? '/' : basePath}` },
+  { code: 'es', label: 'ES', href: `/es${basePath === '/' ? '/' : basePath}` },
+  { code: 'de', label: 'DE', href: `/de${basePath === '/' ? '/' : basePath}` },
+  { code: 'it', label: 'IT', href: `/it${basePath === '/' ? '/' : basePath}` },
+  { code: 'pt', label: 'PT', href: `/pt${basePath === '/' ? '/' : basePath}` },
+];
+---
+<header class="topbar">
+  <div class="wrap row">
+    <a class="brand" href={`${prefix}/`}><span class="logo">🛡️</span>maddoktor2.com</a>
+    <nav class="top">
+      <a href={`${prefix}/articles/`}>{t.nav_guides}</a>
+      <a href={`${prefix}/charter/`}>{t.nav_charter}</a>
+      <a href={`${prefix}/heritage/`}>{t.nav_heritage}</a>
+      <a href={`${prefix}/about/`}>{t.nav_about}</a>
+    </nav>
+    <div class="langsw" aria-label="Language">
+      {langLinks.map((l) => (
+        <a href={l.href} aria-current={lang === l.code ? 'true' : undefined} class:list={[lang === l.code && 'on']}>{l.label}</a>
+      ))}
+    </div>
+    <form class="search" role="search" action={localized('/search/', lang)} method="get">
+      <span aria-hidden="true">🔍</span>
+      <input type="search" name="q" placeholder={t.search_ph} aria-label={t.search_ph} />
+    </form>
+  </div>
+</header>
+<div class="catbar">
+  <div class="wrap row">
+    {cats.map((c) => <a class:list={['cat', cur === localized(c.h, lang).replace(/\/$/, '') && 'on']} href={localized(c.h, lang)}>{c.l}</a>)}
+  </div>
+</div>

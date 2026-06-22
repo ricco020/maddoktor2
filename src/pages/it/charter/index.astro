@@ -1,0 +1,87 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SITE } from '../../../lib/site';
+import { hreflangAlternates } from '../../../lib/hreflang';
+
+const title = 'La nostra carta — come MadDoktor2 testa e scrive';
+const description =
+  'La carta editoriale di MadDoktor2: come ricerchiamo, testiamo e redigiamo le nostre guide su rimozione malware e sicurezza del PC — onestà prima di tutto, niente allarmismi, nessuna affermazione falsa e una chiara informativa sull\'affiliazione.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Carta editoriale di MadDoktor2',
+    description,
+    inLanguage: 'it',
+    datePublished: '2026-06-22',
+    dateModified: '2026-06-22',
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: `${SITE.url}/it/charter/`,
+  },
+];
+
+const alternates = hreflangAlternates('/charter/');
+---
+
+<Base {title} {description} {schema} lang="it" {alternates} canonicalPath="/it/charter/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / carta</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">
+      La nostra carta — come testiamo e scriviamo
+    </h1>
+
+    <p class="mt-6 text-lg text-ink-dim">
+      MadDoktor2 è una risorsa indipendente di rimozione malware, anti-spyware e sicurezza e privacy del
+      PC. Questa carta è l'insieme di regole che ci imponiamo. Se una guida ne infrange una, è un bug —
+      segnalalo nella <a href="/it/contact/">pagina dei contatti</a>.
+    </p>
+
+    <h2>1. L'onestà prima dei clic</h2>
+    <p>
+      Non inventiamo mai statistiche, risultati di test, banchi di prova, premi o numeri di utenti. Non
+      affermiamo di aver testato personalmente software che non abbiamo provato e non presentiamo il
+      marketing di un produttore come le nostre conclusioni. Ogni dato citato proviene da una fonte
+      nominata e verificabile.
+    </p>
+
+    <h2>2. Niente allarmismi</h2>
+    <p>
+      Gli articoli sulla sicurezza sono pieni di tattiche della paura pensate per spingere all'acquisto.
+      Noi non lo facciamo. Spieghiamo cos'è davvero una minaccia, quanto è probabile che ti colpisca, cosa
+      aiuta veramente — e, altrettanto importante, cosa <em>non</em> aiuta. Uno strumento gratuito e
+      integrato che risolve il tuo problema è meglio di una suite costosa di cui non hai bisogno.
+    </p>
+
+    <h2>3. Passaggi chiari e utili</h2>
+    <p>
+      Ogni guida di rimozione punta a essere davvero seguibile su un vero PC Windows, magari infetto: che
+      aspetto ha il sintomo, quale strumento usare, i passaggi esatti e come confermare che la macchina sia
+      pulita dopo. Indichiamo chiaramente i limiti di ogni metodo.
+    </p>
+
+    <h2>4. Trasparenza sull'affiliazione</h2>
+    <p>
+      Alcuni link di questo sito sono link di affiliazione, il che significa che possiamo ricevere una
+      commissione senza costi aggiuntivi per te. Raccomandiamo solo strumenti che useremmo volentieri noi
+      stessi, affiliati o meno, e segnaliamo chiaramente i link sponsorizzati. Leggi l'informativa
+      sull'affiliazione completa nella <a href="/it/affiliate-disclosure/">pagina dedicata</a>.
+    </p>
+
+    <h2>5. Indipendenza</h2>
+    <p>
+      MadDoktor2 è gestito in modo indipendente. Non siamo il vecchio forum o la community che un tempo
+      usava questo dominio e non rivendichiamo alcuna affiliazione con loro — vedi la
+      <a href="/it/heritage/">pagina sulla storia</a> per il racconto onesto. Le nostre raccomandazioni non
+      sono posizionamenti a pagamento: un produttore non può comprare un voto migliore qui.
+    </p>
+
+    <h2>6. La privacy dei nostri stessi lettori</h2>
+    <p>
+      Applichiamo ciò che scriviamo. Le statistiche si caricano solo dopo il tuo consenso, gli indirizzi IP
+      sono anonimizzati e non raccogliamo più del necessario. Vedi la nostra
+      <a href="/it/privacy-policy/">informativa sulla privacy</a>.
+    </p>
+  </article>
+</Base>

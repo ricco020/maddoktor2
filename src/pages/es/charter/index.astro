@@ -1,0 +1,88 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SITE } from '../../../lib/site';
+import { hreflangAlternates } from '../../../lib/hreflang';
+
+const title = 'Nuestra carta — cómo MadDoktor2 prueba y escribe';
+const description =
+  'La carta editorial de MadDoktor2: cómo investigamos, probamos y redactamos nuestras guías de eliminación de malware y seguridad del PC — honestidad ante todo, sin alarmismo, sin afirmaciones falsas y con una divulgación de afiliación clara.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Carta editorial de MadDoktor2',
+    description,
+    inLanguage: 'es',
+    datePublished: '2026-06-22',
+    dateModified: '2026-06-22',
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: `${SITE.url}/es/charter/`,
+  },
+];
+
+const alternates = hreflangAlternates('/charter/');
+---
+
+<Base {title} {description} {schema} lang="es" {alternates} canonicalPath="/es/charter/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / carta</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">
+      Nuestra carta — cómo probamos y escribimos
+    </h1>
+
+    <p class="mt-6 text-lg text-ink-dim">
+      MadDoktor2 es un recurso independiente de eliminación de malware, anti-spyware y seguridad y
+      privacidad del PC. Esta carta es el conjunto de reglas que nos exigimos. Si una guía incumple
+      alguna, es un error — avísanos en la <a href="/es/contact/">página de contacto</a>.
+    </p>
+
+    <h2>1. Honestidad antes que clics</h2>
+    <p>
+      Nunca inventamos estadísticas, resultados de pruebas, bancos de pruebas, premios ni número de
+      usuarios. No afirmamos haber probado personalmente software que no hemos usado, ni presentamos el
+      marketing de un fabricante como conclusiones propias. Cuando citamos un dato, procede de una
+      fuente nombrada y verificable.
+    </p>
+
+    <h2>2. Sin alarmismo</h2>
+    <p>
+      Los textos sobre seguridad están llenos de tácticas de miedo diseñadas para empujar una compra.
+      Nosotros no hacemos eso. Explicamos qué es realmente una amenaza, qué probabilidad tiene de
+      afectarte, qué ayuda de verdad y, también importante, qué <em>no</em> ayuda. Una herramienta
+      gratuita e integrada que resuelve tu problema es mejor respuesta que una suite cara que no
+      necesitas.
+    </p>
+
+    <h2>3. Pasos claros y útiles</h2>
+    <p>
+      Cada guía de eliminación busca ser algo que puedas seguir de verdad en un PC Windows real, quizá
+      infectado: cómo se ve el síntoma, qué herramienta usar, los pasos exactos y cómo confirmar que la
+      máquina está limpia después. Indicamos con claridad los límites de cada método.
+    </p>
+
+    <h2>4. Transparencia de afiliación</h2>
+    <p>
+      Algunos enlaces de este sitio son de afiliados, lo que significa que podemos ganar una comisión
+      sin coste adicional para ti. Solo recomendamos herramientas que usaríamos nosotros mismos, sean
+      de afiliado o no, y marcamos con claridad los enlaces patrocinados. Lee la
+      <a href="/es/affiliate-disclosure/">divulgación de afiliación</a> completa.
+    </p>
+
+    <h2>5. Independencia</h2>
+    <p>
+      MadDoktor2 se gestiona de forma independiente. No somos el antiguo foro ni la comunidad que usó
+      este dominio en el pasado, y no reclamamos ninguna afiliación con ellos — consulta la
+      <a href="/es/heritage/">página de legado</a> para la historia honesta. Nuestras recomendaciones
+      no son colocaciones pagadas: un fabricante no puede comprar una mejor valoración aquí.
+    </p>
+
+    <h2>6. La privacidad de nuestros propios lectores</h2>
+    <p>
+      Practicamos lo que escribimos. La analítica solo se carga tras tu aceptación, las IP se
+      anonimizan y no recopilamos más de lo necesario. Consulta nuestra
+      <a href="/es/privacy-policy/">política de privacidad</a>.
+    </p>
+  </article>
+</Base>

@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { hreflangAlternates } from '../lib/hreflang';
+
+const title = 'Privacy Policy — MadDoktor2';
+const description =
+  'Privacy policy for maddoktor2.com: what we collect (very little), analytics, affiliate links, and your rights.';
+
+const alternates = hreflangAlternates('/privacy-policy/');
+---
+
+<Base {title} {description} lang="en" {alternates} canonicalPath="/privacy-policy/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / privacy-policy</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Privacy Policy</h1>
+    <p class="mono text-xs text-ink-faint">Last updated: June 12, 2026</p>
+
+    <p>
+      A privacy-focused site should hold itself to the standard it writes about. Here is exactly
+      what maddoktor2.com does with your data.
+    </p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li><strong>No accounts, no comments, no newsletters</strong> — we have no database of users.</li>
+      <li><strong>Server logs</strong> — our hosting provider (Vercel) processes IP addresses and request metadata to serve and secure the site. Retention follows <a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer">Vercel's privacy policy</a>.</li>
+      <li><strong>Analytics</strong> — we use Google Analytics 4 with IP anonymization to understand aggregate traffic (pages viewed, country-level location, referrers). We do not use it for advertising or cross-site tracking, and we do not sell or share data with third parties for marketing.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      The site itself sets no cookies. Google Analytics sets first-party cookies for aggregate
+      measurement. You can block them with any content blocker — the site works identically without
+      them, and we encourage you to do so if you prefer.
+    </p>
+
+    <h2>Affiliate links</h2>
+    <p>
+      Some outbound links are affiliate links (marked, and documented in our
+      <a href="/affiliate-disclosure/">affiliate disclosure</a>). They route through a redirect on
+      this domain to the partner's tracking system. What the partner collects after you land on
+      their site is governed by their own privacy policy.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      Under the GDPR and similar laws you may request access to or deletion of personal data. Since
+      we keep no user database, in practice this concerns hosting and analytics data:
+      <a href="/contact/">contact us</a> and we will assist.
+    </p>
+
+    <h2>Changes</h2>
+    <p>Material changes to this policy will be reflected in the date above.</p>
+  </article>
+</Base>

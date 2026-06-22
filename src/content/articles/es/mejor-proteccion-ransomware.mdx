@@ -1,0 +1,72 @@
+---
+title: "Mejor protección contra ransomware 2026: prevención + copias de seguridad"
+description: "Cómo proteger de verdad un PC del ransomware en 2026 — herramientas reales, ajustes de Windows y una estrategia de copias que hace imposible la extorsión."
+pubDate: 2026-06-22
+hero: "https://pixabay.com/get/g3c2d5097be2568c7450e90539939ace15e532995a69a057d0f2ef3b816e3fbb5c26af025926ce8b88f2ce636b4fa5a12b5ed7b34267014c6106a31cb98075c42_1280.jpg"
+heroAlt: "Un teclado de portátil con los términos extorsión y cifrado, simbolizando un ataque de ransomware"
+keyword: "best ransomware protection"
+tags: ["ransomware", "backup", "windows-security", "malware-removal"]
+translationKey: "best-ransomware-protection"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+El ransomware es la única infección capaz de hundir una pequeña empresa o borrar años de fotos familiares en una tarde. A diferencia de la mayoría del malware, no intenta esconderse: se anuncia cifrando tus archivos y exigiendo un pago. La buena noticia es que el ransomware también es una de las amenazas más *evitables*, porque depende de una cadena de debilidades que puedes romper en varios puntos.
+
+La «mejor protección contra ransomware» no es un único producto que instalas y olvidas. Es un enfoque por capas: impedir que la infección llegue, impedir que se ejecute y garantizar que, aunque todo falle, puedas recuperarte sin pagar. Así funciona cada capa en la práctica.
+
+## Capa 1: impedir que la infección llegue
+
+La mayoría del ransomware alcanza los PC domésticos y de pequeñas oficinas por tres puertas: archivos adjuntos de correos de phishing, descargas maliciosas (software pirata, instaladores falsos) y conexiones de escritorio remoto (RDP) expuestas. Cerrar estas puertas es gratis.
+
+- **Actualiza todo.** Los operadores de ransomware explotan habitualmente vulnerabilidades conocidas y ya parcheadas. Activa las actualizaciones automáticas de Windows y del navegador, y mantén al día el software de terceros que realmente usas.
+- **Bloquea el RDP.** Si no necesitas el Escritorio remoto, desactívalo (Configuración → Sistema → Escritorio remoto → Desactivado). Si lo necesitas, nunca lo expongas directamente a internet: ponlo detrás de una VPN.
+- **Sé implacable con adjuntos y descargas.** No abras adjuntos inesperados y evita el software «gratis» pirata y los generadores de claves, un método clásico de distribución de ransomware.
+
+## Capa 2: impedir que se ejecute
+
+Si algo malicioso aterriza en el disco de todos modos, tu segunda capa consiste en impedir que se ejecute y cifre.
+
+**Microsoft Defender** (integrado en Windows 10 y 11) es una base realmente sólida e incluye una función dirigida específicamente al ransomware: el **Acceso controlado a carpetas**. Cuando está activado, solo las aplicaciones que apruebas pueden modificar archivos de carpetas protegidas como Documentos e Imágenes, de modo que un cifrador desconocido queda bloqueado. Actívalo en Seguridad de Windows → Protección contra virus y amenazas → Protección contra ransomware.
+
+Para una capa de comportamiento adicional, herramientas de terceros de buena reputación como **Malwarebytes** y **Bitdefender** incluyen monitorización conductual específica contra ransomware que vigila el patrón de cifrado masivo y rápido para detenerlo. Son productos reales y ampliamente analizados; combina uno con el Acceso controlado a carpetas de Defender en lugar de ejecutar dos antivirus completos en tiempo real a la vez, lo que puede generar conflictos.
+
+![Un disco duro USB externo conectado para una copia de seguridad — la base de la recuperación frente al ransomware.](https://pixabay.com/get/g68f4d6ef8804686418767b9e6ac4ef6b9390d5a99f6d164a3f3f07a43541305ed5cf5e2730d44420fb2c9252203471ac920e019d564d12d36f16a40491fdfbf7_1280.jpg)
+
+## Capa 3: las copias de seguridad — la capa que de verdad vence a la extorsión
+
+Esta es la verdad incómoda: la prevención puede fallar. La única protección que deja al ransomware *impotente* es una copia de seguridad que el malware no pueda alcanzar. Si tus archivos existen en algún lugar limpio, el atacante no tiene nada que extorsionar.
+
+El estándar más enseñado es la **regla 3-2-1**: conserva **3** copias de tus datos, en **2** medios distintos, con **1** copia guardada **sin conexión o fuera del sitio**. Esa última copia es la que más importa frente al ransomware, porque las cepas modernas buscan y cifran deliberadamente las unidades de copia conectadas y los recursos de red asignados.
+
+Formas prácticas de mantener esa copia sin conexión / fuera del sitio:
+
+- Una unidad externa que **desconectas** tras cada copia (una unidad siempre conectada puede cifrarse junto con todo lo demás).
+- Una **copia en la nube con versiones**, para volver a una versión anterior limpia aunque los archivos sincronizados se cifren.
+- Para almacenamiento externo cifrado de extremo a extremo, un servicio como Proton Drive mantiene una copia completamente fuera de la máquina infectada.
+
+<AffiliateCTA href="/go/proton-drive" product="Proton Drive" blurb="El ransomware no puede extorsionarte si tus archivos están a salvo en una copia. Proton Drive guarda copias cifradas de extremo a extremo fuera de tu PC." />
+
+## Juntarlo todo
+
+| Capa | Qué hace | Ejemplos |
+| --- | --- | --- |
+| Llegada | Cierra los puntos de entrada | Actualizaciones, desactivar/asegurar el RDP, evitar software pirata |
+| Ejecución | Detiene el cifrado | Defender + Acceso controlado a carpetas, monitorización conductual de Malwarebytes/Bitdefender |
+| Recuperación | Vuelve inútil la extorsión | Copias 3-2-1, copia desconectada/externa |
+
+Ningún producto único es «la mejor protección contra ransomware». La configuración más sólida para la mayoría es la pila gratuita e integrada —Defender con Acceso controlado a carpetas y software totalmente actualizado— respaldada por una copia disciplinada con una copia sin conexión. Añade una herramienta de terceros de buena reputación si quieres una segunda red conductual.
+
+## Si te infectas de todos modos
+
+No pagues de inmediato y no entres en pánico. Desconecta la máquina de la red para frenar la propagación, fotografía la nota de rescate e identifica la cepa: el proyecto **No More Ransom** (iniciativa conjunta de las fuerzas del orden y la industria de la seguridad) ofrece descifradores gratuitos para muchas familias antiguas. Después restaura desde tu copia de seguridad limpia y sin conexión. Esa copia lo es todo.
+
+## Preguntas frecuentes
+
+**¿Basta con Windows Defender contra el ransomware?**
+Para muchos usuarios, Defender más el Acceso controlado a carpetas más copias disciplinadas son una base sólida. Añadir una herramienta conductual de buena reputación aporta cobertura extra, pero las copias siguen siendo la capa decisiva.
+
+**¿Debo pagar alguna vez el rescate?**
+Las agencias de seguridad suelen desaconsejar pagar: financia más ataques y no garantiza la recuperación. Una copia sin conexión funcional elimina el dilema por completo.
+
+**¿Me protege el antivirus por sí solo?**
+No. El antivirus reduce el riesgo, pero las cepas nuevas pueden eludirlo. Lo que de verdad neutraliza al ransomware es la prevención combinada con una copia inalcanzable.

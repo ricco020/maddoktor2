@@ -1,0 +1,20 @@
+---
+import Base from '../../../layouts/Base.astro';
+import HomeFeed from '../../../components/HomeFeed.astro';
+import { SITE } from '../../../lib/site';
+import { hreflangAlternates } from '../../../lib/hreflang';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const PAGE_SIZE = 12;
+  const articles = (await getCollection('articlesDe')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const totalPages = Math.max(1, Math.ceil(articles.length / PAGE_SIZE));
+  const paths = [];
+  for (let n = 2; n <= totalPages; n++) paths.push({ params: { page: String(n) }, props: { articles, page: n } });
+  return paths;
+}
+const { articles, page } = Astro.props;
+const alternates = hreflangAlternates(`/de/page/${page}/`);
+---
+<Base title={`${SITE.name} — page ${page}`} description={SITE.description} lang="de" alternates={alternates} canonicalPath={`/de/page/${page}/`}>
+  <HomeFeed lang="de" articles={articles} page={page} pageSize={12} />
+</Base>

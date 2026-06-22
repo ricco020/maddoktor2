@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Datenschutzerklärung — MadDoktor2';
+const description =
+  'Datenschutzerklärung von maddoktor2.com: was wir erheben (sehr wenig), Analytics, Affiliate-Links und Ihre Rechte.';
+
+const alternates = hreflangAlternates('/privacy-policy/');
+---
+
+<Base {title} {description} lang="de" {alternates} canonicalPath="/de/privacy-policy/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / privacy-policy</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Datenschutzerklärung</h1>
+    <p class="mono text-xs text-ink-faint">Zuletzt aktualisiert: 12. Juni 2026</p>
+
+    <p>
+      Eine auf Datenschutz ausgerichtete Website sollte sich an den Standard halten, über den sie spricht.
+      Hier steht genau, was maddoktor2.com mit Ihren Daten tut.
+    </p>
+
+    <h2>Was wir erheben</h2>
+    <ul>
+      <li><strong>Keine Konten, keine Kommentare, keine Newsletter</strong> — wir haben keine Nutzerdatenbank.</li>
+      <li><strong>Serverprotokolle</strong> — unser Hoster (Vercel) verarbeitet IP-Adressen und Anfrage-Metadaten, um die Website auszuliefern und abzusichern. Die Aufbewahrung richtet sich nach der <a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer">Datenschutzerklärung von Vercel</a>.</li>
+      <li><strong>Analytics</strong> — wir verwenden Google Analytics 4 mit IP-Anonymisierung, um aggregierten Traffic zu verstehen (Seitenaufrufe, Standort auf Länderebene, Verweisquellen). Wir nutzen es nicht für Werbung oder seitenübergreifendes Tracking und verkaufen oder teilen die Daten nicht zu Marketingzwecken mit Dritten.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      Die Website selbst setzt keine Cookies. Google Analytics setzt First-Party-Cookies für die aggregierte
+      Messung. Sie können diese mit jedem Content-Blocker blockieren — die Website funktioniert ohne sie
+      identisch, und wir ermutigen Sie dazu, wenn Sie es vorziehen.
+    </p>
+
+    <h2>Affiliate-Links</h2>
+    <p>
+      Einige ausgehende Links sind Affiliate-Links (gekennzeichnet und in unserer
+      <a href="/de/affiliate-disclosure/">Affiliate-Offenlegung</a> dokumentiert). Sie laufen über eine
+      Weiterleitung auf dieser Domain zum Tracking-System des Partners. Was der Partner erfasst, nachdem Sie
+      auf seiner Website landen, unterliegt seiner eigenen Datenschutzerklärung.
+    </p>
+
+    <h2>Ihre Rechte</h2>
+    <p>
+      Nach der DSGVO und ähnlichen Gesetzen können Sie Zugang zu oder Löschung von personenbezogenen Daten
+      verlangen. Da wir keine Nutzerdatenbank führen, betrifft das in der Praxis Hosting- und
+      Analytics-Daten: <a href="/de/contact/">Kontaktieren Sie uns</a> und wir helfen Ihnen weiter.
+    </p>
+
+    <h2>Änderungen</h2>
+    <p>Wesentliche Änderungen dieser Erklärung spiegeln sich im Datum oben wider.</p>
+  </article>
+</Base>

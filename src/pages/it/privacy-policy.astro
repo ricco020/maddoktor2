@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Informativa sulla privacy — MadDoktor2';
+const description =
+  'Informativa sulla privacy di maddoktor2.com: cosa raccogliamo (pochissimo), analytics, link di affiliazione e i tuoi diritti.';
+
+const alternates = hreflangAlternates('/privacy-policy/');
+---
+
+<Base {title} {description} lang="it" {alternates} canonicalPath="/it/privacy-policy/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / privacy-policy</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Informativa sulla privacy</h1>
+    <p class="mono text-xs text-ink-faint">Ultimo aggiornamento: 12 giugno 2026</p>
+
+    <p>
+      Un sito incentrato sulla privacy dovrebbe attenersi allo standard di cui parla. Ecco esattamente cosa
+      fa maddoktor2.com con i tuoi dati.
+    </p>
+
+    <h2>Cosa raccogliamo</h2>
+    <ul>
+      <li><strong>Nessun account, nessun commento, nessuna newsletter</strong> — non abbiamo un database di utenti.</li>
+      <li><strong>Log del server</strong> — il nostro host (Vercel) tratta indirizzi IP e metadati delle richieste per servire e proteggere il sito. La conservazione segue l'<a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer">informativa sulla privacy di Vercel</a>.</li>
+      <li><strong>Analytics</strong> — usiamo Google Analytics 4 con anonimizzazione dell'IP per comprendere il traffico aggregato (pagine viste, posizione a livello di paese, referrer). Non lo usiamo per la pubblicità o il tracciamento tra siti e non vendiamo né condividiamo i dati con terze parti a scopo di marketing.</li>
+    </ul>
+
+    <h2>Cookie</h2>
+    <p>
+      Il sito stesso non imposta cookie. Google Analytics imposta cookie di prima parte per la misurazione
+      aggregata. Puoi bloccarli con qualsiasi blocco dei contenuti — il sito funziona in modo identico
+      senza di essi, e ti incoraggiamo a farlo se preferisci.
+    </p>
+
+    <h2>Link di affiliazione</h2>
+    <p>
+      Alcuni link in uscita sono link di affiliazione (segnalati e documentati nella nostra
+      <a href="/it/affiliate-disclosure/">informativa sull'affiliazione</a>). Passano attraverso un
+      reindirizzamento su questo dominio verso il sistema di tracciamento del partner. Ciò che il partner
+      raccoglie dopo che atterri sul suo sito è regolato dalla sua stessa informativa sulla privacy.
+    </p>
+
+    <h2>I tuoi diritti</h2>
+    <p>
+      Ai sensi del GDPR e di leggi simili, puoi richiedere l'accesso o la cancellazione dei dati personali.
+      Poiché non teniamo un database di utenti, in pratica ciò riguarda i dati di hosting e analytics:
+      <a href="/it/contact/">contattaci</a> e ti assisteremo.
+    </p>
+
+    <h2>Modifiche</h2>
+    <p>Le modifiche rilevanti a questa informativa saranno riflesse nella data qui sopra.</p>
+  </article>
+</Base>

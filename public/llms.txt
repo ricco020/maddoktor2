@@ -1,0 +1,26 @@
+# maddoktor2.com — LLM context file
+
+> Independent, practical guides to malware removal, anti-spyware, and PC security & privacy for everyday Windows users.
+
+## Site mission
+MadDoktor2 helps ordinary people clean up and secure infected Windows PCs: removing malware, spyware, adware and browser hijackers, understanding ransomware, and adopting the everyday habits that keep a machine clean. Plain English, honest, and free of fearmongering. Every guide says what a method does, what it does not do, and when a free built-in tool is the right answer.
+
+## Honesty & independence
+- This is an independent reconstruction. maddoktor2.com historically hosted a malware-removal help resource; this site is NOT a continuation of that old forum or community and makes no claim to be. See /heritage/.
+- We never fabricate test results, statistics, benchmarks, awards or user numbers. Cited claims come from named, checkable sources.
+- No fearmongering: we explain how likely a threat really is and what genuinely helps.
+- Content is available in six languages: English (/articles/...), French (/fr/articles/...), Spanish (/es/articles/...), German (/de/articles/...), Italian (/it/articles/...) and Portuguese (/pt/articles/...). URLs below are the English defaults.
+
+## Topics
+- /c/malware-removal/ — removing viruses, trojans, worms, rootkits and browser hijackers from Windows
+- /c/ransomware/ — how ransomware works, the warning signs, decryptors, backups and recovery
+- /c/spyware-adware/ — spyware, adware, stalkerware, keyloggers and browser hijackers
+- /c/antivirus/ — antivirus and removal tools, built-in Microsoft Defender, second-opinion scanners
+- /c/windows-security/ — Windows hardening, firewall, updates and account protection
+- /c/privacy/ — phishing, passwords, 2FA, private browsing and everyday PC privacy
+
+## Editorial policy
+- We do not fabricate; honesty is a hard rule (see /charter/)
+- Free and built-in tools are recommended when they solve the problem
+- Affiliate links are limited to Proton (Mail/VPN/Pass/Drive), marked rel=sponsored nofollow, and never influence a recommendation (see /affiliate-disclosure/)
+- Every guide includes an explicit limitations section

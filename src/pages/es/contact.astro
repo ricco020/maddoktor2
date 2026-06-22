@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Contacto — MadDoktor2';
+const description = 'Contactar con MadDoktor2: correcciones, sugerencias de guías, enlaces rotos.';
+
+const alternates = hreflangAlternates('/contact/');
+---
+
+<Base {title} {description} lang="es" {alternates} canonicalPath="/es/contact/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / contact</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Contacto</h1>
+    <p>
+      Correcciones, sugerencias de guías, enlaces rotos, o una pregunta sobre la <a href="/es/heritage/">historia de este dominio</a>:
+    </p>
+    <p class="mono">
+      <strong>hello@maddoktor2.com</strong>
+    </p>
+    <p>
+      Leemos todo. No podemos proporcionar consultoría de seguridad individual, pero las correcciones
+      a las guías publicadas se manejan con prioridad — cada artículo muestra su fecha de última actualización.
+    </p>
+  </article>
+</Base>

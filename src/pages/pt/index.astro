@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import HomeFeed from '../../components/HomeFeed.astro';
+import { SITE } from '../../lib/site';
+import { hreflangAlternates } from '../../lib/hreflang';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articlesPt')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const title = 'MadDoktor2 — Remoção de malware & segurança do PC';
+const description =
+  'Guias independentes e práticos para limpar e proteger um PC Windows: remoção de malware, anti-spyware, ransomware e segurança & privacidade do PC.';
+
+const schema = [{
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  name: SITE.name, url: `${SITE.url}/pt/`, description, inLanguage: 'pt',
+}];
+const alternates = hreflangAlternates('/');
+---
+<Base {title} {description} {schema} lang="pt" {alternates} canonicalPath="/pt/">
+  <HomeFeed lang="pt" articles={articles} />
+</Base>

@@ -1,0 +1,72 @@
+User-agent: *
+Allow: /
+Disallow: /go/
+
+# AI assistants and answer engines are explicitly welcome to read and cite our
+# malware-removal and PC-security guides. We only disallow /go/ (affiliate redirects),
+# which are not content worth indexing.
+User-agent: GPTBot
+Allow: /
+Disallow: /go/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /go/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /go/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /go/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /go/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /go/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /go/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /go/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /go/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /go/
+
+User-agent: CCBot
+Allow: /
+Disallow: /go/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /go/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /go/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /go/
+
+User-agent: Diffbot
+Allow: /
+Disallow: /go/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /go/
+
+Sitemap: https://maddoktor2.com/sitemap-index.xml

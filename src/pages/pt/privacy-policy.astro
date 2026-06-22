@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Política de privacidade — MadDoktor2';
+const description =
+  'Política de privacidade de maddoktor2.com: o que recolhemos (muito pouco), analytics, links de afiliados e os seus direitos.';
+
+const alternates = hreflangAlternates('/privacy-policy/');
+---
+
+<Base {title} {description} lang="pt" {alternates} canonicalPath="/pt/privacy-policy/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / privacy-policy</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Política de privacidade</h1>
+    <p class="mono text-xs text-ink-faint">Última atualização: 12 de junho de 2026</p>
+
+    <p>
+      Um site centrado na privacidade deve cumprir o padrão de que fala. Eis exatamente o que o
+      maddoktor2.com faz com os seus dados.
+    </p>
+
+    <h2>O que recolhemos</h2>
+    <ul>
+      <li><strong>Sem contas, sem comentários, sem newsletters</strong> — não temos uma base de dados de utilizadores.</li>
+      <li><strong>Registos do servidor</strong> — o nosso anfitrião (Vercel) trata endereços IP e metadados de pedidos para servir e proteger o site. A conservação segue a <a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer">política de privacidade da Vercel</a>.</li>
+      <li><strong>Analytics</strong> — usamos o Google Analytics 4 com anonimização de IP para compreender o tráfego agregado (páginas vistas, localização ao nível do país, referenciadores). Não o usamos para publicidade ou rastreio entre sites e não vendemos nem partilhamos os dados com terceiros para fins de marketing.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      O site em si não coloca cookies. O Google Analytics coloca cookies de primeira parte para a medição
+      agregada. Pode bloqueá-los com qualquer bloqueador de conteúdos — o site funciona de forma idêntica
+      sem eles, e incentivamo-lo a fazê-lo se preferir.
+    </p>
+
+    <h2>Links de afiliados</h2>
+    <p>
+      Alguns links de saída são links de afiliados (assinalados e documentados na nossa
+      <a href="/pt/affiliate-disclosure/">divulgação de afiliados</a>). Passam por um redirecionamento neste
+      domínio para o sistema de rastreio do parceiro. O que o parceiro recolhe depois de aterrar no site
+      dele é regido pela sua própria política de privacidade.
+    </p>
+
+    <h2>Os seus direitos</h2>
+    <p>
+      Ao abrigo do RGPD e de leis semelhantes, pode solicitar o acesso ou a eliminação de dados pessoais.
+      Como não mantemos uma base de dados de utilizadores, na prática isto diz respeito aos dados de
+      alojamento e analytics: <a href="/pt/contact/">contacte-nos</a> e ajudá-lo-emos.
+    </p>
+
+    <h2>Alterações</h2>
+    <p>As alterações relevantes desta política serão refletidas na data acima.</p>
+  </article>
+</Base>

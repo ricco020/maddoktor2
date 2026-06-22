@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Divulgation d\'affiliation — MadDoktor2';
+const description =
+  'Comment MadDoktor2 est financé : quels liens sont affiliés, comment ils sont marqués, et comment ils n\'influencent jamais nos recommandations.';
+
+const alternates = hreflangAlternates('/affiliate-disclosure/');
+---
+
+<Base {title} {description} lang="fr" {alternates} canonicalPath="/fr/affiliate-disclosure/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / affiliate-disclosure</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Divulgation des affiliés</h1>
+    <p class="mono text-xs text-ink-faint">Dernière mise à jour : 12 juin 2026</p>
+
+    <p>
+      MadDoktor2 gagne de l'argent via des partenariats affiliés. Cette page explique exactement comment,
+      parce qu'une recommandation que vous ne pouvez pas auditer ne vaut rien.
+    </p>
+
+    <h2>Comment ça fonctionne</h2>
+    <p>
+      Certains liens sur ce site — actuellement vers les produits <strong>Proton</strong> (Mail, VPN, Pass,
+      Drive) — sont des liens affiliés. Si vous cliquez sur l'un d'eux et vous abonnez ensuite, nous recevons une commission.
+      Le prix que vous payez est inchangé.
+    </p>
+
+    <h2>Nos règles</h2>
+    <ul>
+      <li>Les liens affiliés sont visuellement marqués (« sponsorisé · lien affilié ») et portent <code>rel="sponsored nofollow"</code>.</li>
+      <li>Ils n'apparaissent jamais dans l'introduction d'un article.</li>
+      <li>Maximum deux ou trois par article, toujours en contexte.</li>
+      <li>Nous ne nous associons qu'avec des services que nous recommanderions sans compensation — clients open source, audits de sécurité publiés, chiffrement de bout en bout.</li>
+      <li>Les commissions ne changent jamais un verdict. Les sections critiques (limitations, « contre quoi ça ne protège pas ») sont rédigées avant tout placement affilié.</li>
+    </ul>
+
+    <h2>Pourquoi Proton</h2>
+    <p>
+      Les produits Proton sont open source côté client, audités de manière indépendante, basés en
+      Suisse et chiffrés de bout en bout — des choix pertinents pour verrouiller ses comptes après une alerte malware ou phishing, et cohérents avec les règles d'honnêteté de notre
+      <a href="/fr/charter/">charte éditoriale</a>. Quand une meilleure
+      option existe pour un cas d'usage donné, nous le disons dans l'article.
+    </p>
+
+    <p>
+      Questions sur un placement spécifique ? <a href="/fr/contact/">Demandez-nous</a>.
+    </p>
+  </article>
+</Base>

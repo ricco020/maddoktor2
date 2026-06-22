@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../lib/site';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'História — a história de maddoktor2.com';
+const description =
+  'maddoktor2.com albergava antigamente um recurso de ajuda para remoção de malware. Este site é uma reconstrução independente dedicada à remoção de malware, ao anti-spyware e à segurança do PC — não uma continuação do antigo fórum ou da antiga comunidade.';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'A história de maddoktor2.com',
+    description,
+    inLanguage: 'pt',
+    datePublished: '2026-06-22',
+    dateModified: '2026-06-22',
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: `${SITE.url}/pt/heritage/`,
+  },
+];
+
+const alternates = hreflangAlternates('/heritage/');
+---
+
+<Base {title} {description} {schema} lang="pt" {alternates} canonicalPath="/pt/heritage/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / historia</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">
+      A história de maddoktor2.com
+    </h1>
+
+    <p class="mt-6 text-lg text-ink-dim">
+      Se chegou aqui através de um link antigo ou de um favorito, esta página explica honestamente o que
+      este domínio era e o que é hoje.
+    </p>
+
+    <h2>O que este domínio era</h2>
+    <p>
+      Durante muitos anos, <strong class="text-ink">maddoktor2.com</strong> esteve associado à ajuda na
+      limpeza de PCs Windows infetados — um canto da web do início dos anos 2000 onde os utilizadores eram
+      guiados, passo a passo, na remoção de spyware, adware e malware. Esse recurso de ajuda já não está
+      ativo e o domínio acabou por expirar.
+    </p>
+
+    <h2>O que este site é hoje</h2>
+    <p>
+      Este site é uma <strong class="text-ink">reconstrução independente</strong>. Reconstruímos
+      maddoktor2.com como um recurso moderno sobre o mesmo tema — remoção de malware, anti-spyware,
+      segurança e privacidade do PC — porque a necessidade a que respondia não desapareceu.
+    </p>
+    <p>
+      Para sermos perfeitamente claros:
+      <strong class="text-ink">não somos a comunidade, o fórum, a equipa original, nem nenhuma das pessoas
+      que geriam o antigo site</strong>, e não pretendemos sê-lo. Não temos qualquer afiliação com eles e
+      não reivindicamos nem a sua reputação nem o pertencimento a qualquer grupo. Tudo o que é publicado
+      aqui é o nosso próprio trabalho independente, redigido segundo as regras da nossa
+      <a href="/pt/charter/">carta editorial</a>.
+    </p>
+
+    <h2>Porquê manter este domínio vivo</h2>
+    <p>
+      Em vez de deixar desaparecer um domínio com uma longa história de ajuda às pessoas, escolhemos
+      construir nele algo útil de novo. Os antigos links de entrada que apontavam para páginas de fórum ou
+      de índice levam agora para aqui, para guias atuais, em vez de becos sem saída.
+    </p>
+
+    <h2>Por onde começar</h2>
+    <p>
+      Os nossos <a href="/pt/articles/">guias</a> tratam de questões práticas: como saber se um PC está
+      infetado, como remover malware e sequestradores de navegador, o que são realmente o ransomware e o
+      spyware, e como manter uma máquina Windows limpa depois.
+    </p>
+  </article>
+</Base>

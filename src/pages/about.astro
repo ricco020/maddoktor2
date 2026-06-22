@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { hreflangAlternates } from '../lib/hreflang';
+
+const title = 'About — MadDoktor2';
+const description =
+  'Who is behind MadDoktor2, our editorial methodology, how the site is funded, and what we cover: malware removal, anti-spyware and PC security & privacy.';
+
+const alternates = hreflangAlternates('/about/');
+---
+
+<Base {title} {description} lang="en" {alternates} canonicalPath="/about/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / about</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">About MadDoktor2</h1>
+
+    <h2>What this site is</h2>
+    <p>
+      MadDoktor2 publishes practical, plain-English guides to cleaning up and securing Windows PCs:
+      removing malware, spyware, adware and browser hijackers, understanding ransomware, and the
+      everyday privacy and security habits that keep a machine out of trouble. We write for ordinary
+      people dealing with a real problem — not just for security professionals, and not to sell fear.
+    </p>
+    <p>
+      The domain has a long history connected to malware-removal help (see the
+      <a href="/heritage/">heritage page</a>), but to be clear, this is an
+      <strong>independent reconstruction</strong>: we are not the old forum or community, and we make
+      no claim to be.
+    </p>
+
+    <h2>What we cover</h2>
+    <ul>
+      <li><strong>Malware removal.</strong> Viruses, trojans, worms, rootkits and browser hijackers — how to spot them and how to remove them step by step.</li>
+      <li><strong>Ransomware &amp; spyware.</strong> How they work, the warning signs, what genuinely helps recover, and how to reduce the risk.</li>
+      <li><strong>Windows security &amp; privacy.</strong> The right free tools, sensible hardening, account protection, and habits that keep a PC clean afterwards.</li>
+    </ul>
+
+    <h2>Editorial methodology</h2>
+    <ul>
+      <li><strong>Honest, never invented.</strong> No fake test results, fabricated statistics, awards or user numbers. Claims come from named, checkable sources.</li>
+      <li><strong>No fearmongering.</strong> We explain how likely a threat really is, what helps, and what does not — a free built-in tool often beats an expensive suite you don't need.</li>
+      <li><strong>Followable steps.</strong> Guides are written to be usable on a real, possibly infected, Windows PC, with a way to confirm the machine is clean afterwards.</li>
+      <li><strong>Honest limitations.</strong> Every guide states what a method cannot do. See our full <a href="/charter/">editorial charter</a>.</li>
+    </ul>
+
+    <h2>How the site is funded</h2>
+    <p>
+      Some links to security and privacy products are affiliate links — if you sign up through them,
+      we earn a commission at no cost to you. Affiliate links are always marked, never placed in
+      article introductions, and never influence a recommendation. Details in our
+      <a href="/affiliate-disclosure/">affiliate disclosure</a>.
+    </p>
+
+    <p>
+      Questions, corrections, broken links? <a href="/contact/">Get in touch</a>.
+    </p>
+  </article>
+</Base>

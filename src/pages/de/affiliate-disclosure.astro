@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import { hreflangAlternates } from '../../lib/hreflang';
+
+const title = 'Affiliate-Offenlegung — MadDoktor2';
+const description =
+  'Wie MadDoktor2 finanziert wird: welche Links Affiliate-Links sind, wie sie gekennzeichnet werden und wie sie unsere Empfehlungen niemals beeinflussen.';
+
+const alternates = hreflangAlternates('/affiliate-disclosure/');
+---
+
+<Base {title} {description} lang="de" {alternates} canonicalPath="/de/affiliate-disclosure/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / affiliate-disclosure</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold sm:text-3xl">Affiliate-Offenlegung</h1>
+    <p class="mono text-xs text-ink-faint">Zuletzt aktualisiert: 12. Juni 2026</p>
+
+    <p>
+      MadDoktor2 verdient Geld über Affiliate-Partnerschaften. Diese Seite erklärt genau wie, denn eine
+      Empfehlung, die Sie nicht überprüfen können, ist nichts wert.
+    </p>
+
+    <h2>Wie es funktioniert</h2>
+    <p>
+      Einige Links auf dieser Website — derzeit zu den <strong>Proton</strong>-Produkten (Mail, VPN, Pass,
+      Drive) — sind Affiliate-Links. Wenn Sie auf einen davon klicken und sich anschließend anmelden,
+      erhalten wir eine Provision. Der Preis, den Sie zahlen, bleibt unverändert.
+    </p>
+
+    <h2>Unsere Regeln</h2>
+    <ul>
+      <li>Affiliate-Links sind sichtbar gekennzeichnet („gesponsert · Affiliate-Link“) und tragen <code>rel="sponsored nofollow"</code>.</li>
+      <li>Sie erscheinen niemals in der Einleitung eines Artikels.</li>
+      <li>Maximal zwei oder drei pro Artikel, immer im Kontext.</li>
+      <li>Wir kooperieren nur mit Diensten, die wir auch ohne Vergütung empfehlen würden — Open-Source-Clients, veröffentlichte Sicherheitsaudits, Ende-zu-Ende-Verschlüsselung.</li>
+      <li>Provisionen ändern niemals ein Urteil. Kritische Abschnitte (Grenzen, „wovor es nicht schützt“) werden vor jeder Affiliate-Platzierung verfasst.</li>
+    </ul>
+
+    <h2>Warum Proton</h2>
+    <p>
+      Proton-Produkte sind clientseitig Open Source, unabhängig auditiert, in der Schweiz beheimatet und
+      Ende-zu-Ende-verschlüsselt — sinnvolle Optionen, um Konten nach einem Malware- oder Phishing-Alarm
+      abzusichern, und im Einklang mit den Ehrlichkeitsregeln unserer
+      <a href="/de/charter/">redaktionellen Charta</a>. Wenn es für einen bestimmten Anwendungsfall eine
+      bessere Option gibt, sagen wir das im Artikel.
+    </p>
+
+    <p>
+      Fragen zu einer bestimmten Platzierung? <a href="/de/contact/">Fragen Sie uns</a>.
+    </p>
+  </article>
+</Base>
