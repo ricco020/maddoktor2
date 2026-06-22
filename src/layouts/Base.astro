@@ -1,16 +1,16 @@
 ---
 import '../styles/global.css';
-// Self-hosted (CSP font-src 'self' bloque Google Fonts en prod) : Baloo 2 + Source Serif 4 + JetBrains Mono
-import '@fontsource/baloo-2/500.css';
-import '@fontsource/baloo-2/600.css';
-import '@fontsource/baloo-2/700.css';
-import '@fontsource/baloo-2/800.css';
-import '@fontsource/source-serif-4/400.css';
-import '@fontsource/source-serif-4/400-italic.css';
-import '@fontsource/source-serif-4/600.css';
-import '@fontsource/jetbrains-mono/400.css';
-import '@fontsource/jetbrains-mono/500.css';
-import '@fontsource/jetbrains-mono/700.css';
+// Self-hosted (CSP font-src 'self' bloque Google Fonts en prod) : Space Grotesk (display) + Hanken Grotesk (body) + Space Mono (code)
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/hanken-grotesk/400.css';
+import '@fontsource/hanken-grotesk/400-italic.css';
+import '@fontsource/hanken-grotesk/500.css';
+import '@fontsource/hanken-grotesk/600.css';
+import '@fontsource/hanken-grotesk/700.css';
+import '@fontsource/space-mono/400.css';
+import '@fontsource/space-mono/700.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, AFFILIATE } from '../lib/site';
@@ -83,7 +83,8 @@ const hreflangLinks: { lang: string; href: string }[] = alternates.length > 0
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="google-site-verification" content="c00bEnat_KrY2lW7LvFvcZTag1NWeQFU5wdOrCB-3RI" />
+    <!-- Détection de langue navigateur (CSP-safe, self-hosted, scoppée home). -->
+    <script is:inline src="/lang-detect.js"></script>
     <meta name="google-site-verification" content="OGVEge5KMFpQixs71JVtAbpj0r5XMftGSEqsb54BPyw" />
     <title>{title}</title>
     <meta name="description" content={description} />

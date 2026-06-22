@@ -11,14 +11,14 @@ const articles = (await getCollection('articlesIt')).sort(
 );
 const fmt = (d: Date) => d.toLocaleDateString('it-IT', { month: 'short', day: 'numeric', year: 'numeric' });
 const AV: Record<string,{color:string;svg:string}> = {
-  os:     { color:'#0f766e', svg:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>' },
-  tor:    { color:'#7b3fb5', svg:'<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6 6l12 12M18 6L6 18"/>' },
-  enc:    { color:'#c2680f', svg:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>' },
-  phone:  { color:'#1d6fe0', svg:'<rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>' },
-  msg:    { color:'#0e9e90', svg:'<path d="M4 5h16v11H8l-4 4z"/>' },
-  linux:  { color:'#3a7d3a', svg:'<polyline points="5 8 9 12 5 16"/><line x1="12" y1="16" x2="19" y2="16"/>' },
-  browser:{ color:'#2563eb', svg:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>' },
-  shield: { color:'#0c7d72', svg:'<path d="M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><polyline points="9 12 11 14 15 9.5"/>' },
+  os:     { color:'#33414e', svg:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>' },
+  tor:    { color:'#7a4a3a', svg:'<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6 6l12 12M18 6L6 18"/>' },
+  enc:    { color:'#b5710f', svg:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>' },
+  phone:  { color:'#3a5a78', svg:'<rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>' },
+  msg:    { color:'#c2331d', svg:'<path d="M4 5h16v11H8l-4 4z"/>' },
+  linux:  { color:'#5b6770', svg:'<polyline points="5 8 9 12 5 16"/><line x1="12" y1="16" x2="19" y2="16"/>' },
+  browser:{ color:'#9a5c0c', svg:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>' },
+  shield: { color:'#e8442b', svg:'<path d="M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><polyline points="9 12 11 14 15 9.5"/>' },
 };
 function tagAvatar(tags: string[] = []) {
   const tg = tags.join(' ').toLowerCase();
