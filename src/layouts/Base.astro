@@ -91,6 +91,8 @@ const hreflangLinks: { lang: string; href: string }[] = alternates.length > 0
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* Polices self-hosted via @fontsource (voir imports frontmatter) — la CSP font-src 'self' bloquerait Google Fonts */}
     {preloadImage &&<link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
