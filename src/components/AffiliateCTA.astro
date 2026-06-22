@@ -7,16 +7,187 @@ interface Props {
 const { href, product, blurb } = Astro.props;
 ---
 
-<aside class="not-prose my-8 border border-edge bg-bg p-5" style="border-radius:10px;border-left:4px solid var(--bar)">
-  <p class="mono text-xs tracking-wide uppercase" style="color:var(--bar);font-weight:700">Rx · recommended · affiliate link</p>
-  <p class="mt-2 text-ink" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;letter-spacing:-.2px">{blurb}</p>
-  <a
-    href={href}
-    rel="sponsored nofollow noopener noreferrer"
-    class="mt-3 inline-block px-4 py-2 text-sm font-semibold text-void no-underline transition-colors"
-    style="border-radius:7px;background:var(--bar);font-family:'Space Grotesk',sans-serif"
-    onmouseover="this.style.background='var(--bar-d)'" onmouseout="this.style.background='var(--bar)'"
-  >
-    Get {product} →
-  </a>
+<aside class="rx not-prose">
+  <div class="rx-head">
+    <span class="rx-mark" aria-hidden="true">℞</span>
+    <span class="rx-script">Prescription · screen-time remedy</span>
+    <svg class="rx-shield" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 2.5 4 5.2v6.1c0 4.7 3.2 8.2 8 10.2 4.8-2 8-5.5 8-10.2V5.2L12 2.5Z"/>
+      <path class="rx-check" d="m8.6 12 2.3 2.3 4.5-4.6"/>
+    </svg>
+  </div>
+
+  <div class="rx-body">
+    <p class="rx-label">Recommended tool</p>
+    <p class="rx-product">{product}</p>
+    <p class="rx-blurb">{blurb}</p>
+
+    <a
+      href={href}
+      rel="sponsored nofollow noopener noreferrer"
+      class="rx-cta"
+    >
+      <span>Get {product}</span>
+      <span class="rx-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <p class="rx-trust">
+      <span class="rx-dot" aria-hidden="true"></span>
+      Affiliate link · we only prescribe tools we’d run on our own machines.
+    </p>
+  </div>
 </aside>
+
+<style>
+  .rx {
+    position: relative;
+    margin: 38px 0;
+    padding: 0;
+    background: #fffdf9;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.7) inset,
+      0 14px 34px -22px rgba(33,27,23,.55),
+      6px 8px 0 0 var(--pill);
+    /* faint "prescription pad" rule lines under the body */
+  }
+  /* accent seam running down the left edge, like a Rx pad binding */
+  .rx::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--bar), var(--bar-d));
+  }
+
+  /* ── header strip: Rx mark + clinical script + verified shield ── */
+  .rx-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 22px 13px 26px;
+    background:
+      linear-gradient(90deg, rgba(250,227,221,.85), rgba(250,227,221,.25) 70%, transparent);
+    border-bottom: 1px dashed var(--edge-bright, #d6c7b1);
+  }
+  .rx-mark {
+    font-family: 'Space Grotesk', system-ui, serif;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--bar-d);
+    transform: translateY(-1px);
+  }
+  .rx-script {
+    flex: 1;
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--brand-ink);
+  }
+  .rx-shield {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: var(--bar);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: .8;
+  }
+  .rx-shield .rx-check { stroke: var(--bar-d); stroke-width: 2.1; }
+
+  /* ── body ── */
+  .rx-body {
+    padding: 18px 24px 20px 26px;
+  }
+  .rx-label {
+    margin: 0 0 4px;
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .rx-product {
+    margin: 0 0 9px;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1.1;
+    letter-spacing: -.7px;
+    color: var(--ink);
+  }
+  .rx-blurb {
+    margin: 0 0 18px;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-dim);
+  }
+
+  /* ── CTA button ── */
+  .rx-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 22px;
+    border-radius: 9px;
+    background: var(--bar);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    letter-spacing: -.1px;
+    box-shadow: 0 3px 0 0 var(--bar-d), 0 12px 22px -12px rgba(232,68,43,.7);
+    transition: transform .14s ease, box-shadow .14s ease, background .14s ease;
+  }
+  .rx-cta:hover {
+    background: var(--bar-d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 0 var(--bar-d), 0 16px 26px -12px rgba(232,68,43,.75);
+  }
+  .rx-cta:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 0 var(--bar-d), 0 8px 16px -12px rgba(232,68,43,.7);
+  }
+  .rx-arrow { transition: transform .14s ease; }
+  .rx-cta:hover .rx-arrow { transform: translateX(4px); }
+
+  /* ── trust micro-line ── */
+  .rx-trust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0 0;
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--ink-faint);
+  }
+  .rx-dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--bar);
+    box-shadow: 0 0 0 3px rgba(232,68,43,.16);
+  }
+
+  @media (max-width: 520px) {
+    .rx-head { padding: 12px 18px 12px 22px; }
+    .rx-body { padding: 16px 18px 18px 22px; }
+    .rx-product { font-size: 22px; }
+    .rx-cta { width: 100%; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rx-cta, .rx-arrow { transition: none; }
+  }
+</style>

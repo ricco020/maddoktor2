@@ -18,7 +18,7 @@
   --bar:#e8442b; --bar-d:#c2331d; --brand:#c2331d; --brand-ink:#9a2715;
   --link:#3a5a78; --ink:#211b17; --ink-dim:#5b5046; --ink-faint:#8a7d6e;
   --paper:#fbf7f0; --soft:#f4ede1; --border:#e4d8c6; --edge-bright:#d6c7b1; --pill:#fae3dd; --pill-on:#e8442b;
-  --slate:#33414e; --slate-d:#222d37;
+  --slate:#33414e; --slate-d:#222d37; --amber:#b5710f;
   --tagbg:#fae3dd; --tagink:#9a2715;
   --radius:6px; --maxw:1180px;
 }
@@ -141,21 +141,79 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .artmeta { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:13px; color:var(--ink-faint); margin:0 0 24px; font-family:'Space Mono',monospace; }
 .artmeta .by { color:var(--bar); } .artmeta .tag { color:var(--bar); } .artmeta .dot { color:var(--edge-bright,#d6c7b1); }
 img.hero { width:100%; height:auto; border-radius:10px; border:1px solid var(--border); margin:8px 0 24px; display:block; box-shadow:8px 10px 0 0 var(--pill); }
-.reading h2 { font-size:29px; font-weight:700; letter-spacing:-.6px; margin:46px 0 12px; color:var(--ink); font-family:'Space Grotesk',sans-serif; }
-.reading h2::before { content:''; display:block; width:42px; height:4px; background:var(--bar); border-radius:2px; margin-bottom:16px; }
-.reading > p:first-of-type, .reading .hero + p { font-size:20.5px; line-height:1.7; color:#2a241d; }
-.reading h3 { font-size:22px; font-weight:700; margin:30px 0 8px; color:var(--ink); font-family:'Space Grotesk',sans-serif; letter-spacing:-.3px; }
+/* ── h2: refined accent rule + tighter clinical rhythm ── */
+.reading h2 { font-size:30px; font-weight:700; letter-spacing:-.7px; line-height:1.18; margin:52px 0 14px; color:var(--ink); font-family:'Space Grotesk',sans-serif; }
+.reading h2::before { content:''; display:block; width:46px; height:4px; border-radius:3px; margin-bottom:18px;
+  background:linear-gradient(90deg,var(--bar) 0%,var(--bar) 62%,var(--amber,#b5710f) 100%); }
+.reading h3 { font-size:22px; font-weight:700; margin:34px 0 8px; color:var(--ink); font-family:'Space Grotesk',sans-serif; letter-spacing:-.3px; line-height:1.28; }
+.reading h3::before { content:'›'; color:var(--bar); font-weight:700; margin-right:8px; font-family:'Space Mono',monospace; }
+
+/* ── lead paragraph: larger, airier, with a discreet clinical drop-cap ── */
+.reading > p:first-of-type, .reading .hero + p { font-size:21px; line-height:1.66; color:#2a241d; margin-bottom:22px; }
+.reading > p:first-of-type::first-letter, .reading .hero + p::first-letter {
+  float:left; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:3.35em; line-height:.78;
+  color:var(--bar-d); padding:6px 12px 0 0; margin-top:4px; }
+
+.reading p { margin:0 0 18px; }
 .reading p, .reading li { color:#2e271f; }
-.reading strong { color:var(--ink); font-weight:700; }
-.reading a { color:var(--link); text-decoration:underline; text-underline-offset:3px; }
-.reading hr { border:0; border-top:1px solid var(--border); margin:38px 0; }
-.reading table { width:100%; border-collapse:collapse; font-size:15.5px; margin:20px 0; }
-.reading th { text-align:left; background:var(--soft); border-bottom:2px solid var(--ink); padding:9px 12px; font-weight:600; font-family:'Space Grotesk',sans-serif; color:var(--ink); }
-.reading td { border-bottom:1px solid var(--border); padding:9px 12px; vertical-align:top; color:var(--ink-dim); }
+.reading strong { color:var(--ink); font-weight:700; background:linear-gradient(transparent 62%, var(--pill) 62%); padding:0 1px; }
+.reading a { color:var(--link); text-decoration:underline; text-decoration-color:var(--edge-bright,#d6c7b1); text-decoration-thickness:1.5px; text-underline-offset:3px; transition:text-decoration-color .14s, color .14s; }
+.reading a:hover { color:var(--bar); text-decoration-color:var(--bar); }
+
+/* ── lists: custom accent markers, breathing room (guides = steps) ── */
+.reading ul, .reading ol { margin:18px 0 22px; padding:0; }
+.reading ul { list-style:none; }
+.reading ul > li { position:relative; padding-left:30px; margin:0 0 11px; }
+.reading ul > li::before { content:''; position:absolute; left:4px; top:.62em; width:9px; height:9px; border-radius:50%;
+  background:var(--bar); box-shadow:0 0 0 4px var(--pill); }
+.reading ol { list-style:none; counter-reset:step; }
+.reading ol > li { position:relative; padding-left:42px; margin:0 0 13px; }
+.reading ol > li::before { counter-increment:step; content:counter(step); position:absolute; left:0; top:.05em;
+  width:27px; height:27px; display:flex; align-items:center; justify-content:center;
+  font-family:'Space Mono',monospace; font-weight:700; font-size:13px; color:#fff;
+  background:var(--bar); border-radius:8px; box-shadow:0 2px 0 var(--bar-d); }
+.reading li > ul, .reading li > ol { margin:10px 0 4px; }
+
+.reading hr { border:0; height:0; margin:42px auto; width:60%; position:relative; text-align:center; }
+.reading hr::before { content:'§'; display:inline-block; font-family:'Space Mono',monospace; font-size:15px; font-weight:700; color:var(--edge-bright,#d6c7b1);
+  background:var(--paper); padding:0 14px; position:relative; top:-2px; }
+.reading hr::after { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--border); z-index:-1; }
+
+/* ── tables: clinical chart styling ── */
+.reading table { width:100%; border-collapse:separate; border-spacing:0; font-size:15.5px; margin:24px 0; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.reading th { text-align:left; background:var(--soft); border-bottom:2px solid var(--ink); padding:11px 14px; font-weight:600; font-family:'Space Grotesk',sans-serif; color:var(--ink); letter-spacing:-.2px; }
+.reading td { border-bottom:1px solid var(--border); padding:11px 14px; vertical-align:top; color:var(--ink-dim); }
+.reading tr:last-child td { border-bottom:0; }
+.reading tbody tr:nth-child(even) td { background:rgba(244,237,225,.4); }
+
+/* ── inline code / kbd / pre — Space Mono, clinical ── */
+code, .reading kbd { font-family:'Space Mono',ui-monospace,Menlo,monospace; }
 code { background:var(--pill); color:var(--brand-ink); padding:2px 7px; border-radius:5px; font-size:14.5px; }
-pre { background:#222d37; color:#eef1f4; border-radius:var(--radius); padding:18px 20px; overflow-x:auto; font-size:14px; line-height:1.62; border-left:4px solid var(--bar); }
-pre code { background:none; padding:0; color:#eef1f4; }
-blockquote { border-left:4px solid var(--bar); margin:22px 0; padding:8px 20px; color:var(--ink-dim); background:var(--soft); border-radius:0 8px 8px 0; }
+.reading kbd { display:inline-block; background:#fffdf9; color:var(--slate-d); border:1px solid var(--edge-bright,#d6c7b1);
+  border-bottom-width:2px; border-radius:6px; padding:1px 8px; font-size:13px; font-weight:700; line-height:1.5;
+  box-shadow:0 1px 0 rgba(33,27,23,.06); }
+pre { background:#222d37; color:#eef1f4; border-radius:10px; padding:20px 22px; overflow-x:auto; font-size:14px; line-height:1.66;
+  border-left:4px solid var(--bar); box-shadow:6px 8px 0 0 var(--pill); margin:24px 0; }
+pre code { background:none; padding:0; color:#eef1f4; font-size:13.5px; }
+
+/* ── blockquote → "clinic note" callout ── */
+blockquote { position:relative; margin:26px 0; padding:18px 22px 18px 52px; color:#5a3a18;
+  background:linear-gradient(180deg, #fff7ec, #fdefdc); border:1px solid #ecd9b8; border-left:4px solid var(--amber,#b5710f);
+  border-radius:0 12px 12px 0; box-shadow:0 10px 26px -22px rgba(33,27,23,.5); font-size:16.5px; line-height:1.6; }
+blockquote::before { content:'✚'; position:absolute; left:18px; top:16px; font-family:'Space Grotesk',sans-serif;
+  font-size:18px; font-weight:700; color:var(--amber,#b5710f); }
+blockquote p { margin:0 0 8px; } blockquote p:last-child { margin:0; }
+blockquote strong { color:#7a4a0c; background:none; }
+
+/* ── in-body figures (rehypeImageFigures) — framed + Space Mono caption ── */
+.reading .md-figure { margin:30px 0; }
+.reading .md-figure img { display:block; width:100%; height:auto; border-radius:10px; border:1px solid var(--border);
+  box-shadow:6px 8px 0 0 var(--pill); }
+.reading .md-figure figcaption { margin:13px 2px 0; font-family:'Space Mono',ui-monospace,monospace; font-size:12.5px;
+  line-height:1.5; color:var(--ink-faint); text-align:center; letter-spacing:.1px; }
+.reading .md-figure figcaption::before { content:'fig · '; color:var(--bar); font-weight:700; }
+/* any inline image that wasn't wrapped still gets a sane frame */
+.reading p > img { display:block; max-width:100%; height:auto; border-radius:10px; border:1px solid var(--border); margin:24px auto; }
 .note { background:var(--pill); border:1px solid #f0c8bf; border-radius:10px; padding:18px 22px; font-size:16px; color:#7a1f10; margin:24px 0; }
 .note strong { color:#9a2715; }
 .codewrap { position:relative; margin:22px 0; } .codewrap > pre { margin:0; }
