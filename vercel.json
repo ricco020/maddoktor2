@@ -1,6 +1,18 @@
 {
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "asap.maddoktor2.com" }],
+      "destination": "https://maddoktor2.com/heritage/",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "forums.maddoktor2.com" }],
+      "destination": "https://maddoktor2.com/heritage/",
+      "permanent": true
+    },
+    {
       "source": "/index.php",
       "destination": "/heritage/",
       "permanent": true
