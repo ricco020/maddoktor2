@@ -95,7 +95,7 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .side > * { margin-bottom:24px; }
 .side > *:last-child { margin-bottom:0; }
 /* Si la sidebar dépasse la hauteur d'écran, on la rend défilable pour ne rien couper. */
-@media (min-height:560px){ .side { max-height:calc(100vh - 32px); overflow-y:auto; scrollbar-width:thin; } }
+/* .side : sticky (l.94) sans scroll interne — retiré max-height/overflow-y qui créait une scrollbar interne aberrante (reproche Eric 2026-06-23) */
 .nlbox { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:26px 24px; text-align:center; }
 .nlbox .mascot { font-size:54px; line-height:1; }
 .nlbox .tag { display:inline-block; background:#fff; color:var(--bar-d); border:1.5px solid var(--bar); font-weight:700; font-family:'Space Grotesk',sans-serif; padding:6px 15px; border-radius:7px; margin:10px 0 14px; }
