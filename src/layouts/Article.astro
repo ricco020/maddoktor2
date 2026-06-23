@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { SITE } from '../lib/site';
 import { extractFaq } from '../lib/faq';
 import { getCollection } from 'astro:content';
@@ -139,6 +140,7 @@ if (faqPairs.length > 0) {
       {tags.map((t) => <span class="tag">#{t}</span>)}
     </div>
     <img class="hero" src={hero} alt={heroAlt} width="1280" height="720" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio:16/9;object-fit:cover" />
+    <ShareButtons title={title} locale={lang} />
     <slot />
   </article>
 </Base>
