@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { entry, lang = 'en', slug } = Astro.props;
-const { title, description, pubDate, updatedDate, hero, heroAlt, tags, newsArticle } = entry.data;
+const { title, description, pubDate, updatedDate, hero, heroAlt, tags, newsArticle, products } = entry.data;
 
 const words = (entry.body ?? '').split(/\s+/).filter(Boolean).length;
 const readMin = Math.max(1, Math.round(words / 200));
@@ -97,6 +97,44 @@ const articleSchema = [
     ],
   },
 ];
+
+// ItemList of SoftwareApplication — honest agentic-commerce / GEO schema for
+// comparison/"best" pages. Built ONLY from the optional `products` frontmatter,
+// which lists tools genuinely named in the article. STRICT HONESTY: no rating,
+// no aggregateRating, no Review; an `offers` block is emitted ONLY when a real
+// price is supplied (price: 0 for genuinely-free tools), never fabricated.
+if (Array.isArray(products) && products.length > 0) {
+  articleSchema.push({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: title,
+    description,
+    inLanguage: lang,
+    numberOfItems: products.length,
+    itemListOrder: 'https://schema.org/ItemListUnordered',
+    itemListElement: products.map((p: any, idx: number) => {
+      const sw: Record<string, any> = {
+        '@type': 'SoftwareApplication',
+        name: p.name,
+        applicationCategory: p.category || 'SecurityApplication',
+      };
+      if (p.brand) sw.brand = { '@type': 'Brand', name: p.brand };
+      if (p.description) sw.description = p.description;
+      if (p.os) sw.operatingSystem = p.os;
+      if (p.url) sw.url = p.url;
+      // Offer ONLY when a real price is provided (0 = genuinely free). No price
+      // → no offers block, so we never invent a number.
+      if (typeof p.price === 'number') {
+        sw.offers = {
+          '@type': 'Offer',
+          price: p.price,
+          priceCurrency: 'USD',
+        };
+      }
+      return { '@type': 'ListItem', position: idx + 1, item: sw };
+    }),
+  } as any);
+}
 
 // FAQPage — built ONLY from real Q/A pairs in the article's own body (no
 // invented questions). Emitted only when the article actually has a FAQ section.
