@@ -1,4 +1,7 @@
-# maddoktor2.com — LLM context file
+import type { APIContext } from 'astro';
+import { getEnArticles, groupBySection, articleUrl } from '../lib/llms-sections';
+
+const HEADER = `# maddoktor2.com — LLM context file
 
 > Independent, practical guides to malware removal, anti-spyware, and PC security & privacy for everyday Windows users.
 
@@ -11,16 +14,41 @@ MadDoktor2 helps ordinary people clean up and secure infected Windows PCs: remov
 - No fearmongering: we explain how likely a threat really is and what genuinely helps.
 - Content is available in six languages: English (/articles/...), French (/fr/articles/...), Spanish (/es/articles/...), German (/de/articles/...), Italian (/it/articles/...) and Portuguese (/pt/articles/...). URLs below are the English defaults.
 
-## Topics
+## Full content
+- /llms-full.txt — every guide with its description, in all six languages.
+
+## Topic categories
 - /c/malware-removal/ — removing viruses, trojans, worms, rootkits and browser hijackers from Windows
 - /c/ransomware/ — how ransomware works, the warning signs, decryptors, backups and recovery
 - /c/spyware-adware/ — spyware, adware, stalkerware, keyloggers and browser hijackers
 - /c/antivirus/ — antivirus and removal tools, built-in Microsoft Defender, second-opinion scanners
 - /c/windows-security/ — Windows hardening, firewall, updates and account protection
 - /c/privacy/ — phishing, passwords, 2FA, private browsing and everyday PC privacy
+`;
 
+const FOOTER = `
 ## Editorial policy
 - We do not fabricate; honesty is a hard rule (see /charter/)
 - Free and built-in tools are recommended when they solve the problem
 - Affiliate links are limited to Proton (Mail/VPN/Pass/Drive), marked rel=sponsored nofollow, and never influence a recommendation (see /affiliate-disclosure/)
 - Every guide includes an explicit limitations section
+`;
+
+export async function GET(_context: APIContext) {
+  const articles = await getEnArticles();
+  const groups = groupBySection(articles);
+
+  const body = groups
+    .map((g) => {
+      const lines = g.items
+        .map((a) => `- ${articleUrl(a.id, 'en')} — ${a.title}`)
+        .join('\n');
+      return `## ${g.title}\n${lines}`;
+    })
+    .join('\n\n');
+
+  const text = `${HEADER}\n${body}\n${FOOTER}`;
+  return new Response(text, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+}
