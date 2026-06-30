@@ -1,4 +1,4 @@
-// Génère les images héro (WebP) et OG (PNG) — designs SVG uniques par article.
+// Génère les images héro (WebP) et OG (PNG) - designs SVG uniques par article.
 import sharp from 'sharp';
 import { mkdirSync } from 'node:fs';
 

@@ -1,5 +1,5 @@
 ---
-// Flux de la page d'accueil — design éditorial (lead + stories + aside), PARTAGÉ par les 3
+// Flux de la page d'accueil - design éditorial (lead + stories + aside), PARTAGÉ par les 3
 // locales (en /, fr /fr, es /es) pour qu'elles restent strictement identiques (seul le
 // texte change). Évite la divergence EN-refondu / FR-ES-ancien-design (Eric 2026-06-15).
 import { AFFILIATE } from '../lib/site';
@@ -8,7 +8,7 @@ import { ui, categories, catLabel, type Lang } from '../lib/ui';
 interface Props {
   lang: Lang;
   articles: any[];
-  page?: number;      // page courante (1-based) — pagination de la liste
+  page?: number;      // page courante (1-based) - pagination de la liste
   pageSize?: number;  // nb d'articles par page
 }
 const { lang, articles, page = 1, pageSize = 12 } = Astro.props as Props;
@@ -64,32 +64,32 @@ const startHere = START_HERE[lang];
 
 const BLOCKS: Record<string, { c: string; k: string; h: string; p: string; a: string }[]> = {
   en: [
-    { c: 'b1', k: 'Malware removal', h: 'Clean an infected PC', p: 'Step-by-step removal of viruses, trojans, rootkits and browser hijackers — without paying for bloated suites.', a: 'Read the guides →' },
+    { c: 'b1', k: 'Malware removal', h: 'Clean an infected PC', p: 'Step-by-step removal of viruses, trojans, rootkits and browser hijackers - without paying for bloated suites.', a: 'Read the guides →' },
     { c: 'b2', k: 'Ransomware & spyware', h: 'When it gets serious', p: 'How ransomware and spyware actually work, the warning signs, and what genuinely helps recover.', a: 'Read the guide →' },
     { c: 'b3', k: 'Windows security', h: 'Stay clean afterwards', p: 'Practical hardening, the right free tools, and the habits that keep a Windows PC out of trouble.', a: 'Read the guide →' },
   ],
   fr: [
-    { c: 'b1', k: 'Suppression de malware', h: 'Nettoyer un PC infecté', p: 'Suppression pas à pas des virus, chevaux de Troie, rootkits et pirates de navigateur — sans payer une suite lourde.', a: 'Lire les guides →' },
+    { c: 'b1', k: 'Suppression de malware', h: 'Nettoyer un PC infecté', p: 'Suppression pas à pas des virus, chevaux de Troie, rootkits et pirates de navigateur - sans payer une suite lourde.', a: 'Lire les guides →' },
     { c: 'b2', k: 'Rançongiciels & spyware', h: 'Quand ça devient sérieux', p: 'Comment fonctionnent vraiment les rançongiciels et les spywares, les signes d’alerte, et ce qui aide réellement à récupérer.', a: 'Lire le guide →' },
     { c: 'b3', k: 'Sécurité Windows', h: 'Rester propre ensuite', p: 'Durcissement pratique, les bons outils gratuits et les habitudes qui gardent un PC Windows hors de danger.', a: 'Lire le guide →' },
   ],
   es: [
-    { c: 'b1', k: 'Eliminación de malware', h: 'Limpia un PC infectado', p: 'Eliminación paso a paso de virus, troyanos, rootkits y secuestradores del navegador — sin pagar suites pesadas.', a: 'Leer las guías →' },
+    { c: 'b1', k: 'Eliminación de malware', h: 'Limpia un PC infectado', p: 'Eliminación paso a paso de virus, troyanos, rootkits y secuestradores del navegador - sin pagar suites pesadas.', a: 'Leer las guías →' },
     { c: 'b2', k: 'Ransomware y spyware', h: 'Cuando se pone serio', p: 'Cómo funcionan realmente el ransomware y el spyware, las señales de alerta y lo que ayuda de verdad a recuperarse.', a: 'Leer la guía →' },
     { c: 'b3', k: 'Seguridad de Windows', h: 'Mantente limpio después', p: 'Endurecimiento práctico, las herramientas gratuitas adecuadas y los hábitos que mantienen un PC Windows a salvo.', a: 'Leer la guía →' },
   ],
   de: [
-    { c: 'b1', k: 'Malware-Entfernung', h: 'Einen infizierten PC bereinigen', p: 'Schritt-für-Schritt-Entfernung von Viren, Trojanern, Rootkits und Browser-Hijackern — ohne überladene Suiten zu kaufen.', a: 'Anleitungen lesen →' },
+    { c: 'b1', k: 'Malware-Entfernung', h: 'Einen infizierten PC bereinigen', p: 'Schritt-für-Schritt-Entfernung von Viren, Trojanern, Rootkits und Browser-Hijackern - ohne überladene Suiten zu kaufen.', a: 'Anleitungen lesen →' },
     { c: 'b2', k: 'Ransomware & Spyware', h: 'Wenn es ernst wird', p: 'Wie Ransomware und Spyware wirklich funktionieren, die Warnzeichen und was bei der Wiederherstellung tatsächlich hilft.', a: 'Anleitung lesen →' },
     { c: 'b3', k: 'Windows-Sicherheit', h: 'Danach sauber bleiben', p: 'Praktisches Härten, die richtigen kostenlosen Tools und die Gewohnheiten, die einen Windows-PC aus Schwierigkeiten halten.', a: 'Anleitung lesen →' },
   ],
   it: [
-    { c: 'b1', k: 'Rimozione malware', h: 'Ripulisci un PC infetto', p: 'Rimozione passo dopo passo di virus, trojan, rootkit e dirottatori del browser — senza pagare suite pesanti.', a: 'Leggi le guide →' },
+    { c: 'b1', k: 'Rimozione malware', h: 'Ripulisci un PC infetto', p: 'Rimozione passo dopo passo di virus, trojan, rootkit e dirottatori del browser - senza pagare suite pesanti.', a: 'Leggi le guide →' },
     { c: 'b2', k: 'Ransomware e spyware', h: 'Quando si fa serio', p: 'Come funzionano davvero ransomware e spyware, i segnali di allarme e ciò che aiuta veramente a recuperare.', a: 'Leggi la guida →' },
     { c: 'b3', k: 'Sicurezza di Windows', h: 'Restare puliti dopo', p: 'Rafforzamento pratico, gli strumenti gratuiti giusti e le abitudini che tengono un PC Windows fuori dai guai.', a: 'Leggi la guida →' },
   ],
   pt: [
-    { c: 'b1', k: 'Remoção de malware', h: 'Limpe um PC infetado', p: 'Remoção passo a passo de vírus, trojans, rootkits e sequestradores de navegador — sem pagar por suites pesadas.', a: 'Ler os guias →' },
+    { c: 'b1', k: 'Remoção de malware', h: 'Limpe um PC infetado', p: 'Remoção passo a passo de vírus, trojans, rootkits e sequestradores de navegador - sem pagar por suites pesadas.', a: 'Ler os guias →' },
     { c: 'b2', k: 'Ransomware e spyware', h: 'Quando fica sério', p: 'Como o ransomware e o spyware funcionam de facto, os sinais de alerta e o que realmente ajuda a recuperar.', a: 'Ler o guia →' },
     { c: 'b3', k: 'Segurança do Windows', h: 'Manter-se limpo depois', p: 'Reforço prático, as ferramentas gratuitas certas e os hábitos que mantêm um PC Windows longe de problemas.', a: 'Ler o guia →' },
   ],
@@ -137,7 +137,7 @@ const pageHref = (n: number) => (n <= 1 ? (p || '/') : `${p}/page/${n}/`);
           <a href={`${p}/articles/${lead.id}/`} class="lead-media"><img src={lead.data.hero} alt={lead.data.heroAlt} width="1280" height="720" loading="eager" /></a>
           <p class="by"><a href={`${p}/about/`}>MadDoktor2</a> <em>{t.wrote}</em></p>
           <h2><a href={`${p}/articles/${lead.id}/`}>{lead.data.title}</a></h2>
-          <p class="ex"><span class="date">{fmt(lead.data.pubDate)}</span> {inWord} {lead.data.tags.slice(0,3).join(', ')} — {lead.data.description}</p>
+          <p class="ex"><span class="date">{fmt(lead.data.pubDate)}</span> {inWord} {lead.data.tags.slice(0,3).join(', ')} - {lead.data.description}</p>
           <a class="more" href={`${p}/articles/${lead.id}/`}>{t.read_more}</a>
           <div class="metab"><span>📅 {readMin(lead)} {t.min_read}</span><span>{badge}</span></div>
         </article>
@@ -148,7 +148,7 @@ const pageHref = (n: number) => (n <= 1 ? (p || '/') : `${p}/page/${n}/`);
           <div>
             <p class="by"><a href={`${p}/about/`}>MadDoktor2</a> <em>{t.wrote}</em></p>
             <h3><a href={`${p}/articles/${a.id}/`}>{a.data.title}</a></h3>
-            <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> {inWord} {a.data.tags.slice(0, 3).join(', ')} — {a.data.description}</p>
+            <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> {inWord} {a.data.tags.slice(0, 3).join(', ')} - {a.data.description}</p>
             <a class="more" href={`${p}/articles/${a.id}/`}>{t.read_more}</a>
             <div class="metab"><span>📅 {readMin(a)} {t.min_read}</span><span>{badge}</span></div>
           </div>

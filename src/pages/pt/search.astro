@@ -32,7 +32,7 @@ function tagAvatar(tags: string[] = []) {
 }
 const alternates = hreflangAlternates('/search/');
 ---
-<Base title="Pesquisar nos guias — MadDoktor2" description="Pesquise em todos os guias MadDoktor2 sobre remoção de malware, anti-spyware e segurança do PC." lang={lang} alternates={alternates} canonicalPath="/pt/search/">
+<Base title="Pesquisar nos guias - MadDoktor2" description="Pesquise em todos os guias MadDoktor2 sobre remoção de malware, anti-spyware e segurança do PC." lang={lang} alternates={alternates} canonicalPath="/pt/search/">
   <div class="wrap">
     <div class="cathead">
       <p class="k">{t.search_k}</p>
@@ -50,7 +50,7 @@ const alternates = hreflangAlternates('/search/');
             <div>
               <p class="by"><a href="/pt/about/">MadDoktor2</a> <em>{t.wrote}</em></p>
               <h3><a href={`/pt/articles/${a.id}/`}>{a.data.title}</a></h3>
-              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> · {a.data.tags.slice(0,3).join(', ')} — {a.data.description}</p>
+              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> · {a.data.tags.slice(0,3).join(', ')} - {a.data.description}</p>
               <a class="more" href={`/pt/articles/${a.id}/`}>{t.read_more}</a>
             </div>
           </article>

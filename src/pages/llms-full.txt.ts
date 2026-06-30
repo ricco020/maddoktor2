@@ -11,7 +11,7 @@ const LOCALES = [
   { code: 'pt', label: 'Português', collection: 'articlesPt' },
 ] as const;
 
-const HEADER = `# maddoktor2.com — full LLM content index
+const HEADER = `# maddoktor2.com - full LLM content index
 
 > Independent, practical guides to malware removal, anti-spyware, and PC security & privacy for everyday Windows users.
 > Plain English, honest, free of fearmongering. Every guide says what a method does, what it does not, and when a free built-in tool is the right answer.
@@ -45,7 +45,7 @@ export async function GET(_context: APIContext) {
     const articles = await loadLocale(loc.collection);
     articles.sort((a, b) => a.title.localeCompare(b.title));
 
-    blocks.push(`\n# ${loc.label} (${loc.code}) — ${articles.length} guides`);
+    blocks.push(`\n# ${loc.label} (${loc.code}) - ${articles.length} guides`);
 
     if (loc.code === 'en') {
       const groups = groupBySection(articles);

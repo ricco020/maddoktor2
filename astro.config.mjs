@@ -4,13 +4,13 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 /**
- * rehypeImageFigures — inline, dependency-free.
+ * rehypeImageFigures - inline, dependency-free.
  * In Markdown/MDX, `![caption](url)` on its own line renders as a bare <img>
  * with no visible caption. This plugin finds any <p> whose only meaningful
  * child is a single <img>, and rewraps it as:
  *   <figure class="md-figure"><img …/><figcaption>{alt}</figcaption></figure>
  * The caption text comes from the image alt (so the 2nd image's descriptive
- * legend becomes visible). It ONLY touches paragraphs that wrap a lone image —
+ * legend becomes visible). It ONLY touches paragraphs that wrap a lone image -
  * any paragraph mixing text + image, or already a <figure>, is left untouched,
  * so it can never break the build on normal prose.
  */

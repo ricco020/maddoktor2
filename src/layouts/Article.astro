@@ -27,7 +27,7 @@ const t = ui[lang] || ui.en;
 // Kicker = the first tag, shown as a colored pill above the title.
 const kicker = (tags && tags[0]) ? tags[0].replace(/-/g, ' ') : '';
 
-// "Keep reading" — related articles in the same locale that share at least one
+// "Keep reading" - related articles in the same locale that share at least one
 // tag, then top up to 4 with the most recent others.
 const COLL_BY_LANG: Record<string, string> = {
   en: 'articles', fr: 'articlesFr', es: 'articlesEs',
@@ -98,7 +98,7 @@ const articleSchema = [
   },
 ];
 
-// ItemList of SoftwareApplication — honest agentic-commerce / GEO schema for
+// ItemList of SoftwareApplication - honest agentic-commerce / GEO schema for
 // comparison/"best" pages. Built ONLY from the optional `products` frontmatter,
 // which lists tools genuinely named in the article. STRICT HONESTY: no rating,
 // no aggregateRating, no Review; an `offers` block is emitted ONLY when a real
@@ -136,7 +136,7 @@ if (Array.isArray(products) && products.length > 0) {
   } as any);
 }
 
-// FAQPage — built ONLY from real Q/A pairs in the article's own body (no
+// FAQPage - built ONLY from real Q/A pairs in the article's own body (no
 // invented questions). Emitted only when the article actually has a FAQ section.
 const faqPairs = extractFaq(entry.body);
 if (faqPairs.length > 0) {

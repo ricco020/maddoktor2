@@ -41,7 +41,7 @@ function tagAvatar(tags: string[] = []) {
 }
 const alternates = hreflangAlternates(`/c/${c.slug}/`);
 ---
-<Base title={`${label} — MadDoktor2 guides`} description={`All MadDoktor2 guides on ${label} — independent, honest, no fearmongering.`} lang={lang} alternates={alternates} canonicalPath={`/c/${c.slug}/`}>
+<Base title={`${label} - MadDoktor2 guides`} description={`All MadDoktor2 guides on ${label} - independent, honest, no fearmongering.`} lang={lang} alternates={alternates} canonicalPath={`/c/${c.slug}/`}>
   <div class="wrap">
     <div class="cathead">
       <p class="k">Category</p>
@@ -59,7 +59,7 @@ const alternates = hreflangAlternates(`/c/${c.slug}/`);
             <div>
               <p class="by"><a href="/about/">MadDoktor2</a> <em>wrote</em></p>
               <h3><a href={`/articles/${a.id}/`}>{a.data.title}</a></h3>
-              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> in {a.data.tags.slice(0,3).join(', ')} — {a.data.description}</p>
+              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> in {a.data.tags.slice(0,3).join(', ')} - {a.data.description}</p>
               <a class="more" href={`/articles/${a.id}/`}>Read more…</a>
               <div class="metab"><span>📅 {readMin(a)} min read</span><span>🛡️ Plain-English security</span></div>
             </div>

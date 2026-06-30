@@ -1,4 +1,4 @@
-/* MadDoktor2 — détection de langue navigateur + mémorisation du choix.
+/* MadDoktor2 - détection de langue navigateur + mémorisation du choix.
    CSP-safe (self-hosted). Scoppé à la home pour éviter les 404 (slugs localisés). */
 (function () {
   try {

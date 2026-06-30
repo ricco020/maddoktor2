@@ -1,7 +1,7 @@
 import type { APIContext } from 'astro';
 import { getEnArticles, groupBySection, articleUrl } from '../lib/llms-sections';
 
-const HEADER = `# maddoktor2.com — LLM context file
+const HEADER = `# maddoktor2.com - LLM context file
 
 > Independent, practical guides to malware removal, anti-spyware, and PC security & privacy for everyday Windows users.
 
@@ -15,15 +15,15 @@ MadDoktor2 helps ordinary people clean up and secure infected Windows PCs: remov
 - Content is available in six languages: English (/articles/...), French (/fr/articles/...), Spanish (/es/articles/...), German (/de/articles/...), Italian (/it/articles/...) and Portuguese (/pt/articles/...). URLs below are the English defaults.
 
 ## Full content
-- /llms-full.txt — every guide with its description, in all six languages.
+- /llms-full.txt - every guide with its description, in all six languages.
 
 ## Topic categories
-- /c/malware-removal/ — removing viruses, trojans, worms, rootkits and browser hijackers from Windows
-- /c/ransomware/ — how ransomware works, the warning signs, decryptors, backups and recovery
-- /c/spyware-adware/ — spyware, adware, stalkerware, keyloggers and browser hijackers
-- /c/antivirus/ — antivirus and removal tools, built-in Microsoft Defender, second-opinion scanners
-- /c/windows-security/ — Windows hardening, firewall, updates and account protection
-- /c/privacy/ — phishing, passwords, 2FA, private browsing and everyday PC privacy
+- /c/malware-removal/ - removing viruses, trojans, worms, rootkits and browser hijackers from Windows
+- /c/ransomware/ - how ransomware works, the warning signs, decryptors, backups and recovery
+- /c/spyware-adware/ - spyware, adware, stalkerware, keyloggers and browser hijackers
+- /c/antivirus/ - antivirus and removal tools, built-in Microsoft Defender, second-opinion scanners
+- /c/windows-security/ - Windows hardening, firewall, updates and account protection
+- /c/privacy/ - phishing, passwords, 2FA, private browsing and everyday PC privacy
 `;
 
 const FOOTER = `
@@ -41,7 +41,7 @@ export async function GET(_context: APIContext) {
   const body = groups
     .map((g) => {
       const lines = g.items
-        .map((a) => `- ${articleUrl(a.id, 'en')} — ${a.title}`)
+        .map((a) => `- ${articleUrl(a.id, 'en')} - ${a.title}`)
         .join('\n');
       return `## ${g.title}\n${lines}`;
     })

@@ -7,9 +7,9 @@ import { getCollection } from 'astro:content';
 const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-const title = 'Guides — MadDoktor2';
+const title = 'Guides - MadDoktor2';
 const description =
-  'All MadDoktor2 guides on malware removal, anti-spyware and PC security & privacy — independent, honest, no fearmongering.';
+  'All MadDoktor2 guides on malware removal, anti-spyware and PC security & privacy - independent, honest, no fearmongering.';
 const related = categories;
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 const readMin = (e: { body?: string }) => Math.max(1, Math.round((e.body || '').split(/\s+/).filter(Boolean).length / 200));
@@ -53,7 +53,7 @@ const alternates = hreflangAlternates('/articles/');
             <div>
               <p class="by"><a href="/about/">MadDoktor2</a> <em>wrote</em></p>
               <h3><a href={`/articles/${a.id}/`}>{a.data.title}</a></h3>
-              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> in {a.data.tags.slice(0, 3).join(', ')} — {a.data.description}</p>
+              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> in {a.data.tags.slice(0, 3).join(', ')} - {a.data.description}</p>
               <a class="more" href={`/articles/${a.id}/`}>Read more…</a>
               <div class="metab"><span>📅 {readMin(a)} min read</span><span>🛡️ Plain-English security</span></div>
             </div>

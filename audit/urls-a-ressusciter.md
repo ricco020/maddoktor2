@@ -1,4 +1,4 @@
-# Audit Wayback — URLs à ressusciter (secure-os.org)
+# Audit Wayback - URLs à ressusciter (secure-os.org)
 
 **Date audit** : 2026-06-12 · **Source** : API CDX Wayback (209 URLs uniques, 2004→2017)
 **Historique** : 2004 = "Secure OS Forums" embryonnaire · 2015-2017 = mailing list "Secure Desktops" (fondée par Subgraph + Qubes OS + Tails, modérateur David Mirza Ahmad / Subgraph). Aucune phase spam.
@@ -19,22 +19,22 @@
 | URL historique | Action | Justification |
 |---|---|---|
 | `/` | **Recréer** (homepage money site) | Backlink CCC events DR 85 pointe sur la racine |
-| `/desktops/charter/` | **Recréer** — page "Secure Desktops Charter" modernisée, contenu Wayback intégral comme base + note héritage 2015 | Backlink Subgraph handbook DR 59 ; PAS de redirect, contenu pertinent exigé |
+| `/desktops/charter/` | **Recréer** - page "Secure Desktops Charter" modernisée, contenu Wayback intégral comme base + note héritage 2015 | Backlink Subgraph handbook DR 59 ; PAS de redirect, contenu pertinent exigé |
 | `/pipermail/desktops/2015-October/000000.html` | **301 → /heritage/** | Backlink StackExchange DR 91 (message fondateur de D. M. Ahmad) |
 | `/pipermail/*` (191 URLs, wildcard) | **301 → /heritage/** | Capter tout deep link résiduel vers les archives |
 | `/cgi-bin/mailman/listinfo/desktops` | **301 → /heritage/** | Linkée depuis la charte historique, peut avoir des refs externes |
-| `/heritage/` | **Créer** — "About the Secure Desktops project" : histoire de la liste, sujets marquants (32c3, MAC spoofing Tails, Subgraph vs Qubes, Genode), participants notables (Rutkowska/Qubes, sajolida/Tails, Feske/Genode, Weaver/Purism, Schleizer/Whonix), citation du thread StackExchange | Destination des 301 + E-E-A-T + continuité thématique |
+| `/heritage/` | **Créer** - "About the Secure Desktops project" : histoire de la liste, sujets marquants (32c3, MAC spoofing Tails, Subgraph vs Qubes, Genode), participants notables (Rutkowska/Qubes, sajolida/Tails, Feske/Genode, Weaver/Purism, Schleizer/Whonix), citation du thread StackExchange | Destination des 301 + E-E-A-T + continuité thématique |
 | `/css/*`, `/fonts/*`, `/js/*`, `/contact.js`, `/favicon.ico` | **410 implicite (404)** | Assets Bootstrap 2016, zéro valeur SEO |
 | `/members/*`, `/public/*` (vestiges 2004) | **Rien (404)** | Déjà 404 en 2004, aucun backlink |
 | `/robots.txt` | **Recréer** (nouveau) | Standard |
 
 ## Contenu Wayback récupéré (audit/wayback/)
 
-- `charter.html` — charte intégrale (snapshot 2016-04-02) ✅
-- `homepage.html` — homepage 2016 ("This is the home of the Secure Desktops mailing list…") ✅
-- `pipermail-index.html` — index des 14 mois d'archives ✅
-- `2015-oct-000000.html` — message fondateur (réunion Subgraph + Qubes + Tails) ✅
-- `2015-oct-subjects.html`, `2015-nov-subjects.html` — sujets marquants ✅
+- `charter.html` - charte intégrale (snapshot 2016-04-02) ✅
+- `homepage.html` - homepage 2016 ("This is the home of the Secure Desktops mailing list…") ✅
+- `pipermail-index.html` - index des 14 mois d'archives ✅
+- `2015-oct-000000.html` - message fondateur (réunion Subgraph + Qubes + Tails) ✅
+- `2015-oct-subjects.html`, `2015-nov-subjects.html` - sujets marquants ✅
 
 ## Backlinks d'élite → atterrissage prévu
 

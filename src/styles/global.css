@@ -1,4 +1,4 @@
-/* maddoktor2.com — "the clinic for infected PCs": warm paper base, alert red-orange accent, clinical/diagnostic personality */
+/* maddoktor2.com - "the clinic for infected PCs": warm paper base, alert red-orange accent, clinical/diagnostic personality */
 @import "tailwindcss";
 
 @theme {
@@ -37,7 +37,7 @@ code,pre,.mono { font-family:'Space Mono',ui-monospace,Menlo,monospace; }
 a { color:var(--link); }
 .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
 
-/* ── Header: clinic bar — light paper, red wordmark, slate nav, thick alert underline ── */
+/* ── Header: clinic bar - light paper, red wordmark, slate nav, thick alert underline ── */
 .topbar { background:#fffdf9; color:var(--ink); border-bottom:3px solid var(--bar); box-shadow:0 1px 0 rgba(33,27,23,.04); }
 .topbar .row { display:flex; align-items:center; gap:20px; height:74px; }
 .brand { color:var(--ink); text-decoration:none; font-weight:700; font-size:23px; letter-spacing:-.4px; display:flex; align-items:center; gap:10px; }
@@ -56,7 +56,7 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .search input { border:0; outline:0; background:none; font:inherit; color:var(--ink); width:100%; }
 .search input::placeholder { color:var(--ink-faint); }
 
-/* ── Category pills — left-aligned chart row, mono labels, alert active ── */
+/* ── Category pills - left-aligned chart row, mono labels, alert active ── */
 .catbar { border-bottom:1px solid var(--border); background:rgba(255,253,249,.9); backdrop-filter:saturate(1.1) blur(4px); }
 .catbar .row { display:flex; gap:9px; max-width:none; padding:11px max(24px, calc((100% - var(--maxw))/2 + 24px)); justify-content:flex-start; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 56px), transparent 100%); mask-image:linear-gradient(to right, #000 calc(100% - 56px), transparent 100%); }
 .catbar .row::-webkit-scrollbar { display:none; }
@@ -67,7 +67,7 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .layout { display:grid; grid-template-columns:1fr 332px; gap:54px; padding:42px 0 20px; }
 @media (max-width:940px){ .layout { grid-template-columns:1fr; gap:34px; } .side { position:static; max-height:none; overflow:visible; } }
 
-/* ── Story list — clinical case files: square accent avatar, mono date ── */
+/* ── Story list - clinical case files: square accent avatar, mono date ── */
 .story { display:grid; grid-template-columns:92px 1fr; gap:22px; padding:28px 0; border-bottom:1px solid var(--border); }
 .story:first-child { padding-top:6px; }
 .ava { width:80px; height:80px; border-radius:8px; object-fit:cover; box-shadow:5px 6px 0 0 var(--slate); border:2px solid #fff; }
@@ -95,7 +95,7 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .side > * { margin-bottom:24px; }
 .side > *:last-child { margin-bottom:0; }
 /* Si la sidebar dépasse la hauteur d'écran, on la rend défilable pour ne rien couper. */
-/* .side : sticky (l.94) sans scroll interne — retiré max-height/overflow-y qui créait une scrollbar interne aberrante (reproche Eric 2026-06-23) */
+/* .side : sticky (l.94) sans scroll interne - retiré max-height/overflow-y qui créait une scrollbar interne aberrante (reproche Eric 2026-06-23) */
 .nlbox { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:26px 24px; text-align:center; }
 .nlbox .mascot { font-size:54px; line-height:1; }
 .nlbox .tag { display:inline-block; background:#fff; color:var(--bar-d); border:1.5px solid var(--bar); font-weight:700; font-family:'Space Grotesk',sans-serif; padding:6px 15px; border-radius:7px; margin:10px 0 14px; }
@@ -109,7 +109,7 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .sidecard ul { list-style:none; padding:0; margin:0; } .sidecard li { padding:9px 0; border-top:1px solid var(--border); }
 .sidecard li:first-child { border-top:0; } .sidecard a { color:var(--ink); text-decoration:none; font-weight:500; font-size:15.5px; font-family:'Space Grotesk',sans-serif; } .sidecard a:hover { color:var(--bar); }
 
-/* ── Triage blocks — diagnostic cards with colored top rules ── */
+/* ── Triage blocks - diagnostic cards with colored top rules ── */
 .blocks { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:34px 0 54px; }
 .block { border-radius:10px; padding:26px 26px 28px; background:#fffdf9; border:1px solid var(--border); border-top:4px solid var(--bar); }
 .block.b1 { border-top-color:#e8442b; } .block.b2 { border-top-color:#33414e; } .block.b3 { border-top-color:#b5710f; }
@@ -190,7 +190,7 @@ img.hero { width:100%; height:auto; border-radius:10px; border:1px solid var(--b
 .reading tr:last-child td { border-bottom:0; }
 .reading tbody tr:nth-child(even) td { background:rgba(244,237,225,.4); }
 
-/* ── inline code / kbd / pre — Space Mono, clinical ── */
+/* ── inline code / kbd / pre - Space Mono, clinical ── */
 code, .reading kbd { font-family:'Space Mono',ui-monospace,Menlo,monospace; }
 code { background:var(--pill); color:var(--brand-ink); padding:2px 7px; border-radius:5px; font-size:14.5px; }
 .reading kbd { display:inline-block; background:#fffdf9; color:var(--slate-d); border:1px solid var(--edge-bright,#d6c7b1);
@@ -209,7 +209,7 @@ blockquote::before { content:'✚'; position:absolute; left:18px; top:16px; font
 blockquote p { margin:0 0 8px; } blockquote p:last-child { margin:0; }
 blockquote strong { color:#7a4a0c; background:none; }
 
-/* ── in-body figures (rehypeImageFigures) — framed + Space Mono caption ── */
+/* ── in-body figures (rehypeImageFigures) - framed + Space Mono caption ── */
 .reading .md-figure { margin:30px 0; }
 .reading .md-figure img { display:block; width:100%; height:auto; border-radius:10px; border:1px solid var(--border);
   box-shadow:6px 8px 0 0 var(--pill); }
@@ -266,7 +266,7 @@ footer.site a { color:var(--ink-dim); text-decoration:none; } footer.site a:hove
   .toc2 { display:none; }
 }
 
-/* ── Cookie consent banner — class default must not override [hidden] ── */
+/* ── Cookie consent banner - class default must not override [hidden] ── */
 .cookiebar { position:fixed; left:16px; right:16px; bottom:16px; z-index:90; max-width:760px; margin:0 auto; background:#fffdf9; border:1px solid var(--border); border-left:4px solid var(--bar); border-radius:10px; box-shadow:0 10px 40px rgba(33,27,23,.18); padding:16px 20px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; font-size:14.5px; color:var(--ink-dim); }
 .cookiebar[hidden] { display:none; }
 .cookiebar p { margin:0; flex:1; min-width:220px; }

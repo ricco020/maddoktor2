@@ -1,4 +1,4 @@
-// Privacy-friendly GA4 — loaded ONLY after explicit consent.
+// Privacy-friendly GA4 - loaded ONLY after explicit consent.
 // CSP forbids inline scripts (script-src 'self' googletagmanager), so all the
 // consent logic lives here in an external file.
 (function () {

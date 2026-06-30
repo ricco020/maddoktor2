@@ -25,7 +25,7 @@ interface Props {
   lang?: string;
   /** Canonical path (without locale prefix), e.g. "/articles/how-to-remove-malware/" */
   canonicalPath?: string;
-  /** Alternate URLs for hreflang — pass only when the page has FR/ES equivalents */
+  /** Alternate URLs for hreflang - pass only when the page has FR/ES equivalents */
   alternates?: { lang: string; href: string }[];
   /** Image to preload (LCP hero) */
   preloadImage?: string;
@@ -93,7 +93,7 @@ const hreflangLinks: { lang: string; href: string }[] = alternates.length > 0
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    {/* Polices self-hosted via @fontsource (voir imports frontmatter) — la CSP font-src 'self' bloquerait Google Fonts */}
+    {/* Polices self-hosted via @fontsource (voir imports frontmatter) - la CSP font-src 'self' bloquerait Google Fonts */}
     {preloadImage &&<link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -113,7 +113,7 @@ const hreflangLinks: { lang: string; href: string }[] = alternates.length > 0
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(baseSchema).replace(/<\//g, '<\\/')} />
-    <!-- GA4 — loaded ONLY after explicit cookie consent. /ga.js gates analytics
+    <!-- GA4 - loaded ONLY after explicit cookie consent. /ga.js gates analytics
          and wires the banner. CSP (script-src 'self' googletagmanager) bars inline. -->
     <script src="/ga.js" defer></script>
   </head>

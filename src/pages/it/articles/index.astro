@@ -32,7 +32,7 @@ function tagAvatar(tags: string[] = []) {
 }
 const alternates = hreflangAlternates('/articles/');
 ---
-<Base title="Tutte le guide — MadDoktor2" description="Tutte le guide MadDoktor2 su rimozione malware, anti-spyware e sicurezza del PC — indipendenti e oneste." {lang} {alternates} canonicalPath="/it/articles/">
+<Base title="Tutte le guide - MadDoktor2" description="Tutte le guide MadDoktor2 su rimozione malware, anti-spyware e sicurezza del PC - indipendenti e oneste." {lang} {alternates} canonicalPath="/it/articles/">
   <div class="wrap">
     <div class="cathead">
       <p class="k">Guide</p>
@@ -50,7 +50,7 @@ const alternates = hreflangAlternates('/articles/');
             <div>
               <p class="by"><a href="/it/about/">MadDoktor2</a> <em>{t.wrote}</em></p>
               <h3><a href={`/it/articles/${a.id}/`}>{a.data.title}</a></h3>
-              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> · {a.data.tags.slice(0,3).join(', ')} — {a.data.description}</p>
+              <p class="ex"><span class="date">{fmt(a.data.pubDate)}</span> · {a.data.tags.slice(0,3).join(', ')} - {a.data.description}</p>
               <a class="more" href={`/it/articles/${a.id}/`}>{t.read_more}</a>
               <div class="metab"><span>📅 {readMin(a)} min</span><span>🛡️ Sicurezza in parole semplici</span></div>
             </div>
