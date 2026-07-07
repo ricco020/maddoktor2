@@ -1,0 +1,177 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SITE } from '../../../lib/site';
+import { hreflangAlternates } from '../../../lib/hreflang';
+
+const title = 'Verificatore di hash dei file - SHA-256, SHA-1 e SHA-512 nel browser';
+const description =
+  'Verificatore di hash dei file gratuito. Calcola SHA-256, SHA-1 e SHA-512 di qualsiasi file per cercarlo in database di malware come VirusTotal. Tutto avviene nel browser - il file non lascia mai il tuo dispositivo.';
+
+const alternates = hreflangAlternates('/file-hash-checker/');
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Verificatore di hash dei file',
+    applicationCategory: 'SecurityApplication',
+    operatingSystem: 'Any (web browser)',
+    description,
+    url: `${SITE.url}/it/file-hash-checker/`,
+    inLanguage: 'it',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Verificatore di hash dei file', item: `${SITE.url}/it/file-hash-checker/` },
+    ],
+  },
+];
+---
+
+<Base {title} {description} {schema} lang="it" {alternates} canonicalPath="/it/file-hash-checker/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / file-hash-checker</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">Verificatore di hash dei file</h1>
+
+    <p class="mt-6 text-lg text-ink-dim">Calcola l’<strong>SHA-256, SHA-1 e SHA-512</strong> di qualsiasi file, poi incolla l’hash in un database di malware come VirusTotal per vedere se il file è noto come dannoso. Tutto viene eseguito <strong>nel tuo browser</strong> tramite l’API Web Crypto integrata - il file non lascia mai il tuo dispositivo e non viene caricato nulla.</p>
+
+    <div
+      id="hashtool"
+      class="hashtool"
+      data-computing='Calcolo degli hash…'
+      data-done='Fatto - copia un hash qui sotto'
+      data-error='Impossibile leggere il file. Provane un altro.'
+      data-copy='Copia'
+      data-copied='Copiato'
+      data-nofile='Scegli un file per iniziare'
+    >
+      <label class="drop" id="drop" for="fileinput">
+        <input type="file" id="fileinput" hidden />
+        <span class="drop-icon" aria-hidden="true">🧮</span>
+        <span class="drop-main">Trascina un file qui o clicca per sceglierlo</span>
+        <span class="drop-sub" id="fileinfo">Scegli un file per iniziare</span>
+      </label>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+
+      <div class="rows" id="rows" hidden>
+        <div class="hrow"><span class="halg">SHA-256</span><code class="hval" id="sha256"></code><button type="button" class="copy" data-target="sha256">Copia</button></div>
+        <div class="hrow"><span class="halg">SHA-1</span><code class="hval" id="sha1"></code><button type="button" class="copy" data-target="sha1">Copia</button></div>
+        <div class="hrow"><span class="halg">SHA-512</span><code class="hval" id="sha512"></code><button type="button" class="copy" data-target="sha512">Copia</button></div>
+      </div>
+    </div>
+
+    <h2>Come controllare un file sospetto</h2>
+    <ol>
+      <li>Seleziona il file qui sopra. I suoi hash appaiono all’istante.</li>
+      <li>Copia il valore <strong>SHA-256</strong>.</li>
+      <li>Incollalo in un servizio di reputazione - per esempio il campo di ricerca di <a href="https://www.virustotal.com/" rel="nofollow noopener" target="_blank">VirusTotal</a>. Se il file è malware noto, il database riconosce l’hash.</li>
+    </ol>
+
+    <h2>Perché un hash aiuta</h2>
+    <p>Un hash è una breve impronta di un file. Cambia un solo byte e l’hash cambia completamente. I database delle minacce memorizzano gli hash dei malware noti, quindi controllare un hash ti dice se un file corrisponde a un campione già analizzato - senza caricare il tuo file da nessuna parte.</p>
+
+    <h2>I limiti onesti</h2>
+    <p>Una ricerca di hash riconosce solo i campioni <em>noti</em>. Un malware nuovissimo o leggermente modificato avrà un hash che nessuno ha ancora visto: un risultato pulito <strong>non</strong> garantisce che il file sia sicuro. Usalo come un segnale tra tanti, insieme a una vera scansione anti-malware. Non offriamo MD5 qui: è crittograficamente compromesso, e SHA-256 è il valore preferito dai database moderni.</p>
+  </article>
+</Base>
+
+<style>
+  .hashtool { margin: 28px 0; }
+  .drop {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; text-align: center; padding: 34px 18px; cursor: pointer;
+    border: 2px dashed var(--line, #3a3a44); border-radius: 14px;
+    background: rgba(255,255,255,0.02); transition: border-color .15s, background .15s;
+  }
+  .drop:hover, .drop.over { border-color: #22c55e; background: rgba(34,197,94,0.06); }
+  .drop-icon { font-size: 30px; }
+  .drop-main { font-weight: 600; }
+  .drop-sub { font-size: 13px; opacity: .7; word-break: break-all; }
+  .status { min-height: 20px; font-size: 14px; opacity: .85; margin: 12px 2px; }
+  .rows { display: flex; flex-direction: column; gap: 10px; }
+  .hrow {
+    display: grid; grid-template-columns: 84px 1fr auto; align-items: center; gap: 10px;
+    padding: 10px 12px; border: 1px solid var(--line, #33333c); border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+  }
+  .halg { font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700; color: #22c55e; }
+  .hval { font-family: ui-monospace, monospace; font-size: 12.5px; word-break: break-all; }
+  .copy {
+    font-size: 12px; padding: 5px 12px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--line, #3a3a44); background: transparent; color: inherit;
+  }
+  .copy:hover { border-color: #22c55e; color: #22c55e; }
+  @media (max-width: 560px) { .hrow { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const el = document.getElementById('hashtool');
+  if (el) {
+    const d = el.dataset;
+    const input = document.getElementById('fileinput');
+    const drop = document.getElementById('drop');
+    const status = document.getElementById('status');
+    const rows = document.getElementById('rows');
+    const info = document.getElementById('fileinfo');
+    const algos = { 'SHA-256': 'sha256', 'SHA-1': 'sha1', 'SHA-512': 'sha512' };
+
+    const toHex = (buf) =>
+      Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+
+    const fmtSize = (n) => {
+      if (n < 1024) return n + ' B';
+      if (n < 1048576) return (n / 1024).toFixed(1) + ' KB';
+      if (n < 1073741824) return (n / 1048576).toFixed(1) + ' MB';
+      return (n / 1073741824).toFixed(2) + ' GB';
+    };
+
+    async function run(file) {
+      if (!file) return;
+      info.textContent = file.name + ' (' + fmtSize(file.size) + ')';
+      status.textContent = d.computing;
+      rows.hidden = true;
+      try {
+        const buf = await file.arrayBuffer();
+        for (const [alg, id] of Object.entries(algos)) {
+          const digest = await crypto.subtle.digest(alg, buf);
+          document.getElementById(id).textContent = toHex(digest);
+        }
+        rows.hidden = false;
+        status.textContent = d.done;
+      } catch (e) {
+        status.textContent = d.error;
+      }
+    }
+
+    input.addEventListener('change', () => run(input.files[0]));
+    ['dragenter', 'dragover'].forEach((ev) =>
+      drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('over'); })
+    );
+    ['dragleave', 'drop'].forEach((ev) =>
+      drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('over'); })
+    );
+    drop.addEventListener('drop', (e) => {
+      const f = e.dataTransfer && e.dataTransfer.files[0];
+      if (f) run(f);
+    });
+
+    document.querySelectorAll('.copy').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const val = document.getElementById(btn.dataset.target).textContent;
+        if (!val) return;
+        try {
+          await navigator.clipboard.writeText(val);
+          const old = btn.textContent;
+          btn.textContent = d.copied;
+          setTimeout(() => { btn.textContent = old; }, 1200);
+        } catch (e) {}
+      });
+    });
+  }
+</script>
