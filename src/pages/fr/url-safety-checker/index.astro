@@ -1,0 +1,167 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SITE } from '../../../lib/site';
+import { hreflangAlternates } from '../../../lib/hreflang';
+
+const title = "Verificateur d'URL - Reperez les signaux de phishing dans un lien";
+const description = "Verificateur d'URL gratuit. Collez un lien suspect : l'outil inspecte l'adresse a la recherche de signaux de phishing courants, entierement dans votre navigateur. Il ne garantit pas qu'un site est sur, il signale seulement des alertes.";
+
+const alternates = hreflangAlternates('/url-safety-checker/');
+
+const MSG = {"empty": "Collez un lien pour le verifier.", "invalid": "Cela ne ressemble pas a une URL valide.", "verdictClean": "Aucun signal courant dans l'adresse. Ce n'est pas pour autant une garantie de securite.", "verdictInfo": "Quelques points a noter dans ce lien.", "verdictWarn": "Des signaux d'alerte - prudence avec ce lien.", "verdictBad": "Forts signaux d'alerte - traitez ce lien comme suspect.", "disclaimer": "Cet outil inspecte seulement le texte de l'URL a la recherche de signaux courants. Il ne peut pas confirmer qu'un site est sur ou malveillant. En cas de doute, ne cliquez pas.", "msg": {"notHttps": "Ce lien utilise http, pas https : le trafic peut etre lu ou altere en chemin.", "ipHost": "L'adresse est une IP brute, pas un nom de domaine - courant en phishing, rare pour de vraies marques.", "atSymbol": "L'URL contient '@'. Tout ce qui precede est ignore par le navigateur - une astuce classique pour masquer la vraie destination.", "punycode": "Le domaine utilise le punycode (xn--) et peut s'afficher comme le sosie d'un nom connu.", "manySub": "Le domaine a beaucoup de sous-domaines. Un nom de marque en sous-domaine n'en fait pas cette marque.", "shortener": "C'est un raccourcisseur de liens - la vraie destination est masquee jusqu'au clic.", "riskyTld": "L'extension du domaine est souvent abusee. Ce n'est pas une preuve, mais prudence.", "hyphens": "Le domaine comporte plusieurs tirets, souvent utilises pour fabriquer des noms sosies.", "port": "L'URL utilise un port non standard, inhabituel pour un site normal.", "encodedHost": "L'hote contient des caracteres encodes en pourcent, parfois utilises pour masquer le vrai domaine.", "longUrl": "L'URL est tres longue, ce qui peut enfouir le vrai domaine hors de vue.", "brandLookalike": "Un nom de grande marque apparait dans l'adresse mais pas comme domaine principal - un schema d'usurpation courant.", "clean": "Aucun signal structurel courant trouve. Cela ne signifie pas que le site est sur, seulement que l'adresse semble ordinaire."}};
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: "Verificateur d'URL",
+    applicationCategory: 'SecurityApplication',
+    operatingSystem: 'Any (web browser)',
+    description,
+    url: `${SITE.url}/fr/url-safety-checker/`,
+    inLanguage: 'fr',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: "Accueil", item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: "Verificateur d'URL", item: `${SITE.url}/fr/url-safety-checker/` },
+    ],
+  },
+];
+---
+
+<Base {title} {description} {schema} lang="fr" {alternates} canonicalPath="/fr/url-safety-checker/">
+  <article class="prose rise mx-auto">
+    <p class="mono text-xs text-ink-faint">~ / url-safety-checker</p>
+    <h1 class="mt-4 font-mono text-2xl font-semibold text-ink sm:text-3xl">Verificateur d'URL</h1>
+
+    <p class="mt-6 text-lg text-ink-dim" set:html={"Collez un lien suspect ci-dessous. Cet outil inspecte <strong>l'adresse elle-meme</strong> a la recherche de signaux de phishing et de malware courants - IP brute, noms de marque sosies, punycode, raccourcisseurs risques et plus. Tout se passe <strong>dans votre navigateur</strong> : le lien n'est jamais visite ni envoye nulle part."}></p>
+
+    <div id="urltool" class="urltool">
+      <div class="urlrow">
+        <input id="urlinput" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Collez une URL, ex. http://paypal.secure-login.example.tk/verify" />
+        <button id="analyze" type="button">Verifier le lien</button>
+      </div>
+      <p id="verdict" class="verdict" role="status" aria-live="polite"></p>
+      <div id="results"></div>
+    </div>
+
+    <h2>Ce qu'il recherche</h2>
+    <p>Il signale des indices structurels dans l'adresse : absence de HTTPS, IP au lieu d'un domaine, @ qui masque la vraie destination, sosies en punycode, sous-domaines profonds, raccourcisseurs de liens, extensions souvent abusees, ports inhabituels, caracteres encodes, et noms de grandes marques utilises hors du domaine principal.</p>
+
+    <h2>Les limites honnetes</h2>
+    <p set:html={"C'est une verification de texte, pas un verdict. L'outil ne peut pas ouvrir la page, lancer un scan ni interroger une base de menaces : un resultat propre n'est <strong>pas</strong> la preuve qu'un site est sur, et une alerte n'est pas la preuve qu'il est malveillant. Voyez les alertes comme une invitation a ralentir. En cas de doute, ne cliquez pas - tapez l'adresse vous-meme ou ouvrez l'application officielle."}></p>
+    <p class="related-tool"><strong>Outil associe:</strong> <a href="/fr/file-hash-checker/">Verificateur d'empreinte de fichier</a></p>
+  </article>
+</Base>
+
+<style>
+  .urltool { margin: 26px 0; }
+  .urlrow { display: flex; gap: 8px; flex-wrap: wrap; }
+  .urlrow input {
+    flex: 1 1 260px; min-width: 0; padding: 12px 14px; font-family: ui-monospace, monospace;
+    font-size: 14px; border-radius: 10px; border: 1px solid var(--line, #33333c);
+    background: rgba(255,255,255,0.02); color: inherit;
+  }
+  .urlrow input:focus { outline: none; border-color: #22c55e; }
+  .urlrow button {
+    padding: 12px 20px; border-radius: 10px; border: 1px solid #22c55e; cursor: pointer;
+    background: rgba(34,197,94,0.12); color: #22c55e; font-weight: 600;
+  }
+  .urlrow button:hover { background: rgba(34,197,94,0.2); }
+  .verdict { margin: 18px 2px 8px; font-weight: 700; min-height: 22px; }
+  .v-clean { color: #22c55e; } .v-info { color: #38bdf8; } .v-warn { color: #f59e0b; } .v-bad { color: #ef4444; }
+  .findings { list-style: none; padding: 0; margin: 8px 0; display: flex; flex-direction: column; gap: 8px; }
+  .findings li {
+    padding: 10px 12px 10px 14px; border-radius: 10px; font-size: 14px; line-height: 1.45;
+    border: 1px solid var(--line, #33333c); border-left-width: 4px; background: rgba(255,255,255,0.02);
+  }
+  .f-bad { border-left-color: #ef4444; } .f-warn { border-left-color: #f59e0b; }
+  .f-info { border-left-color: #38bdf8; } .f-clean { border-left-color: #22c55e; }
+  .disclaimer { font-size: 12.5px; opacity: .7; margin-top: 14px; }
+</style>
+
+
+<script is:inline define:vars={{ MSG: MSG }}>
+  const el = document.getElementById('urltool');
+  if (el) {
+    const input = document.getElementById('urlinput');
+    const btn = document.getElementById('analyze');
+    const out = document.getElementById('results');
+    const verdict = document.getElementById('verdict');
+    const SHORTENERS = ['bit.ly','tinyurl.com','goo.gl','t.co','ow.ly','is.gd','buff.ly','rebrand.ly','cutt.ly','t.ly','rb.gy','shorturl.at'];
+    const RISKY_TLDS = ['zip','mov','tk','gq','ml','cf','ga','top','xyz','click','country','kim','work','loan','support','rest'];
+    const BRANDS = ['paypal','apple','icloud','microsoft','office365','amazon','netflix','google','facebook','instagram','whatsapp','bank','coinbase','binance','metamask','dhl','fedex','ups','usps'];
+
+    function analyze(raw) {
+      const findings = [];
+      let value = (raw || '').trim();
+      if (!value) return null;
+      if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(value)) value = 'http://' + value;
+      let u;
+      try { u = new URL(value); } catch (e) { return { error: true }; }
+      const host = u.hostname.toLowerCase();
+      const labels = host.split('.');
+      const tld = labels[labels.length - 1] || '';
+      const registrable = labels.slice(-2).join('.');
+
+      if (u.protocol === 'http:') findings.push({ s: 'warn', k: 'notHttps' });
+      if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) findings.push({ s: 'bad', k: 'ipHost' });
+      if (u.username || u.password || raw.split('#')[0].split('?')[0].includes('@')) findings.push({ s: 'bad', k: 'atSymbol' });
+      if (host.includes('xn--')) findings.push({ s: 'bad', k: 'punycode' });
+      if (labels.length > 4) findings.push({ s: 'warn', k: 'manySub' });
+      if (SHORTENERS.includes(registrable)) findings.push({ s: 'warn', k: 'shortener' });
+      if (RISKY_TLDS.includes(tld)) findings.push({ s: 'warn', k: 'riskyTld' });
+      if ((registrable.match(/-/g) || []).length >= 2) findings.push({ s: 'warn', k: 'hyphens' });
+      if (u.port) findings.push({ s: 'warn', k: 'port' });
+      if (host.includes('%')) findings.push({ s: 'bad', k: 'encodedHost' });
+      if (value.length > 100) findings.push({ s: 'info', k: 'longUrl' });
+      const brandHit = BRANDS.find((b) => host.includes(b));
+      if (brandHit && registrable.indexOf(brandHit) !== 0) findings.push({ s: 'bad', k: 'brandLookalike' });
+      return { host, findings };
+    }
+
+    function render(raw) {
+      out.replaceChildren();
+      verdict.textContent = '';
+      verdict.className = 'verdict';
+      const res = analyze(raw);
+      if (!res) { verdict.textContent = MSG.empty; return; }
+      if (res.error) { verdict.textContent = MSG.invalid; verdict.classList.add('v-bad'); return; }
+      const findings = res.findings;
+      const worst = findings.some((f) => f.s === 'bad') ? 'bad' : findings.some((f) => f.s === 'warn') ? 'warn' : findings.length ? 'info' : 'clean';
+      verdict.classList.add('v-' + worst);
+      verdict.textContent = worst === 'clean' ? MSG.verdictClean
+        : worst === 'bad' ? MSG.verdictBad
+        : worst === 'warn' ? MSG.verdictWarn : MSG.verdictInfo;
+
+      const list = document.createElement('ul');
+      list.className = 'findings';
+      if (!findings.length) {
+        const li = document.createElement('li');
+        li.className = 'f-clean';
+        li.textContent = MSG.msg.clean;
+        list.appendChild(li);
+      } else {
+        findings.forEach((f) => {
+          const li = document.createElement('li');
+          li.className = 'f-' + f.s;
+          li.textContent = MSG.msg[f.k];
+          list.appendChild(li);
+        });
+      }
+      out.appendChild(list);
+      const note = document.createElement('p');
+      note.className = 'disclaimer';
+      note.textContent = MSG.disclaimer;
+      out.appendChild(note);
+    }
+
+    btn.addEventListener('click', () => render(input.value));
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') render(input.value); });
+  }
+</script>

@@ -17,6 +17,9 @@ MadDoktor2 helps ordinary people clean up and secure infected Windows PCs: remov
 ## Full content
 - /llms-full.txt - every guide with its description, in all six languages.
 
+## Interactive tools
+- /file-hash-checker/ - free file hash checker that computes SHA-256, SHA-1 and SHA-512 entirely in the browser (the file never leaves the device), to look up a suspicious file in malware databases such as VirusTotal. Available in six languages.
+
 ## Topic categories
 - /c/malware-removal/ - removing viruses, trojans, worms, rootkits and browser hijackers from Windows
 - /c/ransomware/ - how ransomware works, the warning signs, decryptors, backups and recovery
