@@ -1,0 +1,65 @@
+---
+title: "Rokarolla : le cheval de Troie bancaire Android qui vise 217 applis (et comment s'en protéger)"
+description: "Rokarolla est un nouveau cheval de Troie bancaire Android qui se fait passer pour Chrome et TikTok, abuse du service d'Accessibilité et vise 217 applis bancaires et crypto. Ce qu'il fait, comment savoir si vous êtes infecté, et comment le supprimer et l'éviter."
+pubDate: 2026-07-09
+hero: "/images/rokarolla-android-trojan-hero.jpg"
+heroAlt: "Un smartphone Android affichant un écran d'accueil rempli d'icônes d'applications, posé sur une carte du monde sombre"
+keyword: "rokarolla malware android"
+tags: ["malware-removal", "android", "banking-trojan", "mobile-security", "rokarolla"]
+translationKey: "rokarolla-android-trojan"
+newsArticle: true
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+**Réponse rapide :** Rokarolla est un nouveau cheval de Troie bancaire Android signalé par la société de sécurité mobile Zimperium. Il se propage via de faux sites de téléchargement de Chrome ou TikTok, vous pousse à accorder la permission d'Accessibilité, puis vole vos identifiants bancaires, vos codes SMS et vos données de portefeuille crypto. Si vous avez installé une appli hors Play Store récemment et voyez des demandes de permission étranges, démarrez en mode sans échec, retirez les droits d'Accessibilité et d'administrateur de l'appli suspecte, désinstallez-la, et changez vos mots de passe bancaires depuis un appareil sain. Les détails et les étapes complètes sont ci-dessous.
+
+## Ce qu'est Rokarolla
+
+Zimperium a signalé Rokarolla le 16 juin 2026 (via BleepingComputer). C'est un cheval de Troie bancaire : un malware conçu pour voler des identifiants liés à l'argent. Il ne vient pas du Google Play Store. Il est diffusé via des sites malveillants qui se font passer pour l'appli Google Chrome ou TikTok. Pendant l'installation, il agit comme un dropper et usurpe même l'identité de Google Play Protect, l'anti-malware intégré d'Android, pour paraître légitime pendant qu'il s'installe.
+
+## Ce qu'il peut faire
+
+D'après Zimperium, le malware prend en charge 137 commandes. Ses capacités documentées incluent :
+
+- Voler les identifiants de l'écran de verrouillage et lire vos SMS, y compris les codes à usage unique de la banque.
+- Enregistrer les frappes clavier et le contenu affiché à l'écran via la journalisation de l'interface.
+- Récupérer votre code PIN ou votre schéma de déverrouillage avec de faux calques posés sur les vraies applis.
+- Voler les contacts, y compris les contacts WhatsApp.
+- Bloquer les appels entrants et masquer les alertes de fraude bancaire.
+- Prendre des captures d'écran horodatées et manipuler le presse-papiers.
+
+Il vise 217 applis bancaires et de cryptomonnaie : il compare votre appareil à cette liste et télécharge un calque de phishing sur mesure pour chaque appli correspondante que vous avez installée.
+
+![Une main tenant un téléphone Android avec le mot pay jaillissant de son écran bleu - les applis de paiement et de banque sont exactement ce que vise Rokarolla.](/images/rokarolla-android-trojan-body.jpg)
+
+## La permission qui fait tout fonctionner
+
+La puissance de Rokarolla vient du service d'Accessibilité d'Android. Au lancement, il demande l'accès à l'Accessibilité, plus la permission de lire les notifications, les SMS et les appels. L'Accessibilité existe pour aider les personnes en situation de handicap à piloter leur téléphone, ce qui signifie qu'une appli qui la détient peut lire l'écran, appuyer sur des boutons et remplir des champs à votre place. C'est exactement ce dont un cheval de Troie bancaire a besoin pour déjouer les protections des applis. Accorder l'Accessibilité à quelque chose installé hors du Play Store est le geste le plus risqué que vous puissiez faire.
+
+## Les signes d'une possible infection
+
+- Vous avez installé une mise à jour Chrome ou TikTok depuis un lien ou un site plutôt que le Play Store.
+- Une appli a demandé l'accès à l'Accessibilité juste après l'installation, sans raison claire.
+- Votre appli bancaire se comporte bizarrement, vous ne recevez plus les codes SMS attendus, ou les appels entrants sont bloqués.
+- La batterie se vide vite et des calques ou invites inconnus apparaissent par-dessus vos applis.
+
+## Comment le supprimer
+
+Suivez ces étapes dans l'ordre :
+
+1. **Démarrez en mode sans échec** pour que les applis tierces cessent de tourner. Sur la plupart des appareils, maintenez le bouton d'alimentation, puis appuyez longuement sur Éteindre jusqu'à voir Redémarrer en mode sans échec.
+2. **Retirez ses accès.** Dans Paramètres, ouvrez Accessibilité et désactivez tout service que vous ne reconnaissez pas ; puis, sous Sécurité, retirez-le comme appli administrateur de l'appareil. Le malware bloque souvent la désinstallation tant que vous ne l'avez pas fait.
+3. **Désinstallez l'appli suspecte** - le faux Chrome ou TikTok, ou tout ce que vous avez installé juste avant l'apparition du problème.
+4. **Lancez Google Play Protect** (Play Store, icône de profil, Play Protect, Analyser) et un scanner réputé.
+5. **Depuis un appareil sain, changez vos mots de passe bancaires et e-mail** et appelez votre banque si vous avez vu une activité suspecte. Gardez la réinitialisation d'usine en dernier recours. Notre [guide de suppression des malwares Android](/fr/articles/supprimer-les-malwares-d-android/) détaille chaque étape.
+
+## Comment éviter le prochain
+
+La règle la plus sûre est simple : installez des applis uniquement depuis le Google Play Store, et ne téléchargez jamais une mise à jour de navigateur ou un TikTok depuis un site. Gardez Play Protect activé, et traitez toute demande de permission d'Accessibilité avec une grande méfiance. Si vous voulez un scanner sur l'appareil comme deuxième couche, voyez notre sélection des [meilleurs outils gratuits de suppression de malware](/fr/articles/meilleurs-outils-gratuits-suppression-malware/). Rokarolla est dangereux, mais il a besoin de votre permission pour agir - et c'est précisément là que vous pouvez l'arrêter.
+
+
+<AffiliateCTA
+  href="/go/surfshark"
+  product="Surfshark One"
+  blurb="Rokarolla se propage via de faux sites d'applis, pas le Play Store. Surfshark One inclut un antivirus mobile qui analyse les applis et téléchargements Android, plus des alertes si vos données apparaissent dans une fuite - un filet de sécurité utile une fois la mauvaise appli retirée à la main."
+/>

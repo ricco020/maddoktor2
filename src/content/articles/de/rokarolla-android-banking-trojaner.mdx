@@ -1,0 +1,65 @@
+---
+title: "Rokarolla: der Android-Banking-Trojaner, der 217 Apps ins Visier nimmt (und wie Sie sich schützen)"
+description: "Rokarolla ist ein neuer Android-Banking-Trojaner, der sich als Chrome und TikTok ausgibt, den Bedienungshilfen-Dienst missbraucht und 217 Banking- und Krypto-Apps ins Visier nimmt. Was er tut, wie Sie eine Infektion erkennen und wie Sie ihn entfernen und verhindern."
+pubDate: 2026-07-09
+hero: "/images/rokarolla-android-trojan-hero.jpg"
+heroAlt: "Ein Android-Smartphone mit einem Startbildschirm voller App-Symbole, das auf einer dunklen Weltkarte liegt"
+keyword: "rokarolla android malware"
+tags: ["malware-removal", "android", "banking-trojan", "mobile-security", "rokarolla"]
+translationKey: "rokarolla-android-trojan"
+newsArticle: true
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+**Kurze Antwort:** Rokarolla ist ein neuer Android-Banking-Trojaner, gemeldet von der Mobile-Security-Firma Zimperium. Er verbreitet sich über gefälschte Chrome- oder TikTok-Download-Seiten, bringt Sie dazu, die Bedienungshilfen-Berechtigung zu erteilen, und stiehlt dann Banking-Zugangsdaten, SMS-Codes und Krypto-Wallet-Daten. Wenn Sie kürzlich eine App außerhalb des Play Store installiert haben und seltsame Berechtigungsanfragen sehen, starten Sie in den abgesicherten Modus, entziehen Sie der verdächtigen App die Bedienungshilfen- und Geräteadmin-Rechte, deinstallieren Sie sie und ändern Sie Ihre Banking-Passwörter von einem sauberen Gerät. Die Details und alle Schritte finden Sie unten.
+
+## Was Rokarolla ist
+
+Zimperium meldete Rokarolla am 16. Juni 2026 (über BleepingComputer). Es ist ein Banking-Trojaner: Malware, die gebaut wurde, um geldbezogene Zugangsdaten zu stehlen. Er kommt nicht aus dem Google Play Store. Stattdessen wird er über bösartige Websites verteilt, die sich als die Google-Chrome- oder TikTok-App ausgeben. Bei der Installation wirkt er als Dropper und gibt sich sogar als Google Play Protect aus, Androids eingebauten Malware-Schutz, um beim Einrichten legitim zu wirken.
+
+## Was er kann
+
+Laut Zimperium unterstützt die Malware 137 Befehle. Zu ihren dokumentierten Fähigkeiten gehören:
+
+- Zugangsdaten vom Sperrbildschirm stehlen und Ihre SMS lesen, einschließlich Einmalcodes der Bank.
+- Tastenanschläge erfassen und Bildschirminhalte über UI-Protokollierung aufzeichnen.
+- Ihre PIN oder Ihr Entsperrmuster mit gefälschten Overlays über echten Apps abgreifen.
+- Kontakte stehlen, einschließlich WhatsApp-Kontakte.
+- Eingehende Anrufe blockieren und Bank-Betrugswarnungen verbergen.
+- Zeitgestempelte Screenshots machen und die Zwischenablage manipulieren.
+
+Er zielt auf 217 Banking- und Kryptowährungs-Apps: Er gleicht Ihr Gerät mit dieser Liste ab und lädt für jede passende installierte App ein maßgeschneidertes Phishing-Overlay herunter.
+
+![Eine Hand hält ein Android-Telefon, aus dessen blauem Bildschirm das Wort pay strömt - Bezahl- und Banking-Apps sind genau das, worauf Rokarolla abzielt.](/images/rokarolla-android-trojan-body.jpg)
+
+## Die eine Berechtigung, die alles ermöglicht
+
+Rokarollas Macht kommt aus Androids Bedienungshilfen-Dienst. Beim Start fordert er Zugriff auf die Bedienungshilfen sowie die Berechtigung, Benachrichtigungen, SMS und Anrufe zu lesen. Die Bedienungshilfen gibt es, um Menschen mit Behinderungen die Bedienung ihres Telefons zu erleichtern, was bedeutet, dass eine App, die sie besitzt, den Bildschirm lesen, Schaltflächen antippen und Felder für Sie ausfüllen kann. Genau das braucht ein Banking-Trojaner, um App-Schutzmechanismen auszuhebeln. Einer App, die Sie außerhalb des Play Store installiert haben, die Bedienungshilfen zu gewähren, ist der riskanteste Tipp, den Sie machen können.
+
+## Anzeichen einer möglichen Infektion
+
+- Sie haben ein Chrome- oder TikTok-Update über einen Link oder eine Website statt über den Play Store installiert.
+- Eine App hat direkt nach der Installation ohne klaren Grund Zugriff auf die Bedienungshilfen verlangt.
+- Ihre Bank-App verhält sich seltsam, Sie erhalten erwartete SMS-Codes nicht mehr, oder eingehende Anrufe werden blockiert.
+- Der Akku entlädt sich schnell und unbekannte Overlays oder Aufforderungen erscheinen über Ihren Apps.
+
+## Wie Sie ihn entfernen
+
+Arbeiten Sie diese Schritte der Reihe nach ab:
+
+1. **Starten Sie in den abgesicherten Modus**, damit Apps von Drittanbietern nicht mehr laufen. Auf den meisten Geräten halten Sie die Ein-/Aus-Taste, dann drücken Sie lange auf Ausschalten, bis Neustart in den abgesicherten Modus erscheint.
+2. **Entziehen Sie ihm den Zugriff.** Öffnen Sie in den Einstellungen die Bedienungshilfen und schalten Sie jeden Dienst aus, den Sie nicht kennen; entfernen Sie ihn dann unter Sicherheit als Geräteadmin-App. Malware blockiert die Deinstallation oft, bis Sie das tun.
+3. **Deinstallieren Sie die verdächtige App** - das gefälschte Chrome oder TikTok, oder was Sie kurz vor Beginn der Probleme installiert haben.
+4. **Führen Sie Google Play Protect aus** (Play Store, Profilsymbol, Play Protect, Scannen) und einen seriösen Scanner.
+5. **Ändern Sie von einem sauberen Gerät aus Ihre Banking- und E-Mail-Passwörter** und rufen Sie Ihre Bank an, wenn Sie verdächtige Aktivitäten gesehen haben. Behalten Sie das Zurücksetzen auf Werkseinstellungen als letzten Ausweg. Unsere [Anleitung zum Entfernen von Android-Malware](/de/articles/malware-von-android-entfernen/) führt jeden Schritt im Detail durch.
+
+## Wie Sie den nächsten vermeiden
+
+Die sicherste Regel ist einfach: Installieren Sie Apps nur aus dem Google Play Store und laden Sie niemals ein Browser-Update oder ein TikTok von einer Website. Lassen Sie Play Protect eingeschaltet und behandeln Sie jede Bedienungshilfen-Anfrage mit tiefem Misstrauen. Wenn Sie einen Scanner auf dem Gerät als zweite Schicht möchten, sehen Sie sich unsere Auswahl der [besten kostenlosen Malware-Entfernungstools](/de/articles/beste-kostenlose-malware-entfernungstools/) an. Rokarolla ist gefährlich, aber er braucht Ihre Erlaubnis, um zu funktionieren - und genau dort können Sie ihn stoppen.
+
+
+<AffiliateCTA
+  href="/go/surfshark"
+  product="Surfshark One"
+  blurb="Rokarolla verbreitet sich über gefälschte App-Seiten, nicht über den Play Store. Surfshark One enthält ein mobiles Antivirus, das Android-Apps und Downloads scannt, plus Warnungen, wenn Ihre Daten in einem Leak auftauchen - ein nützliches Sicherheitsnetz, sobald Sie eine schlechte App von Hand entfernt haben."
+/>

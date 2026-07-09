@@ -1,0 +1,65 @@
+---
+title: "Rokarolla: il trojan bancario Android che prende di mira 217 app (e come proteggerti)"
+description: "Rokarolla è un nuovo trojan bancario Android che si spaccia per Chrome e TikTok, abusa del servizio di Accessibilità e prende di mira 217 app bancarie e cripto. Cosa fa, come capire se sei infetto, e come rimuoverlo e prevenirlo."
+pubDate: 2026-07-09
+hero: "/images/rokarolla-android-trojan-hero.jpg"
+heroAlt: "Uno smartphone Android che mostra una schermata home piena di icone di app, appoggiato su una mappa del mondo scura"
+keyword: "rokarolla malware android"
+tags: ["malware-removal", "android", "banking-trojan", "mobile-security", "rokarolla"]
+translationKey: "rokarolla-android-trojan"
+newsArticle: true
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+**Risposta rapida:** Rokarolla è un nuovo trojan bancario Android segnalato dalla società di sicurezza mobile Zimperium. Si diffonde tramite falsi siti di download di Chrome o TikTok, ti induce a concedere il permesso di Accessibilità e poi ruba credenziali bancarie, codici SMS e dati dei wallet cripto. Se hai installato un'app fuori dal Play Store di recente e vedi richieste di permesso strane, avvia in Modalità provvisoria, revoca i diritti di Accessibilità e di amministratore dall'app sospetta, disinstallala e cambia le password bancarie da un dispositivo pulito. I dettagli e i passaggi completi sono qui sotto.
+
+## Cos'è Rokarolla
+
+Zimperium ha segnalato Rokarolla il 16 giugno 2026 (via BleepingComputer). È un trojan bancario: malware costruito per rubare credenziali legate al denaro. Non arriva dal Google Play Store. Viene invece distribuito tramite siti malevoli che si spacciano per l'app Google Chrome o TikTok. Durante l'installazione agisce come un dropper e si spaccia persino per Google Play Protect, l'antimalware integrato di Android, per sembrare legittimo mentre si installa.
+
+## Cosa può fare
+
+Secondo Zimperium, il malware supporta 137 comandi. Le sue capacità documentate includono:
+
+- Rubare le credenziali della schermata di blocco e leggere i tuoi SMS, compresi i codici usa e getta della banca.
+- Catturare le sequenze di tasti e registrare il contenuto dello schermo tramite il logging dell'interfaccia.
+- Carpire il tuo PIN o la sequenza di sblocco con falsi overlay posti sopra le app reali.
+- Rubare i contatti, compresi quelli di WhatsApp.
+- Bloccare le chiamate in arrivo e nascondere gli avvisi di frode bancaria.
+- Fare screenshot con marca temporale e manipolare gli appunti.
+
+Prende di mira 217 app bancarie e di criptovalute: confronta il tuo dispositivo con quella lista e scarica un overlay di phishing su misura per ogni app corrispondente che hai installato.
+
+![Una mano che tiene un telefono Android con la parola pay che esce dal suo schermo blu - le app di pagamento e bancarie sono proprio ciò che Rokarolla prende di mira.](/images/rokarolla-android-trojan-body.jpg)
+
+## L'unico permesso che lo fa funzionare
+
+La forza di Rokarolla viene dal servizio di Accessibilità di Android. All'avvio chiede l'accesso all'Accessibilità, più il permesso di leggere notifiche, SMS e chiamate. L'Accessibilità esiste per aiutare le persone con disabilità a usare il telefono, il che significa che un'app che la possiede può leggere lo schermo, toccare pulsanti e compilare campi al posto tuo. È esattamente ciò di cui un trojan bancario ha bisogno per superare le protezioni delle app. Concedere l'Accessibilità a qualcosa installato fuori dal Play Store è il tocco più rischioso che tu possa fare.
+
+## Segnali di una possibile infezione
+
+- Hai installato un aggiornamento di Chrome o TikTok da un link o un sito invece che dal Play Store.
+- Un'app ha chiesto l'accesso all'Accessibilità subito dopo l'installazione, senza un motivo chiaro.
+- La tua app bancaria si comporta in modo strano, non ricevi più i codici SMS attesi, o le chiamate in arrivo vengono bloccate.
+- La batteria si scarica in fretta e overlay o richieste sconosciute compaiono sopra le tue app.
+
+## Come rimuoverlo
+
+Segui questi passaggi in ordine:
+
+1. **Avvia in Modalità provvisoria** così le app di terze parti smettono di girare. Sulla maggior parte dei dispositivi, tieni premuto il tasto di accensione, poi premi a lungo Spegni finché non compare Riavvia in modalità provvisoria.
+2. **Revoca i suoi accessi.** Nelle Impostazioni, apri Accessibilità e disattiva ogni servizio che non riconosci; poi, sotto Sicurezza, rimuovilo come app di amministrazione del dispositivo. Il malware spesso blocca la disinstallazione finché non lo fai.
+3. **Disinstalla l'app sospetta** - il falso Chrome o TikTok, o qualsiasi cosa tu abbia installato poco prima che iniziassero i problemi.
+4. **Esegui Google Play Protect** (Play Store, icona del profilo, Play Protect, Scansiona) e uno scanner affidabile.
+5. **Da un dispositivo pulito, cambia le password bancarie e dell'email** e chiama la tua banca se hai visto attività sospette. Tieni il ripristino di fabbrica come ultima risorsa. La nostra [guida alla rimozione del malware da Android](/it/articles/rimuovere-malware-da-android/) illustra ogni passaggio nel dettaglio.
+
+## Come evitare il prossimo
+
+La regola più sicura è semplice: installa app solo dal Google Play Store e non scaricare mai un aggiornamento del browser o un TikTok da un sito. Tieni Play Protect attivo e tratta ogni richiesta di permesso di Accessibilità con profonda diffidenza. Se vuoi uno scanner sul dispositivo come secondo livello, guarda la nostra selezione dei [migliori strumenti gratuiti di rimozione malware](/it/articles/migliori-strumenti-gratuiti-rimozione-malware/). Rokarolla è pericoloso, ma ha bisogno del tuo permesso per funzionare - ed è esattamente lì che puoi fermarlo.
+
+
+<AffiliateCTA
+  href="/go/surfshark"
+  product="Surfshark One"
+  blurb="Rokarolla si diffonde tramite falsi siti di app, non dal Play Store. Surfshark One include un antivirus mobile che analizza app e download Android, più avvisi se i tuoi dati compaiono in una violazione - una rete di sicurezza utile una volta rimossa l'app cattiva a mano."
+/>
