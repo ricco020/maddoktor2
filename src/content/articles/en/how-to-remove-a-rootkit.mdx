@@ -1,0 +1,73 @@
+---
+title: "How to Remove a Rootkit (2026): Offline Scans, and When to Wipe"
+description: "A rootkit hides deep in your system, so a normal scan often misses it. How to detect and remove a rootkit with offline and boot-time scans, and when the only safe fix is to wipe and reinstall."
+pubDate: 2026-07-14
+hero: "/images/how-to-remove-a-rootkit-hero.jpg"
+heroAlt: "Close-up of a laptop screen displaying cybersecurity text in a dark room"
+keyword: "how to remove a rootkit"
+tags: ["malware-removal", "rootkit", "windows", "offline-scan", "reinstall", "security"]
+translationKey: "remove-rootkit"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+A rootkit is one of the hardest kinds of malware to deal with, for a simple reason: it is built to hide. It buries itself deep in the system - sometimes in the operating system's core, sometimes even below it - and then conceals itself and any other malware it protects. That is why a normal antivirus scan, running inside the infected system, so often comes back clean when something is clearly wrong. Removing a rootkit means scanning it from a position where it cannot hide. Here is how.
+
+## What a rootkit is, and why it is hard to remove
+
+"Rootkit" comes from getting "root" (full control) plus a "kit" of tools to keep it hidden. Once it has that control, it can intercept the system's own requests and lie to them - so when your antivirus asks the operating system "what files and processes are here?", the rootkit quietly edits the answer to leave itself out. There are a few levels, and they matter for removal:
+
+- **User-mode rootkits** hide within normal programs. These are the easiest to catch and remove.
+- **Kernel-mode rootkits** run inside the operating system's core, so they can hide from almost anything else running on that system.
+- **Bootkits** infect the boot process itself, loading before the operating system - and therefore before your security software.
+- **Firmware rootkits** live in hardware firmware (like UEFI), surviving even an OS reinstall in the worst cases.
+
+The common thread: if the rootkit is already running when you scan, it can hide from the scan. The fix is to scan when it is **not** running.
+
+## Signs you might have a rootkit
+
+Rootkits are stealthy by design, so symptoms are indirect:
+
+- Your antivirus is disabled, crashes, or refuses to open - and you did not do it.
+- The system behaves strangely: settings change, the machine is slow, or it reboots on its own.
+- There is network activity or outbound connections you cannot explain.
+- A scan from inside the system says everything is fine, but the problems continue.
+
+Any one of these has other causes too, but a security tool that keeps getting turned off is a classic rootkit red flag.
+
+![A laptop displaying a security lock icon on a table. Removing a rootkit means scanning from outside the running system, where the malware cannot hide itself.](/images/how-to-remove-a-rootkit-body.jpg)
+
+## Step 1 - Run a boot-time / offline scan
+
+This is the key move. Instead of scanning from inside Windows (where the rootkit is running and hiding), scan before Windows fully loads:
+
+- **Microsoft Defender Offline** is built into Windows and does exactly this. It restarts your PC into a small, trusted environment and scans from there, before the rootkit can load. Open Windows Security, go to Virus & threat protection, choose Scan options, select **Microsoft Defender Offline scan**, and let it restart and run. This alone catches many rootkits that a normal scan misses.
+
+Because the scan runs before the operating system, the rootkit is not active to conceal itself - which is the entire point.
+
+## Step 2 - Use bootable rescue media
+
+If the offline scan is inconclusive or you want a second opinion, boot the machine from separate rescue media. Reputable security vendors offer free **bootable rescue disks / USB scanners** - you create the USB on a clean computer, boot the infected machine from it, and scan the drive while the installed Windows (and its rootkit) is completely powered off. Scanning a "dead" drive from a clean environment is the most reliable way to see what is really there.
+
+## Step 3 - When to wipe and reinstall
+
+Be honest with yourself about this one. For a stubborn kernel-mode rootkit or a bootkit, the only way to be **certain** the system is clean is to wipe the drive and reinstall the operating system from scratch:
+
+- Back up your important **personal files** (documents, photos) - but not programs or system files, which can carry the infection.
+- Wipe the drive and do a clean OS install, ideally recreating the installation media from a known-clean computer.
+- If you suspect a **firmware/UEFI rootkit** (rare, but it survives reinstalls), update your motherboard firmware from the manufacturer, and get expert help - this is beyond a normal cleanup.
+
+A clean reinstall feels drastic, but for a real rootkit it is often faster and far more trustworthy than chasing something designed to be unfindable.
+
+## After removal: assume your passwords are exposed
+
+A rootkit may have logged keystrokes or stolen credentials the whole time it was active. Once the machine is clean, change your important passwords - **from a different, known-clean device**, not the one you just cleaned - starting with email, banking and anything reused. Turn on two-factor authentication where you can.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="After a rootkit, treat your passwords as compromised. Change them from a clean device and store the new ones in a password manager - Proton Pass keeps them end-to-end encrypted so a future infection cannot read your vault." />
+
+## How to avoid the next one
+
+- Keep **Secure Boot** enabled in your firmware - it is specifically designed to block bootkits from loading.
+- Do not run cracked software, fake installers or random "codecs" - the classic way rootkits get in.
+- Keep Windows and your firmware updated, and use a standard (non-administrator) account for daily use.
+
+The bottom line: a rootkit hides from any scan that runs alongside it, so you beat it by scanning from outside - Defender Offline first, bootable rescue media next - and, for the deep-seated ones, by wiping and reinstalling. For related cleanups, see [how to remove a trojan virus](/articles/how-to-remove-a-trojan-virus) and the full [how to remove malware from Windows](/articles/how-to-remove-malware-from-windows) guide.

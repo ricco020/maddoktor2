@@ -1,0 +1,73 @@
+---
+title: "Ein Rootkit entfernen (2026): Offline-Scans und wann eine Neuinstallation nötig ist"
+description: "Ein Rootkit versteckt sich tief im System, daher übersieht ein normaler Scan es oft. So erkennen und entfernen Sie ein Rootkit mit Offline- und Boot-Scans - und wann die einzige sichere Lösung darin besteht, alles zu löschen und neu zu installieren."
+pubDate: 2026-07-14
+hero: "/images/how-to-remove-a-rootkit-hero.jpg"
+heroAlt: "Nahaufnahme eines Laptop-Bildschirms mit Cybersicherheits-Text in einem dunklen Raum"
+keyword: "how to remove a rootkit"
+tags: ["malware-removal", "rootkit", "windows", "offline-scan", "reinstall", "security"]
+translationKey: "remove-rootkit"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Ein Rootkit gehört zu den am schwersten zu bekämpfenden Arten von Malware, und zwar aus einem einfachen Grund: Es ist darauf ausgelegt, sich zu verstecken. Es gräbt sich tief ins System ein - manchmal in den Kern des Betriebssystems, manchmal sogar noch darunter - und verbirgt dann sich selbst sowie jede andere Malware, die es schützt. Deshalb liefert ein normaler Antiviren-Scan, der innerhalb des infizierten Systems läuft, so oft ein sauberes Ergebnis, obwohl offensichtlich etwas nicht stimmt. Ein Rootkit zu entfernen bedeutet, es aus einer Position zu scannen, in der es sich nicht verstecken kann. So geht es.
+
+## Was ein Rootkit ist und warum es sich so schwer entfernen lässt
+
+„Rootkit" setzt sich zusammen aus dem Erlangen von „root" (voller Kontrolle) und einem „Kit" an Werkzeugen, um verborgen zu bleiben. Sobald es diese Kontrolle hat, kann es die systemeigenen Anfragen abfangen und beantworten sie falsch - wenn Ihr Antivirenprogramm das Betriebssystem also fragt „welche Dateien und Prozesse gibt es hier?", bearbeitet das Rootkit die Antwort still und leise, um sich selbst auszulassen. Es gibt mehrere Ebenen, und die sind für die Entfernung entscheidend:
+
+- **User-mode-Rootkits** verstecken sich innerhalb normaler Programme. Diese sind am einfachsten zu erkennen und zu entfernen.
+- **Kernel-mode-Rootkits** laufen im Kern des Betriebssystems, sodass sie sich vor fast allem anderen verbergen können, was auf diesem System läuft.
+- **Bootkits** infizieren den Startvorgang selbst und laden noch vor dem Betriebssystem - und damit vor Ihrer Sicherheitssoftware.
+- **Firmware-Rootkits** nisten sich in der Hardware-Firmware ein (etwa UEFI) und überleben im schlimmsten Fall sogar eine Neuinstallation des Betriebssystems.
+
+Der gemeinsame Nenner: Läuft das Rootkit bereits, während Sie scannen, kann es sich vor dem Scan verstecken. Die Lösung besteht darin, zu scannen, wenn es **nicht** läuft.
+
+## Anzeichen, dass Sie ein Rootkit haben könnten
+
+Rootkits sind von Natur aus verstohlen, daher sind die Symptome indirekt:
+
+- Ihr Antivirenprogramm ist deaktiviert, stürzt ab oder lässt sich nicht öffnen - und Sie haben es nicht getan.
+- Das System verhält sich seltsam: Einstellungen ändern sich, der Rechner ist langsam oder startet von selbst neu.
+- Es gibt Netzwerkaktivität oder ausgehende Verbindungen, die Sie sich nicht erklären können.
+- Ein Scan von innerhalb des Systems meldet, dass alles in Ordnung sei, doch die Probleme bestehen weiter.
+
+Jedes einzelne dieser Anzeichen hat auch andere Ursachen, aber ein Sicherheitstool, das immer wieder abgeschaltet wird, ist ein klassisches Warnsignal für ein Rootkit.
+
+![Ein Laptop, der ein Sicherheits-Schlosssymbol auf einem Tisch anzeigt. Ein Rootkit zu entfernen bedeutet, von außerhalb des laufenden Systems zu scannen, wo sich die Malware nicht selbst verstecken kann.](/images/how-to-remove-a-rootkit-body.jpg)
+
+## Schritt 1 - Einen Boot- bzw. Offline-Scan durchführen
+
+Das ist der entscheidende Schritt. Anstatt aus Windows heraus zu scannen (wo das Rootkit läuft und sich versteckt), scannen Sie, bevor Windows vollständig geladen ist:
+
+- **Microsoft Defender Offline** ist in Windows integriert und tut genau das. Es startet Ihren PC in eine kleine, vertrauenswürdige Umgebung neu und scannt von dort aus, bevor das Rootkit laden kann. Öffnen Sie Windows Security, gehen Sie zu Virus & threat protection, wählen Sie Scan options, dann **Microsoft Defender Offline scan**, und lassen Sie den PC neu starten und durchlaufen. Schon das allein erwischt viele Rootkits, die ein normaler Scan übersieht.
+
+Da der Scan vor dem Betriebssystem läuft, ist das Rootkit nicht aktiv, um sich zu verbergen - und genau darum geht es.
+
+## Schritt 2 - Bootfähige Rettungsmedien verwenden
+
+Wenn der Offline-Scan kein eindeutiges Ergebnis liefert oder Sie eine zweite Meinung möchten, starten Sie den Rechner von separaten Rettungsmedien. Seriöse Sicherheitsanbieter stellen kostenlose **bootfähige Rettungs-Disks / USB-Scanner** bereit - Sie erstellen den USB-Stick auf einem sauberen Computer, starten den infizierten Rechner davon und scannen das Laufwerk, während das installierte Windows (und sein Rootkit) vollständig ausgeschaltet ist. Ein „totes" Laufwerk aus einer sauberen Umgebung zu scannen ist die zuverlässigste Methode, um zu sehen, was wirklich vorhanden ist.
+
+## Schritt 3 - Wann löschen und neu installieren
+
+Seien Sie bei diesem Punkt ehrlich zu sich selbst. Bei einem hartnäckigen Kernel-mode-Rootkit oder einem Bootkit ist die einzige Möglichkeit, **sicher** zu sein, dass das System sauber ist, das Laufwerk zu löschen und das Betriebssystem von Grund auf neu zu installieren:
+
+- Sichern Sie Ihre wichtigen **persönlichen Dateien** (Dokumente, Fotos) - aber keine Programme oder Systemdateien, die die Infektion mit sich tragen können.
+- Löschen Sie das Laufwerk und führen Sie eine saubere Neuinstallation des Betriebssystems durch, idealerweise mit einem Installationsmedium, das auf einem nachweislich sauberen Computer erstellt wurde.
+- Wenn Sie ein **Firmware-/UEFI-Rootkit** vermuten (selten, aber es überlebt Neuinstallationen), aktualisieren Sie die Firmware Ihres Mainboards vom Hersteller und holen Sie sich fachkundige Hilfe - das geht über eine normale Bereinigung hinaus.
+
+Eine saubere Neuinstallation wirkt drastisch, doch bei einem echten Rootkit ist sie oft schneller und weitaus vertrauenswürdiger, als etwas zu jagen, das darauf ausgelegt ist, unauffindbar zu sein.
+
+## Nach der Entfernung: Gehen Sie davon aus, dass Ihre Passwörter offengelegt wurden
+
+Ein Rootkit hat womöglich die ganze Zeit, in der es aktiv war, Tastatureingaben protokolliert oder Zugangsdaten gestohlen. Sobald der Rechner sauber ist, ändern Sie Ihre wichtigen Passwörter - **von einem anderen, nachweislich sauberen Gerät aus**, nicht von dem, das Sie gerade bereinigt haben - beginnend mit E-Mail, Banking und allem, was Sie mehrfach verwendet haben. Aktivieren Sie two-factor authentication, wo immer es möglich ist.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Behandeln Sie Ihre Passwörter nach einem Rootkit als kompromittiert. Ändern Sie sie von einem sauberen Gerät aus und speichern Sie die neuen in einem Passwort-Manager - Proton Pass hält sie Ende-zu-Ende-verschlüsselt, sodass eine künftige Infektion Ihren Tresor nicht auslesen kann." />
+
+## So vermeiden Sie das nächste
+
+- Lassen Sie **Secure Boot** in Ihrer Firmware aktiviert - es ist speziell dafür entworfen, das Laden von Bootkits zu verhindern.
+- Führen Sie keine geknackte Software, keine gefälschten Installationsprogramme und keine dubiosen „Codecs" aus - der klassische Weg, auf dem Rootkits hereinkommen.
+- Halten Sie Windows und Ihre Firmware aktuell und verwenden Sie für die tägliche Arbeit ein Standardkonto (ohne Administratorrechte).
+
+Das Fazit: Ein Rootkit versteckt sich vor jedem Scan, der neben ihm läuft, also besiegen Sie es, indem Sie von außen scannen - zuerst Microsoft Defender Offline, dann bootfähige Rettungsmedien - und bei den tief verwurzelten Varianten durch Löschen und Neuinstallieren. Für verwandte Bereinigungen siehe [wie man einen Trojaner entfernt](/de/articles/how-to-remove-a-trojan-virus) und die vollständige Anleitung [wie man Malware von Windows entfernt](/de/articles/how-to-remove-malware-from-windows).
