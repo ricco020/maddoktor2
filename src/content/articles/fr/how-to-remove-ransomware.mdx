@@ -1,0 +1,56 @@
+---
+title: "Supprimer un ransomware (2026) : isoler, identifier et récupérer"
+description: "Supprimer un ransomware et récupérer ses fichiers sont deux choses différentes. Comment isoler l'infection, identifier la souche, retirer le malware et récupérer les fichiers en toute sécurité, et pourquoi il ne faut pas payer."
+pubDate: 2026-07-16
+hero: "/images/how-to-remove-ransomware-hero.jpg"
+heroAlt: "Un ordinateur portable posé sur une table affichant une icône de cadenas de sécurité à l'écran"
+keyword: "how to remove ransomware"
+tags: ["malware-removal", "ransomware", "windows", "backup", "decryption", "security"]
+translationKey: "remove-ransomware"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Un ransomware est l'une des infections les plus effrayantes à affronter, car il ne se contente pas de se cacher sur votre système : il verrouille vos fichiers et exige de l'argent. Avant toute chose, comprenez le point le plus important : **supprimer le ransomware et déchiffrer vos fichiers sont deux opérations distinctes.** Se débarrasser du malware l'empêche de causer plus de dégâts, mais ne déverrouille pas automatiquement ce qui est déjà chiffré. Voici comment gérer les deux, calmement et dans le bon ordre.
+
+## Supprimer ou déchiffrer : la distinction essentielle
+
+Quand un ransomware frappe, deux problèmes existent en même temps. Le premier est le **malware lui-même**, toujours actif sur votre machine. Le second, ce sont vos **fichiers, désormais chiffrés**. Supprimer le malware règle le premier problème et empêche toute propagation supplémentaire, mais vos fichiers restent verrouillés à moins que vous ayez une sauvegarde, qu'un déchiffreur gratuit existe pour cette souche, ou que vous puissiez restaurer une version antérieure. Garder ces deux objectifs séparés vous évite les erreurs commises dans la panique, comme payer une rançon qui ne livrera peut-être jamais de clé.
+
+## Étape 1 - Isoler immédiatement l'appareil infecté
+
+Dès que vous suspectez un ransomware, coupez-le. Déconnectez le Wi-Fi, débranchez tout câble réseau, et retirez les disques externes et clés USB. Un ransomware tente souvent de se propager sur un réseau et de chiffrer les lecteurs partagés et les sauvegardes ; isoler la machine limite donc l'étendue des dégâts et coupe le malware de ses opérateurs. Faites cela avant toute autre chose.
+
+## Étape 2 - Identifier le ransomware
+
+Savoir quel ransomware vous avez vous indique si une récupération est même possible sans sauvegarde. La note de rançon, ainsi que la nouvelle extension ajoutée à vos fichiers chiffrés, sont des indices. Des services comme **ID Ransomware** vous permettent de téléverser la note de rançon ou un fichier chiffré d'exemple pour identifier la souche. C'est important, car pour certaines familles, des chercheurs en sécurité ont déjà publié des **déchiffreurs gratuits**.
+
+![Un gros plan sur un écran d'ordinateur affichant du code. Identifier la souche du ransomware vous indique s'il existe un déchiffreur gratuit pour celle-ci.](/images/how-to-remove-ransomware-body.jpg)
+
+## Étape 3 - Supprimer le malware
+
+Une fois l'appareil isolé et la souche identifiée, nettoyez l'infection :
+
+- **Démarrez en Safe Mode** (ou, sous Windows, utilisez une analyse **Microsoft Defender Offline**, qui s'exécute avant le chargement complet du système) et lancez une analyse anti-malware réputée pour trouver et retirer les composants du ransomware.
+- Pour une certitude sur une machine gravement touchée, l'option la plus fiable est de **formater le disque et réinstaller le système d'exploitation**. Sauvegardez d'abord les fichiers chiffrés si vous espérez les déchiffrer plus tard : ils sont inutiles aux attaquants et pourront peut-être être récupérés si un déchiffreur apparaît.
+
+Supprimer le malware arrête la poursuite du chiffrement et nettoie le système, mais souvenez-vous : vos fichiers déjà chiffrés restent verrouillés à ce stade.
+
+## Étape 4 - Récupérer vos fichiers, en toute sécurité
+
+Procédez maintenant à la récupération par ordre de sécurité :
+
+- **Restaurez depuis une sauvegarde saine.** Si vous avez une sauvegarde hors ligne ou dans le cloud réalisée avant l'infection, c'est la meilleure et la plus sûre des voies : formatez, réinstallez, puis restaurez.
+- **Consultez le projet No More Ransom.** L'initiative **nomoreransom.org** (menée par les forces de l'ordre et des sociétés de sécurité) propose des déchiffreurs gratuits pour de nombreuses familles de ransomware. Si votre souche y figure, vous pourrez peut-être déverrouiller vos fichiers sans payer.
+- **Essayez les options de récupération Windows.** Les clichés instantanés (Volume Shadow Copy) ou l'historique File History peuvent parfois restaurer des versions antérieures, même si beaucoup de ransomwares suppriment délibérément les clichés instantanés.
+
+## Pourquoi vous ne devez pas payer la rançon
+
+C'est tentant, mais payer est la pire option pour plusieurs raisons. Il n'y a **aucune garantie** d'obtenir une clé fonctionnelle : beaucoup de victimes paient et ne reçoivent rien, ou un déchiffreur défectueux. Payer **finance et encourage** les criminels et vous désigne comme quelqu'un qui paie, ce qui invite de nouvelles attaques. Les forces de l'ordre et les agences de sécurité déconseillent systématiquement de payer. Considérez le paiement comme un dernier recours qui, en réalité, n'est pas un recours fiable du tout.
+
+## Après l'attaque
+
+Une fois le système propre et les fichiers restaurés, changez vos mots de passe importants **depuis un autre appareil, propre**, car un ransomware est souvent accompagné d'un malware voleur de données. Activez la multi-factor authentication, et signalez l'incident à votre autorité locale de lutte contre la cybercriminalité. Fermez ensuite la porte qui l'a laissé entrer : notre guide sur la [protection contre les ransomwares](/fr/articles/meilleure-protection-ransomware) et le tutoriel général [comment supprimer un malware de Windows](/fr/articles/supprimer-un-malware-de-windows) couvrent la prévention et le nettoyage plus en détail.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Un ransomware voyage souvent avec un malware voleur de mots de passe, alors considérez vos identifiants comme exposés. Changez-les depuis un appareil propre et stockez les nouveaux dans un gestionnaire de mots de passe : Proton Pass garde votre coffre chiffré de bout en bout." />
+
+En résumé : isolez l'appareil, identifiez la souche, supprimez le malware, et récupérez depuis une sauvegarde ou un déchiffreur gratuit plutôt que de payer. Un ransomware est une attaque sérieuse, mais une réponse calme et ordonnée vous donne les meilleures chances d'en sortir avec vos fichiers et vos comptes intacts.

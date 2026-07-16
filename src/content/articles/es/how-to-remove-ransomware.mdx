@@ -1,0 +1,56 @@
+---
+title: "Cómo eliminar ransomware (2026): aislar, identificar y recuperar"
+description: "Eliminar el ransomware y recuperar tus archivos son dos cosas distintas. Cómo aislar la infección, identificar la variante, quitar el malware y recuperar archivos de forma segura, y por qué no deberías pagar."
+pubDate: 2026-07-16
+hero: "/images/how-to-remove-ransomware-hero.jpg"
+heroAlt: "Un portátil sobre una mesa mostrando un icono de candado de seguridad en su pantalla"
+keyword: "how to remove ransomware"
+tags: ["malware-removal", "ransomware", "windows", "backup", "decryption", "security"]
+translationKey: "remove-ransomware"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+El ransomware es una de las infecciones más aterradoras a las que enfrentarse, porque no se limita a esconderse en tu sistema: bloquea tus archivos y exige dinero. Antes de nada, comprende el punto más importante: **eliminar el ransomware y descifrar tus archivos son dos cosas separadas.** Deshacerte del malware impide que cause más daño, pero no desbloquea automáticamente lo que ya está cifrado. Aquí te explicamos cómo gestionar ambas cosas, con calma y en el orden correcto.
+
+## Quitar frente a descifrar: la distinción clave
+
+Cuando el ransomware ataca, existen dos problemas a la vez. El primero es el **propio malware**, que sigue ejecutándose en tu equipo. El segundo son tus **archivos, ahora cifrados**. Quitar el malware resuelve el primer problema y evita que se propague más, pero tus archivos siguen bloqueados salvo que tengas una copia de seguridad, exista un descifrador gratuito para esa variante o puedas restaurar una versión anterior. Mantener estos dos objetivos separados te evita cometer errores por pánico, como pagar un rescate que quizá nunca entregue una clave.
+
+## Paso 1 - Aísla el dispositivo infectado de inmediato
+
+En cuanto sospeches que hay ransomware, córtale el paso. Desconéctate del Wi-Fi y desenchufa cualquier cable de red, y retira las unidades externas y las memorias USB. El ransomware suele intentar propagarse por la red y cifrar unidades compartidas y copias de seguridad, así que aislar el equipo limita el alcance del daño y corta la conexión del malware con sus operadores. Haz esto antes que nada.
+
+## Paso 2 - Identifica el ransomware
+
+Saber qué ransomware tienes te indica si la recuperación es siquiera posible sin una copia de seguridad. La nota de rescate y la nueva extensión añadida a tus archivos cifrados son pistas. Servicios como **ID Ransomware** te permiten subir la nota de rescate o un archivo cifrado de muestra para identificar la variante. Esto importa porque, para algunas familias, los investigadores de seguridad ya han publicado **descifradores gratuitos**.
+
+![Un primer plano de una pantalla de ordenador mostrando código. Identificar la variante del ransomware te indica si existe un descifrador gratuito para ella.](/images/how-to-remove-ransomware-body.jpg)
+
+## Paso 3 - Elimina el malware
+
+Con el dispositivo aislado y la variante identificada, limpia la infección:
+
+- **Arranca en Safe Mode** (o, en Windows, usa un análisis de **Microsoft Defender Offline**, que se ejecuta antes de que el sistema operativo se cargue por completo) y ejecuta un análisis antimalware de confianza para encontrar y eliminar los componentes del ransomware.
+- Para tener certeza en un equipo gravemente afectado, la opción más fiable es **borrar el disco y reinstalar el sistema operativo**. Haz primero una copia de seguridad de los archivos cifrados si esperas descifrarlos más adelante: no le sirven a los atacantes y podrían ser recuperables si aparece un descifrador.
+
+Eliminar el malware detiene el cifrado y limpia el sistema, pero recuerda: tus archivos ya cifrados siguen bloqueados en este punto.
+
+## Paso 4 - Recupera tus archivos de forma segura
+
+Ahora avanza en la recuperación por orden de seguridad:
+
+- **Restaura desde una copia de seguridad limpia.** Si tienes una copia offline o en la nube realizada antes de la infección, esta es la vía mejor y más segura: borra, reinstala y luego restaura.
+- **Consulta el proyecto No More Ransom.** La iniciativa **nomoreransom.org** (gestionada por las fuerzas del orden y empresas de seguridad) ofrece descifradores gratuitos para muchas familias de ransomware. Si tu variante figura en la lista, quizá puedas desbloquear archivos sin pagar.
+- **Prueba las opciones de recuperación de Windows.** Las instantáneas (Volume Shadow Copy) o File History a veces pueden restaurar versiones anteriores, aunque mucho ransomware borra deliberadamente las instantáneas.
+
+## Por qué no deberías pagar el rescate
+
+Es tentador, pero pagar es la peor opción por varios motivos. No hay **ninguna garantía** de que recibas una clave que funcione: muchas víctimas pagan y no reciben nada, o un descifrador defectuoso. Pagar **financia y anima** a los delincuentes y te marca como alguien que paga, lo que invita a ataques repetidos. Las fuerzas del orden y las agencias de seguridad desaconsejan pagar de forma constante. Considera el pago como un último recurso que, siendo realistas, no es en absoluto un recurso fiable.
+
+## Después del ataque
+
+Una vez que el sistema esté limpio y los archivos restaurados, cambia tus contraseñas importantes **desde un dispositivo distinto y limpio**, ya que el ransomware suele venir acompañado de malware que roba datos. Activa la multi-factor authentication y denuncia el incidente a tu autoridad local de ciberdelincuencia. Después, cierra la puerta que lo dejó entrar: nuestra guía sobre [protección contra ransomware](/es/articles/mejor-proteccion-ransomware) y el tutorial general de [cómo eliminar malware de Windows](/es/articles/eliminar-malware-de-windows) cubren la prevención y la limpieza con más detalle.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="El ransomware suele viajar con malware que roba contraseñas, así que trata tus credenciales como expuestas. Cámbialas desde un dispositivo limpio y guarda las nuevas en un gestor de contraseñas: Proton Pass mantiene tu bóveda cifrada de extremo a extremo." />
+
+En resumen: aísla el dispositivo, identifica la variante, elimina el malware y recupera desde una copia de seguridad o un descifrador gratuito en lugar de pagar. El ransomware es un ataque serio, pero una respuesta tranquila y ordenada te da la mejor oportunidad de salir de él con tus archivos y tus cuentas intactos.
