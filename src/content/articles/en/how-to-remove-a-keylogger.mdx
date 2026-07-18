@@ -1,0 +1,71 @@
+---
+title: "How to Remove a Keylogger (2026): Detect It, Delete It, Then Reset Your Passwords"
+description: "A keylogger records every key you press, so it quietly steals passwords as you type. How to detect and remove a keylogger (software and hardware), and the crucial step most guides skip: securing your accounts from a clean device afterward."
+pubDate: 2026-07-18
+hero: "/images/how-to-remove-a-keylogger-hero.jpg"
+heroAlt: "Hands typing on a laptop keyboard, seen from above"
+keyword: "how to remove a keylogger"
+tags: ["malware-removal", "keylogger", "spyware", "windows", "passwords", "security"]
+translationKey: "remove-keylogger"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+A keylogger does one thing, and it does it silently: it records the keys you press. Every password, message and card number you type can be captured and sent to whoever installed it. Because it works in the background and rarely shows pop-ups or slowdowns, a keylogger can sit on a machine for a long time before anyone notices. Removing it has two halves that matter equally: getting the software (or hardware) off the machine, and then locking down the accounts whose passwords it may already have. Here is how to do both.
+
+## What a keylogger is: software vs hardware
+
+A keylogger is a tool that logs keystrokes. It comes in two very different forms, and they are removed in different ways.
+
+- **Software keyloggers** are the common kind. They are a program running on your computer, usually bundled with other spyware or a trojan, that records what you type and often takes screenshots too. Because it is software, an antimalware scan can usually find and remove it.
+- **Hardware keyloggers** are a physical device. A small connector plugged in between your keyboard cable and the computer's USB port, or a device hidden inside the keyboard, records keystrokes to its own memory. No software scan will ever see it, because it is not software. You find these by looking.
+
+Knowing which you might be dealing with matters. A software scan cannot detect a hardware logger, and unplugging a device does nothing about a software one. On a personal laptop, software is far more likely; on a shared or public desktop, a hardware device is worth ruling out.
+
+## Signs you might have a keylogger
+
+Keyloggers are built to stay hidden, so the clues are subtle:
+
+- Typing feels laggy, or keystrokes appear with a slight delay, on a machine that used to be responsive.
+- Your antivirus was disabled, or a scan finds spyware or a trojan (keyloggers often travel with them).
+- You notice unfamiliar programs in your startup list, or unexplained outbound network activity.
+- Accounts get accessed without you, or you receive password-reset or login alerts you did not trigger.
+
+Any single sign has innocent explanations, but account logins you cannot explain are the one that should make you act, because that is a keylogger doing its actual job.
+
+![A close-up of a computer keyboard. A keylogger records the keys you press, which is why a password manager that fills logins for you removes the keystrokes an attacker can capture.](/images/how-to-remove-a-keylogger-body.jpg)
+
+## Step 1 - Run a full antimalware scan, updated and in Safe Mode
+
+For a software keylogger, start with a full scan using up-to-date malware definitions. Make sure your security tool has updated first, then run a **full scan**, not a quick one, so it checks the whole drive rather than just common locations.
+
+If the keylogger interferes with scanning, restart into **Safe Mode with Networking**. Safe Mode loads only essential drivers and services, so many malware programs do not start, which makes them easier to detect and delete. Running a reputable on-demand scanner alongside your main antivirus gives you a useful second opinion, since no single engine catches everything. Quarantine or remove whatever the scan flags, then reboot and scan again to confirm it comes back clean. For the wider cleanup routine this fits into, see our guide to [removing spyware](/articles/how-to-remove-spyware).
+
+## Step 2 - Check startup programs and browser extensions
+
+Some keyloggers survive a scan by disguising themselves. Open Task Manager and review the **Startup** tab for programs you do not recognize, and check installed programs for anything you did not deliberately add. In your browser, review installed **extensions** and remove any you cannot account for, since a malicious extension can log what you type into web forms. When in doubt about a specific entry, search its exact name before removing it, so you do not disable something legitimate. Keyloggers frequently arrive bundled with a trojan, so it is worth checking for that too: our guide on [removing a trojan virus](/articles/how-to-remove-a-trojan-virus) covers the overlap.
+
+## Step 3 - Rule out a hardware keylogger
+
+If a software scan comes back clean but you still suspect logging, physically inspect the machine, especially a desktop or a shared computer. Look at where the keyboard plugs in: an unfamiliar small adapter sitting between the keyboard cable and the USB or PS/2 port is a classic hardware logger. Remove any device you did not install. On a laptop, a hardware logger is far less likely but not impossible on a compromised or public machine. Hardware loggers are invisible to every scan, so this visual check is the only way to catch one.
+
+## Step 4 - When to reinstall
+
+If the infection is deep, keeps coming back after removal, or arrived with other malware you cannot fully clear, the most reliable fix is to wipe the drive and reinstall the operating system from scratch. Back up your **personal files** (documents, photos) but not programs, which can carry the infection, and reinstall from installation media made on a known-clean computer. A clean reinstall is the one way to be certain a stubborn software keylogger is gone. Our full [remove malware from Windows](/articles/how-to-remove-malware-from-windows) guide walks through the reinstall route.
+
+## The step that actually protects you: reset passwords from a clean device
+
+This is the part most people skip, and it is the most important. A keylogger's whole purpose is to steal what you type, so once you find one, assume the passwords you entered while it was active are already exposed. After the machine is clean:
+
+- Change your important passwords, starting with **email** (it resets everything else), then banking and any reused passwords, and do it **from a different, known-clean device**, not the one you just cleaned.
+- Turn on **two-factor authentication** wherever it is offered, so a stolen password alone is not enough to log in.
+- Use a **password manager**. This is the honest, direct defense against keylogging: a password manager fills your login fields automatically instead of you typing the password, so there are no keystrokes for a logger to capture. It also lets every account have a unique, strong password, so a single exposed credential cannot unlock the rest.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="A keylogger captures what you type, so autofill is a real defense: Proton Pass fills your logins instead of you typing them, keeps every password unique, and stores your vault end-to-end encrypted. Reset your passwords in it from a clean device after cleanup." />
+
+## How to avoid the next one
+
+- Do not install cracked software, fake installers or attachments from unexpected emails, the usual way software keyloggers get in.
+- Keep your operating system, browser and security tool updated, and use a standard (non-administrator) account day to day.
+- On shared or public computers, avoid logging into sensitive accounts, and be aware that a hardware logger could be present.
+
+The bottom line: for a software keylogger, an updated full scan (in Safe Mode if needed), a check of startup items and extensions, and a reinstall for the stubborn cases will clear it, while a hardware logger is found by looking, not scanning. But removal is only half the job. Because a keylogger steals passwords as you type, the real protection is resetting them from a clean device, turning on two-factor authentication, and using a password manager so future logins never touch the keyboard. For related cleanups, see [how to remove spyware](/articles/how-to-remove-spyware) and our roundup of the [best free malware removal tools](/articles/best-free-malware-removal-tools).

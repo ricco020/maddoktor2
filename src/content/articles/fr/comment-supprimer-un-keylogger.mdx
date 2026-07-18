@@ -1,0 +1,71 @@
+---
+title: "Comment supprimer un keylogger (2026) : le détecter, le supprimer, puis changer vos mots de passe"
+description: "Un keylogger enregistre chaque touche que vous tapez, il vole donc discrètement vos mots de passe à mesure que vous les saisissez. Comment détecter et supprimer un keylogger (logiciel et matériel), et l'étape cruciale que la plupart des guides oublient : sécuriser vos comptes depuis un appareil sain."
+pubDate: 2026-07-18
+hero: "/images/how-to-remove-a-keylogger-hero.jpg"
+heroAlt: "Des mains tapant sur le clavier d'un ordinateur portable, vues du dessus"
+keyword: "comment supprimer un keylogger"
+tags: ["malware-removal", "keylogger", "spyware", "windows", "passwords", "security"]
+translationKey: "remove-keylogger"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Un keylogger ne fait qu'une seule chose, et il la fait en silence : il enregistre les touches que vous tapez. Chaque mot de passe, message et numéro de carte que vous saisissez peut être capturé et envoyé à celui qui l'a installé. Comme il fonctionne en arrière-plan et n'affiche presque jamais de pop-up ni de ralentissement, un keylogger peut rester sur une machine longtemps avant que quiconque le remarque. Le supprimer comporte deux moitiés tout aussi importantes l'une que l'autre : retirer le logiciel (ou le matériel) de la machine, puis verrouiller les comptes dont il détient peut-être déjà les mots de passe. Voici comment faire les deux.
+
+## Ce qu'est un keylogger : logiciel vs matériel
+
+Un keylogger est un outil qui enregistre les frappes clavier. Il existe sous deux formes très différentes, que l'on supprime de manières différentes.
+
+- **Les keyloggers logiciels** sont les plus courants. Il s'agit d'un programme qui tourne sur votre ordinateur, souvent livré avec un autre spyware ou un cheval de Troie, qui enregistre ce que vous tapez et prend souvent aussi des captures d'écran. Comme c'est un logiciel, une analyse antimalware peut en général le trouver et le supprimer.
+- **Les keyloggers matériels** sont un appareil physique. Un petit connecteur branché entre le câble de votre clavier et le port USB de l'ordinateur, ou un dispositif caché à l'intérieur du clavier, enregistre les frappes dans sa propre mémoire. Aucune analyse logicielle ne le verra jamais, car ce n'est pas un logiciel. Ceux-là, on les trouve en regardant.
+
+Savoir à quel type vous avez peut-être affaire est important. Une analyse logicielle ne peut pas détecter un enregistreur matériel, et débrancher un appareil ne change rien à un keylogger logiciel. Sur un ordinateur portable personnel, le logiciel est de loin le plus probable ; sur un poste partagé ou public, il vaut la peine d'écarter la piste d'un appareil matériel.
+
+## Signes que vous pourriez avoir un keylogger
+
+Les keyloggers sont conçus pour rester cachés, alors les indices sont discrets :
+
+- La frappe semble ralentie, ou les touches apparaissent avec un léger décalage, sur une machine autrefois réactive.
+- Votre antivirus a été désactivé, ou une analyse détecte un spyware ou un cheval de Troie (les keyloggers voyagent souvent avec eux).
+- Vous remarquez des programmes inconnus dans votre liste de démarrage, ou une activité réseau sortante inexpliquée.
+- Des comptes sont consultés sans vous, ou vous recevez des alertes de connexion ou de réinitialisation de mot de passe que vous n'avez pas déclenchées.
+
+Chaque signe pris isolément a des explications anodines, mais des connexions à vos comptes que vous ne pouvez pas expliquer sont celui qui doit vous faire réagir, car c'est précisément le travail d'un keylogger.
+
+![Un gros plan sur un clavier d'ordinateur. Un keylogger enregistre les touches que vous tapez, c'est pourquoi un gestionnaire de mots de passe qui remplit les connexions à votre place supprime les frappes qu'un attaquant peut capturer.](/images/how-to-remove-a-keylogger-body.jpg)
+
+## Étape 1 - Lancez une analyse antimalware complète, à jour et en mode sans échec
+
+Pour un keylogger logiciel, commencez par une analyse complète avec des définitions de malware à jour. Assurez-vous d'abord que votre outil de sécurité s'est mis à jour, puis lancez une **analyse complète**, pas une analyse rapide, afin qu'elle vérifie tout le disque plutôt que les seuls emplacements courants.
+
+Si le keylogger perturbe l'analyse, redémarrez en **mode sans échec avec prise en charge réseau**. Le mode sans échec ne charge que les pilotes et services essentiels, si bien que de nombreux malwares ne démarrent pas, ce qui les rend plus faciles à détecter et à supprimer. Utiliser un scanner à la demande réputé en complément de votre antivirus principal vous donne un deuxième avis utile, car aucun moteur unique ne détecte tout. Mettez en quarantaine ou supprimez ce que l'analyse signale, puis redémarrez et relancez une analyse pour confirmer qu'elle revient propre. Pour la routine de nettoyage plus large dans laquelle cela s'inscrit, voir notre guide sur [comment supprimer un spyware](/fr/articles/comment-supprimer-spyware).
+
+## Étape 2 - Vérifiez les programmes au démarrage et les extensions de navigateur
+
+Certains keyloggers survivent à une analyse en se déguisant. Ouvrez le Gestionnaire des tâches et passez en revue l'onglet **Démarrage** à la recherche de programmes que vous ne reconnaissez pas, et vérifiez la liste des programmes installés pour tout ce que vous n'avez pas ajouté délibérément. Dans votre navigateur, passez en revue les **extensions** installées et supprimez celles dont vous ne pouvez pas rendre compte, car une extension malveillante peut enregistrer ce que vous saisissez dans les formulaires web. En cas de doute sur une entrée précise, cherchez son nom exact avant de la supprimer, pour ne pas désactiver quelque chose de légitime. Les keyloggers arrivent fréquemment accompagnés d'un cheval de Troie, il vaut donc la peine de vérifier cela aussi : notre guide sur [comment supprimer un cheval de Troie](/fr/articles/supprimer-un-cheval-de-troie) traite ce recoupement.
+
+## Étape 3 - Écartez la piste d'un keylogger matériel
+
+Si une analyse logicielle revient propre mais que vous soupçonnez encore un enregistrement, inspectez physiquement la machine, en particulier un poste fixe ou un ordinateur partagé. Regardez l'endroit où le clavier se branche : un petit adaptateur inconnu placé entre le câble du clavier et le port USB ou PS/2 est un enregistreur matériel classique. Retirez tout appareil que vous n'avez pas installé. Sur un portable, un enregistreur matériel est bien moins probable, mais pas impossible sur une machine compromise ou publique. Les enregistreurs matériels sont invisibles à toute analyse, ce contrôle visuel est donc le seul moyen d'en repérer un.
+
+## Étape 4 - Quand tout réinstaller
+
+Si l'infection est profonde, revient sans cesse après suppression, ou est arrivée avec d'autres malwares que vous ne parvenez pas à éliminer complètement, la solution la plus fiable est d'effacer le disque et de réinstaller le système d'exploitation à zéro. Sauvegardez vos **fichiers personnels** (documents, photos) mais pas les programmes, qui peuvent porter l'infection, et réinstallez depuis un média d'installation créé sur un ordinateur réputé sain. Une réinstallation propre est le seul moyen d'être certain qu'un keylogger logiciel tenace a disparu. Notre guide complet [comment supprimer un malware de Windows](/fr/articles/supprimer-un-malware-de-windows) détaille la voie de la réinstallation.
+
+## L'étape qui vous protège vraiment : changer vos mots de passe depuis un appareil sain
+
+C'est la partie que la plupart des gens oublient, et c'est la plus importante. Le but même d'un keylogger est de voler ce que vous tapez, alors une fois que vous en trouvez un, partez du principe que les mots de passe saisis pendant qu'il était actif sont déjà exposés. Une fois la machine propre :
+
+- Changez vos mots de passe importants, en commençant par la **messagerie** (elle permet de réinitialiser tout le reste), puis la banque et tout mot de passe réutilisé, et faites-le **depuis un autre appareil, réputé sain**, pas celui que vous venez de nettoyer.
+- Activez la **double authentification** partout où elle est proposée, pour qu'un mot de passe volé ne suffise pas à se connecter.
+- Utilisez un **gestionnaire de mots de passe**. C'est la défense honnête et directe contre l'enregistrement de frappe : un gestionnaire remplit automatiquement vos champs de connexion au lieu que vous tapiez le mot de passe, il n'y a donc aucune frappe à capturer pour un enregistreur. Il permet aussi à chaque compte d'avoir un mot de passe unique et robuste, si bien qu'un seul identifiant exposé ne peut pas déverrouiller les autres.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Un keylogger capture ce que vous tapez, alors le remplissage automatique est une vraie défense : Proton Pass remplit vos connexions à votre place, garde chaque mot de passe unique et stocke votre coffre chiffré de bout en bout. Réinitialisez-y vos mots de passe depuis un appareil sain après le nettoyage." />
+
+## Comment éviter le prochain
+
+- N'installez pas de logiciels crackés, de faux installateurs ni de pièces jointes issues d'e-mails inattendus, la voie habituelle par laquelle les keyloggers logiciels s'introduisent.
+- Gardez votre système d'exploitation, votre navigateur et votre outil de sécurité à jour, et utilisez un compte standard (non administrateur) au quotidien.
+- Sur les ordinateurs partagés ou publics, évitez de vous connecter à des comptes sensibles, et sachez qu'un enregistreur matériel pourrait être présent.
+
+En résumé : pour un keylogger logiciel, une analyse complète à jour (en mode sans échec si besoin), une vérification des éléments de démarrage et des extensions, et une réinstallation dans les cas tenaces suffiront à l'éliminer, tandis qu'un enregistreur matériel se trouve en regardant, pas en analysant. Mais la suppression n'est que la moitié du travail. Comme un keylogger vole les mots de passe à mesure que vous les tapez, la vraie protection consiste à les changer depuis un appareil sain, à activer la double authentification et à utiliser un gestionnaire de mots de passe pour que les futures connexions ne touchent jamais le clavier. Pour des nettoyages connexes, voir [comment supprimer un spyware](/fr/articles/comment-supprimer-spyware) et notre sélection des [meilleurs outils gratuits de suppression de malware](/fr/articles/meilleurs-outils-gratuits-suppression-malware).

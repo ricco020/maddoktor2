@@ -1,0 +1,71 @@
+---
+title: "Como remover um keylogger (2026): detetar, apagar e depois trocar as palavras-passe"
+description: "Um keylogger regista cada tecla que carrega, por isso rouba silenciosamente as suas palavras-passe enquanto as digita. Como detetar e remover um keylogger (software e hardware), e o passo crucial que a maioria dos guias esquece: proteger as suas contas a partir de um dispositivo limpo depois."
+pubDate: 2026-07-18
+hero: "/images/how-to-remove-a-keylogger-hero.jpg"
+heroAlt: "Mãos a digitar no teclado de um portátil, vistas de cima"
+keyword: "como remover um keylogger"
+tags: ["malware-removal", "keylogger", "spyware", "windows", "passwords", "security"]
+translationKey: "remove-keylogger"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Um keylogger faz apenas uma coisa, e fá-la em silêncio: regista as teclas que carrega. Cada palavra-passe, mensagem e número de cartão que digita pode ser capturado e enviado a quem o instalou. Como funciona em segundo plano e quase nunca mostra pop-ups ou lentidão, um keylogger pode ficar num computador durante muito tempo antes de alguém reparar. Removê-lo tem duas metades igualmente importantes: tirar o software (ou o hardware) da máquina e depois blindar as contas cujas palavras-passe ele talvez já tenha. Eis como fazer as duas coisas.
+
+## O que é um keylogger: software vs hardware
+
+Um keylogger é uma ferramenta que regista as teclas premidas. Existe em duas formas muito diferentes, que se removem de maneiras diferentes.
+
+- **Os keyloggers de software** são o tipo comum. São um programa a correr no seu computador, muitas vezes incluído junto com outro spyware ou um cavalo de Troia, que regista o que digita e frequentemente também tira capturas de ecrã. Por ser software, uma análise antimalware costuma conseguir encontrá-lo e removê-lo.
+- **Os keyloggers de hardware** são um dispositivo físico. Um pequeno conector ligado entre o cabo do teclado e a porta USB do computador, ou um dispositivo escondido dentro do teclado, regista as teclas na sua própria memória. Nenhuma análise de software o verá alguma vez, porque não é software. Estes encontram-se olhando.
+
+Saber com que tipo poderá estar a lidar é importante. Uma análise de software não consegue detetar um registador de hardware, e desligar um dispositivo nada faz contra um keylogger de software. Num portátil pessoal, o software é de longe o mais provável; num computador partilhado ou público, vale a pena excluir um dispositivo de hardware.
+
+## Sinais de que pode ter um keylogger
+
+Os keyloggers são feitos para permanecer ocultos, por isso as pistas são subtis:
+
+- Digitar parece lento, ou as teclas aparecem com um ligeiro atraso, num computador que antes respondia bem.
+- O seu antivírus foi desativado, ou uma análise encontra spyware ou um cavalo de Troia (os keyloggers viajam muitas vezes com eles).
+- Repara em programas desconhecidos na sua lista de arranque, ou em atividade de rede de saída inexplicável.
+- As suas contas são acedidas sem ser por si, ou recebe alertas de início de sessão ou de reposição de palavra-passe que não desencadeou.
+
+Cada sinal isolado tem explicações inocentes, mas os inícios de sessão nas suas contas que não consegue explicar são o que deve fazê-lo agir, porque isso é exatamente o trabalho de um keylogger.
+
+![Um grande plano de um teclado de computador. Um keylogger regista as teclas que carrega, e é por isso que um gestor de palavras-passe que preenche os inícios de sessão por si elimina as teclas que um atacante pode capturar.](/images/how-to-remove-a-keylogger-body.jpg)
+
+## Passo 1 - Execute uma análise antimalware completa, atualizada e em Modo de segurança
+
+Para um keylogger de software, comece com uma análise completa usando definições de malware atualizadas. Garanta primeiro que a sua ferramenta de segurança se atualizou, depois execute uma **análise completa**, não uma rápida, para que verifique todo o disco e não apenas as localizações mais comuns.
+
+Se o keylogger interferir com a análise, reinicie em **Modo de segurança com rede**. O Modo de segurança carrega apenas os controladores e serviços essenciais, por isso muitos programas maliciosos não arrancam, o que os torna mais fáceis de detetar e apagar. Usar um scanner sob demanda de confiança a par do seu antivírus principal dá-lhe uma segunda opinião útil, pois nenhum motor único deteta tudo. Coloque em quarentena ou remova o que a análise assinalar, depois reinicie e analise de novo para confirmar que fica limpo. Para a rotina de limpeza mais ampla em que isto se enquadra, veja o nosso guia sobre [como remover spyware](/pt/articles/remover-spyware).
+
+## Passo 2 - Verifique os programas de arranque e as extensões do navegador
+
+Alguns keyloggers sobrevivem a uma análise disfarçando-se. Abra o Gestor de tarefas e reveja o separador **Arranque** à procura de programas que não reconhece, e verifique a lista de programas instalados por algo que não tenha adicionado de propósito. No navegador, reveja as **extensões** instaladas e remova as que não consiga justificar, pois uma extensão maliciosa pode registar o que digita em formulários web. Em caso de dúvida sobre uma entrada específica, procure o seu nome exato antes de a remover, para não desativar algo legítimo. Os keyloggers chegam frequentemente acompanhados de um cavalo de Troia, por isso vale a pena verificar isso também: o nosso guia sobre [como remover um cavalo de Troia](/pt/articles/remover-um-cavalo-de-troia) aborda essa sobreposição.
+
+## Passo 3 - Descarte um keylogger de hardware
+
+Se uma análise de software fica limpa mas ainda suspeita de registo, inspecione fisicamente a máquina, sobretudo um computador de secretária ou partilhado. Olhe para onde o teclado se liga: um pequeno adaptador desconhecido colocado entre o cabo do teclado e a porta USB ou PS/2 é um registador de hardware clássico. Remova qualquer dispositivo que não tenha instalado. Num portátil, um registador de hardware é muito menos provável, mas não impossível numa máquina comprometida ou pública. Os registadores de hardware são invisíveis a qualquer análise, por isso esta verificação visual é a única forma de apanhar um.
+
+## Passo 4 - Quando reinstalar
+
+Se a infeção for profunda, voltar sempre depois da remoção, ou tiver chegado com outro malware que não consegue limpar por completo, a solução mais fiável é formatar o disco e reinstalar o sistema operativo de raiz. Faça cópia de segurança dos seus **ficheiros pessoais** (documentos, fotos) mas não dos programas, que podem arrastar a infeção, e reinstale a partir de um suporte de instalação criado num computador reconhecidamente limpo. Uma reinstalação limpa é a única forma de ter a certeza de que um keylogger de software teimoso desapareceu. O nosso guia completo [remover malware do Windows](/pt/articles/remover-malware-do-windows) percorre o caminho da reinstalação.
+
+## O passo que realmente o protege: trocar as palavras-passe a partir de um dispositivo limpo
+
+Esta é a parte que a maioria das pessoas salta, e é a mais importante. O próprio propósito de um keylogger é roubar o que digita, por isso assim que encontrar um, parta do princípio de que as palavras-passe que introduziu enquanto ele esteve ativo já estão expostas. Depois de a máquina estar limpa:
+
+- Troque as suas palavras-passe importantes, começando pelo **e-mail** (permite repor tudo o resto), depois banco e qualquer palavra-passe reutilizada, e faça-o **a partir de outro dispositivo reconhecidamente limpo**, não o que acabou de limpar.
+- Ative a **autenticação de dois fatores** onde quer que seja oferecida, para que uma palavra-passe roubada por si só não chegue para iniciar sessão.
+- Use um **gestor de palavras-passe**. É a defesa honesta e direta contra o registo de teclas: um gestor preenche automaticamente os seus campos de início de sessão em vez de digitar a palavra-passe, por isso não há teclas para um registador capturar. Permite ainda que cada conta tenha uma palavra-passe única e robusta, de modo que uma única credencial exposta não possa desbloquear as outras.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Um keylogger captura o que digita, por isso o preenchimento automático é uma defesa real: o Proton Pass preenche os seus inícios de sessão por si, mantém cada palavra-passe única e guarda o seu cofre cifrado de ponta a ponta. Reponha nele as suas palavras-passe a partir de um dispositivo limpo após a limpeza." />
+
+## Como evitar o próximo
+
+- Não instale software pirateado, instaladores falsos nem anexos de e-mails inesperados, a via habitual por onde entram os keyloggers de software.
+- Mantenha atualizados o seu sistema operativo, o navegador e a ferramenta de segurança, e use uma conta padrão (não administrador) no dia a dia.
+- Em computadores partilhados ou públicos, evite iniciar sessão em contas sensíveis, e tenha presente que um registador de hardware pode estar presente.
+
+Em resumo: para um keylogger de software, uma análise completa atualizada (em Modo de segurança se necessário), uma verificação dos itens de arranque e das extensões, e uma reinstalação nos casos teimosos vão eliminá-lo, enquanto um registador de hardware se encontra olhando, não analisando. Mas a remoção é apenas metade do trabalho. Como um keylogger rouba palavras-passe à medida que as digita, a proteção real consiste em trocá-las a partir de um dispositivo limpo, ativar a autenticação de dois fatores e usar um gestor de palavras-passe para que os inícios de sessão futuros nunca toquem no teclado. Para limpezas relacionadas, veja [como remover spyware](/pt/articles/remover-spyware) e a nossa seleção das [melhores ferramentas gratuitas de remoção de malware](/pt/articles/melhores-ferramentas-gratuitas-remocao-malware).

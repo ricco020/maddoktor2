@@ -1,0 +1,71 @@
+---
+title: "Keylogger entfernen (2026): erkennen, löschen und danach Passwörter ändern"
+description: "Ein Keylogger zeichnet jede Taste auf, die Sie drücken, und stiehlt so unbemerkt Ihre Passwörter, während Sie sie eintippen. So erkennen und entfernen Sie einen Keylogger (Software und Hardware), und der entscheidende Schritt, den die meisten Anleitungen vergessen: Ihre Konten anschließend von einem sauberen Gerät aus absichern."
+pubDate: 2026-07-18
+hero: "/images/how-to-remove-a-keylogger-hero.jpg"
+heroAlt: "Hände, die auf einer Laptop-Tastatur tippen, von oben gesehen"
+keyword: "keylogger entfernen"
+tags: ["malware-removal", "keylogger", "spyware", "windows", "passwords", "security"]
+translationKey: "remove-keylogger"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Ein Keylogger tut nur eine Sache, und er tut sie lautlos: Er zeichnet die Tasten auf, die Sie drücken. Jedes Passwort, jede Nachricht und jede Kartennummer, die Sie eintippen, kann abgefangen und an denjenigen gesendet werden, der ihn installiert hat. Weil er im Hintergrund arbeitet und kaum je Pop-ups oder Verlangsamungen zeigt, kann ein Keylogger lange auf einem Rechner sitzen, bevor ihn jemand bemerkt. Das Entfernen besteht aus zwei gleich wichtigen Hälften: die Software (oder Hardware) vom Rechner zu bekommen und danach die Konten abzusichern, deren Passwörter er vielleicht bereits hat. So erledigen Sie beides.
+
+## Was ein Keylogger ist: Software vs. Hardware
+
+Ein Keylogger ist ein Werkzeug, das Tastenanschläge protokolliert. Es gibt ihn in zwei sehr unterschiedlichen Formen, die auf verschiedene Weise entfernt werden.
+
+- **Software-Keylogger** sind die verbreitete Art. Es handelt sich um ein Programm, das auf Ihrem Computer läuft, oft gebündelt mit anderer Spyware oder einem Trojaner, das aufzeichnet, was Sie tippen, und häufig auch Bildschirmfotos macht. Da es Software ist, kann ein Antimalware-Scan ihn in der Regel finden und entfernen.
+- **Hardware-Keylogger** sind ein physisches Gerät. Ein kleiner Adapter, der zwischen Ihrem Tastaturkabel und dem USB-Anschluss des Computers steckt, oder ein in der Tastatur verstecktes Gerät zeichnet Tastenanschläge in seinem eigenen Speicher auf. Kein Software-Scan wird ihn jemals sehen, denn er ist keine Software. Diese finden Sie, indem Sie nachschauen.
+
+Zu wissen, mit welcher Art Sie es möglicherweise zu tun haben, ist wichtig. Ein Software-Scan kann einen Hardware-Logger nicht erkennen, und ein Gerät abzuziehen ändert nichts an einem Software-Keylogger. Auf einem privaten Laptop ist Software bei Weitem am wahrscheinlichsten; an einem gemeinsam genutzten oder öffentlichen Rechner lohnt es sich, ein Hardware-Gerät auszuschließen.
+
+## Anzeichen, dass Sie einen Keylogger haben könnten
+
+Keylogger sind darauf ausgelegt, verborgen zu bleiben, daher sind die Hinweise subtil:
+
+- Das Tippen fühlt sich träge an, oder Tasten erscheinen mit leichter Verzögerung, auf einem Rechner, der früher schnell reagierte.
+- Ihr Virenschutz wurde deaktiviert, oder ein Scan findet Spyware oder einen Trojaner (Keylogger reisen oft mit ihnen).
+- Sie bemerken unbekannte Programme in Ihrer Autostart-Liste oder unerklärliche ausgehende Netzwerkaktivität.
+- Auf Konten wird ohne Sie zugegriffen, oder Sie erhalten Anmelde- oder Passwort-Zurücksetzungs-Warnungen, die Sie nicht ausgelöst haben.
+
+Jedes einzelne Anzeichen hat harmlose Erklärungen, aber Kontoanmeldungen, die Sie nicht erklären können, sind das eine Zeichen, das Sie handeln lassen sollte, denn genau das ist die eigentliche Aufgabe eines Keyloggers.
+
+![Eine Nahaufnahme einer Computertastatur. Ein Keylogger zeichnet die Tasten auf, die Sie drücken, und deshalb entfernt ein Passwort-Manager, der Anmeldungen für Sie ausfüllt, die Tastenanschläge, die ein Angreifer abfangen kann.](/images/how-to-remove-a-keylogger-body.jpg)
+
+## Schritt 1 - Führen Sie einen vollständigen Antimalware-Scan aus, aktualisiert und im abgesicherten Modus
+
+Beginnen Sie bei einem Software-Keylogger mit einem vollständigen Scan unter Verwendung aktueller Malware-Definitionen. Stellen Sie zuerst sicher, dass sich Ihr Sicherheitsprogramm aktualisiert hat, und führen Sie dann einen **vollständigen Scan** aus, keinen Schnellscan, damit das gesamte Laufwerk geprüft wird und nicht nur die üblichen Speicherorte.
+
+Wenn der Keylogger den Scan stört, starten Sie im **abgesicherten Modus mit Netzwerktreibern** neu. Der abgesicherte Modus lädt nur die wesentlichen Treiber und Dienste, sodass viele Schadprogramme nicht starten, was sie leichter erkennbar und löschbar macht. Ein seriöser On-Demand-Scanner zusätzlich zu Ihrem Hauptvirenschutz liefert eine nützliche zweite Meinung, da keine einzelne Engine alles erkennt. Verschieben Sie in die Quarantäne oder entfernen Sie, was der Scan meldet, starten Sie dann neu und scannen Sie erneut, um zu bestätigen, dass er sauber zurückkommt. Zur umfassenderen Reinigungsroutine, in die das passt, siehe unsere Anleitung zum [Entfernen von Spyware](/de/articles/spyware-entfernen).
+
+## Schritt 2 - Prüfen Sie Autostart-Programme und Browser-Erweiterungen
+
+Manche Keylogger überstehen einen Scan, indem sie sich tarnen. Öffnen Sie den Task-Manager und sehen Sie sich die Registerkarte **Autostart** nach Programmen durch, die Sie nicht kennen, und prüfen Sie die Liste der installierten Programme auf alles, was Sie nicht absichtlich hinzugefügt haben. Prüfen Sie in Ihrem Browser die installierten **Erweiterungen** und entfernen Sie alle, die Sie nicht zuordnen können, denn eine bösartige Erweiterung kann aufzeichnen, was Sie in Webformulare eingeben. Suchen Sie im Zweifel über einen bestimmten Eintrag zuerst nach dessen genauem Namen, bevor Sie ihn entfernen, um nichts Legitimes zu deaktivieren. Keylogger kommen häufig zusammen mit einem Trojaner, daher lohnt es sich, auch das zu prüfen: Unsere Anleitung zum [Entfernen eines Trojaners](/de/articles/trojaner-entfernen) behandelt diese Überschneidung.
+
+## Schritt 3 - Schließen Sie einen Hardware-Keylogger aus
+
+Wenn ein Software-Scan sauber zurückkommt, Sie aber weiterhin eine Protokollierung vermuten, untersuchen Sie den Rechner physisch, besonders einen Desktop-PC oder einen gemeinsam genutzten Computer. Sehen Sie sich an, wo die Tastatur angeschlossen ist: Ein unbekannter kleiner Adapter zwischen dem Tastaturkabel und dem USB- oder PS/2-Anschluss ist ein klassischer Hardware-Logger. Entfernen Sie jedes Gerät, das Sie nicht installiert haben. Bei einem Laptop ist ein Hardware-Logger weit unwahrscheinlicher, aber nicht unmöglich an einer kompromittierten oder öffentlichen Maschine. Hardware-Logger sind für jeden Scan unsichtbar, daher ist diese Sichtprüfung die einzige Möglichkeit, einen zu erwischen.
+
+## Schritt 4 - Wann eine Neuinstallation sinnvoll ist
+
+Wenn die Infektion tief sitzt, nach dem Entfernen immer wiederkehrt oder mit anderer Malware kam, die Sie nicht vollständig beseitigen können, ist die zuverlässigste Lösung, das Laufwerk zu löschen und das Betriebssystem von Grund auf neu zu installieren. Sichern Sie Ihre **persönlichen Dateien** (Dokumente, Fotos), aber keine Programme, die die Infektion mitführen können, und installieren Sie von einem Installationsmedium neu, das auf einem nachweislich sauberen Computer erstellt wurde. Eine saubere Neuinstallation ist der einzige Weg, sicher zu sein, dass ein hartnäckiger Software-Keylogger verschwunden ist. Unsere vollständige Anleitung [Malware von Windows entfernen](/de/articles/malware-von-windows-entfernen) führt durch den Weg der Neuinstallation.
+
+## Der Schritt, der Sie wirklich schützt: Passwörter von einem sauberen Gerät ändern
+
+Das ist der Teil, den die meisten überspringen, und er ist der wichtigste. Der ganze Zweck eines Keyloggers ist es, das zu stehlen, was Sie tippen, gehen Sie also, sobald Sie einen finden, davon aus, dass die Passwörter, die Sie eingegeben haben, während er aktiv war, bereits offengelegt sind. Sobald der Rechner sauber ist:
+
+- Ändern Sie Ihre wichtigen Passwörter, beginnend mit der **E-Mail** (sie setzt alles andere zurück), dann Banking und alle wiederverwendeten Passwörter, und tun Sie das **von einem anderen, nachweislich sauberen Gerät aus**, nicht von dem, das Sie gerade gereinigt haben.
+- Aktivieren Sie die **Zwei-Faktor-Authentifizierung** überall dort, wo sie angeboten wird, damit ein gestohlenes Passwort allein nicht zum Anmelden ausreicht.
+- Verwenden Sie einen **Passwort-Manager**. Das ist die ehrliche, direkte Verteidigung gegen das Mitschneiden von Tasten: Ein Passwort-Manager füllt Ihre Anmeldefelder automatisch aus, statt dass Sie das Passwort tippen, es gibt also keine Tastenanschläge, die ein Logger abfangen könnte. Er ermöglicht außerdem für jedes Konto ein einzigartiges, starkes Passwort, sodass eine einzige offengelegte Zugangsdaten nicht die übrigen aufschließen kann.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Ein Keylogger fängt ab, was Sie tippen, daher ist automatisches Ausfüllen eine echte Verteidigung: Proton Pass füllt Ihre Anmeldungen für Sie aus, hält jedes Passwort einzigartig und speichert Ihren Tresor Ende-zu-Ende verschlüsselt. Setzen Sie darin Ihre Passwörter nach der Reinigung von einem sauberen Gerät aus zurück." />
+
+## So vermeiden Sie den nächsten
+
+- Installieren Sie keine geknackte Software, keine gefälschten Installer und keine Anhänge aus unerwarteten E-Mails, den üblichen Weg, auf dem Software-Keylogger hineingelangen.
+- Halten Sie Ihr Betriebssystem, Ihren Browser und Ihr Sicherheitsprogramm aktuell und verwenden Sie im Alltag ein Standardkonto (ohne Administratorrechte).
+- Vermeiden Sie an gemeinsam genutzten oder öffentlichen Computern das Anmelden bei sensiblen Konten und seien Sie sich bewusst, dass ein Hardware-Logger vorhanden sein könnte.
+
+Fazit: Bei einem Software-Keylogger beseitigen ihn ein aktueller vollständiger Scan (bei Bedarf im abgesicherten Modus), eine Prüfung der Autostart-Einträge und Erweiterungen sowie eine Neuinstallation in hartnäckigen Fällen, während ein Hardware-Logger durch Nachschauen und nicht durch Scannen gefunden wird. Doch das Entfernen ist nur die halbe Arbeit. Weil ein Keylogger Passwörter stiehlt, während Sie sie tippen, besteht der echte Schutz darin, sie von einem sauberen Gerät aus zu ändern, die Zwei-Faktor-Authentifizierung zu aktivieren und einen Passwort-Manager zu nutzen, damit künftige Anmeldungen die Tastatur nie berühren. Für verwandte Reinigungen siehe [wie man Spyware entfernt](/de/articles/spyware-entfernen) und unsere Übersicht der [besten kostenlosen Tools zur Malware-Entfernung](/de/articles/beste-kostenlose-malware-entfernungstools).
