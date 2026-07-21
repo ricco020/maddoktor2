@@ -1,0 +1,66 @@
+---
+title: "Cómo eliminar un RAT (2026): cortarlo, limpiarlo y luego proteger tus cuentas"
+description: "Un RAT (troyano de acceso remoto) da a un atacante el control en vivo de tu equipo: archivos, webcam, pulsaciones de teclado y credenciales guardadas. Cómo detectar y eliminar un RAT, cuándo una reinstalación completa es la única solución segura, y el paso que de verdad te protege después."
+pubDate: 2026-07-21
+hero: "/images/how-to-remove-a-rat-hero.jpg"
+heroAlt: "La pantalla de un portátil mostrando líneas de código en una habitación oscura"
+keyword: "cómo eliminar un rat"
+tags: ["malware-removal", "rat", "trojan", "remote-access", "windows", "passwords", "security"]
+translationKey: "remove-rat"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Un RAT, o troyano de acceso remoto (Remote Access Trojan), es una de las cosas más graves que pueden llegar a un ordenador. A diferencia del malware que solo se ejecuta por su cuenta, un RAT da a un atacante remoto un control directo de tu equipo, como si estuviera sentado frente a él: puede explorar y robar archivos, registrar tus pulsaciones, encender tu webcam y leer las contraseñas guardadas en tu navegador. Como ese control es en vivo y está oculto, eliminar un RAT tiene dos mitades igual de importantes: cortar al atacante y limpiar el equipo, y después proteger las cuentas cuyas credenciales quizá ya haya capturado. Aquí tienes cómo hacer ambas cosas.
+
+## Qué es realmente un RAT
+
+Un RAT es un troyano: suele llegar disfrazado de algo inofensivo (un programa pirateado, un instalador falso, un adjunto de correo) y, una vez ejecutado, abre en silencio un canal hacia quien lo controla. Desde ahí, el operador puede hacer lo que hace una herramienta legítima de escritorio remoto, pero sin tu conocimiento ni tu consentimiento.
+
+Sus capacidades son la razón por la que un RAT se toma tan en serio. Una sola infección puede permitir explorar y robar archivos, registrar pulsaciones, capturar la pantalla, acceder a la webcam y al micrófono, y recopilar las contraseñas y cookies de sesión guardadas. Como se comporta como un software de control remoto y no como un virus ruidoso, un RAT está diseñado para ser discreto y persistente, que es justo por lo que puede pasar desapercibido.
+
+## Señales de que podrías tener un RAT
+
+Los RAT están hechos para esconderse, así que las pistas suelen ser indirectas más que evidentes:
+
+- El **indicador de la webcam** se enciende cuando no usas la cámara, o el cursor se mueve y se abren ventanas solos.
+- **Actividad de red saliente inexplicable**, o el equipo sigue ocupado y caliente en reposo, porque un RAT habla sin parar con su operador.
+- Tu **antivirus o cortafuegos se desactiva** o no vuelve a activarse, una maniobra habitual para mantener el canal abierto.
+- Ralentizaciones, programas desconocidos en el arranque, o **inicios de sesión y alertas de cuenta** que no provocaste tú.
+
+Cualquiera de estas señales tiene explicaciones inocentes, pero un indicador de webcam que se enciende solo o inicios de sesión que no puedes explicar son los que deberían hacerte actuar.
+
+![Un editor de código abierto en una pantalla de ordenador en una habitación a oscuras. Un RAT da a un atacante el control remoto del equipo, así que cortar su conexión es el primer paso para eliminarlo.](/images/how-to-remove-a-rat-body.jpg)
+
+## Paso 1 - Desconéctate primero de internet
+
+Como un RAT depende de una conexión en vivo con su operador, el primer movimiento es cortar esa conexión. Desenchufa el cable Ethernet o apaga el Wi-Fi para que el atacante pierda el control mientras trabajas, y para que el malware no pueda exfiltrar más datos ni descargar cargas adicionales. Hazlo antes de empezar la limpieza: no elimina el RAT, pero le impide actuar en tiempo real y te da una ventana segura para trabajar.
+
+## Paso 2 - Arranca en Modo seguro y ejecuta un análisis antimalware completo
+
+Reinicia en **Modo seguro**, que solo carga los controladores y servicios esenciales, de modo que muchos programas maliciosos, incluidos los componentes de persistencia de un RAT, no arrancan. Así son mucho más fáciles de detectar y eliminar. Ejecuta un **análisis completo** (no uno rápido) con una herramienta antimalware actualizada para que revise todo el disco. Ejecutar un escáner bajo demanda de confianza como segunda opinión ayuda, porque ningún motor lo detecta todo por sí solo. Pon en cuarentena o elimina lo que se marque, luego reinicia y vuelve a analizar para confirmar que el equipo queda limpio. Como un RAT es un troyano, nuestra guía sobre [eliminar un troyano](/articles/como-eliminar-un-troyano) conviene leerla junto a esta.
+
+## Paso 3 - Revisa el arranque y las tareas programadas
+
+Los RAT se esfuerzan por sobrevivir a un reinicio, así que un análisis por sí solo puede no bastar. Abre el Administrador de tareas y revisa la pestaña **Inicio** en busca de programas que no reconozcas, comprueba los programas instalados por si hay algo que no añadiste, y repasa el **Programador de tareas** por si una tarea programada relanza un programa desconocido. Son formas habituales que tiene un RAT de reinstalarse después de que creas que ya no está. Si dudas sobre una entrada concreta, busca su nombre exacto antes de desactivarla para no romper algo legítimo. Para la rutina de limpieza más amplia que incluye esto, consulta nuestra guía sobre [eliminar spyware](/articles/como-eliminar-spyware).
+
+## Paso 4 - Cuándo formatear y reinstalar
+
+Un RAT puede dar a un atacante un acceso profundo y con privilegios: si la infección vuelve una y otra vez, llegó con otro malware, o simplemente no puedes tener la certeza de que ha desaparecido, la única solución fiable es **borrar el disco y reinstalar el sistema operativo** desde cero. Ninguna herramienta de eliminación puede prometer con honestidad que elimina todos los RAT, sobre todo uno bien oculto: ante una intrusión seria o repetida, una reinstalación limpia es la opción más segura. Haz copia de seguridad de tus **archivos personales** (documentos, fotos) pero no de los programas, que pueden arrastrar la infección, y reinstala desde un medio de instalación preparado en un ordenador limpio y de confianza.
+
+## El paso que de verdad te protege: cambia las contraseñas desde un dispositivo limpio
+
+Esta es la parte que la gente se salta y, tras un RAT, es la más importante. Da por hecho que, mientras el RAT estuvo activo, pudo verlo y capturarlo todo, incluidas las contraseñas guardadas en tu navegador y todo lo que escribiste. Una vez limpio el equipo:
+
+- Cambia tus contraseñas importantes, empezando por el **correo** (restablece todo lo demás), luego el banco y cualquier contraseña reutilizada, y hazlo **desde otro dispositivo limpio y de confianza**, no el que acabas de limpiar.
+- Activa la **autenticación en dos pasos** allí donde se ofrezca, para que una contraseña robada por sí sola no baste para entrar.
+- Usa un **gestor de contraseñas**. Aquí es una defensa honesta y directa: un gestor rellena tus inicios de sesión con autocompletado en lugar de que los teclees, así no hay pulsaciones que un registrador pueda capturar, y permite que cada cuenta tenga una contraseña única y fuerte, de modo que una credencial expuesta no pueda desbloquear las demás.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Un RAT puede registrar tus pulsaciones y leer las credenciales guardadas, así que el autocompletado más la 2FA son una defensa real: Proton Pass rellena tus inicios de sesión en lugar de que los teclees, mantiene cada contraseña única y cifra tu bóveda de extremo a extremo. Restablece ahí tus contraseñas desde un dispositivo limpio tras la limpieza." />
+
+## Cómo evitar el siguiente
+
+- No instales software pirateado, instaladores falsos ni adjuntos de correos inesperados, la vía de entrada habitual de un RAT.
+- Mantén actualizados tu sistema operativo, navegador y herramienta de seguridad, y usa una cuenta estándar (sin privilegios de administrador) en el día a día.
+- Tapa tu webcam cuando no la uses, y desconfía de las peticiones de asistencia remota de gente a la que no contactaste tú primero.
+
+En resumen: para un RAT, corta primero la conexión, limpia en Modo seguro con un análisis completo actualizado, vacía el arranque y las tareas programadas, y formatea y reinstala ante cualquier caso serio o persistente, porque ninguna herramienta puede garantizar que elimina todos los RAT. Pero eliminarlo es solo la mitad del trabajo. Como un RAT puede capturar tus pulsaciones y tus credenciales guardadas, la protección real consiste en restablecer tus contraseñas desde un dispositivo limpio, activar la autenticación en dos pasos y usar un gestor de contraseñas para que los futuros inicios de sesión no pasen por el teclado. Para limpiezas relacionadas, consulta [cómo eliminar un keylogger](/articles/como-eliminar-un-keylogger) y nuestra selección de las [mejores herramientas gratuitas para eliminar malware](/articles/mejores-herramientas-gratis-eliminar-malware).
