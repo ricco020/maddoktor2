@@ -18,7 +18,7 @@ const nets = ["x","facebook","linkedin","whatsapp","reddit"];
 <div class="share-buttons" data-title={title}>
   <span class="sb-label">{L("share")}</span>
   {nets.map((n) => (
-    <button type="button" class="sb-btn" data-net={n} aria-label={`${L("share")} – ${n}`} title={n}>
+    <button type="button" class="sb-btn" data-net={n} aria-label={`${L("share")} - ${n}`} title={n}>
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={ICON[n]} /></svg>
     </button>
   ))}
