@@ -1,0 +1,84 @@
+---
+title: "292 repository GitHub falsi diffondono un infostealer: come capire se ne hai scaricato uno"
+description: "Arctic Wolf ha trovato 292 repository GitHub che imitano marchi noti e distribuiscono un infostealer. Raggiunge le vittime tramite i risultati di ricerca, non con email di phishing. Come funziona la campagna, i file di log che rivelano un'infezione, e cosa fare dopo."
+pubDate: 2026-07-29
+hero: "/images/github-fake-repos-infostealer-hero.jpg"
+heroAlt: "Codice sorgente JavaScript mostrato a colori su uno schermo di computer scuro, visto di lato"
+keyword: "repository github falso malware"
+tags: ["malware-removal", "infostealer", "github", "credential-theft", "windows"]
+translationKey: "github-fake-repos-infostealer"
+newsArticle: true
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+**Risposta rapida:** I ricercatori di minacce di Arctic Wolf hanno segnalato una campagna di **292 repository GitHub che imitano marchi noti** e distribuiscono un infostealer. È iniziata il **26 giugno 2026** ed era ancora attiva quando la ricerca è stata pubblicata. L'aspetto insolito è la modalità di consegna: le vittime non ricevono phishing, **trovano il repository falso nei risultati di ricerca** mentre cercano software legittimo. Per verificare se sei stato colpito, cerca una cartella di output temporanea contenente i file di log **`browser_decryption.log`** e **`sends.log`**. Se quella cartella esiste, considera la macchina compromessa e cambia le password da un altro dispositivo.
+
+## Cosa rende diversa questa campagna
+
+La maggior parte dei consigli sul malware presuppone che l'attaccante venga da te, con un'email di phishing, un allegato malevolo o una pubblicità sospetta. Questa campagna ribalta lo schema. Gli operatori hanno pubblicato **292 repository** su GitHub, una piattaforma di cui le persone già si fidano, e li hanno **ottimizzati per i motori di ricerca** in modo che emergano quando qualcuno cerca un download reale.
+
+Vai a cercare uno strumento. Un risultato di ricerca punta a una pagina GitHub. GitHub è il posto dove il software vive davvero, quindi niente sembra sbagliato. Tutto il trucco sta qui.
+
+I repository imitati coprono, nella descrizione di Arctic Wolf, **strumenti di sicurezza, fintech e finanza personale, wallet e piattaforme di scambio di criptovalute, strumenti per sviluppatori e produttività, fornitori di email sicura, utility per macOS e software di gaming**. Nota lo schema: sono categorie in cui il visitatore sta già pensando a denaro o sicurezza, ossia esattamente dove le credenziali rubate rendono di più.
+
+![Uno schermo di portatile che mostra codice sorgente CSS in un editor, con il dock di macOS visibile in basso.](/images/github-fake-repos-infostealer-body.jpg)
+
+## Cosa sottrae il malware
+
+L'infostealer **condivide la base di codice con BoryptGrab** e integra **11 moduli** per la raccolta dati. Il suo raggio d'azione è ampio.
+
+**Credenziali dei browser**, su un lungo elenco: Chrome, Edge, Brave, Yandex, Vivaldi, Chromium, Tor, Epic, Opera, Opera GX e Firefox. Se hai lasciato che un browser memorizzasse una password, considera quella password persa.
+
+**Estensioni di wallet di criptovalute**, il che si sposa con l'imitazione di wallet e piattaforme di scambio.
+
+**Token di sessione**, in particolare dati di Steam, Discord e Telegram. I token pesano più di quanto si creda: un token di sessione rubato può far entrare un attaccante **senza bisogno della tua password, e talvolta senza far scattare l'autenticazione a due fattori**, perché la sessione è già autenticata.
+
+Il server di comando e controllo è segnalato all'indirizzo cablato **193.143.1[.]131**, operante dalla Russia.
+
+## Come verificare se sei infetto
+
+Questa campagna lascia una traccia sfruttabile, cosa non sempre scontata. L'analisi di Arctic Wolf descrive una **cartella di output temporanea che contiene i dati raccolti e i log dell'operazione stessa**, chiamati **`browser_decryption.log`** e **`sends.log`**.
+
+Cerca questi due nomi di file sul tuo sistema. **Se quella cartella è presente, la macchina è stata infettata.** I nomi sono abbastanza specifici perché una corrispondenza sia significativa e non una coincidenza.
+
+Due riserve oneste. Primo, l'assenza di quei file è rassicurante ma non è una prova, perché gli operatori cambiano i loro strumenti e questa campagna era ancora attiva al momento della ricerca. Secondo, la cartella è descritta come temporanea, quindi potrebbe essere stata ripulita dopo l'invio dei dati. Considera una corrispondenza come conferma, ma mai l'assenza di corrispondenza come un via libera.
+
+## Cosa fare se la trovi
+
+Procedi in quest'ordine, perché la sequenza conta.
+
+**1. Stacca la macchina dalla rete.** Disconnettila così che nulla venga più caricato mentre lavori.
+
+**2. Cambia le password da un altro dispositivo.** È il passaggio che le persone sbagliano. Cambiare una password sulla macchina infetta consegna la nuova password direttamente al malware. Usa un telefono o un altro computer. Dai la priorità all'email, perché l'email reimposta tutto il resto, poi la banca, poi gli account cripto.
+
+**3. Invalida le sessioni, non solo le password.** Poiché sono stati sottratti dei token, il solo cambio di password può non bastare a espellere un attaccante. In ogni account importante, cerca l'opzione del tipo "disconnetti da tutti i dispositivi" o "revoca sessioni attive".
+
+**4. Scansiona e, dove puoi, reinstalla.** Esegui una scansione completa con uno strumento affidabile. Per una macchina che conteneva credenziali finanziarie o cripto, una reinstallazione pulita è l'unico modo per esserne certi, perché un infostealer viene spesso consegnato insieme ad altri payload.
+
+**5. Considera le cripto perse se un'estensione wallet è stata esposta.** Sposta i fondi rimasti su un wallet creato su un dispositivo pulito con una nuova frase seed.
+
+<AffiliateCTA
+  href="/go/proton-pass"
+  product="Proton Pass"
+  blurb="Questo malware raccoglie specificamente le password salvate nel browser, su undici browser. Un gestore di password dedicato tiene le credenziali fuori dall'archivio del browser, e rende realistico cambiare in fretta ogni password riutilizzata dopo un incidente."
+/>
+
+## Come evitare il prossimo
+
+La lezione qui non è diffidare di GitHub, che ospita gran parte del software open source del mondo. È che **un URL GitHub non è una garanzia**, perché chiunque può creare un repository e chiamarlo come vuole.
+
+**Arriva ai download tramite il produttore, non tramite la ricerca.** Vai prima sul sito ufficiale del progetto e segui il suo link al repository. Questa sola abitudine annulla l'intera campagna, perché l'attacco dipende dal tuo arrivo da un risultato di ricerca.
+
+**Controlla la cronologia del repository, non il suo aspetto.** Un progetto legittimo ha commit che risalgono a mesi o anni, più contributori, issue aperte e una vera cronologia di rilasci. Uno falso ha una cronologia breve e pochi o nessun contributore, per quanto curato appaia il README.
+
+**Sii scettico quando il download è un semplice eseguibile.** I progetti reali di solito pubblicano il codice sorgente accanto ai rilasci, con i checksum. Un repository il cui unico contenuto è un archivio compresso o un installer merita un esame severo.
+
+**Tieni le credenziali fuori dal browser.** Gli archivi password dei browser sono la prima cosa che questa classe di malware legge, e questa campagna ne legge undici.
+
+## In sintesi
+
+Un infostealer che arriva tramite i **risultati di ricerca su una piattaforma affidabile** è più difficile da individuare di uno che arriva per email, perché non è presente nessuno dei consueti segnali d'allarme. Arctic Wolf ha contato **292 repository imitati** in una campagna iniziata il **26 giugno 2026** e ancora in corso.
+
+Se nelle ultime settimane hai scaricato software per sviluppo, sicurezza, cripto o gaming da una pagina GitHub trovata tramite un motore di ricerca, cerca **`browser_decryption.log`** e **`sends.log`**. Costa un minuto, ed è il segnale più chiaro a disposizione.
+
+*Resoconto basato sulle conclusioni pubblicate dai ricercatori di minacce di Arctic Wolf. Le cifre, i nomi dei file e l'indirizzo di comando e controllo sono loro, non frutto di una nostra analisi. Non abbiamo riprodotto questo malware in laboratorio e non sosteniamo di averlo testato. I link commerciali portano l'attributo rel="sponsored nofollow"; può essere applicata una commissione di affiliazione senza costi aggiuntivi per te.*

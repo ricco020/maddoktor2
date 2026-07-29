@@ -1,0 +1,84 @@
+---
+title: "292 faux dépôts GitHub diffusent un infostealer : comment savoir si vous en avez téléchargé un"
+description: "Arctic Wolf a trouvé 292 dépôts GitHub usurpant des marques connues et diffusant un infostealer. Il atteint ses victimes via les résultats de recherche, pas par e-mail de phishing. Comment fonctionne la campagne, les fichiers journaux qui révèlent une infection, et quoi faire ensuite."
+pubDate: 2026-07-29
+hero: "/images/github-fake-repos-infostealer-hero.jpg"
+heroAlt: "Du code source JavaScript affiché en couleurs sur un écran d'ordinateur sombre, vu de biais"
+keyword: "faux depot github malware"
+tags: ["malware-removal", "infostealer", "github", "credential-theft", "windows"]
+translationKey: "github-fake-repos-infostealer"
+newsArticle: true
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+**Réponse rapide :** Les chercheurs en menaces d'Arctic Wolf ont signalé une campagne de **292 dépôts GitHub usurpant des marques connues** et diffusant un infostealer. Elle a démarré le **26 juin 2026** et était toujours active au moment de la publication de la recherche. L'inhabituel, c'est le mode de diffusion : les victimes ne sont pas hameçonnées, elles **trouvent le faux dépôt dans les résultats de recherche** en cherchant un logiciel légitime. Pour vérifier si vous avez été touché, cherchez un dossier de sortie temporaire contenant les fichiers journaux **`browser_decryption.log`** et **`sends.log`**. Si ce dossier existe, considérez la machine comme compromise et changez vos mots de passe depuis un autre appareil.
+
+## Ce qui rend cette campagne différente
+
+La plupart des conseils sur les malwares supposent que l'attaquant vient à vous, par un e-mail de phishing, une pièce jointe malveillante ou une publicité douteuse. Cette campagne inverse la logique. Les opérateurs ont publié **292 dépôts** sur GitHub, une plateforme à laquelle les gens font déjà confiance, et les ont **optimisés pour les moteurs de recherche** afin qu'ils remontent quand quelqu'un cherche un vrai téléchargement.
+
+Vous partez à la recherche d'un outil. Un résultat de recherche pointe vers une page GitHub. GitHub est l'endroit où les logiciels vivent vraiment, donc rien ne semble anormal. C'est tout le stratagème.
+
+Les dépôts usurpés couvrent, selon la description d'Arctic Wolf, **les outils de sécurité, la fintech et la finance personnelle, les portefeuilles et plateformes d'échange de cryptomonnaies, les outils de développement et de productivité, les fournisseurs d'e-mail sécurisé, les utilitaires macOS et les logiciels de jeu**. Remarquez le schéma : ce sont des catégories où le visiteur pense déjà à son argent ou à sa sécurité, c'est-à-dire précisément là où des identifiants volés rapportent le plus.
+
+![Un écran de portable affichant du code source CSS dans un éditeur, avec le dock macOS visible en bas.](/images/github-fake-repos-infostealer-body.jpg)
+
+## Ce que le malware dérobe
+
+L'infostealer **partage sa base de code avec BoryptGrab** et embarque **11 modules** de collecte de données. Ce qu'il vise est large.
+
+**Les identifiants des navigateurs**, sur une longue liste : Chrome, Edge, Brave, Yandex, Vivaldi, Chromium, Tor, Epic, Opera, Opera GX et Firefox. Si vous avez laissé un navigateur retenir un mot de passe, considérez ce mot de passe comme perdu.
+
+**Les extensions de portefeuille de cryptomonnaie**, ce qui colle à l'usurpation de portefeuilles et de plateformes d'échange.
+
+**Les jetons de session**, en particulier les données Steam, Discord et Telegram. Les jetons comptent plus qu'on ne le croit : un jeton de session volé peut laisser entrer un attaquant **sans avoir besoin de votre mot de passe, et parfois sans déclencher l'authentification à deux facteurs**, parce que la session est déjà authentifiée.
+
+Le serveur de commande et de contrôle est signalé à l'adresse codée en dur **193.143.1[.]131**, opérant depuis la Russie.
+
+## Comment vérifier si vous êtes infecté
+
+Cette campagne laisse une trace exploitable, ce qui n'est pas toujours le cas. L'analyse d'Arctic Wolf décrit un **dossier de sortie temporaire contenant les données collectées et les journaux de l'opération elle-même**, nommés **`browser_decryption.log`** et **`sends.log`**.
+
+Cherchez ces deux noms de fichiers sur votre système. **Si ce dossier est présent, la machine a été infectée.** Les noms sont assez spécifiques pour qu'une correspondance ait du sens plutôt que d'être une coïncidence.
+
+Deux réserves honnêtes. D'abord, l'absence de ces fichiers est rassurante mais n'est pas une preuve, car les opérateurs changent leurs outils et cette campagne était toujours active au moment de la recherche. Ensuite, le dossier est décrit comme temporaire, il a donc pu être nettoyé après l'envoi des données. Traitez une correspondance comme une confirmation, mais jamais l'absence de correspondance comme un feu vert.
+
+## Que faire si vous le trouvez
+
+Procédez dans cet ordre, car la séquence a son importance.
+
+**1. Déconnectez la machine du réseau.** Débranchez-la pour que rien de plus ne soit envoyé pendant que vous travaillez.
+
+**2. Changez vos mots de passe depuis un autre appareil.** C'est l'étape que les gens ratent. Changer un mot de passe sur la machine infectée livre le nouveau mot de passe directement au malware. Utilisez un téléphone ou un autre ordinateur. Commencez par l'e-mail, car l'e-mail réinitialise tout le reste, puis la banque, puis les comptes crypto.
+
+**3. Invalidez vos sessions, pas seulement vos mots de passe.** Comme des jetons ont été dérobés, un simple changement de mot de passe peut ne pas expulser un attaquant. Dans chaque compte important, cherchez l'option du type « se déconnecter de tous les appareils » ou « révoquer les sessions actives ».
+
+**4. Analysez et, si vous le pouvez, réinstallez.** Lancez une analyse complète avec un outil réputé. Pour une machine qui contenait des identifiants financiers ou crypto, une réinstallation propre est le seul moyen d'en être certain, car un infostealer est souvent livré avec d'autres charges utiles.
+
+**5. Considérez la crypto comme perdue si une extension de portefeuille était exposée.** Déplacez les fonds restants vers un portefeuille créé sur un appareil sain avec une nouvelle phrase de récupération.
+
+<AffiliateCTA
+  href="/go/proton-pass"
+  product="Proton Pass"
+  blurb="Ce malware récolte spécifiquement les mots de passe enregistrés dans le navigateur, sur onze navigateurs. Un gestionnaire de mots de passe dédié garde les identifiants hors du magasin du navigateur, et rend réaliste le changement rapide de chaque mot de passe réutilisé après un incident."
+/>
+
+## Comment éviter le prochain
+
+La leçon ici n'est pas de se méfier de GitHub, qui héberge l'essentiel des logiciels open source du monde. C'est qu'**une URL GitHub n'est pas une garantie**, parce que n'importe qui peut créer un dépôt et lui donner n'importe quel nom.
+
+**Accédez aux téléchargements par l'éditeur, pas par la recherche.** Allez d'abord sur le site officiel du projet et suivez son lien vers le dépôt. Cette seule habitude déjoue toute cette campagne, car l'attaque dépend de votre arrivée depuis un résultat de recherche.
+
+**Vérifiez l'historique du dépôt, pas son apparence.** Un projet légitime a des commits qui remontent à des mois ou des années, plusieurs contributeurs, des tickets ouverts et un véritable historique de versions. Un faux a un historique court et peu ou pas de contributeurs, aussi soigné que soit le README.
+
+**Soyez sceptique quand le téléchargement est un simple exécutable.** Les vrais projets publient généralement le code source à côté de leurs versions, avec des sommes de contrôle. Un dépôt dont le seul contenu est une archive compressée ou un installeur mérite un examen sévère.
+
+**Gardez les identifiants hors du navigateur.** Les magasins de mots de passe des navigateurs sont la première chose que lit cette catégorie de malware, et cette campagne en lit onze.
+
+## L'essentiel
+
+Un infostealer qui arrive par les **résultats de recherche sur une plateforme de confiance** est plus difficile à repérer qu'un infostealer qui arrive par e-mail, parce qu'aucun des signaux d'alerte habituels n'est présent. Arctic Wolf a dénombré **292 dépôts usurpés** dans une campagne qui a démarré le **26 juin 2026** et qui était toujours en cours.
+
+Si vous avez téléchargé un logiciel de développement, de sécurité, de crypto ou de jeu depuis une page GitHub trouvée via un moteur de recherche ces dernières semaines, cherchez **`browser_decryption.log`** et **`sends.log`**. Cela coûte une minute, et c'est le signal le plus clair disponible.
+
+*Article basé sur les conclusions publiées par les chercheurs en menaces d'Arctic Wolf. Les chiffres, les noms de fichiers et l'adresse de commande et de contrôle sont les leurs, pas notre propre analyse. Nous n'avons pas reproduit ce malware en laboratoire et ne prétendons pas l'avoir testé. Les liens commerciaux portent l'attribut rel="sponsored nofollow" ; une commission d'affiliation peut s'appliquer sans coût supplémentaire pour vous.*
