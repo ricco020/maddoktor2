@@ -1,0 +1,84 @@
+---
+title: "292 Fake GitHub Repos Are Serving an Infostealer: How to Check If You Downloaded One"
+description: "Arctic Wolf found 292 GitHub repositories impersonating well-known brands and delivering an infostealer. It reaches victims through search results, not phishing emails. How the campaign works, the log files that reveal an infection, and what to do next."
+pubDate: 2026-07-29
+hero: "/images/github-fake-repos-infostealer-hero.jpg"
+heroAlt: "JavaScript source code displayed in colour on a dark computer screen, viewed at an angle"
+keyword: "fake github repository malware"
+tags: ["malware-removal", "infostealer", "github", "credential-theft", "windows"]
+translationKey: "github-fake-repos-infostealer"
+newsArticle: true
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+**Quick answer:** Threat researchers at Arctic Wolf reported a campaign of **292 GitHub repositories impersonating well-known brands** and delivering an infostealer. It began on **26 June 2026** and was still running when the research was published. The unusual part is the delivery: victims are not phished, they **find the fake repository in search results** while looking for legitimate software. To check whether you were hit, look for a temporary output folder containing the log files **`browser_decryption.log`** and **`sends.log`**. If that folder exists, treat the machine as compromised and change your passwords from a different device.
+
+## What makes this campaign different
+
+Most malware advice assumes an attacker comes to you, through a phishing email, a malicious attachment or a dodgy ad. This campaign inverts that. The operators published **292 repositories** on GitHub, a platform people already trust, and **optimised them for search engines** so they surface when someone looks for a real download.
+
+You go looking for a tool. A search result points at a GitHub page. GitHub is where software genuinely lives, so nothing looks wrong. That is the whole trick.
+
+The impersonated repositories span, in Arctic Wolf's description, **security tooling, fintech and personal finance, cryptocurrency wallets and exchanges, developer and productivity tools, secure email providers, macOS utilities, and gaming software**. Notice the pattern: these are categories where the visitor is already thinking about money or security, which is exactly where stolen credentials pay best.
+
+![A laptop screen showing CSS source code in an editor, with the macOS dock visible along the bottom of the display.](/images/github-fake-repos-infostealer-body.jpg)
+
+## What the malware takes
+
+The infostealer **shares its codebase with BoryptGrab** and ships **11 modules** for collecting data. What it goes after is broad.
+
+**Browser credentials**, across a long list: Chrome, Edge, Brave, Yandex, Vivaldi, Chromium, Tor, Epic, Opera, Opera GX and Firefox. If you let a browser remember a password, assume that password is gone.
+
+**Cryptocurrency wallet extensions**, which fits the impersonation of wallets and exchanges.
+
+**Session tokens**, specifically Steam, Discord and Telegram data. Tokens matter more than people expect: a stolen session token can let an attacker in **without needing your password, and sometimes without tripping two-factor authentication**, because the session is already authenticated.
+
+The command-and-control server is reported at the hardcoded address **193.143.1[.]131**, operating from Russia.
+
+## How to check whether you are infected
+
+This campaign leaves a usable trace, which is not always the case. Arctic Wolf's analysis describes a **temporary output folder holding the collected data and the operation's own logs**, named **`browser_decryption.log`** and **`sends.log`**.
+
+Search your system for those two filenames. **If that folder is present, the machine has been infected.** The names are specific enough that a match is meaningful rather than a coincidence.
+
+Two honest caveats. First, absence of those files is reassuring but not proof, since operators change their tooling and this campaign was still active at the time of the research. Second, the folder is described as temporary, so it may have been cleaned up after the data was sent. Treat a match as confirmation, not the absence of a match as an all-clear.
+
+## What to do if you find it
+
+Work in this order, because the sequence matters.
+
+**1. Get the machine off the network.** Disconnect it so nothing further is uploaded while you work.
+
+**2. Change your passwords from a different device.** This is the step people get wrong. Changing a password on the infected machine hands the new password straight to the malware. Use a phone or another computer. Prioritise email first, because email resets everything else, then banking, then crypto accounts.
+
+**3. Invalidate your sessions, not just your passwords.** Because tokens were taken, a password change alone may not evict an attacker. In each important account, find the option along the lines of "sign out of all devices" or "revoke active sessions".
+
+**4. Scan and, where you can, rebuild.** Run a full scan with a reputable tool. For a machine that held financial or crypto credentials, a clean reinstall is the only way to be certain, since an infostealer is often delivered alongside other payloads.
+
+**5. Assume the crypto is gone if a wallet extension was exposed.** Move any remaining funds to a wallet created on a clean device with a new seed phrase.
+
+<AffiliateCTA
+  href="/go/proton-pass"
+  product="Proton Pass"
+  blurb="This malware specifically harvests passwords saved in the browser across eleven browsers. A dedicated password manager keeps credentials out of the browser store, and makes it realistic to change every reused password quickly after an incident."
+/>
+
+## How to avoid the next one
+
+The lesson here is not to distrust GitHub, which hosts most of the world's open-source software. It is that **a GitHub URL is not a guarantee**, because anyone can create a repository and name it anything.
+
+**Reach downloads through the vendor, not through search.** Go to the project's official site first and follow its link to the repository. That single habit defeats this entire campaign, because the attack depends on you arriving from a search result.
+
+**Check the repository's history, not its appearance.** A legitimate project has commits going back months or years, multiple contributors, open issues and a real release history. A fake has a short history and few or no contributors, however polished the README looks.
+
+**Be sceptical when the download is a plain executable.** Real projects usually publish source alongside their releases, with checksums. A repository whose only content is a compressed archive or an installer deserves a hard look.
+
+**Keep credentials out of the browser.** Browser password stores are the first thing this class of malware reads, and this campaign reads eleven of them.
+
+## The bottom line
+
+An infostealer that arrives through **search results on a trusted platform** is harder to spot than one that arrives by email, because none of the usual warning signs are present. Arctic Wolf counted **292 impersonated repositories** in a campaign that started on **26 June 2026** and was ongoing.
+
+If you have downloaded developer, security, crypto or gaming software from a GitHub page you found through a search engine in the last few weeks, search for **`browser_decryption.log`** and **`sends.log`**. It costs a minute, and it is the clearest signal available.
+
+*Reporting based on the published findings of Arctic Wolf threat researchers. Figures, filenames and the command-and-control address are theirs, not our own analysis. We have not reproduced this malware in a lab and make no claim to have tested it. Commercial links carry the rel="sponsored nofollow" attribute; an affiliate commission may apply at no extra cost to you.*
