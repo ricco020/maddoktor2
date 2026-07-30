@@ -2,6 +2,7 @@
 title: "Como remover um cavalo de Troia do Windows (passo a passo)"
 description: "Um guia claro e passo a passo para remover um cavalo de Troia do Windows: modo de segurança, varreduras com Defender e Malwarebytes, limpeza e como permanecer protegido."
 pubDate: 2026-06-22
+updatedDate: 2026-07-30
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "Uma tela de computador escura repleta de painéis de terminal com registros do sistema, várias linhas marcadas ERROR em vermelho"
 keyword: "how to remove trojan virus"
@@ -66,6 +67,22 @@ Após a varredura, verifique os resíduos:
 
 Não exclua nada de que não tenha certeza - pesquise primeiro o nome exato para não desativar um componente legítimo do Windows.
 
+## Passo 5b - Verifique os mecanismos de persistência que os scanners costumam deixar para trás
+
+Este é o passo que a maioria dos guias pula, e é a razão pela qual as infecções voltam uma semana depois. Remover o arquivo malicioso não é o mesmo que remover aquilo que o reinicia. Um cavalo de Troia normalmente instala pelo menos um mecanismo cuja única função é trazê-lo de volta.
+
+Há quatro lugares que valem uma verificação manual, nesta ordem.
+
+**Tarefas agendadas.** Abra o Agendador de Tarefas (`taskschd.msc`) e percorra a Biblioteca do Agendador de Tarefas. Procure tarefas com nomes sem sentido, tarefas que executam um programa a partir de uma pasta de usuário como AppData ou Temp, e tarefas que disparam a cada poucos minutos. Softwares legítimos também agendam tarefas, então leia a aba Ações para ver exatamente o que uma tarefa inicia antes de mexer nela.
+
+**Serviços.** Abra o `services.msc` e ordene por nome. Um serviço que aponta para um executável fora de `C:\Windows` ou `C:\Program Files` merece um segundo olhar. Anote o nome e pesquise-o antes de desativar qualquer coisa, porque o próprio Windows executa muitos serviços com nomes pouco esclarecedores.
+
+**Chaves Run no registro.** No `regedit`, verifique `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` e o equivalente em `HKLM`. Elas iniciam um programa a cada login. Exporte a chave antes de excluir qualquer coisa, para poder restaurá-la caso remova a entrada errada.
+
+**Extensões do navegador.** Um cavalo de Troia que coletou seus cookies de sessão costuma instalar uma extensão para continuar lendo o tráfego. Revise a lista de extensões em todos os navegadores que você usa, não apenas no principal.
+
+Se algo disso estiver além do seu nível de conforto, pare por aqui e vá para a seção de reinstalação limpa. Excluir o serviço ou a chave de registro errada pode deixar o Windows sem conseguir inicializar, o que é um desfecho pior do que o cavalo de Troia.
+
 ## Passo 6 - Reinicie, reconecte e faça uma nova varredura
 
 Reinicie no modo normal, reconecte-se à internet, instale as atualizações mais recentes do Windows e execute **mais uma varredura completa** com o Defender. Um resultado limpo em uma varredura nova após a reinicialização é a sua confirmação de que o cavalo de Troia se foi.
@@ -79,6 +96,30 @@ Os cavalos de Troia frequentemente roubam senhas salvas e cookies de sessão. De
 - Verifique seu e-mail em busca de regras ou encaminhamentos que o invasor possa ter adicionado.
 
 Um gerenciador de senhas torna bem menos penoso renovar dezenas de credenciais, e usar um significa que você não reutiliza a mesma senha em vários sites.
+
+## Como saber se ele realmente sumiu
+
+"A varredura voltou limpa" é uma evidência mais fraca do que parece, porque um scanner só encontra aquilo que reconhece. Vale a pena fazer três verificações alguns dias depois.
+
+**Observe as conexões de saída.** Feche o navegador e tudo o mais que puder, depois execute `netstat -bn` em um Prompt de Comando com privilégios de administrador. Você está procurando um processo que não reconhece mantendo uma conexão aberta. Uma máquina genuinamente ociosa deveria estar quase silenciosa.
+
+**Verifique de novo os pontos de persistência.** Volte às tarefas agendadas e às chaves Run do Passo 5b. Se uma entrada que você excluiu reapareceu, alguma coisa na máquina a recolocou e a infecção ainda está ativa.
+
+**Fique de olho nas contas, não só no PC.** Alertas de login de lugares desconhecidos, regras de e-mail que você não criou ou e-mails de redefinição de senha que você não solicitou são todos sinais de que credenciais roubadas antes da limpeza continuam sendo usadas. Esse dano vive nos servidores, não no seu disco, e nenhuma varredura local vai mostrá-lo.
+
+## Por que a limpeza às vezes falha
+
+Alguns poucos erros explicam a maioria dos casos em que um cavalo de Troia volta logo em seguida.
+
+**Reconectar cedo demais.** Se você voltar à internet antes de a limpeza terminar, um cavalo de Troia ativo pode simplesmente baixar uma cópia nova de si mesmo.
+
+**Fazer a varredura apenas no modo normal.** Alguns malwares protegem os próprios arquivos enquanto o Windows está rodando normalmente. É exatamente para isso que servem o modo de segurança e a Verificação Offline do Defender.
+
+**Restaurar a infecção a partir de um backup.** Se o seu backup foi feito depois do início da infecção, restaurá-lo restaura o cavalo de Troia. Sempre que possível, restaure documentos individuais em vez de uma imagem de sistema inteira, e faça a varredura neles.
+
+**Alterar as senhas na máquina infectada.** Se um keylogger ainda estiver ativo, você acabou de entregar as novas senhas também. Use um telefone ou outro computador.
+
+**Parar na primeira varredura limpa.** Execute uma segunda varredura completa após reiniciar, em um mecanismo diferente se possível.
 
 ## Quando considerar uma reinstalação limpa
 

@@ -2,6 +2,7 @@
 title: "Come rimuovere un trojan da Windows (passo dopo passo)"
 description: "Una guida chiara e passo dopo passo per rimuovere un trojan da Windows: modalità provvisoria, scansioni con Defender e Malwarebytes, pulizia e come restare al sicuro."
 pubDate: 2026-06-22
+updatedDate: 2026-07-30
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "Uno schermo scuro pieno di pannelli di terminale con log di sistema, diverse righe contrassegnate ERROR in rosso"
 keyword: "how to remove trojan virus"
@@ -66,6 +67,22 @@ Dopo la scansione, controlla i residui:
 
 Non eliminare nulla di cui non sei sicuro: cerca prima il nome esatto, così non disattivi un componente legittimo di Windows.
 
+## Passaggio 5b - Controlla i meccanismi di persistenza che gli scanner spesso lasciano indietro
+
+Questo è il passaggio che quasi tutte le guide saltano, ed è il motivo per cui le infezioni tornano una settimana dopo. Rimuovere il file dannoso non equivale a rimuovere ciò che lo riavvia. Un trojan installa di solito almeno un meccanismo il cui unico compito è farlo tornare.
+
+Ci sono quattro punti da controllare a mano, in quest'ordine.
+
+**Attività pianificate.** Apri l'Utilità di pianificazione (`taskschd.msc`) e scorri la Libreria Utilità di pianificazione. Cerca attività con nomi privi di senso, attività che eseguono un programma da una cartella utente come AppData o Temp, e attività che si attivano ogni pochi minuti. Anche il software legittimo pianifica attività, quindi leggi la scheda Azioni per vedere esattamente cosa avvia un'attività prima di toccarla.
+
+**Servizi.** Apri `services.msc` e ordina per nome. Un servizio che punta a un eseguibile fuori da `C:\Windows` o `C:\Program Files` merita un secondo sguardo. Annota il nome e cercalo prima di disattivare qualsiasi cosa, perché Windows stesso esegue moltissimi servizi con nomi poco chiari.
+
+**Chiavi Run nel registro.** In `regedit`, controlla `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` e l'equivalente sotto `HKLM`. Queste avviano un programma a ogni accesso. Esporta la chiave prima di eliminare qualcosa, così puoi ripristinarla se rimuovi la voce sbagliata.
+
+**Estensioni del browser.** Un trojan che ha raccolto i cookie di sessione installa spesso un'estensione per continuare a leggere il traffico. Controlla l'elenco delle estensioni in ogni browser che usi, non solo in quello principale.
+
+Se qualcosa di tutto questo va oltre il tuo livello di sicurezza, fermati qui e passa alla sezione sulla reinstallazione pulita. Eliminare il servizio o la chiave di registro sbagliata può rendere Windows non avviabile, un esito peggiore del trojan stesso.
+
 ## Passaggio 6 - Riavvia, riconnetti ed esegui di nuovo la scansione
 
 Riavvia in modalità normale, riconnettiti a internet, installa gli ultimi aggiornamenti di Windows ed esegui **un'altra scansione completa** con Defender. Un risultato pulito su una scansione nuova dopo il riavvio è la conferma che il trojan è sparito.
@@ -79,6 +96,30 @@ I trojan rubano spesso le password salvate e i cookie di sessione. Una volta ver
 - Controlla l'email: nessuna regola o inoltro aggiunto dall'aggressore.
 
 Un gestore di password rende molto meno faticoso il rinnovo di decine di credenziali, e usarne uno significa non riutilizzare la stessa password su più siti.
+
+## Come capire se è davvero sparito
+
+"La scansione è risultata pulita" è una prova più debole di quanto sembri, perché uno scanner trova solo ciò che riconosce. Ci sono tre controlli che vale la pena fare qualche giorno dopo.
+
+**Osserva le connessioni in uscita.** Chiudi il browser e tutto il resto che puoi, poi esegui `netstat -bn` in un Prompt dei comandi con privilegi di amministratore. Cerchi un processo che non riconosci e che tiene aperta una connessione. Una macchina davvero inattiva dovrebbe essere quasi silenziosa.
+
+**Ricontrolla i punti di persistenza.** Ripassa le attività pianificate e le chiavi Run del Passaggio 5b. Se una voce che avevi eliminato è ricomparsa, qualcosa sulla macchina l'ha rimessa e l'infezione è ancora attiva.
+
+**Sorveglia gli account, non solo il PC.** Avvisi di accesso da luoghi sconosciuti, regole di posta che non hai creato o email di reimpostazione password che non hai richiesto sono tutti segnali che le credenziali sottratte prima della pulizia sono ancora in uso. Quel danno vive sui server, non sul tuo disco, e nessuna scansione locale lo mostrerà.
+
+## Perché a volte la pulizia fallisce
+
+Pochi errori spiegano la maggior parte dei casi in cui un trojan torna subito.
+
+**Riconnettersi troppo presto.** Se torni online prima che la pulizia sia finita, un trojan attivo può semplicemente scaricare una copia nuova di sé stesso.
+
+**Scansionare solo in modalità normale.** Alcuni malware proteggono i propri file mentre Windows è in esecuzione normale. È esattamente a questo che servono la modalità provvisoria e l'analisi offline di Defender.
+
+**Ripristinare l'infezione da un backup.** Se il backup è stato fatto dopo l'inizio dell'infezione, ripristinarlo ripristina il trojan. Quando puoi, ripristina i singoli documenti invece di un'intera immagine di sistema, e analizzali.
+
+**Cambiare le password dalla macchina infetta.** Se un keylogger è ancora attivo, hai appena consegnato anche le nuove password. Usa un telefono o un altro computer.
+
+**Fermarsi alla prima scansione pulita.** Esegui una seconda scansione completa dopo un riavvio, possibilmente con un motore diverso.
 
 ## Quando valutare una reinstallazione pulita
 

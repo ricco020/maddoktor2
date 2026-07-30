@@ -2,6 +2,7 @@
 title: "Comment supprimer un cheval de Troie sous Windows (étape par étape)"
 description: "Guide clair et pas à pas pour supprimer un cheval de Troie sous Windows : mode sans échec, analyses Defender et Malwarebytes, nettoyage et prévention."
 pubDate: 2026-06-22
+updatedDate: 2026-07-30
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "Un écran d'ordinateur sombre rempli de panneaux de terminal affichant des journaux système, plusieurs lignes marquées ERROR en rouge"
 keyword: "how to remove trojan virus"
@@ -66,6 +67,22 @@ Après l'analyse, vérifiez les résidus :
 
 Ne supprimez rien dont vous n'êtes pas sûr - cherchez le nom exact d'abord pour ne pas désactiver un composant Windows légitime.
 
+## Étape 5b - Vérifiez les mécanismes de persistance que les scanners laissent souvent derrière eux
+
+C'est l'étape que la plupart des guides sautent, et c'est la raison pour laquelle les infections reviennent une semaine plus tard. Supprimer le fichier malveillant n'équivaut pas à supprimer ce qui le relance. Un cheval de Troie installe généralement au moins un mécanisme dont le seul rôle est de le faire revenir.
+
+Quatre endroits méritent une vérification manuelle, dans cet ordre.
+
+**Les tâches planifiées.** Ouvrez le Planificateur de tâches (`taskschd.msc`) et parcourez la Bibliothèque du Planificateur de tâches. Cherchez les tâches aux noms dénués de sens, celles qui exécutent un programme depuis un dossier utilisateur comme AppData ou Temp, et celles qui se déclenchent toutes les quelques minutes. Les logiciels légitimes planifient aussi des tâches, alors lisez l'onglet Actions pour voir exactement ce qu'une tâche lance avant d'y toucher.
+
+**Les services.** Ouvrez `services.msc` et triez par nom. Un service pointant vers un exécutable situé hors de `C:\Windows` ou `C:\Program Files` mérite un second regard. Notez le nom et cherchez-le avant de désactiver quoi que ce soit, car Windows lui-même exécute quantité de services aux noms peu parlants.
+
+**Les clés Run du registre.** Dans `regedit`, vérifiez `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` et son équivalent sous `HKLM`. Elles lancent un programme à chaque connexion. Exportez la clé avant toute suppression, pour pouvoir la restaurer si vous retirez la mauvaise entrée.
+
+**Les extensions de navigateur.** Un cheval de Troie qui a récolté vos cookies de session installe souvent une extension pour continuer à lire le trafic. Passez en revue la liste des extensions dans chaque navigateur que vous utilisez, pas seulement le principal.
+
+Si tout cela dépasse votre niveau de confort, arrêtez-vous ici et passez à la section sur la réinstallation propre. Supprimer le mauvais service ou la mauvaise clé de registre peut rendre Windows non amorçable, ce qui est un pire résultat que le cheval de Troie.
+
 ## Étape 6 - Redémarrez, reconnectez et relancez une analyse
 
 Redémarrez en mode normal, reconnectez-vous à Internet, installez les dernières mises à jour Windows et lancez **une analyse complète de plus** avec Defender. Un résultat propre sur une analyse fraîche après redémarrage confirme que le cheval de Troie a disparu.
@@ -79,6 +96,30 @@ Les chevaux de Troie volent fréquemment les mots de passe enregistrés et les c
 - Vérifiez votre messagerie : aucune règle ni redirection ajoutée par l'attaquant.
 
 Un gestionnaire de mots de passe rend bien moins pénible le renouvellement de dizaines d'identifiants, et en utiliser un évite de réutiliser le même mot de passe partout.
+
+## Comment savoir s'il a vraiment disparu
+
+« L'analyse est revenue propre » est une preuve plus faible qu'il n'y paraît, car un scanner ne trouve que ce qu'il reconnaît. Trois vérifications valent la peine d'être faites quelques jours plus tard.
+
+**Surveillez les connexions sortantes.** Fermez votre navigateur et tout ce que vous pouvez, puis lancez `netstat -bn` dans une invite de commandes en mode administrateur. Cherchez un processus que vous ne reconnaissez pas et qui maintient une connexion ouverte. Une machine réellement au repos devrait être quasi silencieuse.
+
+**Revérifiez les points de persistance.** Reprenez les tâches planifiées et les clés Run de l'étape 5b. Si une entrée que vous avez supprimée est réapparue, c'est que quelque chose sur la machine l'a remise et que l'infection est toujours active.
+
+**Surveillez les comptes, pas seulement le PC.** Des alertes de connexion depuis des lieux inconnus, des règles de messagerie que vous n'avez pas créées ou des e-mails de réinitialisation de mot de passe que vous n'avez pas demandés sont autant de signes que des identifiants dérobés avant le nettoyage servent encore. Ces dégâts vivent sur des serveurs, pas sur votre disque, et aucune analyse locale ne les montrera.
+
+## Pourquoi le nettoyage échoue parfois
+
+Quelques erreurs expliquent la plupart des cas où un cheval de Troie revient aussitôt.
+
+**Se reconnecter trop tôt.** Si vous repassez en ligne avant la fin du nettoyage, un cheval de Troie actif peut simplement télécharger une copie neuve de lui-même.
+
+**N'analyser qu'en mode normal.** Certains malwares protègent leurs propres fichiers tant que Windows tourne normalement. C'est exactement à cela que servent le mode sans échec et l'analyse hors connexion de Defender.
+
+**Restaurer l'infection depuis une sauvegarde.** Si votre sauvegarde a été prise après le début de l'infection, la restaurer restaure le cheval de Troie. Restaurez des documents individuels plutôt qu'une image système entière quand c'est possible, et analysez-les.
+
+**Changer ses mots de passe depuis la machine infectée.** Si un enregistreur de frappe tourne encore, vous venez de livrer aussi les nouveaux mots de passe. Utilisez un téléphone ou un autre ordinateur.
+
+**S'arrêter à la première analyse propre.** Lancez une deuxième analyse complète après un redémarrage, sur un moteur différent si possible.
 
 ## Quand envisager une réinstallation propre
 

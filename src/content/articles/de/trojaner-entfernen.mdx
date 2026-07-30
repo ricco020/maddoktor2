@@ -2,6 +2,7 @@
 title: "Einen Trojaner von Windows entfernen (Schritt für Schritt)"
 description: "Eine klare Schritt-für-Schritt-Anleitung zum Entfernen eines Trojaners von Windows - abgesicherter Modus, Defender- und Malwarebytes-Scans, Bereinigung und wie Sie sauber bleiben."
 pubDate: 2026-06-22
+updatedDate: 2026-07-30
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "Ein dunkler Computermonitor voller Terminalfenster mit Systemprotokollen, mehrere Zeilen rot als ERROR markiert"
 keyword: "how to remove trojan virus"
@@ -66,6 +67,22 @@ Prüfen Sie nach dem Scan auf Überreste:
 
 Löschen Sie nichts, bei dem Sie unsicher sind - suchen Sie zuerst nach dem genauen Namen, damit Sie keine legitime Windows-Komponente deaktivieren.
 
+## Schritt 5b - Prüfen Sie die Persistenzmechanismen, die Scanner oft zurücklassen
+
+Das ist der Schritt, den die meisten Anleitungen überspringen, und er ist der Grund, warum Infektionen eine Woche später zurückkommen. Die Schaddatei zu entfernen ist nicht dasselbe, wie das zu entfernen, was sie neu startet. Ein Trojaner installiert in der Regel mindestens einen Mechanismus, dessen einzige Aufgabe darin besteht, ihn zurückzuholen.
+
+Vier Stellen lohnen sich für eine Prüfung von Hand, in dieser Reihenfolge.
+
+**Geplante Aufgaben.** Öffnen Sie die Aufgabenplanung (`taskschd.msc`) und gehen Sie die Aufgabenplanungsbibliothek durch. Achten Sie auf Aufgaben mit sinnlosen Namen, auf Aufgaben, die ein Programm aus einem Benutzerordner wie AppData oder Temp starten, und auf Aufgaben, die alle paar Minuten auslösen. Auch legitime Software plant Aufgaben ein, lesen Sie also die Registerkarte Aktionen, um genau zu sehen, was eine Aufgabe startet, bevor Sie sie anfassen.
+
+**Dienste.** Öffnen Sie `services.msc` und sortieren Sie nach Namen. Ein Dienst, der auf eine ausführbare Datei außerhalb von `C:\Windows` oder `C:\Program Files` zeigt, verdient einen zweiten Blick. Notieren Sie den Namen und suchen Sie danach, bevor Sie irgendetwas deaktivieren, denn Windows selbst betreibt sehr viele Dienste mit wenig aussagekräftigen Namen.
+
+**Run-Schlüssel in der Registrierung.** Prüfen Sie in `regedit` den Pfad `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` und das Gegenstück unter `HKLM`. Diese starten bei jeder Anmeldung ein Programm. Exportieren Sie den Schlüssel, bevor Sie etwas löschen, damit Sie ihn wiederherstellen können, falls Sie den falschen Eintrag entfernen.
+
+**Browser-Erweiterungen.** Ein Trojaner, der Ihre Sitzungs-Cookies abgegriffen hat, installiert oft eine Erweiterung, um den Datenverkehr weiter mitzulesen. Sehen Sie die Erweiterungsliste in jedem Browser durch, den Sie nutzen, nicht nur im Hauptbrowser.
+
+Wenn Ihnen das alles zu weit geht, hören Sie hier auf und gehen Sie zum Abschnitt über die saubere Neuinstallation. Das Löschen des falschen Dienstes oder Registrierungsschlüssels kann Windows nicht mehr startfähig machen, was ein schlechteres Ergebnis ist als der Trojaner.
+
 ## Schritt 6 - Neu starten, neu verbinden und erneut scannen
 
 Starten Sie in den normalen Modus, verbinden Sie sich wieder mit dem Internet, installieren Sie die neuesten Windows-Updates und führen Sie **einen weiteren vollständigen Scan** mit Defender durch. Ein sauberes Ergebnis bei einem frischen Scan nach einem Neustart ist Ihre Bestätigung, dass der Trojaner weg ist.
@@ -79,6 +96,30 @@ Trojaner stehlen häufig gespeicherte Passwörter und Sitzungs-Cookies. Sobald I
 - Prüfen Sie Ihre E-Mail auf Regeln oder Weiterleitungen, die der Angreifer hinzugefügt haben könnte.
 
 Ein Passwort-Manager macht das Erneuern Dutzender Zugangsdaten weit weniger mühsam, und einen zu verwenden bedeutet, dass Sie nicht dasselbe Passwort über mehrere Seiten hinweg wiederverwenden.
+
+## Woran Sie erkennen, dass er wirklich weg ist
+
+„Der Scan war sauber" ist ein schwächerer Beleg, als es klingt, denn ein Scanner findet nur, was er kennt. Drei Kontrollen lohnen sich einige Tage später.
+
+**Beobachten Sie die ausgehenden Verbindungen.** Schließen Sie Ihren Browser und alles andere, was möglich ist, und führen Sie dann `netstat -bn` in einer Eingabeaufforderung mit erhöhten Rechten aus. Sie suchen nach einem Prozess, den Sie nicht kennen und der eine Verbindung offen hält. Ein wirklich untätiger Rechner sollte nahezu still sein.
+
+**Prüfen Sie die Persistenzpunkte erneut.** Gehen Sie die geplanten Aufgaben und Run-Schlüssel aus Schritt 5b noch einmal durch. Wenn ein Eintrag, den Sie gelöscht haben, wieder aufgetaucht ist, hat etwas auf dem Rechner ihn zurückgesetzt und die Infektion ist noch aktiv.
+
+**Behalten Sie die Konten im Blick, nicht nur den PC.** Anmeldewarnungen von unbekannten Orten, E-Mail-Regeln, die Sie nicht angelegt haben, oder Passwort-Zurücksetzen-Mails, die Sie nicht angefordert haben, sind allesamt Hinweise darauf, dass vor der Bereinigung entwendete Zugangsdaten weiterhin genutzt werden. Dieser Schaden lebt auf Servern, nicht auf Ihrer Festplatte, und kein lokaler Scan wird ihn zeigen.
+
+## Warum die Bereinigung manchmal scheitert
+
+Einige wenige Fehler erklären die meisten Fälle, in denen ein Trojaner sofort zurückkommt.
+
+**Zu früh wieder verbinden.** Wenn Sie wieder online gehen, bevor die Bereinigung abgeschlossen ist, kann ein aktiver Trojaner einfach eine frische Kopie von sich selbst herunterladen.
+
+**Nur im normalen Modus scannen.** Manche Schadsoftware schützt ihre eigenen Dateien, solange Windows normal läuft. Genau dafür sind der abgesicherte Modus und die Defender-Offlineüberprüfung da.
+
+**Die Infektion aus einer Sicherung wiederherstellen.** Wenn Ihre Sicherung nach dem Beginn der Infektion angelegt wurde, stellt sie den Trojaner mit wieder her. Stellen Sie nach Möglichkeit einzelne Dokumente statt eines kompletten Systemabbilds wieder her und scannen Sie diese.
+
+**Passwörter vom infizierten Rechner aus ändern.** Wenn noch ein Keylogger läuft, haben Sie soeben auch die neuen Passwörter übergeben. Nutzen Sie ein Telefon oder einen anderen Computer.
+
+**Beim ersten sauberen Scan aufhören.** Führen Sie nach einem Neustart einen zweiten vollständigen Scan durch, wenn möglich mit einer anderen Engine.
 
 ## Wann eine saubere Neuinstallation in Betracht kommt
 

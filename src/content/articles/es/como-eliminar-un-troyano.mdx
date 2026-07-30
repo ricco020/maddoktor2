@@ -2,6 +2,7 @@
 title: "Cómo eliminar un troyano de Windows (paso a paso)"
 description: "Guía clara y paso a paso para eliminar un troyano de Windows: modo seguro, análisis con Defender y Malwarebytes, limpieza y cómo seguir protegido."
 pubDate: 2026-06-22
+updatedDate: 2026-07-30
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "Una pantalla de ordenador oscura llena de paneles de terminal con registros del sistema, con varias líneas marcadas ERROR en rojo"
 keyword: "how to remove trojan virus"
@@ -66,6 +67,22 @@ Tras el análisis, busca restos:
 
 No borres nada de lo que no estés seguro - busca el nombre exacto primero para no desactivar un componente legítimo de Windows.
 
+## Paso 5b - Revisa los mecanismos de persistencia que los escáneres suelen dejar atrás
+
+Este es el paso que la mayoría de las guías se salta, y es la razón por la que las infecciones vuelven una semana después. Eliminar el archivo malicioso no es lo mismo que eliminar lo que lo reinicia. Un troyano suele instalar al menos un mecanismo cuya única función es hacerlo volver.
+
+Hay cuatro sitios que merece la pena revisar a mano, en este orden.
+
+**Tareas programadas.** Abre el Programador de tareas (`taskschd.msc`) y recorre la Biblioteca del Programador de tareas. Busca tareas con nombres sin sentido, tareas que ejecuten un programa desde una carpeta de usuario como AppData o Temp, y tareas que se disparen cada pocos minutos. El software legítimo también programa tareas, así que lee la pestaña Acciones para ver exactamente qué lanza una tarea antes de tocarla.
+
+**Servicios.** Abre `services.msc` y ordena por nombre. Un servicio que apunte a un ejecutable fuera de `C:\Windows` o `C:\Program Files` merece un segundo vistazo. Anota el nombre y búscalo antes de desactivar nada, porque el propio Windows ejecuta muchísimos servicios con nombres poco claros.
+
+**Claves Run del registro.** En `regedit`, revisa `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` y su equivalente en `HKLM`. Estas lanzan un programa en cada inicio de sesión. Exporta la clave antes de borrar nada, para poder restaurarla si eliminas la entrada equivocada.
+
+**Extensiones del navegador.** Un troyano que haya recolectado tus cookies de sesión suele instalar una extensión para seguir leyendo el tráfico. Revisa la lista de extensiones en todos los navegadores que uses, no solo en el principal.
+
+Si algo de esto queda fuera de tu nivel de comodidad, párate aquí y ve a la sección de reinstalación limpia. Borrar el servicio o la clave del registro equivocados puede dejar Windows sin poder arrancar, un resultado peor que el troyano.
+
 ## Paso 6 - Reinicia, reconéctate y vuelve a analizar
 
 Reinicia en modo normal, reconéctate a internet, instala las últimas actualizaciones de Windows y ejecuta **un análisis completo más** con Defender. Un resultado limpio en un análisis nuevo tras reiniciar es tu confirmación de que el troyano ha desaparecido.
@@ -79,6 +96,30 @@ Los troyanos roban con frecuencia contraseñas guardadas y cookies de sesión. U
 - Revisa tu correo: ninguna regla ni reenvío añadido por el atacante.
 
 Un gestor de contraseñas hace mucho menos doloroso renovar decenas de credenciales, y usar uno significa que no reutilizas la misma contraseña en varios sitios.
+
+## Cómo saber si de verdad ha desaparecido
+
+«El análisis salió limpio» es una prueba más débil de lo que parece, porque un escáner solo encuentra lo que reconoce. Merece la pena hacer tres comprobaciones unos días después.
+
+**Vigila las conexiones salientes.** Cierra el navegador y todo lo que puedas, y luego ejecuta `netstat -bn` en un símbolo del sistema con permisos de administrador. Busca un proceso que no reconozcas manteniendo una conexión abierta. Una máquina realmente inactiva debería estar casi en silencio.
+
+**Vuelve a revisar los puntos de persistencia.** Repasa las tareas programadas y las claves Run del Paso 5b. Si una entrada que borraste ha reaparecido, algo en la máquina la ha vuelto a poner y la infección sigue activa.
+
+**Vigila las cuentas, no solo el PC.** Avisos de inicio de sesión desde lugares desconocidos, reglas de correo que no creaste o correos de restablecimiento de contraseña que no pediste son señales de que las credenciales robadas antes de la limpieza se siguen usando. Ese daño vive en servidores, no en tu disco, y ningún análisis local lo mostrará.
+
+## Por qué a veces falla la limpieza
+
+Unos pocos errores explican la mayoría de los casos en que un troyano vuelve enseguida.
+
+**Reconectarse demasiado pronto.** Si vuelves a estar en línea antes de terminar la limpieza, un troyano activo puede sencillamente descargar una copia nueva de sí mismo.
+
+**Analizar solo en modo normal.** Parte del malware protege sus propios archivos mientras Windows funciona con normalidad. Para eso están exactamente el Modo seguro y el Análisis sin conexión de Defender.
+
+**Restaurar la infección desde una copia de seguridad.** Si tu copia se hizo después de que empezara la infección, restaurarla restaura el troyano. Restaura documentos sueltos en lugar de una imagen completa del sistema cuando puedas, y analízalos.
+
+**Cambiar las contraseñas desde la máquina infectada.** Si un registrador de teclas sigue activo, acabas de entregar también las contraseñas nuevas. Usa un móvil u otro ordenador.
+
+**Pararse en el primer análisis limpio.** Ejecuta un segundo análisis completo tras reiniciar, con un motor distinto si es posible.
 
 ## Cuándo plantearse una reinstalación limpia
 

@@ -2,6 +2,7 @@
 title: "How to Remove a Trojan Virus from Windows (Step by Step)"
 description: "A clear, step-by-step guide to removing a trojan virus from Windows - Safe Mode, Defender and Malwarebytes scans, cleanup, and how to stay clean."
 pubDate: 2026-06-22
+updatedDate: 2026-07-30
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "A dark computer monitor filled with terminal panels of system logs, several lines marked ERROR in red"
 keyword: "how to remove trojan virus"
@@ -66,6 +67,22 @@ After scanning, check for leftovers:
 
 Don't delete things you're unsure about - search the exact name first so you don't disable a legitimate Windows component.
 
+## Step 5b - Check the persistence mechanisms scanners often leave behind
+
+This is the step most guides skip, and it is the reason infections come back a week later. Removing the malicious file is not the same as removing what restarts it. A trojan usually installs at least one mechanism whose only job is to bring it back.
+
+There are four places worth checking by hand, in this order.
+
+**Scheduled tasks.** Open Task Scheduler (`taskschd.msc`) and look through Task Scheduler Library. You are looking for tasks with meaningless names, tasks that run a program from a user folder such as AppData or Temp, and tasks that trigger every few minutes. Legitimate software does schedule tasks, so read the Actions tab to see exactly what a task launches before touching it.
+
+**Services.** Open `services.msc` and sort by name. A service pointing at an executable outside `C:\Windows` or `C:\Program Files` deserves a second look. Note the name and search it before disabling anything, because Windows itself runs a great many services with unhelpful names.
+
+**Run keys in the registry.** In `regedit`, check `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` and the equivalent under `HKLM`. These launch a program at every sign-in. Export the key before deleting anything, so you can restore it if you remove the wrong entry.
+
+**Browser extensions.** A trojan that harvested your session cookies often installs an extension to keep reading traffic. Review the extension list in every browser you use, not just your main one.
+
+If any of this feels beyond your comfort level, stop here and go to the clean reinstall section. Deleting the wrong service or registry key can leave Windows unbootable, which is a worse outcome than the trojan.
+
 ## Step 6 - Reboot, reconnect, and re-scan
 
 Restart into normal mode, reconnect to the internet, install the latest Windows updates, and run **one more full scan** with Defender. A clean result on a fresh scan after a reboot is your confirmation that the trojan is gone.
@@ -79,6 +96,30 @@ Trojans frequently steal saved passwords and session cookies. Once your PC is ve
 - Review your email for any rules or forwarding the attacker may have added.
 
 A password manager makes rotating dozens of credentials far less painful, and using one means you're not reusing the same password across sites.
+
+## How to tell it is actually gone
+
+"The scan came back clean" is weaker evidence than it sounds, because a scanner only finds what it recognises. Three checks are worth doing a few days later.
+
+**Watch the outbound connections.** Close your browser and everything else you can, then run `netstat -bn` in an elevated Command Prompt. You are looking for a process you do not recognise holding a connection open. A machine that is genuinely idle should be close to silent.
+
+**Re-check the persistence points.** Go back through the scheduled tasks and Run keys from Step 5b. If an entry you deleted has reappeared, something on the machine put it back and the infection is still active.
+
+**Watch the accounts, not just the PC.** Sign-in alerts from unfamiliar locations, mail rules you did not create, or password reset emails you did not request are all signs that credentials taken before the cleanup are still being used. That damage lives on servers, not on your disk, and no local scan will show it.
+
+## Why the cleanup sometimes fails
+
+A few mistakes account for most of the cases where a trojan comes straight back.
+
+**Reconnecting too early.** If you go back online before the cleanup is finished, an active trojan can simply download a fresh copy of itself.
+
+**Scanning only in normal mode.** Some malware protects its own files while Windows is running normally. This is exactly what Safe Mode and the Defender Offline scan are for.
+
+**Restoring the infection from a backup.** If your backup was taken after the infection started, restoring it restores the trojan. Restore individual documents rather than an entire system image when you can, and scan them.
+
+**Changing passwords from the infected machine.** If a keylogger is still running, you have just handed over the new passwords too. Use a phone or another computer.
+
+**Stopping at the first clean scan.** Run a second full scan after a reboot, on a different engine if possible.
 
 ## When to consider a clean reinstall
 
