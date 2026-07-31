@@ -1,0 +1,81 @@
+---
+title: "292 Fake GitHub Repos Are Stealing Credentials, and Removal Software Cannot Undo It"
+description: "A campaign running since 26 June 2026 impersonates security vendors, wallets and dev tools on GitHub. The payload runs once, takes everything and leaves nothing behind, which is why scanning afterwards misses the point entirely."
+pubDate: 2026-07-31
+hero: "https://images.pexels.com/photos/11035544/pexels-photo-11035544.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "A hand holding a black Fork me on GitHub sticker, with a blurred figure behind"
+keyword: "fake github repositories malware"
+tags: ["infostealer", "github", "credentials", "supply-chain", "windows", "security"]
+translationKey: "fake-github-repos-infostealer"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Researchers have documented **at least 292 deceptive brand-impersonation GitHub pages and repositories** created since **26 June 2026**. They impersonate security tooling, fintech and personal finance apps, cryptocurrency wallets and exchanges, developer and productivity tools, secure email providers, macOS utilities and gaming software.
+
+One of the impersonated brands was **Arctic Wolf**, the security vendor that published the analysis. That detail is worth holding onto: the campaign was confident enough to fake a security company on a platform developers trust by default.
+
+## How the lure works
+
+The repositories are not crude. They contain README documents with **concealed download links** that route victims through `*.github.io` redirectors to domains the attacker controls.
+
+The pages also display **spoofed trust badges**, including "VirusTotal Approved" and "Secure Archive". Neither means anything. They are images in a README, placed there precisely because they look like the reassurance a careful person would check for.
+
+That is the uncomfortable part of this campaign. It targets the instinct to verify, and it targets it on a platform where a repository page feels inherently more trustworthy than a random download site.
+
+![A file view on a code hosting site showing an Apple plist XML, with its line count and byte size displayed in the header.](https://images.pexels.com/photos/4584830/pexels-photo-4584830.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## What it takes
+
+The payload is an **in-memory infostealer** running **11 discrete theft modules**. The published scope:
+
+- browser credentials across **19 or more browser names**
+- a **41-entry cryptocurrency wallet path table**, covering Bitcoin Core, Ethereum, Exodus, Ledger and Trezor Suite among others
+- Telegram, Discord, Steam and Meta Max account data
+- **Windows Credential Manager** dumping
+- screenshot capture
+
+That is a comprehensive sweep of the things people keep on a personal machine.
+
+## The detail that changes the response
+
+Here is what makes this campaign different from the malware most people picture, and it is the reason a removal-first reflex fails.
+
+The implant is described as a pure **smash-and-grab**: one execution, all data collected and exfiltrated, **no foothold established**. It does not install. It does not persist. It does not sit on the disk waiting to be found next Tuesday.
+
+The practical consequence is blunt. If you ran it, **there is nothing left to remove**, and a scan returning clean tells you almost nothing useful. The damage was done in the seconds it executed, and it was done to your credentials, not to your computer.
+
+So the correct response is not a cleanup. It is a **credential rotation**, starting with whatever protects everything else: your email account, then anything financial, then anything reachable by a session cookie. Assume the passwords stored in your browser are known and act accordingly.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Rotating every password at once is the actual remediation here, and doing it by hand is where people give up halfway. A manager makes it a mechanical task rather than an afternoon of trying to remember where a password was reused." />
+
+## How to spot one before you download
+
+The published indicators are things you can check in under a minute, on the repository page itself.
+
+**Look at the commit history.** Genuine projects accumulate commits over time. These repositories have **sparse commit history**, because they exist to host a README and a link.
+
+**Look at the creation date.** A **recent creation date** on a project claiming to be an established vendor is a contradiction. A well-known security tool did not appear last week.
+
+**Read the README as marketing.** Real documentation explains how something works, its limits, its configuration. A **marketing-style README** with badges, superlatives and a prominent download button is a sales page wearing a repository's clothes.
+
+**Distrust the badges completely.** "VirusTotal Approved" is not a thing VirusTotal issues. Any badge inside a README was put there by whoever wrote the README.
+
+**Go to the vendor instead.** The reliable move costs ten seconds: find the software through the vendor's own site, and follow their link to the repository rather than arriving from a search result.
+
+## If you already ran it
+
+Work in this order, and do not start with a virus scan.
+
+1. **Change the password on your email account first**, from a different device, because email resets everything else.
+2. **Rotate the passwords stored in your browser.** Treat all of them as compromised, not just the ones that feel important.
+3. **Invalidate active sessions** where the service allows it, since stolen cookies bypass a new password entirely.
+4. **Move cryptocurrency funds** if any wallet on that machine was in the targeted list.
+5. **Then**, if you like, run a scan. It will probably find nothing, and that is expected rather than reassuring.
+
+## The short version
+
+A campaign running since 26 June 2026 has put at least 292 impersonation pages on GitHub, faking security vendors, wallets and dev tools, and dressing them with meaningless trust badges. The payload steals browser credentials, wallet files, messaging accounts and Windows credentials in a single run, then leaves.
+
+Because it leaves nothing behind, removal is not the remedy. Rotating credentials is. And the cheapest defence remains reaching software through the vendor's own site rather than through a repository you found in a search result.
+
+*The figures in this article, including the 292 pages, the 26 June 2026 start date, the 11 theft modules, the 19-plus browsers, the 41-entry wallet path table, the spoofed VirusTotal Approved and Secure Archive badges, the absence of persistence, and the sparse-commit-history indicators, are taken from Arctic Wolf's published analysis of the campaign, checked at the time of writing. Active campaigns change; verify against current vendor advisories before acting on a specific detail. Commercial links carry the rel="sponsored nofollow" attribute; an affiliate commission may apply at no extra cost to you.*
