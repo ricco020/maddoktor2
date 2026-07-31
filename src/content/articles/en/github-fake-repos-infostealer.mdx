@@ -53,6 +53,8 @@ Work in this order, because the sequence matters.
 
 **3. Invalidate your sessions, not just your passwords.** Because tokens were taken, a password change alone may not evict an attacker. In each important account, find the option along the lines of "sign out of all devices" or "revoke active sessions".
 
+**A note on what a clean scan means here.** Arctic Wolf describes the implant as a pure smash-and-grab: one execution, everything collected and exfiltrated, **no foothold established**. It does not install itself to run again. So a scan coming back clean is expected rather than reassuring, and it does not undo anything. The credential rotation above is the remediation; the scan is housekeeping.
+
 **4. Scan and, where you can, rebuild.** Run a full scan with a reputable tool. For a machine that held financial or crypto credentials, a clean reinstall is the only way to be certain, since an infostealer is often delivered alongside other payloads.
 
 **5. Assume the crypto is gone if a wallet extension was exposed.** Move any remaining funds to a wallet created on a clean device with a new seed phrase.
