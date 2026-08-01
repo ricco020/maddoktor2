@@ -1,0 +1,83 @@
+---
+title: "Cryptojacking: Die Malware, die Strom statt Daten stiehlt"
+description: "Ein Coin Miner rührt weder Ihre Dateien noch Ihre Passwörter an. Er nimmt sich Ihren Prozessor und Ihre Stromrechnung. Warum das so schwer auffällt, die von Microsoft dokumentierte Infektionskette und die eine Einstellung, die fast alle deaktiviert lassen."
+pubDate: 2026-08-01
+hero: "https://images.pexels.com/photos/10359908/pexels-photo-10359908.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Ein Cooler-Master-Gehäuselüfter in einem Desktop-PC, dahinter sichtbare Speichermodule"
+keyword: "cryptojacking"
+tags: ["cryptojacking", "coinminer", "monero", "pua", "windows", "performance"]
+translationKey: "what-is-cryptojacking"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Fast jeder Malware-Ratgeber bringt Ihnen bei, auf Anzeichen von Diebstahl zu achten: verschlüsselte Dateien, fremde Zugriffe auf Konten, ungewöhnliche Anmeldungen. Ein Coin Miner löst nichts davon aus, denn er hat es gar nicht auf Ihre Daten abgesehen. Er will Ihren Prozessor, und er will ihn so lange wie möglich behalten, ohne dass Sie es merken.
+
+## Was er tatsächlich braucht
+
+Mining ist, so beschreibt es Microsoft, das Ausführen der komplexen mathematischen Berechnungen, die zur Pflege eines Blockchain-Ledgers nötig sind. Es erzeugt Coins, und es **erfordert erhebliche Rechenressourcen**.
+
+Genau darin liegt das gesamte Geschäftsmodell. Statt Hardware zu kaufen und Strom zu bezahlen, lässt ein Angreifer die Berechnung auf fremden Rechnern laufen. Microsoft benennt das Motiv unmissverständlich: Kriminelle verbreiten, installieren und betreiben trojanisierte Miner **auf Kosten der Rechenressourcen anderer Leute**.
+
+Der Verlust ist also real, aber ungewohnt. Es wird nichts abgezogen. Sie zahlen mit Prozessorzeit, mit Wärme, mit kürzerer Akkulaufzeit und mit Strom.
+
+## Die Nuance, auf die es bei der Erkennung ankommt
+
+Ein Punkt gehört klar ausgesprochen, denn er erklärt, warum diese Programme an Scannern vorbeikommen.
+
+**Coin Miner sind nicht per se bösartig.** Microsoft sagt das unumwunden: Privatpersonen und Organisationen investieren in Hardware und elektrische Energie, um legitim zu minen. Die Software selbst ist nicht die Straftat. Sie auf dem Rechner eines anderen laufen zu lassen, schon.
+
+Das ist eine unbequeme Grenze für Sicherheitswerkzeuge, und sie hat eine praktische Folge, die weiter unten behandelt wird: Ein guter Teil der Mining-Software wird nicht als Malware eingestuft, sondern als **potenziell unerwünschte Anwendung**, eine Kategorie, bei der viele Systeme nicht eingreifen, solange Sie es ihnen nicht sagen.
+
+## Wie er auf das System kommt
+
+Microsoft nennt drei verbreitete Ausgangspunkte, und sie entsprechen ganz alltäglichem Verhalten statt exotischen Angriffen:
+
+- **E-Mail-Anhänge**, die versuchen, Malware zu installieren
+- **Websites, die Exploit-Kits hosten** und Schwachstellen in Browsern und anderer Software ins Visier nehmen
+- **Websites, die Skripte ausführen, während Sie surfen**, und Ihre Rechenleistung nutzen, solange die Seite geöffnet ist
+
+Den dritten Punkt unterschätzt man am ehesten, denn er kommt ganz ohne Installation aus. Schließen Sie den Tab, hört es auf. Lassen Sie den Tab einen Nachmittag lang im Hintergrund offen, hört es eben nicht auf.
+
+![Ein Itron-Prepaid-Stromzähler mit Tastenfeld, montiert neben einem Sicherungskasten an einer weißen Wand.](https://images.pexels.com/photos/13785838/pexels-photo-13785838.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Eine dokumentierte Kette, von Anfang bis Ende
+
+Microsoft veröffentlicht ein konkretes Beispiel, und es lohnt sich, ihm zu folgen, weil jeder Schritt eine gewöhnliche Technik ist und nichts Ausgefallenes.
+
+Ein Word-Dokument mit einem **DDE-Exploit**, erkannt als `Exploit:O97M/DDEDownloader.PA`, startet ein Cmdlet. Dieses Cmdlet führt ein bösartiges **PowerShell**-Skript aus, erkannt als `Trojan:PowerShell/Maponeir.A`. Das Skript lädt einen trojanisierten Miner herunter: eine modifizierte Variante von **XMRig**, die anschließend **Monero** schürft.
+
+Zwei Dinge fallen auf. Der Miner am Ende ist eine **modifizierte Version eines legitimen Werkzeugs**, weshalb sich signaturbasierte Erkennung schwertut. Und der Übertragungsweg, DDE-Exploits in Office-Dokumenten, wurde zuvor zur Verbreitung von Ransomware genutzt. Dieselben Türen führen in unterschiedliche Zimmer.
+
+## Was Ihnen tatsächlich auffallen würde
+
+Weil im üblichen Sinn nichts gestohlen wird, sind die Symptome körperlich statt digital:
+
+**Der Rechner ist heiß und laut, obwohl er im Leerlauf sein müsste.** Ein Lüfter, der auf einem Notebook hochdreht, das nichts tut, ist der mit Abstand häufigste erste Hinweis.
+
+**Alles fühlt sich langsamer an**, vor allem alles, was den Prozessor braucht. Mining nimmt sich, was es bekommen kann.
+
+**Die Akkulaufzeit bricht ein** bei einem Notebook, und das Gerät ist selbst bei leichten Aufgaben warm.
+
+**Die Stromrechnung steigt allmählich**, wenn die Maschine durchgehend läuft. Bei einem einzelnen Heimcomputer ist das wenig. Über ein ganzes Büro gerechnet ist es der Grund, warum sich Unternehmen dafür interessieren.
+
+Nichts davon ist für sich genommen ein Beweis. Ein alternder Akku, ein defekter Lüfter oder ein schlecht arbeitender Browser-Tab erzeugen dieselben Effekte, und vorschnell auf Malware zu schließen ist der Weg, auf dem Leute ein Betriebssystem neu installieren, um einen verstaubten Kühlkörper zu beheben.
+
+## Die Einstellung, die fast alle deaktiviert lassen
+
+Das ist die praktische Erkenntnis, und sie folgt direkt aus der oben beschriebenen Grenze.
+
+Microsofts erklärte Schutzempfehlung lautet, die **Erkennung potenziell unerwünschter Anwendungen zu aktivieren**. Manche Mining-Werkzeuge werden nicht als Malware eingestuft, sondern als **PUA** erkannt, und dieselbe Einstellung erfasst auch Adware und Torrent-Downloader. Die Dokumentation weist darauf hin, dass diese Anwendungen die Leistung des Rechners beeinträchtigen können.
+
+Warum das hier konkret zählt: Wenn ein Miner auf Software mitreist, die in die PUA-Kategorie fällt statt in die Malware-Kategorie, sieht ihn ein Scanner mit deaktivierter PUA-Erkennung an und lässt ihn durch. Das Einschalten kostet nichts und schließt genau die Lücke, in der diese Bedrohung lebt.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Wenn dasselbe Dokument, das einen Miner abgelegt hat, auch etwas abgelegt hat, das Zugangsdaten ausliest, ist der Miner nur die sichtbare Hälfte des Problems. Passwörter von einem sauberen Gerät aus zu wechseln ist der Schritt, der die unsichtbare Hälfte begrenzt." />
+
+## Die Kurzfassung
+
+Cryptojacking ist Diebstahl von Rechenressourcen und nicht von Daten, und darum entzieht es sich der Checkliste, mit der die meisten eine Infektion aufspüren. Es kommt über E-Mail-Anhänge, Exploit-Kits oder Skripte, die in einem Browser-Tab laufen.
+
+Microsofts dokumentierte Kette führt von einem DDE-Exploit in einer Word-Datei über PowerShell zu einem modifizierten XMRig, das Monero schürft, und dass der Miner ein modifiziertes legitimes Werkzeug ist, macht ihn gerade so schwer zu fassen.
+
+Achten Sie auf einen Rechner, der im Leerlauf heiß, laut und langsam ist, behandeln Sie diese Zeichen als Anlass zum Nachsehen und nicht als Urteil, und schalten Sie die Erkennung potenziell unerwünschter Anwendungen ein, denn in diese Kategorie fällt ein guter Teil dieser Software.
+
+*Die Beschreibung von Coin Minern, einschließlich der drei Infektionswege, der Aussage, dass Coin Miner nicht per se bösartig sind, der Kette von DDE über PowerShell zu XMRig beim Schürfen von Monero sowie der Empfehlung, die Erkennung potenziell unerwünschter Anwendungen zu aktivieren, stammt aus der Dokumentation von Microsoft Defender for Endpoint zu Coin Minern, geprüft zum Zeitpunkt der Erstellung. Bedrohungstechniken entwickeln sich weiter; gleichen Sie einzelne Details mit der aktuellen Herstellerdokumentation ab, bevor Sie sich darauf verlassen. Kommerzielle Links tragen das Attribut rel="sponsored nofollow"; es kann eine Affiliate-Provision anfallen, ohne Mehrkosten für Sie.*

@@ -1,0 +1,83 @@
+---
+title: "Cryptojacking: o malware que rouba eletricidade em vez de dados"
+description: "Um minerador de criptomoedas não toca nos seus ficheiros nem nas suas palavras-passe. Fica com o processador e com a fatura da luz. Porque é tão difícil de notar, a cadeia de infeção documentada pela Microsoft e a definição que quase toda a gente deixa desligada."
+pubDate: 2026-08-01
+hero: "https://images.pexels.com/photos/10359908/pexels-photo-10359908.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Uma ventoinha de caixa Cooler Master montada dentro de um PC de secretária, com módulos de memória visíveis por trás"
+keyword: "cryptojacking"
+tags: ["cryptojacking", "coinminer", "monero", "pua", "windows", "performance"]
+translationKey: "what-is-cryptojacking"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Quase todos os guias sobre malware ensinam a procurar sinais de roubo: ficheiros cifrados, contas acedidas, inícios de sessão estranhos. Um minerador de criptomoedas não desencadeia nenhum desses sinais, porque não anda atrás dos seus dados. Quer o seu processador, e quer mantê-lo o máximo de tempo possível sem que você repare.
+
+## O que realmente exige
+
+A mineração é, na descrição da Microsoft, o processo de executar os cálculos matemáticos complexos necessários para manter um registo blockchain. Gera moedas e **exige recursos de computação significativos**.
+
+É aí que está todo o modelo de negócio. Em vez de comprar hardware e pagar eletricidade, o atacante corre o cálculo em máquinas de outras pessoas. A Microsoft é direta quanto ao motivo: os criminosos distribuem, instalam e executam mineradores trojanizados **à custa dos recursos de computação de terceiros**.
+
+A perda é real, mas pouco familiar. Nada é exfiltrado. Você paga em tempo de processador, em calor, em autonomia de bateria reduzida e em eletricidade.
+
+## A nuance que importa para a deteção
+
+Vale a pena dizer isto com clareza, porque explica por que razão estes programas escapam às análises.
+
+**Os mineradores de criptomoedas não são intrinsecamente maliciosos.** A Microsoft afirma-o sem rodeios: há particulares e organizações que investem em hardware e em energia elétrica para minerar de forma legítima. O software em si não é o crime. Executá-lo na máquina de outra pessoa, sim.
+
+É uma fronteira incómoda para as ferramentas de segurança e tem uma consequência prática abordada mais abaixo: boa parte do software de mineração não é classificada como malware, mas como **aplicação potencialmente indesejada**, uma categoria sobre a qual muitos sistemas não atuam a não ser que você lhes diga.
+
+## Como chega
+
+A Microsoft indica três pontos de partida comuns, e correspondem à atividade diária normal e não a ataques exóticos:
+
+- **anexos de e-mail** que tentam instalar malware
+- **sites que alojam exploit kits** dirigidos a vulnerabilidades em navegadores e noutro software
+- **sites que executam scripts enquanto navega**, usando a sua capacidade de processamento enquanto a página estiver aberta
+
+O terceiro é o que mais se subestima, porque não exige qualquer instalação. Feche o separador e aquilo para. Deixe o separador aberto em segundo plano durante uma tarde e não para.
+
+![Um contador de eletricidade pré-pago Itron com teclado, montado ao lado de um quadro elétrico numa parede branca.](https://images.pexels.com/photos/13785838/pexels-photo-13785838.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Uma cadeia documentada, do início ao fim
+
+A Microsoft publica um exemplo concreto, e vale a pena segui-lo porque cada passo é uma técnica corrente e não algo exótico.
+
+Um documento Word com um **exploit DDE**, detetado como `Exploit:O97M/DDEDownloader.PA`, lança um cmdlet. Esse cmdlet executa um script **PowerShell** malicioso, detetado como `Trojan:PowerShell/Maponeir.A`. O script descarrega um minerador trojanizado: uma versão modificada do **XMRig**, que depois minera **Monero**.
+
+Duas coisas se destacam. O minerador no fim da cadeia é uma **versão modificada de uma ferramenta legítima**, e é por isso que a deteção por assinaturas tem dificuldades. E o mecanismo de entrega, os exploits DDE em documentos do Office, já tinha sido usado para distribuir ransomware. As mesmas portas dão para divisões diferentes.
+
+## O que você notaria de facto
+
+Como nada é roubado no sentido habitual, os sintomas são físicos e não digitais:
+
+**A máquina está quente e barulhenta quando devia estar em repouso.** Uma ventoinha a trabalhar com força num portátil que não está a fazer nada é a primeira pista mais comum de todas.
+
+**Tudo parece mais lento**, sobretudo o que precisa do processador. A mineração leva tudo o que conseguir.
+
+**A autonomia da bateria desaba** num portátil, e o aparelho fica morno mesmo em tarefas leves.
+
+**A fatura da eletricidade vai subindo** se a máquina funcionar continuamente. Num único computador doméstico é pouco. À escala de um escritório, é a razão pela qual as empresas se preocupam.
+
+Nenhum destes sinais é prova por si só. Uma bateria envelhecida, uma ventoinha com defeito ou um separador do navegador mal comportado produzem os mesmos efeitos, e saltar para a conclusão de malware é o que leva as pessoas a reinstalar um sistema operativo para resolver um dissipador cheio de pó.
+
+## A definição que quase toda a gente deixa desligada
+
+Esta é a conclusão prática, e decorre diretamente da fronteira descrita acima.
+
+A proteção recomendada pela Microsoft é **ativar a deteção de aplicações potencialmente indesejadas**. Algumas ferramentas de mineração não são classificadas como malware, mas detetadas como **PUA**, e a mesma definição abrange também adware e clientes de descarga de torrents. A documentação nota que estas aplicações podem afetar negativamente o desempenho da máquina.
+
+A razão pela qual isto importa aqui é específica: se um minerador viajar em software que cai na categoria PUA em vez da categoria malware, um scanner com a deteção de PUA desativada olha para ele e deixa-o passar. Ativar isso não custa nada e fecha exatamente a falha em que esta ameaça vive.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Se o mesmo documento que deixou um minerador também deixou algo que lê credenciais, o minerador é apenas a metade visível do problema. Trocar as palavras-passe a partir de um dispositivo limpo é o passo que limita a metade invisível." />
+
+## A versão curta
+
+O cryptojacking é roubo de recursos de computação e não de dados, e é por isso que escapa à lista de verificações que a maioria das pessoas usa para detetar uma infeção. Chega através de anexos de e-mail, exploit kits ou scripts a correr num separador do navegador.
+
+A cadeia documentada pela Microsoft vai de um exploit DDE num ficheiro Word até um XMRig modificado a minerar Monero, passando pelo PowerShell, e o facto de o minerador ser uma ferramenta legítima modificada é exatamente o que o torna escorregadio.
+
+Fique atento a uma máquina quente, barulhenta e lenta enquanto está em repouso, trate esses sinais como motivo para ir verificar e não como um veredicto, e ative a deteção de aplicações potencialmente indesejadas, porque é essa a categoria em que cai boa parte deste software.
+
+*A descrição dos mineradores de criptomoedas, incluindo os três vetores de infeção, a afirmação de que os mineradores não são intrinsecamente maliciosos, a cadeia de DDE para PowerShell para XMRig a minerar Monero, e a orientação para ativar a deteção de aplicações potencialmente indesejadas, é retirada da documentação do Microsoft Defender for Endpoint sobre mineradores de criptomoedas, verificada à data de redação. As técnicas de ameaça evoluem; confirme na documentação atual do fornecedor antes de confiar num detalhe específico. As ligações comerciais têm o atributo rel="sponsored nofollow"; pode aplicar-se uma comissão de afiliação, sem custo adicional para si.*

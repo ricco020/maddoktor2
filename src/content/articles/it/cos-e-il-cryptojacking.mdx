@@ -1,0 +1,83 @@
+---
+title: "Cryptojacking: il malware che ruba elettricità invece dei dati"
+description: "Un coin miner non tocca i tuoi file né le tue password. Si prende il processore e la bolletta della luce. Perché è così difficile accorgersene, la catena di infezione documentata da Microsoft e l'impostazione che quasi tutti lasciano disattivata."
+pubDate: 2026-08-01
+hero: "https://images.pexels.com/photos/10359908/pexels-photo-10359908.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Una ventola da case Cooler Master montata dentro un PC desktop, con i moduli di memoria visibili sullo sfondo"
+keyword: "cryptojacking"
+tags: ["cryptojacking", "coinminer", "monero", "pua", "windows", "performance"]
+translationKey: "what-is-cryptojacking"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Quasi tutte le guide sul malware insegnano a cercare segni di furto: file cifrati, account consultati, accessi strani. Un coin miner non attiva nessuno di questi segnali, perché non punta affatto ai tuoi dati. Vuole il tuo processore, e vuole tenerselo il più a lungo possibile senza che tu te ne accorga.
+
+## Che cosa richiede davvero
+
+Il mining è, nella descrizione di Microsoft, il processo di esecuzione dei complessi calcoli matematici necessari a mantenere un registro blockchain. Genera monete e **richiede risorse di calcolo ingenti**.
+
+È proprio lì che sta tutto il modello di business. Invece di comprare hardware e pagare l'elettricità, l'aggressore fa girare il calcolo su macchine altrui. Microsoft è esplicito sul movente: i criminali distribuiscono, installano ed eseguono miner trojanizzati **a spese delle risorse di calcolo di altre persone**.
+
+La perdita quindi è reale, ma insolita. Non viene esfiltrato nulla. Paghi in tempo di processore, in calore, in autonomia della batteria ridotta e in elettricità.
+
+## La sfumatura che conta per il rilevamento
+
+Vale la pena dirlo chiaramente, perché spiega come mai questi programmi sfuggono alle scansioni.
+
+**I coin miner non sono intrinsecamente malevoli.** Microsoft lo afferma senza giri di parole: privati e organizzazioni investono in hardware ed energia elettrica per fare mining in modo legittimo. Il software in sé non è il reato. Eseguirlo sulla macchina di qualcun altro, sì.
+
+È un confine scomodo per gli strumenti di sicurezza e ha una conseguenza pratica che vedremo più avanti: buona parte del software di mining non viene classificata come malware ma come **applicazione potenzialmente indesiderata**, una categoria su cui molti sistemi non intervengono a meno che non glielo si chieda.
+
+## Come arriva
+
+Microsoft elenca tre punti di partenza comuni, e corrispondono alla normale attività quotidiana più che ad attacchi esotici:
+
+- **allegati di posta elettronica** che tentano di installare malware
+- **siti che ospitano exploit kit** mirati alle vulnerabilità dei browser e di altri software
+- **siti che eseguono script mentre navighi**, sfruttando la tua potenza di calcolo per tutto il tempo in cui la pagina resta aperta
+
+Il terzo è quello che si tende a sottovalutare, perché non richiede alcuna installazione. Chiudi la scheda e si ferma. Lasci la scheda aperta in secondo piano per un pomeriggio e non si ferma affatto.
+
+![Un contatore elettrico prepagato Itron con tastierino, montato accanto a un quadro elettrico su una parete bianca.](https://images.pexels.com/photos/13785838/pexels-photo-13785838.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Una catena documentata, dall'inizio alla fine
+
+Microsoft pubblica un esempio concreto, e conviene seguirlo perché ogni passaggio è una tecnica ordinaria e non qualcosa di esotico.
+
+Un documento Word che contiene un **exploit DDE**, rilevato come `Exploit:O97M/DDEDownloader.PA`, avvia un cmdlet. Quel cmdlet esegue uno script **PowerShell** malevolo, rilevato come `Trojan:PowerShell/Maponeir.A`. Lo script scarica un miner trojanizzato: una build modificata di **XMRig**, che poi mina **Monero**.
+
+Due elementi saltano all'occhio. Il miner in fondo alla catena è una **versione modificata di uno strumento legittimo**, ed è per questo che il rilevamento basato sulle firme fa fatica. E il meccanismo di consegna, gli exploit DDE nei documenti Office, era già stato usato in passato per distribuire ransomware. Le stesse porte danno su stanze diverse.
+
+## Che cosa noteresti davvero
+
+Poiché non viene rubato nulla nel senso consueto, i sintomi sono fisici e non digitali:
+
+**La macchina è calda e rumorosa quando dovrebbe essere ferma.** Una ventola che gira forte su un portatile che non sta facendo nulla è in assoluto il primo indizio più comune.
+
+**Tutto sembra più lento**, soprattutto ciò che richiede il processore. Il mining prende tutto quello che riesce a prendere.
+
+**L'autonomia della batteria crolla** su un portatile, e il dispositivo è tiepido anche con attività leggere.
+
+**La bolletta elettrica sale poco a poco** se la macchina resta accesa in continuazione. Su un singolo computer di casa è poca cosa. Su scala di un ufficio, è il motivo per cui alle aziende interessa.
+
+Nessuno di questi segnali è una prova di per sé. Una batteria che invecchia, una ventola che si guasta o una scheda del browser che si comporta male producono gli stessi effetti, e saltare alla conclusione del malware è il modo in cui si finisce per reinstallare un sistema operativo per risolvere un dissipatore impolverato.
+
+## L'impostazione che quasi tutti lasciano disattivata
+
+Questo è il punto pratico, e discende direttamente dal confine descritto sopra.
+
+La protezione consigliata da Microsoft è **attivare il rilevamento delle applicazioni potenzialmente indesiderate**. Alcuni strumenti di mining non sono classificati come malware ma vengono rilevati come **PUA**, e la stessa impostazione copre anche adware e client per il download di torrent. La documentazione osserva che queste applicazioni possono incidere negativamente sulle prestazioni della macchina.
+
+Il motivo per cui qui conta è preciso: se un miner viaggia insieme a software che ricade nella categoria PUA anziché in quella malware, uno scanner con il rilevamento PUA disattivato lo guarderà e lo lascerà passare. Attivarlo non costa nulla e chiude esattamente la falla in cui vive questa minaccia.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Se lo stesso documento che ha lasciato un miner ha lasciato anche qualcosa che legge le credenziali, il miner è solo la metà visibile del problema. Cambiare le password da un dispositivo pulito è il passo che limita la metà invisibile." />
+
+## In breve
+
+Il cryptojacking è furto di risorse di calcolo e non di dati, ed è per questo che sfugge alla lista di controlli che la maggior parte delle persone usa per riconoscere un'infezione. Arriva tramite allegati di posta, exploit kit o script eseguiti in una scheda del browser.
+
+La catena documentata da Microsoft va da un exploit DDE in un file Word fino a un XMRig modificato che mina Monero, passando per PowerShell, e il fatto che il miner sia uno strumento legittimo modificato è proprio ciò che lo rende sfuggente.
+
+Tieni d'occhio una macchina calda, rumorosa e lenta mentre è ferma, tratta questi segni come un motivo per andare a controllare e non come un verdetto, e attiva il rilevamento delle applicazioni potenzialmente indesiderate, perché è la categoria in cui ricade buona parte di questo software.
+
+*La descrizione dei coin miner, compresi i tre vettori di infezione, l'affermazione che i coin miner non sono intrinsecamente malevoli, la catena da DDE a PowerShell a XMRig che mina Monero e l'indicazione di attivare il rilevamento delle applicazioni potenzialmente indesiderate, è tratta dalla documentazione di Microsoft Defender for Endpoint sui coin miner, verificata al momento della stesura. Le tecniche delle minacce evolvono; verifica sulla documentazione aggiornata del fornitore prima di fare affidamento su un dettaglio specifico. I link commerciali riportano l'attributo rel="sponsored nofollow"; può essere applicata una commissione di affiliazione, senza costi aggiuntivi per te.*

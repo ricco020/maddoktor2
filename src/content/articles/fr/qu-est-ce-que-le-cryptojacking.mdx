@@ -1,0 +1,83 @@
+---
+title: "Cryptojacking : le malware qui vole de l'électricité plutôt que des données"
+description: "Un mineur de cryptomonnaie ne touche ni à vos fichiers ni à vos mots de passe. Il prend votre processeur et votre facture d'électricité. Pourquoi il passe inaperçu, la chaîne d'infection documentée par Microsoft, et le réglage que presque tout le monde laisse désactivé."
+pubDate: 2026-08-01
+hero: "https://images.pexels.com/photos/10359908/pexels-photo-10359908.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Un ventilateur de boîtier Cooler Master monté dans un PC de bureau, avec des barrettes de mémoire visibles derrière"
+keyword: "cryptojacking"
+tags: ["cryptojacking", "coinminer", "monero", "pua", "windows", "performance"]
+translationKey: "what-is-cryptojacking"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Presque tous les guides sur les malwares apprennent à repérer des signes de vol : fichiers chiffrés, comptes consultés, connexions inhabituelles. Un mineur de cryptomonnaie ne déclenche aucun de ces signaux, parce qu'il ne cherche pas vos données. Il veut votre processeur, et il veut le garder aussi longtemps que possible sans que vous le remarquiez.
+
+## Ce que cela demande réellement
+
+Le minage est, selon la description de Microsoft, le fait d'exécuter les calculs mathématiques complexes nécessaires à la tenue d'un registre blockchain. Il génère des pièces, et il **exige des ressources de calcul importantes**.
+
+C'est précisément là que se trouve le modèle économique. Plutôt que d'acheter du matériel et de payer l'électricité, un attaquant fait tourner le calcul sur les machines d'autres personnes. Microsoft est direct sur le mobile : les criminels distribuent, installent et exécutent des mineurs trojanisés **aux dépens des ressources de calcul d'autrui**.
+
+La perte est donc bien réelle, mais inhabituelle. Rien n'est exfiltré. Vous payez en temps processeur, en chaleur, en autonomie de batterie réduite et en électricité.
+
+## La nuance qui compte pour la détection
+
+Voici un point qui mérite d'être énoncé clairement, car il explique pourquoi ces programmes échappent aux analyses.
+
+**Les mineurs de cryptomonnaie ne sont pas intrinsèquement malveillants.** Microsoft le dit sans détour : des particuliers et des organisations investissent dans du matériel et de l'électricité pour miner légitimement. Le logiciel en lui-même n'est pas le délit. L'exécuter sur la machine de quelqu'un d'autre, si.
+
+C'est une frontière inconfortable pour les outils de sécurité, et elle a une conséquence pratique abordée plus bas : une bonne partie des logiciels de minage est classée non pas comme malware, mais comme **application potentiellement indésirable**, catégorie sur laquelle beaucoup de systèmes n'interviennent pas sauf si vous le leur demandez.
+
+## Comment il arrive
+
+Microsoft cite trois points de départ courants, et ils correspondent à des activités quotidiennes ordinaires plutôt qu'à des attaques exotiques :
+
+- les **pièces jointes d'e-mails** qui tentent d'installer un malware
+- les **sites hébergeant des exploit kits** qui ciblent des vulnérabilités dans les navigateurs et d'autres logiciels
+- les **sites qui exécutent des scripts pendant que vous naviguez**, en utilisant votre puissance de calcul tant que la page reste ouverte
+
+Le troisième est celui que l'on sous-estime, car il ne demande aucune installation. Fermez l'onglet et cela s'arrête. Laissez l'onglet ouvert en arrière-plan tout un après-midi et cela continue.
+
+![Un compteur électrique prépayé Itron avec clavier, monté à côté d'un tableau électrique sur un mur blanc.](https://images.pexels.com/photos/13785838/pexels-photo-13785838.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Une chaîne documentée, de bout en bout
+
+Microsoft publie un exemple concret, et il vaut la peine d'être suivi car chaque étape relève d'une technique ordinaire plutôt que de quoi que ce soit d'exotique.
+
+Un document Word porteur d'un **exploit DDE**, détecté sous le nom `Exploit:O97M/DDEDownloader.PA`, lance une cmdlet. Cette cmdlet exécute un script **PowerShell** malveillant, détecté sous le nom `Trojan:PowerShell/Maponeir.A`. Le script télécharge un mineur trojanisé : une version modifiée de **XMRig**, qui mine ensuite du **Monero**.
+
+Deux choses ressortent. Le mineur au bout de la chaîne est une **version modifiée d'un outil légitime**, ce qui explique les difficultés de la détection par signatures. Et le mécanisme de diffusion, les exploits DDE dans les documents Office, avait déjà servi à distribuer des ransomwares. Les mêmes portes mènent à des pièces différentes.
+
+## Ce que vous remarqueriez vraiment
+
+Comme rien n'est volé au sens habituel, les symptômes sont physiques plutôt que numériques :
+
+**La machine est chaude et bruyante alors qu'elle devrait être au repos.** Un ventilateur qui s'emballe sur un portable qui ne fait rien est le tout premier indice le plus fréquent.
+
+**Tout paraît plus lent**, en particulier ce qui sollicite le processeur. Le minage prend ce qu'il peut prendre.
+
+**L'autonomie de la batterie s'effondre** sur un portable, et l'appareil est tiède même pour des tâches légères.
+
+**La facture d'électricité grimpe** si la machine tourne en continu. Sur un seul ordinateur domestique, c'est peu. À l'échelle d'un bureau, c'est la raison pour laquelle les entreprises s'en préoccupent.
+
+Aucun de ces signes ne constitue une preuve à lui seul. Une batterie vieillissante, un ventilateur défaillant ou un onglet de navigateur mal élevé produisent les mêmes effets, et sauter à la conclusion d'un malware est ce qui conduit à réinstaller un système d'exploitation pour régler un dissipateur poussiéreux.
+
+## Le réglage que presque tout le monde laisse désactivé
+
+C'est l'enseignement pratique, et il découle directement de la frontière évoquée plus haut.
+
+La protection recommandée par Microsoft consiste à **activer la détection des applications potentiellement indésirables**. Certains outils de minage ne sont pas classés comme malwares mais détectés comme **PUA**, et le même réglage couvre aussi les adwares et les clients de téléchargement torrent. La documentation note que ces applications peuvent nuire aux performances de la machine.
+
+La raison pour laquelle cela compte ici est précise : si un mineur s'appuie sur un logiciel qui relève de la catégorie PUA plutôt que de celle des malwares, un scanner dont la détection PUA est désactivée le verra et le laissera passer. Activer cette option ne coûte rien et referme exactement la faille dans laquelle cette menace prospère.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Si le document qui a déposé un mineur a aussi déposé quelque chose qui lit vos identifiants, le mineur n'est que la moitié visible du problème. Changer ses mots de passe depuis un appareil sain est l'étape qui limite la moitié invisible." />
+
+## En résumé
+
+Le cryptojacking est un vol de ressources de calcul, pas de données, et c'est pour cela qu'il échappe à la checklist que la plupart des gens utilisent pour repérer une infection. Il arrive par des pièces jointes d'e-mails, des exploit kits ou des scripts exécutés dans un onglet de navigateur.
+
+La chaîne documentée par Microsoft va d'un exploit DDE dans un fichier Word à un XMRig modifié qui mine du Monero, en passant par PowerShell, et le fait que le mineur soit un outil légitime modifié est précisément ce qui le rend insaisissable.
+
+Surveillez une machine chaude, bruyante et lente alors qu'elle est au repos, traitez ces signes comme une raison de vérifier et non comme un verdict, et activez la détection des applications potentiellement indésirables, car c'est la catégorie dont relève une bonne partie de ces logiciels.
+
+*La description des mineurs de cryptomonnaie, dont les trois vecteurs d'infection, l'affirmation selon laquelle les mineurs ne sont pas intrinsèquement malveillants, la chaîne DDE vers PowerShell vers XMRig minant du Monero, et la recommandation d'activer la détection des applications potentiellement indésirables, provient de la documentation Microsoft Defender for Endpoint consacrée aux mineurs de cryptomonnaie, consultée au moment de la rédaction. Les techniques évoluent ; vérifiez auprès de la documentation à jour de l'éditeur avant de vous fier à un détail précis. Les liens commerciaux portent l'attribut rel="sponsored nofollow" ; une commission d'affiliation peut s'appliquer, sans coût supplémentaire pour vous.*
