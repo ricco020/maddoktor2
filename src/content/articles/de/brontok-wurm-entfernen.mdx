@@ -1,0 +1,154 @@
+---
+title: "Brontok entfernen (2026): Die Schäden beheben, die ein Wurm aus den 2000ern noch immer hinterlässt"
+description: "Brontok deaktiviert Task-Manager, regedit und Ordneroptionen und kapert dann Ihre .exe-Verknüpfungen. So entfernen Sie den Wurm und reparieren, was er kaputt gemacht hat."
+pubDate: 2026-08-03
+hero: "/images/brontok-removal-hero.jpg"
+heroAlt: "Ein metallener USB-Stick auf einer dunklen Holzfläche, von einem einzelnen schmalen Lichtstrahl erfasst"
+keyword: "brontok entfernen"
+tags: ["malware-removal", "worm", "brontok", "windows", "usb", "autorun"]
+translationKey: "brontok-removal"
+products:
+  - name: "Microsoft Defender Antivirus"
+    brand: "Microsoft"
+    description: "In Windows integrierter Virenschutz; erkennt die Wurmfamilie Win32/Brontok."
+    os: "Windows"
+    url: "https://www.microsoft.com/en-us/windows/comprehensive-security"
+    price: 0
+  - name: "Malwarebytes Free"
+    brand: "Malwarebytes"
+    description: "Scanner auf Abruf für eine zweite Meinung unter Windows."
+    os: "Windows"
+    url: "https://www.malwarebytes.com/mwb-download"
+    price: 0
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Brontok ist eine Familie von Windows-Würmern, die Mitte der 2000er Jahre erstmals auftauchte. Sie verbreitet sich, indem sie sich selbst massenhaft per E-Mail verschickt und sich auf Wechseldatenträger kopiert, und ihr charakteristischer Zug besteht darin, Sie von genau den Werkzeugen auszusperren, mit denen Sie sich normalerweise wehren würden: Task-Manager, Registrierungs-Editor, Eingabeaufforderung und Ordneroptionen funktionieren allesamt nicht mehr.
+
+Deshalb ist das Entfernen von Brontok eine Aufgabe mit zwei Teilen. Den Wurm zu beseitigen ist die leichte Hälfte. Die Hälfte, an der die Leute hängen bleiben, ist das Reparieren der Einstellungen, die er verändert hat, denn ein Scanner kann die schädlichen Dateien löschen und Ihnen trotzdem einen Rechner hinterlassen, auf dem ein Doppelklick auf ein beliebiges Programm gar nichts bewirkt.
+
+## Ist Brontok 2026 noch eine echte Bedrohung?
+
+Ehrlich gesagt: nicht als Epidemie. Brontok gehört in die Windows-XP-Ära, der aktuelle Microsoft Defender erkennt die Familie, und das AutoRun-Verhalten, auf das sie sich verließ, um automatisch von einem USB-Stick zu starten, ist auf unterstützten Windows-Versionen seit Jahren standardmäßig deaktiviert.
+
+Er taucht weiterhin in zwei Situationen auf, und genau deshalb suchen die Leute noch danach:
+
+- **Alternde oder offline betriebene Rechner**, die keine Updates mehr erhalten, oft mit einer nicht mehr unterstützten Windows-Version in einer Werkstatt, einem Labor, einer Schule oder einem kleinen Betrieb.
+- **USB-Sticks, die zwischen diesen Rechnern zirkulieren.** Die infizierten Dateien liegen unbegrenzt lange auf dem Datenträger und warten darauf, dass jemand sie von Hand öffnet.
+
+Das Risiko besteht heute also nicht darin, dass Brontok stillschweigend ein gepatchtes Windows-11-Notebook übernimmt. Es besteht darin, dass ein Stick, den man Ihnen in die Hand gedrückt hat, ihn noch immer mit sich trägt und irgendwo im Gebäude ein alter Rechner ihn weiterhin nährt.
+
+![Ein blauer Kingston-USB-Stick mit abgenommener Kappe, auf einer schlichten weißen Fläche neben seinem Trageband liegend](/images/brontok-removal-body.jpg)
+
+## Was Brontok mit einem Rechner tatsächlich anstellt
+
+Die Familie hat viele Varianten, und sie verhalten sich nicht alle gleich. Die Einzelheiten unten sind von F-Secure und Microsoft für die vielfach analysierte Variante **Brontok.B** dokumentiert und stehen repräsentativ für die Vorgehensweise der Familie.
+
+**Sie legt Kopien von sich an mehreren Stellen gleichzeitig ab.** Brontok.B legt unter anderem die Dateien `C:\WINDOWS\winme.exe`, `C:\winme.exe` und `C:\WINDOWS\Web\shell.exe` ab, dazu eine `Empty.pif` im Autostart-Ordner und eine `C:\AUTORUN.INF`.
+
+**Sie schafft sich mehr als einen Startweg.** Über den üblichen Schlüssel `HKLM\Software\Microsoft\Windows\CurrentVersion\Run` hinaus bearbeitet sie die Winlogon-Schlüssel, sodass Windows sie selbst startet:
+
+```
+Shell    = Explorer.exe "C:\WINDOWS\winme.exe"
+Userinit = C:\WINDOWS\System32\userinit.exe,C:\WINDOWS\winme.exe
+```
+
+Microsoft dokumentiert außerdem geplante Aufgaben, die als zusätzlicher Startpunkt genutzt werden. Diese Redundanz ist der Grund, warum eine halb fertige Bereinigung den Wurm nach einem Neustart sofort zurückkehren lässt.
+
+**Sie kapert die Art, wie Windows Programme öffnet.** Sie leitet die Verknüpfungen `exefile`, `comfile`, `batfile` und `piffile` unter `\shell\open\command` über ihre eigene `shell.exe` um. Jedes Programm, das Sie starten, läuft zuerst durch den Wurm.
+
+**Sie schaltet Ihre Abwehrmechanismen ab.** Zu den dokumentierten Werten gehören:
+
+| Aktivierte Einstellung | Was dadurch kaputtgeht |
+|---|---|
+| `DisableTaskMgr = 1` | Der Task-Manager lässt sich nicht öffnen |
+| `DisableRegistryTools = 1` | regedit ist blockiert |
+| `DisableCMD = 1` | Die Eingabeaufforderung ist blockiert |
+| `NoFolderOptions = 1` | Sie kommen nicht an die Ordneroptionen heran, um versteckte Dateien anzuzeigen |
+| `DisableMSI = 1` | Windows Installer ist blockiert, Sie können also kein Bereinigungsprogramm installieren |
+| `DisableSR = 1`, `DisableConfig = 1` | Die Systemwiederherstellung ist deaktiviert |
+
+Lesen Sie diese Tabelle als Checkliste. Wenn mehrere dieser Symptome auf Ihren Rechner zutreffen, haben Sie es mit der richtigen Bedrohung zu tun.
+
+## So entfernen Sie Brontok
+
+### 1. Den Rechner und jeden USB-Datenträger isolieren
+
+Ziehen Sie das Netzwerkkabel ab oder schalten Sie das WLAN aus, und legen Sie jeden USB-Stick, der den Rechner berührt hat, physisch beiseite. Stecken Sie sie noch nicht in einen sauberen Computer, um sie zu "prüfen". Brontok verschickt sich massenhaft per E-Mail, ein infizierter Rechner, der online bleibt, sendet sich also weiter an Ihre Kontakte.
+
+### 2. Ihre Dateien sichern, bevor Sie bereinigen, nicht danach
+
+Diese Reihenfolge ist hier wichtiger als bei den meisten anderen Schadprogrammen. Brontok deaktiviert die Systemwiederherstellung, Ihr gewohnter Wiederherstellungspunkt ist also weg, und eine Bereinigung, die auf einer nicht mehr unterstützten Windows-Version schiefgeht, kann dazu führen, dass der Rechner nicht mehr startet. Kopieren Sie Ihre Dokumente zuerst weg, auf eine externe Festplatte, die Sie anschließend trennen.
+
+Kopieren Sie keine Dateien mit den Endungen `.exe`, `.com`, `.bat`, `.pif` oder `.scr` mit, und behandeln Sie jedes Ordnersymbol, das sich als Programm entpuppt, als infiziert und nicht als echt.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Brontok schaltet die Systemwiederherstellung ab, es wartet also kein Wiederherstellungspunkt auf Sie. Erstellen Sie ein Abbild der Festplatte, bevor Sie mit der Bereinigung eines alten Rechners beginnen." />
+
+### 3. In den abgesicherten Modus starten
+
+Der abgesicherte Modus lädt nur einen minimalen Satz an Treibern und Diensten, was den Wurm in der Regel am Ausführen hindert und ihn davon abhält, seine eigenen Registrierungseinträge zu reparieren, während Sie sie löschen.
+
+Halten Sie unter Windows 10 und 11 die **Umschalttaste** gedrückt, während Sie auf **Neu starten** klicken, gehen Sie dann zu **Problembehandlung → Erweiterte Optionen → Starteinstellungen → Neu starten** und drücken Sie **4** für den abgesicherten Modus. Auf den älteren Versionen, auf denen Brontok eher anzutreffen ist, tippen Sie während des Startvorgangs auf **F8** und wählen den abgesicherten Modus aus dem Menü.
+
+### 4. Einen vollständigen Scan durchführen, dann eine zweite Meinung einholen
+
+Führen Sie mit Microsoft Defender einen **vollständigen** Scan durch, keinen Schnellscan. Schnellscans prüfen die üblichen Verstecke, und Brontok verteilt Kopien von sich absichtlich außerhalb davon.
+
+Bestätigen Sie das Ergebnis anschließend mit einem zweiten Scanner wie Malwarebytes Free. Dass zwei Engines uneins sind, ist häufig und normal, und bei einem so alten Wurm sollten ihn beide erkennen.
+
+Wenn Windows Installer blockiert ist und Sie keinen Scanner installieren können, ist das `DisableMSI` bei der Arbeit. Korrigieren Sie zuerst die Registrierungswerte in Schritt 5, starten Sie neu, und kommen Sie dann zum Scannen zurück.
+
+### 5. Reparieren, was der Wurm verändert hat
+
+Das ist der Schritt, den die Leute überspringen, und deshalb ist "Ich habe ihn entfernt, aber nichts funktioniert" die häufigste Beschwerde zu Brontok.
+
+Ihr Virenschutz entfernt die *Dateien* des Wurms. Er stellt nicht immer die *Einstellungen* wieder her, die der Wurm umgeschrieben hat. Insbesondere gilt: Wenn die Verknüpfung `exefile` weiterhin auf eine `shell.exe` zeigt, die es nicht mehr gibt, haben Sie jetzt einen Rechner, auf dem überhaupt kein Programm mehr startet.
+
+Microsoft veröffentlicht eine Registrierungskorrektur speziell dafür, die Verknüpfungen ausführbarer Dateien nach der Desinfektion wiederherzustellen. Verwenden Sie die Korrektur des Herstellers selbst statt einer Registrierungsdatei aus einem Forum, und wenden Sie sie aus dem abgesicherten Modus heraus an.
+
+Die oben genannten Richtlinienwerte (`DisableTaskMgr`, `DisableRegistryTools`, `DisableCMD`, `NoFolderOptions`, `DisableMSI`) müssen ebenfalls gelöscht oder wieder auf `0` gesetzt werden. Falls regedit selbst noch blockiert ist, dokumentiert Microsoft, wie man es zunächst über eine Eingabeaufforderung wieder aktiviert.
+
+### 6. Neu starten, erneut scannen, und erst dann die USB-Datenträger anfassen
+
+Starten Sie normal neu und scannen Sie erneut. Ein sauberer zweiter Scan nach einem Neustart ist das eigentliche Signal, denn die ganze Bauart von Brontok zielt darauf ab, Neustarts zu überstehen.
+
+Erst wenn der Rechner nachweislich sauber ist, sollten Sie die USB-Datenträger scannen, einen nach dem anderen, mit weiterhin deaktiviertem AutoRun.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Brontok verschickt sich massenhaft per E-Mail aus dem Adressbuch, behandeln Sie das E-Mail-Konto also als offengelegt. Ändern Sie dieses Passwort von einem sauberen Gerät aus und speichern Sie es verschlüsselt." />
+
+### 7. Davon ausgehen, dass das E-Mail-Konto offengelegt wurde
+
+Da sich diese Familie an die Adressen schickt, die sie findet, haben Ihre Kontakte möglicherweise Nachrichten von Ihnen erhalten. Ändern Sie das E-Mail-Passwort von einem *anderen, sauberen* Gerät aus, aktivieren Sie die Zwei-Faktor-Authentifizierung, und sagen Sie Ihren Kontakten, dass sie keine Anhänge öffnen sollen, die scheinbar von Ihnen stammen.
+
+## Woran Sie erkennen, dass er wirklich weg ist
+
+- Task-Manager, regedit und Ordneroptionen lassen sich alle wieder normal öffnen.
+- Programme starten, wenn Sie sie doppelt anklicken, ohne unerklärliche Verzögerung.
+- Nach zwei oder drei Neustarts taucht kein unbekannter Eintrag in Ihrer Autostart-Liste wieder auf.
+- Ein vollständiger Scan bleibt sauber, und zwar *nach* einem Neustart, nicht nur davor.
+- Im Autostart-Ordner liegt keine `Empty.pif`, und unter `C:\` liegt keine verirrte `AUTORUN.INF`.
+
+Wenn nach einem wirklich sauberen Scan immer wieder Einträge auftauchen, hören Sie mit dem Bereinigen auf und installieren Sie Windows neu. Auf einer nicht mehr unterstützten Version ist das ohnehin die ehrliche Antwort: Ein Rechner, der alt genug ist, sich noch Brontok einzufangen, ist ein Rechner, der seit Langem ohne Patches läuft.
+
+## Häufig gestellte Fragen
+
+**Gibt es ein eigenes Entfernungswerkzeug für Brontok?**
+Ein Werkzeug für diesen einen Zweck ist 2026 nicht nötig. Die Bedrohung ist alt genug, dass die aktuellen gängigen Engines die Familie erkennen, einschließlich des Defenders, der ohnehin in Windows integriert ist. Was Sie tatsächlich brauchen, ist der *Reparatur*-Schritt für Dateiverknüpfungen und deaktivierte Richtlinien, den ein Scanner nicht immer ausführt.
+
+**Warum kann ich nach dem Entfernen den Task-Manager oder regedit nicht öffnen?**
+Weil der Wurm die Richtlinienwerte gesetzt hat, die sie deaktivieren, und das Löschen der Dateien des Wurms diese Werte nicht automatisch entfernt. Löschen Sie sie von Hand oder wenden Sie die Registrierungskorrektur des Herstellers an.
+
+**Jetzt öffnet sich gar nichts mehr. Was ist passiert?**
+Mit ziemlicher Sicherheit zeigt die Verknüpfung `exefile` noch auf eine gelöschte `shell.exe`. Die Verknüpfung zu reparieren behebt das. Genau deshalb kann das Entfernen der Dateien ohne Reparatur der Registrierung einen Rechner in einem schlechteren Zustand zurücklassen als zuvor.
+
+**Kann Brontok mein Handy oder einen Mac infizieren?**
+Nein. Es handelt sich um einen ausführbaren Windows-Wurm. Ein infizierter USB-Stick, der in einen Mac oder ein Android-Handy gesteckt wird, zeigt zwar die schädlichen Dateien an, ausgeführt werden sie dort aber nicht.
+
+**Ist ein USB-Stick sicher, sobald der PC sauber ist?**
+Nur, nachdem Sie den Stick selbst gescannt haben. Die Kopien auf dem Datenträger bleiben von der Bereinigung des Computers unberührt, und ein vergessener Stick ist der Weg, auf dem diese Infektionen Wochen später zurückkehren.
+
+## Quellen
+
+- Microsoft Security Intelligence, Bedrohungsbeschreibung *Worm:Win32/Brontok@mm*
+- F-Secure, Beschreibung *Worm:W32/Brontok.B* (abgelegte Dateien, Registrierungswerte, deaktivierte Funktionen)
+- Trend Micro Threat Encyclopedia, *Worm.Win32.BRONTOK.D*

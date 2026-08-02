@@ -62,16 +62,33 @@ const fmt = (d: Date) => {
   return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
 };
 
-// hreflang alternates
-const alternates = [
-  { lang: 'x-default', href: `${SITE.url}/articles/${slug}/` },
-  { lang: 'en', href: `${SITE.url}/articles/${slug}/` },
-  { lang: 'fr', href: `${SITE.url}/fr/articles/${slug}/` },
-  { lang: 'es', href: `${SITE.url}/es/articles/${slug}/` },
-  { lang: 'de', href: `${SITE.url}/de/articles/${slug}/` },
-  { lang: 'it', href: `${SITE.url}/it/articles/${slug}/` },
-  { lang: 'pt', href: `${SITE.url}/pt/articles/${slug}/` },
-];
+// hreflang alternates.
+// Article slugs are localized (en/how-to-remove-a-rat vs de/rat-trojaner-entfernen),
+// so each locale's URL has to be resolved through `translationKey` rather than by
+// reusing the current slug: prefixing the current slug with /fr, /es... points at
+// pages that do not exist. Only locales that genuinely hold a translation are
+// emitted, and the current locale always lists itself (Google requires the
+// self-referential alternate, and drops the whole cluster when it is missing).
+const translationKey = entry.data.translationKey;
+const localeHref = (l: string, s: string) =>
+  `${SITE.url}${l === 'en' ? '' : `/${l}`}/articles/${s}/`;
+const selfHref = localeHref(lang, slug);
+
+const alternates: { lang: string; href: string }[] = [];
+for (const l of Object.keys(COLL_BY_LANG)) {
+  if (l === lang) {
+    alternates.push({ lang: l, href: selfHref });
+    continue;
+  }
+  if (!translationKey) continue;
+  const sibling = (await getCollection(COLL_BY_LANG[l] as any)).find(
+    (a: any) => a.data.translationKey === translationKey
+  );
+  if (sibling) alternates.push({ lang: l, href: localeHref(l, (sibling as any).id) });
+}
+// x-default points at the English version when there is one, otherwise at self.
+const xDefault = alternates.find((a) => a.lang === 'en')?.href ?? selfHref;
+alternates.unshift({ lang: 'x-default', href: xDefault });
 
 const articleSchema = [
   {

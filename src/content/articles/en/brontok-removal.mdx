@@ -1,0 +1,154 @@
+---
+title: "Brontok Removal (2026): Undo the Damage a 2000s Worm Still Leaves Behind"
+description: "Brontok disables Task Manager, regedit and Folder Options, then hijacks your .exe associations. Here is how to remove the worm and repair what it broke."
+pubDate: 2026-08-03
+hero: "/images/brontok-removal-hero.jpg"
+heroAlt: "A metal USB flash drive lying on a dark wooden surface, picked out by a single narrow beam of light"
+keyword: "brontok removal"
+tags: ["malware-removal", "worm", "brontok", "windows", "usb", "autorun"]
+translationKey: "brontok-removal"
+products:
+  - name: "Microsoft Defender Antivirus"
+    brand: "Microsoft"
+    description: "Antivirus built into Windows; detects the Win32/Brontok worm family."
+    os: "Windows"
+    url: "https://www.microsoft.com/en-us/windows/comprehensive-security"
+    price: 0
+  - name: "Malwarebytes Free"
+    brand: "Malwarebytes"
+    description: "On-demand second-opinion scanner for Windows."
+    os: "Windows"
+    url: "https://www.malwarebytes.com/mwb-download"
+    price: 0
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Brontok is a family of Windows worms first seen in the mid-2000s. It spreads by mass-mailing itself and by copying itself onto removable drives, and its signature move is to lock you out of the tools you would normally use to fight back: Task Manager, the Registry Editor, the Command Prompt and Folder Options all stop working.
+
+That is why removing Brontok is a two-part job. Killing the worm is the easy half. The half people get stuck on is repairing the settings it changed, because a scanner can delete the malicious files and still leave you with a machine where double-clicking any program does nothing.
+
+## Is Brontok still a real threat in 2026?
+
+Honestly: not as an epidemic. Brontok belongs to the Windows XP era, current Microsoft Defender detects the family, and the AutoRun behaviour it relied on to fire automatically from a USB stick has been disabled by default on supported Windows versions for years.
+
+It still shows up in two situations, which is why people still search for it:
+
+- **Aging or offline machines** that stopped receiving updates, often running an unsupported version of Windows in a workshop, a lab, a school or a small business.
+- **USB sticks that circulate between those machines.** The infected files sit on the drive indefinitely, waiting for someone to open them by hand.
+
+So the risk today is not that Brontok will silently take over a patched Windows 11 laptop. It is that a stick you were handed still carries it, and an old machine somewhere in the building is still feeding it.
+
+![A blue Kingston USB flash drive with its cap removed, lying on a plain white surface next to its lanyard](/images/brontok-removal-body.jpg)
+
+## What Brontok actually does to a machine
+
+The family has many variants and they do not all behave identically. The specifics below are documented by F-Secure and Microsoft for the widely analysed **Brontok.B** variant, and they are representative of the family's approach.
+
+**It plants copies of itself in several places at once.** Brontok.B drops files including `C:\WINDOWS\winme.exe`, `C:\winme.exe` and `C:\WINDOWS\Web\shell.exe`, plus an `Empty.pif` in the Startup folder and a `C:\AUTORUN.INF`.
+
+**It creates more than one way to start.** Beyond the usual `HKLM\Software\Microsoft\Windows\CurrentVersion\Run` key, it edits the Winlogon keys so Windows itself launches it:
+
+```
+Shell    = Explorer.exe "C:\WINDOWS\winme.exe"
+Userinit = C:\WINDOWS\System32\userinit.exe,C:\WINDOWS\winme.exe
+```
+
+Microsoft also documents scheduled jobs being used as an extra launch point. This redundancy is the reason a half-finished cleanup lets the worm come straight back after a reboot.
+
+**It hijacks how Windows opens programs.** It redirects the `exefile`, `comfile`, `batfile` and `piffile` `\shell\open\command` associations through its own `shell.exe`. Every program you launch goes through the worm first.
+
+**It switches off your defences.** Documented values include:
+
+| Setting turned on | What it breaks |
+|---|---|
+| `DisableTaskMgr = 1` | Task Manager will not open |
+| `DisableRegistryTools = 1` | regedit is blocked |
+| `DisableCMD = 1` | Command Prompt is blocked |
+| `NoFolderOptions = 1` | You cannot reach Folder Options to show hidden files |
+| `DisableMSI = 1` | Windows Installer is blocked, so you cannot install a cleaner |
+| `DisableSR = 1`, `DisableConfig = 1` | System Restore is disabled |
+
+Read that table as a checklist. If several of those symptoms match your machine, you are looking at the right threat.
+
+## How to remove Brontok
+
+### 1. Isolate the machine and every USB drive
+
+Unplug the network cable or turn off Wi-Fi, and physically set aside every USB stick that has touched the machine. Do not plug them into a clean computer to "check" them yet. Brontok is a mass-mailer, so an infected machine that stays online keeps sending itself to your contacts.
+
+### 2. Back up your files before you clean, not after
+
+This order matters more here than with most malware. Brontok disables System Restore, so your usual rollback point is gone, and a cleanup that goes wrong on an unsupported version of Windows can leave you unable to boot. Copy your documents off first, to an external disk you then disconnect.
+
+Do not copy `.exe`, `.com`, `.bat`, `.pif` or `.scr` files across, and treat any folder icon that turns out to be a program as infected rather than genuine.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Brontok switches System Restore off, so there is no rollback point waiting for you. Image the disk before you start cleaning an old machine." />
+
+### 3. Boot into Safe Mode
+
+Safe Mode loads a minimal set of drivers and services, which usually stops the worm from running and stops it repairing its own registry entries while you delete them.
+
+On Windows 10 and 11, hold **Shift** while clicking **Restart**, then go to **Troubleshoot → Advanced options → Startup Settings → Restart** and press **4** for Safe Mode. On the older versions where Brontok is more likely to be found, tap **F8** during boot and choose Safe Mode from the menu.
+
+### 4. Run a full scan, then a second opinion
+
+Run a **full** scan with Microsoft Defender, not a quick one. Quick scans check the usual hiding places, and Brontok deliberately spreads copies of itself outside them.
+
+Then confirm with a second scanner such as Malwarebytes Free. Two engines disagreeing is common and normal, and on a worm this old both should recognise it.
+
+If Windows Installer is blocked and you cannot install a scanner, that is `DisableMSI` doing its job. Fix the registry values in step 5 first, reboot, then come back and scan.
+
+### 5. Repair what the worm changed
+
+This is the step people skip, and it is why "I removed it but nothing works" is the most common Brontok complaint.
+
+Your antivirus removes the worm's *files*. It does not always restore the *settings* the worm rewrote. In particular, if the `exefile` association still points at a `shell.exe` that no longer exists, you now have a machine where no program will start at all.
+
+Microsoft publishes a registry fix specifically to restore executable file associations after disinfection. Use the vendor's own fix rather than a registry file from a forum, and apply it from Safe Mode.
+
+The policy values above (`DisableTaskMgr`, `DisableRegistryTools`, `DisableCMD`, `NoFolderOptions`, `DisableMSI`) also need to be cleared or set back to `0`. If regedit itself is still blocked, Microsoft documents re-enabling it from a command prompt first.
+
+### 6. Reboot, rescan, and only then touch the USB drives
+
+Restart normally and scan again. A clean second scan after a reboot is the real signal, because Brontok's whole design is about surviving restarts.
+
+Only once the machine is verifiably clean should you scan the USB drives, one at a time, with AutoRun still disabled.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Brontok mass-mails itself from the address book, so treat the email account as exposed. Change that password from a clean device and store it encrypted." />
+
+### 7. Assume the email account was exposed
+
+Because this family mails itself to the addresses it finds, your contacts may have received messages from you. Change the email password from a *different, clean* device, turn on two-factor authentication, and tell your contacts not to open attachments that appear to have come from you.
+
+## How to tell it is really gone
+
+- Task Manager, regedit and Folder Options all open normally again.
+- Programs launch when you double-click them, with no unexplained pause.
+- No unfamiliar entry reappears in your startup list after two or three reboots.
+- A full scan comes back clean *after* a restart, not just before one.
+- The Startup folder has no `Empty.pif` and `C:\` has no stray `AUTORUN.INF`.
+
+If entries keep reappearing after a genuinely clean scan, stop cleaning and reinstall Windows. On an unsupported version that is the honest answer anyway: a machine old enough to still be catching Brontok is a machine that has been unpatched for a long time.
+
+## Frequently asked questions
+
+**Is there a dedicated Brontok removal tool?**
+There is no need for a single-purpose tool in 2026. The threat is old enough that current mainstream engines, including the Defender already built into Windows, detect the family. What you actually need is the *repair* step for file associations and disabled policies, which a scanner does not always perform.
+
+**Why can't I open Task Manager or regedit after removal?**
+Because the worm set the policy values that disable them, and deleting the worm's files does not automatically clear those values. Clear them manually or apply the vendor registry fix.
+
+**Nothing opens at all now. What happened?**
+Almost certainly the `exefile` association still points at a deleted `shell.exe`. Repairing the association fixes it. This is why removing the files without repairing the registry can leave a machine in a worse state than before.
+
+**Can Brontok infect my phone, or a Mac?**
+No. It is a Windows executable worm. An infected USB stick plugged into a Mac or an Android phone will show the malicious files, but they will not run.
+
+**Is a USB stick safe once the PC is clean?**
+Only after you scan the stick itself. The copies on the drive are unaffected by cleaning the computer, and one forgotten stick is how these infections come back weeks later.
+
+## Sources
+
+- Microsoft Security Intelligence, *Worm:Win32/Brontok@mm* threat description
+- F-Secure, *Worm:W32/Brontok.B* description (dropped files, registry values, disabled features)
+- Trend Micro Threat Encyclopedia, *Worm.Win32.BRONTOK.D*

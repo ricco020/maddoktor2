@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   return paths;
 }
 const { articles, page } = Astro.props;
-const alternates = hreflangAlternates(`/de/page/${page}/`);
+const alternates = hreflangAlternates(`/page/${page}/`);
 ---
 <Base title={`${SITE.name} - page ${page}`} description={SITE.description} lang="de" alternates={alternates} canonicalPath={`/de/page/${page}/`}>
   <HomeFeed lang="de" articles={articles} page={page} pageSize={12} />

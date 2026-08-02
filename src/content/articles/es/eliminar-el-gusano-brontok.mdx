@@ -1,0 +1,154 @@
+---
+title: "Eliminar Brontok (2026): repara los daños que aún deja un gusano de los 2000"
+description: "Brontok desactiva el Administrador de tareas, regedit y las Opciones de carpeta, y luego secuestra tus asociaciones .exe. Así se elimina el gusano y se repara lo que rompió."
+pubDate: 2026-08-03
+hero: "/images/brontok-removal-hero.jpg"
+heroAlt: "Una memoria USB metálica sobre una superficie de madera oscura, iluminada por un único haz de luz estrecho"
+keyword: "eliminar brontok"
+tags: ["malware-removal", "worm", "brontok", "windows", "usb", "autorun"]
+translationKey: "brontok-removal"
+products:
+  - name: "Microsoft Defender Antivirus"
+    brand: "Microsoft"
+    description: "Antivirus integrado en Windows; detecta la familia de gusanos Win32/Brontok."
+    os: "Windows"
+    url: "https://www.microsoft.com/en-us/windows/comprehensive-security"
+    price: 0
+  - name: "Malwarebytes Free"
+    brand: "Malwarebytes"
+    description: "Escáner bajo demanda para una segunda opinión en Windows."
+    os: "Windows"
+    url: "https://www.malwarebytes.com/mwb-download"
+    price: 0
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Brontok es una familia de gusanos de Windows vista por primera vez a mediados de los años 2000. Se propaga enviándose a sí mismo de forma masiva por correo y copiándose en unidades extraíbles, y su movimiento característico es dejarte sin acceso a las herramientas que normalmente usarías para defenderte: el Administrador de tareas, el Editor del Registro, el Símbolo del sistema y las Opciones de carpeta dejan de funcionar.
+
+Por eso eliminar Brontok es un trabajo en dos partes. Matar al gusano es la mitad fácil. La mitad en la que la gente se queda atascada es reparar los ajustes que cambió, porque un escáner puede borrar los archivos maliciosos y aun así dejarte una máquina en la que hacer doble clic en cualquier programa no hace nada.
+
+## ¿Sigue siendo Brontok una amenaza real en 2026?
+
+Con honestidad: no como epidemia. Brontok pertenece a la era de Windows XP, el Microsoft Defender actual detecta la familia, y el comportamiento de AutoRun del que dependía para ejecutarse automáticamente desde un pendrive lleva años desactivado por defecto en las versiones de Windows con soporte.
+
+Todavía aparece en dos situaciones, y por eso la gente sigue buscándolo:
+
+- **Máquinas antiguas o sin conexión** que dejaron de recibir actualizaciones, a menudo con una versión de Windows sin soporte en un taller, un laboratorio, un colegio o una pequeña empresa.
+- **Pendrives que circulan entre esas máquinas.** Los archivos infectados permanecen en la unidad indefinidamente, esperando a que alguien los abra a mano.
+
+Así que el riesgo hoy no es que Brontok tome silenciosamente el control de un portátil con Windows 11 actualizado. Es que un pendrive que te han dado siga llevándolo, y que una máquina vieja en algún rincón del edificio lo siga alimentando.
+
+![Una memoria USB Kingston azul con el capuchón quitado, sobre una superficie blanca lisa junto a su cordón](/images/brontok-removal-body.jpg)
+
+## Qué le hace realmente Brontok a una máquina
+
+La familia tiene muchas variantes y no todas se comportan igual. Los detalles siguientes están documentados por F-Secure y Microsoft para la variante **Brontok.B**, ampliamente analizada, y son representativos del enfoque de la familia.
+
+**Coloca copias de sí mismo en varios sitios a la vez.** Brontok.B deja archivos como `C:\WINDOWS\winme.exe`, `C:\winme.exe` y `C:\WINDOWS\Web\shell.exe`, además de un `Empty.pif` en la carpeta de Inicio y un `C:\AUTORUN.INF`.
+
+**Crea más de una forma de arrancar.** Más allá de la clave habitual `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`, edita las claves de Winlogon para que sea el propio Windows quien lo lance:
+
+```
+Shell    = Explorer.exe "C:\WINDOWS\winme.exe"
+Userinit = C:\WINDOWS\System32\userinit.exe,C:\WINDOWS\winme.exe
+```
+
+Microsoft también documenta el uso de tareas programadas como punto de arranque adicional. Esta redundancia es la razón por la que una limpieza a medias deja que el gusano vuelva justo después de reiniciar.
+
+**Secuestra la forma en que Windows abre los programas.** Redirige las asociaciones `\shell\open\command` de `exefile`, `comfile`, `batfile` y `piffile` a través de su propio `shell.exe`. Cada programa que abres pasa antes por el gusano.
+
+**Apaga tus defensas.** Los valores documentados incluyen:
+
+| Ajuste activado | Qué rompe |
+|---|---|
+| `DisableTaskMgr = 1` | El Administrador de tareas no se abre |
+| `DisableRegistryTools = 1` | regedit queda bloqueado |
+| `DisableCMD = 1` | El Símbolo del sistema queda bloqueado |
+| `NoFolderOptions = 1` | No puedes llegar a las Opciones de carpeta para mostrar los archivos ocultos |
+| `DisableMSI = 1` | Windows Installer queda bloqueado, así que no puedes instalar un limpiador |
+| `DisableSR = 1`, `DisableConfig = 1` | Restaurar sistema queda desactivado |
+
+Lee esa tabla como una lista de comprobación. Si varios de esos síntomas coinciden con tu máquina, estás ante la amenaza correcta.
+
+## Cómo eliminar Brontok
+
+### 1. Aísla la máquina y todas las unidades USB
+
+Desconecta el cable de red o apaga el Wi-Fi, y aparta físicamente todos los pendrives que hayan tocado la máquina. No los conectes todavía a un ordenador limpio para "comprobarlos". Brontok se envía por correo de forma masiva, así que una máquina infectada que siga conectada seguirá enviándose a tus contactos.
+
+### 2. Haz copia de seguridad de tus archivos antes de limpiar, no después
+
+Aquí el orden importa más que con la mayoría del malware. Brontok desactiva Restaurar sistema, así que tu punto de retorno habitual ha desaparecido, y una limpieza que salga mal en una versión de Windows sin soporte puede dejarte sin poder arrancar. Copia primero tus documentos a un disco externo que luego desconectes.
+
+No copies archivos `.exe`, `.com`, `.bat`, `.pif` ni `.scr`, y trata como infectado cualquier icono de carpeta que resulte ser en realidad un programa.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Brontok desactiva Restaurar sistema, así que no hay ningún punto de retorno esperándote. Crea una imagen del disco antes de empezar a limpiar una máquina antigua." />
+
+### 3. Arranca en Modo seguro
+
+El Modo seguro carga un conjunto mínimo de controladores y servicios, lo que normalmente impide que el gusano se ejecute y que repare sus propias entradas del registro mientras las borras.
+
+En Windows 10 y 11, mantén pulsada la tecla **Mayús** mientras haces clic en **Reiniciar**, luego ve a **Solucionar problemas → Opciones avanzadas → Configuración de inicio → Reiniciar** y pulsa **4** para el Modo seguro. En las versiones más antiguas donde es más probable encontrar Brontok, pulsa **F8** durante el arranque y elige Modo seguro en el menú.
+
+### 4. Ejecuta un análisis completo y luego una segunda opinión
+
+Ejecuta un análisis **completo** con Microsoft Defender, no uno rápido. Los análisis rápidos revisan los escondites habituales, y Brontok reparte deliberadamente copias de sí mismo fuera de ellos.
+
+Después confirma con un segundo escáner como Malwarebytes Free. Que dos motores no coincidan es habitual y normal, y con un gusano tan antiguo ambos deberían reconocerlo.
+
+Si Windows Installer está bloqueado y no puedes instalar un escáner, eso es `DisableMSI` haciendo su trabajo. Corrige primero los valores del registro del paso 5, reinicia y vuelve luego a analizar.
+
+### 5. Repara lo que el gusano cambió
+
+Este es el paso que la gente se salta, y es la razón por la que "lo eliminé pero nada funciona" es la queja más habitual con Brontok.
+
+Tu antivirus elimina los *archivos* del gusano. No siempre restaura los *ajustes* que el gusano reescribió. En particular, si la asociación `exefile` sigue apuntando a un `shell.exe` que ya no existe, ahora tienes una máquina en la que no arranca ningún programa.
+
+Microsoft publica una corrección del registro específicamente para restaurar las asociaciones de archivos ejecutables tras la desinfección. Usa la corrección del propio fabricante en lugar de un archivo de registro sacado de un foro, y aplícala desde el Modo seguro.
+
+Los valores de directiva anteriores (`DisableTaskMgr`, `DisableRegistryTools`, `DisableCMD`, `NoFolderOptions`, `DisableMSI`) también hay que borrarlos o devolverlos a `0`. Si regedit sigue bloqueado, Microsoft documenta cómo volver a habilitarlo primero desde un símbolo del sistema.
+
+### 6. Reinicia, vuelve a analizar y solo entonces toca los pendrives
+
+Reinicia con normalidad y analiza otra vez. Un segundo análisis limpio después de reiniciar es la señal de verdad, porque todo el diseño de Brontok consiste en sobrevivir a los reinicios.
+
+Solo cuando la máquina esté verificadamente limpia deberías analizar los pendrives, de uno en uno, con AutoRun todavía desactivado.
+
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Brontok se envía de forma masiva por correo desde la libreta de direcciones, así que trata la cuenta de correo como expuesta. Cambia esa contraseña desde un dispositivo limpio y guárdala cifrada." />
+
+### 7. Da por supuesto que la cuenta de correo quedó expuesta
+
+Como esta familia se envía por correo a las direcciones que encuentra, es posible que tus contactos hayan recibido mensajes tuyos. Cambia la contraseña del correo desde un dispositivo *distinto y limpio*, activa la autenticación en dos pasos y avisa a tus contactos de que no abran archivos adjuntos que parezcan venir de ti.
+
+## Cómo saber si de verdad ha desaparecido
+
+- El Administrador de tareas, regedit y las Opciones de carpeta vuelven a abrirse con normalidad.
+- Los programas se inician al hacer doble clic, sin pausas inexplicables.
+- No reaparece ninguna entrada desconocida en tu lista de inicio tras dos o tres reinicios.
+- Un análisis completo sale limpio *después* de un reinicio, no solo antes.
+- La carpeta de Inicio no tiene ningún `Empty.pif` y en `C:\` no hay ningún `AUTORUN.INF` suelto.
+
+Si las entradas siguen reapareciendo tras un análisis genuinamente limpio, deja de limpiar y reinstala Windows. En una versión sin soporte esa es de todos modos la respuesta honesta: una máquina lo bastante vieja como para seguir cogiendo Brontok es una máquina que lleva mucho tiempo sin parchear.
+
+## Preguntas frecuentes
+
+**¿Existe una herramienta dedicada para eliminar Brontok?**
+No hace falta una herramienta de un solo uso en 2026. La amenaza es lo bastante antigua como para que los motores actuales de uso general, incluido el Defender ya integrado en Windows, detecten la familia. Lo que realmente necesitas es el paso de *reparación* de las asociaciones de archivos y de las directivas desactivadas, algo que un escáner no siempre hace.
+
+**¿Por qué no puedo abrir el Administrador de tareas o regedit después de eliminarlo?**
+Porque el gusano estableció los valores de directiva que los desactivan, y borrar los archivos del gusano no borra automáticamente esos valores. Bórralos manualmente o aplica la corrección del registro del fabricante.
+
+**Ahora no se abre absolutamente nada. ¿Qué ha pasado?**
+Casi con seguridad la asociación `exefile` sigue apuntando a un `shell.exe` ya borrado. Reparar la asociación lo soluciona. Por eso eliminar los archivos sin reparar el registro puede dejar la máquina peor que antes.
+
+**¿Puede Brontok infectar mi móvil o un Mac?**
+No. Es un gusano ejecutable de Windows. Un pendrive infectado conectado a un Mac o a un teléfono Android mostrará los archivos maliciosos, pero no se ejecutarán.
+
+**¿Un pendrive es seguro una vez que el PC está limpio?**
+Solo después de analizar el propio pendrive. Las copias que hay en la unidad no se ven afectadas por limpiar el ordenador, y un pendrive olvidado es la forma en que estas infecciones vuelven semanas después.
+
+## Fuentes
+
+- Microsoft Security Intelligence, descripción de la amenaza *Worm:Win32/Brontok@mm*
+- F-Secure, descripción de *Worm:W32/Brontok.B* (archivos depositados, valores del registro, funciones desactivadas)
+- Trend Micro Threat Encyclopedia, *Worm.Win32.BRONTOK.D*
