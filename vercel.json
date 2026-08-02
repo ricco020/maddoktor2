@@ -1,6 +1,106 @@
 {
   "redirects": [
     {
+      "source": "/es/articles/how-to-remove-ransomware",
+      "destination": "/es/articles/como-eliminar-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/es/articles/how-to-remove-ransomware/",
+      "destination": "/es/articles/como-eliminar-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/de/articles/how-to-remove-ransomware",
+      "destination": "/de/articles/ransomware-entfernen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/articles/how-to-remove-ransomware/",
+      "destination": "/de/articles/ransomware-entfernen/",
+      "permanent": true
+    },
+    {
+      "source": "/it/articles/how-to-remove-ransomware",
+      "destination": "/it/articles/come-rimuovere-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/it/articles/how-to-remove-ransomware/",
+      "destination": "/it/articles/come-rimuovere-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/articles/how-to-remove-ransomware",
+      "destination": "/fr/articles/comment-supprimer-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/articles/how-to-remove-ransomware/",
+      "destination": "/fr/articles/comment-supprimer-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/pt/articles/how-to-remove-ransomware",
+      "destination": "/pt/articles/como-remover-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/pt/articles/how-to-remove-ransomware/",
+      "destination": "/pt/articles/como-remover-ransomware/",
+      "permanent": true
+    },
+    {
+      "source": "/es/articles/how-to-remove-a-rootkit",
+      "destination": "/es/articles/como-eliminar-un-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/es/articles/how-to-remove-a-rootkit/",
+      "destination": "/es/articles/como-eliminar-un-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/de/articles/how-to-remove-a-rootkit",
+      "destination": "/de/articles/rootkit-entfernen/",
+      "permanent": true
+    },
+    {
+      "source": "/de/articles/how-to-remove-a-rootkit/",
+      "destination": "/de/articles/rootkit-entfernen/",
+      "permanent": true
+    },
+    {
+      "source": "/it/articles/how-to-remove-a-rootkit",
+      "destination": "/it/articles/come-rimuovere-un-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/it/articles/how-to-remove-a-rootkit/",
+      "destination": "/it/articles/come-rimuovere-un-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/articles/how-to-remove-a-rootkit",
+      "destination": "/fr/articles/comment-supprimer-un-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/articles/how-to-remove-a-rootkit/",
+      "destination": "/fr/articles/comment-supprimer-un-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/pt/articles/how-to-remove-a-rootkit",
+      "destination": "/pt/articles/como-remover-um-rootkit/",
+      "permanent": true
+    },
+    {
+      "source": "/pt/articles/how-to-remove-a-rootkit/",
+      "destination": "/pt/articles/como-remover-um-rootkit/",
+      "permanent": true
+    },
+    {
       "source": "/articles/fake-github-repos-infostealer",
       "destination": "/articles/github-fake-repos-infostealer",
       "permanent": true
