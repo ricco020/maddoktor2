@@ -51,6 +51,8 @@ nav.top a:hover::after { content:''; position:absolute; left:0; right:0; bottom:
 .langsw a { color:var(--ink-faint); text-decoration:none; padding:4px 7px; border-radius:6px; }
 .langsw a:hover { color:var(--bar); }
 .langsw a.on { background:var(--pill); color:var(--brand-ink); }
+/* Locale sans traduction reelle: affichee mais inerte, plutot qu un lien vers un 404. */
+.langsw .off { color:var(--border); padding:4px 7px; cursor:default; }
 .search { margin-left:14px; display:flex; align-items:center; gap:9px; background:#fff; border:1.5px solid var(--border); border-radius:8px; padding:8px 16px; color:var(--ink-faint); min-width:210px; font-family:'Hanken Grotesk',sans-serif; font-size:14.5px; }
 .search:focus-within { border-color:var(--bar); }
 .search input { border:0; outline:0; background:none; font:inherit; color:var(--ink); width:100%; }

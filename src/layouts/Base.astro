@@ -118,7 +118,7 @@ const hreflangLinks: { lang: string; href: string }[] = alternates.length > 0
     <script src="/ga.js" defer></script>
   </head>
   <body>
-    <Header lang={lang} />
+    <Header lang={lang} alternates={alternates} />
     {isArticle ? (
       <div class="artgrid">
         <main class="artmain" style="min-height:60vh"><slot /></main>

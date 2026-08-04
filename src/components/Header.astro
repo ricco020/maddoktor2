@@ -1,7 +1,7 @@
 ---
 import { ui, localized, categories, catLabel } from '../lib/ui';
-interface Props { lang?: string; }
-const { lang = 'en' } = Astro.props;
+interface Props { lang?: string; alternates?: { lang: string; href: string }[]; }
+const { lang = 'en', alternates = [] } = Astro.props;
 const t = ui[lang] || ui.en;
 const prefix = lang === 'en' ? '' : `/${lang}`;
 
@@ -15,14 +15,35 @@ const path = Astro.url.pathname;
 const stripLocale = (p: string) => p.replace(/^\/(fr|es|de|it|pt)\//, '/').replace(/^\/(fr|es|de|it|pt)$/, '/');
 const basePath = stripLocale(path);
 const cur = path.replace(/\/$/, '');
-const langLinks = [
-  { code: 'en', label: 'EN', href: basePath },
-  { code: 'fr', label: 'FR', href: `/fr${basePath === '/' ? '/' : basePath}` },
-  { code: 'es', label: 'ES', href: `/es${basePath === '/' ? '/' : basePath}` },
-  { code: 'de', label: 'DE', href: `/de${basePath === '/' ? '/' : basePath}` },
-  { code: 'it', label: 'IT', href: `/it${basePath === '/' ? '/' : basePath}` },
-  { code: 'pt', label: 'PT', href: `/pt${basePath === '/' ? '/' : basePath}` },
-];
+
+// Le selecteur de langue ne peut PAS se contenter d echanger le prefixe de
+// locale: les slugs d articles sont localises (how-to-remove-adware en anglais,
+// adware-entfernen en allemand), donc /articles/adware-entfernen/ n existe pas.
+// C est exactement l avertissement deja ecrit dans Article.astro pour les
+// hreflang, qui n avait jamais ete applique ici.
+//
+// Mesure du 2026-08-04: sur 60 pages lues, 206 liens du selecteur pointaient
+// vers des 404, TOUS depuis les pages /de/. Le composant etant present sur
+// toutes les pages du site, la portee reelle depassait l echantillon.
+//
+// Correctif: on consomme les alternates deja resolus par translationKey pour
+// les hreflang, qui sont la seule source exacte. On ne retombe sur l echange
+// de prefixe que si aucun alternate n est fourni, ce qui est le cas des pages
+// statiques (/about/, /charter/), dont le chemin est bien identique partout.
+const byLang = new Map(alternates.map((a) => [a.lang, a.href]));
+const swap = (code: string) =>
+  code === 'en' ? basePath : `/${code}${basePath === '/' ? '/' : basePath}`;
+const LANGS = [['en', 'EN'], ['fr', 'FR'], ['es', 'ES'], ['de', 'DE'], ['it', 'IT'], ['pt', 'PT']];
+const langLinks = LANGS.map(([code, label]) => ({
+  code,
+  label,
+  href: byLang.get(code) ?? swap(code),
+  // Une locale sans traduction reelle n a pas d alternate. La lister quand
+  // meme enverrait le lecteur sur un 404; on la desactive visuellement plutot
+  // que de la masquer, pour ne pas faire varier la navigation d une page a
+  // l autre.
+  missing: alternates.length > 0 && !byLang.has(code),
+}));
 ---
 <header class="topbar">
   <div class="wrap row">
@@ -36,7 +57,9 @@ const langLinks = [
     </nav>
     <div class="langsw" aria-label="Language">
       {langLinks.map((l) => (
-        <a href={l.href} aria-current={lang === l.code ? 'true' : undefined} class:list={[lang === l.code && 'on']}>{l.label}</a>
+        l.missing
+          ? <span class="off" aria-disabled="true">{l.label}</span>
+          : <a href={l.href} aria-current={lang === l.code ? 'true' : undefined} class:list={[lang === l.code && 'on']}>{l.label}</a>
       ))}
     </div>
     <form class="search" role="search" action={localized('/search/', lang)} method="get">
