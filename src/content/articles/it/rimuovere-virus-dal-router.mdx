@@ -1,0 +1,82 @@
+---
+title: "Virus nel router: come riconoscerlo e rimuoverlo davvero"
+description: "Hai pulito ogni computer e telefono e i reindirizzamenti sono tornati. Un router compromesso sta a monte di tutti. Come riconoscerlo, resettarlo correttamente, e il passaggio che quasi tutte le guide dimenticano."
+pubDate: 2026-08-05
+hero: "/images/how-to-remove-malware-from-a-router-hero.jpg"
+heroAlt: "Una mano collega un cavo Ethernet bianco alla porta gialla sul retro di un router nero, con i tasti reset e WPS visibili accanto"
+keyword: "virus nel router"
+tags: ["malware-removal", "router", "network", "dns", "how-to"]
+translationKey: "remove-malware-router"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Hai analizzato il portatile. Hai pulito il telefono. Entrambi sono risultati puliti e il giorno dopo il browser reindirizzava di nuovo. Quando succede, il dispositivo da sospettare è quello che non tocchi da tre anni: il **router**.
+
+Un router è un piccolo computer che esegue il proprio sistema, e si infetta come qualsiasi altro. Famiglie documentate come Mirai e VPNFilter hanno reso i router domestici un bersaglio comune e non una curiosità. Ciò che rende tanto tenace un'infezione del router non è la sua raffinatezza. È la sua posizione.
+
+## Perché un'infezione del router sopravvive a ogni pulizia
+
+Ogni dispositivo della tua rete chiede al router dove si trovano i siti. È il DNS, e il router di solito risponde girando la domanda a un resolver che gli è stato configurato.
+
+Cambia quell'impostazione e controlli ciò che vede ogni dispositivo della rete, senza toccarne nessuno. Il tuo portatile è davvero pulito. Il reindirizzamento avviene un salto più a monte, prima ancora che il tuo traffico esca di casa. È per questo che scanner dopo scanner danno risultati puliti e nessun miglioramento, ed è la cosa più utile da capire di questo problema.
+
+## I segnali che indicano il router
+
+- Gli stessi reindirizzamenti o inserimenti pubblicitari avvengono su **tutti i dispositivi**, compreso uno appena resettato.
+- Compaiono avvisi di certificato o di sicurezza su **più siti senza alcun legame nello stesso momento**.
+- La password di amministrazione del router non funziona più, o sei stato disconnesso e non riesci a rientrare.
+- I server DNS nelle impostazioni del router sono indirizzi che non hai messo tu e non riconosci.
+- Ci sono regole di **inoltro di porte** o l'**amministrazione remota** attiva senza che tu l'abbia mai abilitata.
+- Nell'elenco dei client connessi compaiono dispositivi sconosciuti che restano lì.
+
+Ognuno di questi segnali da solo può avere una spiegazione banale. Due o tre insieme indicano il router.
+
+## Passo 1 - Stacca il router da internet
+
+Scollega il cavo che va dal router al modem o alla presa a muro, quello di solito indicato come **WAN** o **Internet**. Per ora lascia il router acceso, così puoi ancora raggiungere la sua pagina di amministrazione da un dispositivo collegato via Ethernet.
+
+Se riesci ancora ad accedere, fotografa le pagine WAN, DNS e inoltro porte. Non per riparare qualcosa, solo per sapere poi che cosa è stato modificato. Non attardarti.
+
+![Fotografia macro di un connettore Ethernet RJ45 trasparente su un cavo bianco, con i contatti dorati e i fili colorati in vista](/images/how-to-remove-malware-from-a-router-body.jpg)
+
+## Passo 2 - Ripristino di fabbrica, che è la vera rimozione
+
+Rimettere a mano le impostazioni non è una rimozione. Il software malevolo che le ha cambiate è ancora in esecuzione e le cambierà di nuovo.
+
+Tieni premuto il tasto **reset** incassato, di solito con una graffetta, per il tempo indicato dal produttore, comunemente tra dieci e trenta secondi, finché le luci non cambiano. Questo cancella la configurazione e riporta il firmware ai valori di fabbrica, il che elimina la grande maggioranza delle infezioni dei router domestici.
+
+## Passo 3 - Non ripristinare il tuo backup della configurazione
+
+È il passaggio che quasi tutte le guide dimenticano, e annulla in silenzio quello precedente.
+
+Se hai salvato un backup delle impostazioni quando il router era già compromesso, quel file contiene le voci DNS ostili, gli inoltri di porte e la password di amministrazione dell'attaccante. Ripristinarlo reinfetta la configurazione con un clic, e concluderai che il reset non ha funzionato.
+
+Riconfigura il router a mano. Sono un quarto d'ora ed è la differenza tra risolvere una volta e risolvere ogni mese.
+
+## Passo 4 - Chiudi la porta da cui sono entrati
+
+Sempre offline, prima di ricollegare il cavo WAN:
+
+- Imposta una **nuova password di amministrazione**, lunga e non riutilizzata da nessuna parte. Quella stampata sull'etichetta è nella lista di ogni attaccante.
+- Disattiva l'**amministrazione remota** o la **gestione da WAN** a meno che non ti serva davvero. È così che si raggiunge la maggior parte dei router.
+- Disattiva l'**UPnP** se nulla in casa ne dipende, e anche il **WPS**.
+- Imposta esplicitamente i **server DNS** su quelli del tuo operatore o su un resolver scelto di proposito, così un cambiamento si nota.
+- Ricostruisci il Wi-Fi con **WPA2 o WPA3** e una nuova passphrase, il che scollega anche chi fosse ancora dentro.
+
+Ora ricollega e **aggiorna il firmware** dalla pagina di supporto del produttore. Un firmware non aggiornato con una vulnerabilità pubblicata è l'altra via d'ingresso comune.
+
+<AffiliateCTA href="/go/surfshark" product="Surfshark One" blurb="Un router ripulito lascia comunque ogni dispositivo a chiedergli dove sono i siti. Surfshark One instrada il tuo DNS sui propri resolver, così un'impostazione avvelenata smette di decidere cosa vedi, e include un antivirus in tempo reale per le macchine che pulirai dopo." />
+
+## Passo 5 - Solo dopo, pulisci i dispositivi
+
+Il router può essere stato il punto d'ingresso, oppure lo è stato un dispositivo compromesso. Quando la rete torna affidabile, passa in rassegna le macchine: [Windows](/it/articles/rimuovere-malware-da-windows), [Android](/it/articles/rimuovere-malware-da-android) e i browser stessi, dato che un [dirottatore del browser](/it/articles/rimuovere-un-dirottatore-del-browser) sopravvive a prescindere dalla rete. Il nostro elenco di [strumenti gratuiti per rimuovere malware](/it/articles/migliori-strumenti-gratuiti-rimozione-malware) dice che cosa lanciare.
+
+## Quando un reset non basta
+
+Sostituisci il router se ricorre uno di questi casi:
+
+- I sintomi tornano dopo un reset corretto e un aggiornamento del firmware.
+- Il produttore non pubblica più firmware per quel modello, quindi le vulnerabilità note non verranno mai corrette.
+- Il router viene da un operatore che hai lasciato, e nessuno lo aggiorna più.
+
+Non esiste un antivirus per un router domestico. Non ci si può installare uno scanner, ed è esattamente per questo che il rimedio è un reset e una porta chiusa, non un prodotto.

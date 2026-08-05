@@ -1,0 +1,82 @@
+---
+title: "Router-Virus entfernen: das Gerät, das alle vergessen"
+description: "Sie haben jeden Rechner und jedes Handy gesäubert, und die Weiterleitungen kamen zurück. Ein kompromittierter Router sitzt vor allen anderen Geräten. Wie Sie ihn erkennen, richtig zurücksetzen, und der Schritt, den fast alle Anleitungen weglassen."
+pubDate: 2026-08-05
+hero: "/images/how-to-remove-malware-from-a-router-hero.jpg"
+heroAlt: "Eine Hand steckt ein weißes Ethernet-Kabel in den gelben Anschluss auf der Rückseite eines schwarzen Routers, daneben sind Reset- und WPS-Taste zu sehen"
+keyword: "router virus entfernen"
+tags: ["malware-removal", "router", "network", "dns", "how-to"]
+translationKey: "remove-malware-router"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Sie haben den Laptop geprüft. Sie haben das Handy gesäubert. Beide kamen sauber zurück, und einen Tag später leitete der Browser wieder um. Wenn das passiert, ist das verdächtige Gerät jenes, das Sie seit drei Jahren nicht angefasst haben: der **Router**.
+
+Ein Router ist ein kleiner Computer mit eigenem Betriebssystem und kann sich wie jeder andere infizieren. Dokumentierte Familien wie Mirai und VPNFilter haben Heimrouter zu einem gewöhnlichen Ziel gemacht und nicht zu einer Kuriosität. Was eine Router-Infektion so hartnäckig macht, ist nicht ihre Raffinesse. Es ist ihre Position.
+
+## Warum eine Router-Infektion jede Gerätesäuberung überlebt
+
+Jedes Gerät in Ihrem Netz fragt den Router, wo Websites liegen. Das ist DNS, und der Router antwortet meist, indem er die Frage an einen Resolver weiterreicht, der ihm eingetragen wurde.
+
+Ändert man diese Einstellung, kontrolliert man, was jedes Gerät im Netz sieht, ohne eines davon anzufassen. Ihr Laptop ist tatsächlich sauber. Die Umleitung geschieht einen Sprung weiter oben, bevor Ihr Verkehr das Haus überhaupt verlässt. Deshalb liefern Scanner um Scanner saubere Ergebnisse und keine Besserung, und das ist das Nützlichste, was man an diesem Problem verstehen kann.
+
+## Anzeichen, dass der Router das Problem ist
+
+- Dieselben Weiterleitungen oder Werbeeinblendungen treten auf **allen Geräten** auf, auch auf einem gerade zurückgesetzten.
+- Zertifikats- oder Sicherheitswarnungen erscheinen auf **mehreren nicht zusammenhängenden Seiten gleichzeitig**.
+- Das Admin-Passwort des Routers funktioniert nicht mehr, oder Sie wurden abgemeldet und kommen nicht zurück.
+- Die DNS-Server in den Router-Einstellungen sind Adressen, die Sie nicht eingetragen haben und nicht kennen.
+- **Portweiterleitungen** oder die **Fernadministration** sind aktiv, obwohl Sie das nie eingeschaltet haben.
+- Unbekannte Geräte stehen in der Liste der verbundenen Clients und bleiben dort.
+
+Jedes dieser Anzeichen für sich kann eine harmlose Erklärung haben. Zwei oder drei zusammen weisen auf den Router.
+
+## Schritt 1 - Den Router vom Internet trennen
+
+Ziehen Sie das Kabel ab, das vom Router zum Modem oder zur Wanddose führt, meist mit **WAN** oder **Internet** beschriftet. Lassen Sie den Router vorerst eingeschaltet, damit Sie seine Admin-Seite von einem per Ethernet verbundenen Gerät noch erreichen.
+
+Wenn Sie sich noch anmelden können, fotografieren Sie die Seiten für WAN, DNS und Portweiterleitung. Nicht um etwas zu reparieren, nur damit Sie hinterher wissen, was verändert wurde. Halten Sie sich nicht lange auf.
+
+![Makroaufnahme eines durchsichtigen RJ45-Ethernet-Steckers an einem weißen Kabel, die vergoldeten Kontakte und farbigen Adern sind sichtbar](/images/how-to-remove-malware-from-a-router-body.jpg)
+
+## Schritt 2 - Werksreset, und das ist die eigentliche Entfernung
+
+Die Einstellungen von Hand zurückzusetzen ist keine Entfernung. Die Schadsoftware, die sie geändert hat, läuft weiter und ändert sie erneut.
+
+Halten Sie die versenkte **Reset**-Taste, üblicherweise mit einer Büroklammer, so lange gedrückt, wie Ihr Hersteller angibt, meist zehn bis dreißig Sekunden, bis die Lichter wechseln. Das löscht die Konfiguration und setzt die Firmware auf Werkseinstellungen zurück, was die große Mehrheit der Infektionen von Heimroutern beseitigt.
+
+## Schritt 3 - Spielen Sie Ihre Konfigurationssicherung nicht zurück
+
+Das ist der Schritt, den fast jede Anleitung weglässt, und er hebt den vorigen still wieder auf.
+
+Wenn Sie eine Sicherung der Einstellungen angelegt haben, als der Router bereits kompromittiert war, enthält diese Datei die feindlichen DNS-Einträge, die Portweiterleitungen und das Admin-Passwort des Angreifers. Sie zurückzuspielen infiziert die Konfiguration mit einem Klick erneut, und Sie werden schließen, der Reset habe nicht funktioniert.
+
+Richten Sie den Router von Hand neu ein. Das dauert eine Viertelstunde und ist der Unterschied zwischen einmal reparieren und jeden Monat reparieren.
+
+## Schritt 4 - Die Tür schließen, durch die sie kamen
+
+Noch offline, bevor Sie das WAN-Kabel wieder einstecken:
+
+- Vergeben Sie ein **neues Admin-Passwort**, lang und nirgends wiederverwendet. Das auf dem Aufkleber gedruckte steht in der Liste jedes Angreifers.
+- Schalten Sie **Fernadministration** oder **Verwaltung über WAN** ab, sofern Sie sie nicht wirklich brauchen. So werden die meisten Router überhaupt erreicht.
+- Schalten Sie **UPnP** ab, wenn nichts bei Ihnen darauf angewiesen ist, und **WPS** ebenfalls.
+- Tragen Sie die **DNS-Server** ausdrücklich ein, die Ihres Anbieters oder einen bewusst gewählten Resolver, damit eine Änderung auffällt.
+- Bauen Sie das WLAN mit **WPA2 oder WPA3** und einer neuen Passphrase neu auf, was nebenbei jeden hinauswirft, der noch drin war.
+
+Verbinden Sie jetzt wieder und **aktualisieren Sie die Firmware** über die Support-Seite des Herstellers. Ungepatchte Firmware mit einer veröffentlichten Schwachstelle ist der andere übliche Weg hinein.
+
+<AffiliateCTA href="/go/surfshark" product="Surfshark One" blurb="Auch ein gesäuberter Router bleibt die Stelle, die jedes Gerät nach Websites fragt. Surfshark One leitet Ihr DNS über eigene Resolver, sodass eine vergiftete Router-Einstellung nicht mehr entscheidet, was Sie sehen, und bringt Echtzeit-Virenschutz für die Rechner mit, die Sie danach säubern." />
+
+## Schritt 5 - Erst danach die Geräte säubern
+
+Der Router kann der Einstiegspunkt gewesen sein, oder ein kompromittiertes Gerät war es. Sobald das Netz wieder vertrauenswürdig ist, arbeiten Sie die Rechner durch: [Windows](/de/articles/malware-von-windows-entfernen), [Android](/de/articles/malware-von-android-entfernen) und die Browser selbst, denn ein [Browser-Hijacker](/de/articles/browser-hijacker-entfernen) überlebt unabhängig vom Netz. Unsere Liste [kostenloser Werkzeuge zur Malware-Entfernung](/de/articles/beste-kostenlose-malware-entfernungstools) sagt, was zu starten ist.
+
+## Wann ein Reset nicht genügt
+
+Ersetzen Sie den Router, wenn eines davon zutrifft:
+
+- Die Symptome kehren nach einem korrekten Reset und einem Firmware-Update zurück.
+- Der Hersteller veröffentlicht keine Firmware mehr für das Modell, bekannte Schwachstellen werden also nie geschlossen.
+- Der Router stammt von einem Anbieter, den Sie verlassen haben, und niemand aktualisiert ihn mehr.
+
+Für einen Heimrouter gibt es kein Antivirenprogramm. Man kann keinen Scanner darauf installieren, und genau deshalb ist die Lösung ein Reset und eine geschlossene Tür, kein Produkt.

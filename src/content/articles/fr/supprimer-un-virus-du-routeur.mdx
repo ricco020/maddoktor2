@@ -1,0 +1,82 @@
+---
+title: "Comment supprimer un virus du routeur : l'appareil que tout le monde oublie"
+description: "Vous avez nettoyé tous les ordinateurs et téléphones et les redirections sont revenues. Un routeur compromis se trouve en amont de tous. Comment le reconnaître, le réinitialiser correctement, et l'étape que presque tous les guides omettent."
+pubDate: 2026-08-05
+hero: "/images/how-to-remove-malware-from-a-router-hero.jpg"
+heroAlt: "Une main branche un câble Ethernet blanc dans le port jaune à l'arrière d'un routeur noir, les boutons reset et WPS visibles à côté"
+keyword: "virus routeur"
+tags: ["malware-removal", "router", "network", "dns", "how-to"]
+translationKey: "remove-malware-router"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Vous avez analysé le portable. Vous avez nettoyé le téléphone. Les deux sont ressortis propres, et le lendemain le navigateur redirigeait de nouveau. Quand cela arrive, l'appareil à soupçonner est celui que vous n'avez pas touché depuis trois ans : le **routeur**.
+
+Un routeur est un petit ordinateur qui fait tourner son propre système, et il s'infecte comme n'importe quel autre. Des familles documentées comme Mirai et VPNFilter ont fait des routeurs grand public une cible courante et non une curiosité. Ce qui rend une infection de routeur si tenace n'est pas sa sophistication. C'est sa position.
+
+## Pourquoi une infection du routeur survit à tous les nettoyages
+
+Chaque appareil de votre réseau demande au routeur où se trouvent les sites. C'est le DNS, et le routeur répond en général en transmettant la question à un résolveur qu'on lui a configuré.
+
+Changez ce réglage, et vous contrôlez ce que voit chaque appareil du réseau, sans en toucher un seul. Votre portable est réellement propre. La redirection se produit un saut plus haut, avant même que votre trafic ne quitte la maison. C'est pour cela qu'enchaîner les scanners donne des résultats propres et aucune amélioration, et c'est la chose la plus utile à comprendre sur ce problème.
+
+## Les signes qui désignent le routeur
+
+- Les mêmes redirections ou injections de publicité se produisent sur **tous les appareils**, y compris un que vous venez de réinitialiser.
+- Des avertissements de certificat ou de sécurité apparaissent sur **plusieurs sites sans rapport en même temps**.
+- Le mot de passe d'administration du routeur ne fonctionne plus, ou vous avez été déconnecté sans pouvoir revenir.
+- Les serveurs DNS dans les réglages du routeur sont des adresses que vous n'avez pas saisies et que vous ne reconnaissez pas.
+- Des règles de **redirection de port** ou l'**administration à distance** sont activées alors que vous ne les avez jamais activées.
+- Des appareils inconnus apparaissent dans la liste des clients connectés et y restent.
+
+Chacun de ces signes pris isolément peut avoir une explication banale. Deux ou trois ensemble désignent le routeur.
+
+## Étape 1 - Couper le routeur d'internet
+
+Débranchez le câble qui relie le routeur au modem ou à la prise murale, celui qui est en général marqué **WAN** ou **Internet**. Laissez le routeur allumé pour l'instant, afin de pouvoir encore atteindre sa page d'administration depuis un appareil branché en Ethernet.
+
+Si vous arrivez encore à vous connecter, photographiez les pages WAN, DNS et redirection de ports. Pas pour réparer quoi que ce soit, seulement pour savoir ensuite ce qui a été modifié. Ne vous attardez pas.
+
+![Photographie macro d'un connecteur Ethernet RJ45 transparent sur un câble blanc, contacts dorés et fils de couleur visibles](/images/how-to-remove-malware-from-a-router-body.jpg)
+
+## Étape 2 - La réinitialisation d'usine, qui est la vraie suppression
+
+Remettre les réglages à la main n'est pas une suppression. Le logiciel malveillant qui les a changés tourne toujours et les changera de nouveau.
+
+Maintenez le bouton **reset** encastré, en général avec un trombone, aussi longtemps que l'indique votre fabricant, couramment dix à trente secondes, jusqu'à ce que les voyants changent. Cela efface la configuration et ramène le micrologiciel à ses valeurs par défaut, ce qui élimine la grande majorité des infections de routeurs grand public.
+
+## Étape 3 - Ne restaurez pas votre sauvegarde de configuration
+
+C'est l'étape que presque tous les guides omettent, et elle annule discrètement la précédente.
+
+Si vous avez enregistré une sauvegarde des réglages alors que le routeur était déjà compromis, ce fichier contient les entrées DNS hostiles, les redirections de ports et le mot de passe d'administration de l'attaquant. La restaurer réinfecte la configuration en un clic, et vous conclurez que la réinitialisation n'a pas marché.
+
+Reconfigurez le routeur à la main. Cela prend un quart d'heure et c'est la différence entre régler le problème une fois et le régler tous les mois.
+
+## Étape 4 - Refermer la porte par laquelle ils sont entrés
+
+Toujours hors ligne, avant de rebrancher le câble WAN :
+
+- Définissez un **nouveau mot de passe d'administration**, long et réutilisé nulle part. Celui imprimé sur l'étiquette figure dans la liste de tous les attaquants.
+- Désactivez l'**administration à distance** ou la **gestion depuis le WAN** sauf besoin réel. C'est ainsi que la plupart des routeurs sont atteints au départ.
+- Désactivez l'**UPnP** si rien chez vous n'en dépend, ainsi que le **WPS**.
+- Fixez explicitement les **serveurs DNS** à ceux de votre fournisseur ou à un résolveur choisi délibérément, pour qu'un changement se remarque.
+- Recréez le Wi-Fi en **WPA2 ou WPA3** avec une nouvelle phrase secrète, ce qui déconnecte au passage tous ceux qui y étaient encore.
+
+Rebranchez maintenant et **mettez à jour le micrologiciel** depuis la page de support du fabricant. Un micrologiciel non corrigé avec une faille publiée est l'autre voie d'entrée courante.
+
+<AffiliateCTA href="/go/surfshark" product="Surfshark One" blurb="Un routeur nettoyé laisse quand même chaque appareil lui demander où sont les sites. Surfshark One fait passer votre DNS par ses propres résolveurs, de sorte qu'un réglage empoisonné ne décide plus de ce que vous voyez, et l'offre inclut un antivirus temps réel pour les machines que vous nettoierez ensuite." />
+
+## Étape 5 - Nettoyer ensuite les appareils
+
+Le routeur a pu être le point d'entrée, ou bien un appareil compromis l'a été. Une fois le réseau redevenu fiable, reprenez les machines : [Windows](/fr/articles/supprimer-un-malware-de-windows), [Android](/fr/articles/supprimer-les-malwares-d-android), et les navigateurs eux-mêmes, puisqu'un [pirate de navigateur](/fr/articles/supprimer-un-pirate-de-navigateur) survit indépendamment du réseau. Notre liste d'[outils gratuits de suppression de malwares](/fr/articles/meilleurs-outils-gratuits-suppression-malware) indique quoi lancer.
+
+## Quand une réinitialisation ne suffit pas
+
+Remplacez le routeur si l'un de ces cas s'applique :
+
+- Les symptômes reviennent après une réinitialisation correcte et une mise à jour du micrologiciel.
+- Le fabricant ne publie plus de micrologiciel pour ce modèle, donc les failles connues ne seront jamais corrigées.
+- Le routeur vient d'un fournisseur d'accès que vous avez quitté, et plus personne ne le met à jour.
+
+Il n'existe pas d'antivirus pour un routeur grand public. On ne peut pas y installer de scanner, et c'est précisément pourquoi le remède est une réinitialisation et une porte refermée, pas un produit.
