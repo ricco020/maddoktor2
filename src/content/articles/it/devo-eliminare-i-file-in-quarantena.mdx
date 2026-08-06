@@ -1,0 +1,63 @@
+---
+title: "Devo eliminare i file in quarantena? Che cosa fa loro davvero la quarantena"
+description: "Ogni guida alla rimozione dice di mettere in quarantena. Quasi nessuna dice dove finisce il file, se è ancora pericoloso, né che cosa si perde eliminandolo. Ecco che cosa accade sul disco, e quando eliminare è la mossa sbagliata."
+pubDate: 2026-08-06
+hero: "https://images.pexels.com/photos/23322329/pexels-photo-23322329.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Uno stretto corridoio blindato rivestito dal pavimento al soffitto di centinaia di piccole cassette di legno, con una porta chiusa in fondo"
+keyword: "eliminare file in quarantena"
+tags: ["quarantine", "defender", "false-positive", "removal", "windows", "backup"]
+translationKey: "should-i-delete-quarantined-files"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+L'antivirus ha trovato qualcosa, hai premuto il pulsante, e ora c'è lì un elenco di elementi in quarantena. L'istinto successivo è svuotarlo. Prima di farlo, vale la pena sapere che cosa ha già fatto la quarantena, perché cambia la risposta.
+
+## La quarantena non è una cartella in cui il file è stato spostato
+
+Somiglia più a una scatola sigillata che a un cassetto. Su Windows, Microsoft Defender conserva gli elementi in quarantena sotto `ProgramData\Microsoft\Windows Defender\Quarantine`, divisi in due parti: **Entries**, che contiene i metadati su quando e perché qualcosa è stato messo in quarantena, e **ResourceData**, che contiene il contenuto del file stesso.
+
+Entrambe le parti sono **cifrate con RC4**. È per questo che non puoi raggiungere la cartella e aprire ciò che contiene, ed è per questo che il file non può più essere eseguito, aperto da un altro programma o avviato da un'operazione pianificata. È stato tolto dalla circolazione.
+
+## Il dettaglio che impedisce a «cifrato» di significare «sicuro»
+
+Ecco la parte che la maggior parte degli articoli tralascia. Ricercatori forensi che hanno decodificato il formato hanno scoperto che la chiave RC4 è **scritta in modo fisso in `mpengine.dll`**. È la stessa chiave ovunque, ed è pubblicamente nota.
+
+Non è uno scandalo, perché non è mai stata pensata come un segreto. La quarantena esiste per rendere un file **inerte**, non per renderlo riservato. Ma fissa il limite con onestà: un file in quarantena è al riparo da un'esecuzione accidentale, e non è una cassaforte. Chiunque abbia accesso alla macchina e conosca il formato pubblicato può ricostruire l'originale.
+
+![Una piccola cassaforte elettronica nera con tastierino dorato, fotografata con la chiave ancora inserita nella serratura.](https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Allora, vanno eliminati?
+
+Per la maggior parte delle persone, quasi sempre: **non c'è urgenza, né una ragione forte.** Il file è già neutralizzato. Eliminarlo non ti protegge più di quanto abbia già fatto la quarantena; rende solo l'azione definitiva.
+
+Ciò che l'eliminazione cambia davvero è la tua possibilità di rimediare a un errore. Gli antivirus producono falsi positivi, e colpiscono più duramente proprio ciò che non si sostituisce facilmente: un'utilità di nicchia, una modifica per un gioco, uno strumento uscito da un installer legittimo, uno script scritto da sé. Se quel file viene eliminato anziché messo in quarantena, è perso.
+
+Tre casi in cui eliminare è ragionevole:
+
+**Hai identificato con certezza il file ed è realmente dannoso.** Non «lo ha detto l'antivirus»: hai guardato da dove veniva e non c'entra nulla.
+
+**Lo spazio su disco conta davvero.** La quarantena conserva l'intero contenuto, quindi un file rilevato di grandi dimensioni occupa la sua dimensione piena due volte finché non viene ripulito.
+
+**La policy lo impone.** In un ambiente gestito, la decisione non è tua.
+
+E il caso in cui eliminare è un errore: **non sei sicuro, e il file è qualcosa che non puoi riscaricare.** Lascialo stare. Dov'è non sta facendo nulla.
+
+## Non contare sulla pulizia automatica
+
+Leggerai che gli elementi in quarantena spariscono dopo trenta giorni. La documentazione di Microsoft sul ripristino dei file in quarantena **non** indica alcun periodo di conservazione, e il comportamento di pulizia è configurabile. Considera la rimozione automatica come qualcosa che può accadere, non come una garanzia su cui pianificare, in nessuna direzione. Se vuoi che un elemento sparisca, rimuovilo deliberatamente.
+
+## Come recuperare un file, se concludi che era un falso positivo
+
+Dall'interfaccia: apri **Sicurezza di Windows**, vai su **Protezione da virus e minacce**, poi su **Cronologia protezione** sotto Minacce correnti, filtra su **Elementi in quarantena**, seleziona l'elemento e scegli **Ripristina**.
+
+Da riga di comando, in un prompt con privilegi elevati, `MpCmdRun.exe -Restore -ListAll` mostra tutto ciò che è attualmente in quarantena, e `MpCmdRun.exe -Restore -Name <nomefile>` ne ripristina uno preciso.
+
+Se ripristini qualcosa che l'antivirus continua a considerare dannoso, aspettati che venga ripreso. Ripristinare non equivale a fidarsi: potrebbe servirti anche un'esclusione, e un'esclusione è una decisione che dovresti saper giustificare.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Se eliminare un file in quarantena mette a disagio, è perché potrebbe esserne l'unica copia. La quarantena non è un backup: è un'area di attesa che può essere ripulita, e contiene soltanto ciò che il tuo antivirus ha segnalato. Se perdere un file per un falso positivo facesse davvero male, quel che manca è il backup, non la lista di quarantena." />
+
+## In breve
+
+La quarantena ha già fatto la parte importante: il file è cifrato, inerte e non può essere eseguito. Eliminarlo non aggiunge protezione e ti toglie la possibilità di annullare un falso positivo. Elimina quando sei sicuro o quando lo spazio lo impone, conserva quando non lo sei, e non contare sul fatto che la cartella si pulisca da sola.
+
+*I percorsi di quarantena e la separazione tra Entries e ResourceData, la cifratura RC4 e la chiave fissa in mpengine.dll provengono da ricerca forense pubblicata sul formato di quarantena di Windows Defender. Le procedure di ripristino tramite Sicurezza di Windows e MpCmdRun provengono dalla documentazione di Microsoft, consultata al momento della stesura; quella pagina non indica alcun periodo di conservazione. Verifica la documentazione aggiornata del produttore prima di affidarti a un dettaglio specifico. I link commerciali portano l'attributo rel="sponsored nofollow"; può applicarsi una commissione di affiliazione senza costi aggiuntivi per te.*

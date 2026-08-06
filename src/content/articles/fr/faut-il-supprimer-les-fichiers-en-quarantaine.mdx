@@ -1,0 +1,63 @@
+---
+title: "Faut-il supprimer les fichiers en quarantaine ? Ce que la quarantaine leur fait vraiment"
+description: "Tous les guides de suppression disent de mettre en quarantaine. Presque aucun ne dit où va le fichier, s'il est encore dangereux, ni ce que vous perdez en le supprimant. Voici ce qui se passe sur le disque, et quand supprimer est une erreur."
+pubDate: 2026-08-06
+hero: "https://images.pexels.com/photos/23322329/pexels-photo-23322329.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Un couloir de coffres tapissé du sol au plafond de centaines de petits casiers en bois, une porte fermée au fond"
+keyword: "supprimer fichiers en quarantaine"
+tags: ["quarantine", "defender", "false-positive", "removal", "windows", "backup"]
+translationKey: "should-i-delete-quarantined-files"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Votre antivirus a trouvé quelque chose, vous avez cliqué sur le bouton, et une liste d'éléments en quarantaine attend maintenant devant vous. Le réflexe suivant est de la vider. Avant cela, il vaut la peine de savoir ce que la quarantaine a déjà fait, parce que cela change la réponse.
+
+## La quarantaine n'est pas un dossier où l'on a déplacé votre fichier
+
+Elle tient davantage de la boîte scellée que du tiroir. Sous Windows, Microsoft Defender conserve les éléments en quarantaine sous `ProgramData\Microsoft\Windows Defender\Quarantine`, séparés en deux parties : **Entries**, qui contient les métadonnées indiquant quand et pourquoi quelque chose a été mis en quarantaine, et **ResourceData**, qui contient le contenu du fichier lui-même.
+
+Les deux parties sont **chiffrées en RC4**. C'est pour cela que vous ne pouvez pas naviguer jusqu'au dossier et ouvrir ce qu'il contient, et que le fichier ne peut plus s'exécuter, être ouvert par un autre programme ni être déclenché par une tâche planifiée. Il a été retiré de la circulation.
+
+## Le détail qui empêche « chiffré » de vouloir dire « sûr »
+
+Voici la partie que la plupart des articles omettent. Des chercheurs en analyse forensique qui ont rétro-conçu le format ont constaté que la clé RC4 est **codée en dur dans `mpengine.dll`**. C'est la même clé partout, et elle est publiquement connue.
+
+Ce n'est pas un scandale, car elle n'a jamais été censée être un secret. La quarantaine existe pour rendre un fichier **inerte**, pas pour le rendre confidentiel. Mais elle pose honnêtement la limite : un fichier en quarantaine est à l'abri d'une exécution accidentelle, et ce n'est pas un coffre-fort. Quiconque a accès à la machine et connaît le format publié peut reconstituer l'original.
+
+![Un petit coffre-fort électronique noir à clavier doré, photographié avec sa clé encore dans la serrure.](https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Alors, faut-il les supprimer ?
+
+Pour la plupart des gens, la plupart du temps : **il n'y a aucune urgence, ni de vraie raison de le faire.** Le fichier est déjà neutralisé. Le supprimer ne vous protège pas davantage que ne l'a fait la quarantaine ; cela rend seulement l'action définitive.
+
+Ce que la suppression change, c'est votre capacité à revenir sur une erreur. Les antivirus produisent des faux positifs, et ceux-ci frappent le plus durement ce que les gens ne peuvent pas remplacer facilement : un utilitaire de niche, une modification de jeu, un outil issu d'un installeur légitime, un script écrit par soi-même. Si ce fichier est supprimé plutôt que mis en quarantaine, il est perdu.
+
+Trois cas où supprimer est raisonnable :
+
+**Vous avez formellement identifié le fichier et il est réellement malveillant.** Pas « l'antivirus l'a dit » : vous avez regardé d'où il venait et il n'a rien à faire là.
+
+**L'espace disque compte vraiment.** La quarantaine stocke l'intégralité du contenu : un gros fichier détecté occupe donc sa taille entière en double jusqu'à la purge.
+
+**La politique de l'entreprise l'exige.** Dans un environnement administré, ce n'est pas votre décision.
+
+Et le cas où supprimer est une erreur : **vous n'êtes pas sûr, et le fichier est quelque chose que vous ne pouvez pas retélécharger.** Laissez-le. Il ne fait rien là où il est.
+
+## Ne comptez pas sur le nettoyage automatique
+
+Vous lirez que les éléments en quarantaine disparaissent au bout de trente jours. La documentation de Microsoft sur la restauration des fichiers en quarantaine n'indique **aucune** durée de conservation, et le comportement de purge est configurable. Considérez la suppression automatique comme quelque chose qui peut arriver, pas comme une garantie sur laquelle bâtir un plan, dans un sens comme dans l'autre. Si vous voulez qu'un élément disparaisse, supprimez-le délibérément.
+
+## Comment récupérer un fichier, si vous concluez au faux positif
+
+Par l'interface : ouvrez **Sécurité Windows**, allez dans **Protection contre les virus et menaces**, puis **Historique de la protection** sous Menaces actuelles, filtrez sur **Éléments en quarantaine**, sélectionnez l'élément et choisissez **Restaurer**.
+
+En ligne de commande, dans une invite élevée, `MpCmdRun.exe -Restore -ListAll` affiche tout ce qui est actuellement en quarantaine, et `MpCmdRun.exe -Restore -Name <nomdufichier>` en restaure un précis.
+
+Si vous restaurez quelque chose que l'antivirus considère toujours comme malveillant, attendez-vous à ce qu'il soit repris. Restaurer n'est pas faire confiance : il vous faudra peut-être aussi une exclusion, et une exclusion est une décision que vous devez pouvoir justifier.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Si supprimer un fichier en quarantaine met mal à l'aise, c'est qu'il en est peut-être l'unique copie. La quarantaine n'est pas une sauvegarde : c'est une zone d'attente qui peut être purgée, et elle ne contient jamais que ce que votre antivirus a signalé. Si perdre un fichier sur un faux positif faisait réellement mal, le manque à combler est la sauvegarde, pas la liste de quarantaine." />
+
+## En résumé
+
+La quarantaine a déjà fait l'essentiel : le fichier est chiffré, inerte, et ne peut pas s'exécuter. Le supprimer n'ajoute aucune protection et vous retire la possibilité de revenir sur un faux positif. Supprimez quand vous êtes sûr ou quand l'espace l'exige, gardez quand vous ne l'êtes pas, et ne comptez pas sur le dossier pour se nettoyer tout seul.
+
+*Les chemins de quarantaine et la séparation entre Entries et ResourceData, le chiffrement RC4 et la clé codée en dur dans mpengine.dll proviennent de recherches forensiques publiées sur le format de quarantaine de Windows Defender. Les procédures de restauration via Sécurité Windows et MpCmdRun proviennent de la documentation de Microsoft, consultée à la rédaction ; cette page n'indique aucune durée de conservation. Vérifiez la documentation à jour de l'éditeur avant de vous fier à un détail précis. Les liens commerciaux portent l'attribut rel="sponsored nofollow" ; une commission d'affiliation peut s'appliquer sans surcoût pour vous.*

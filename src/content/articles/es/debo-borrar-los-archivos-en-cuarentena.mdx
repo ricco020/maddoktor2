@@ -1,0 +1,63 @@
+---
+title: "¿Debo borrar los archivos en cuarentena? Lo que la cuarentena les hace realmente"
+description: "Todas las guías de eliminación dicen que pongas el archivo en cuarentena. Casi ninguna dice adónde va, si sigue siendo peligroso, ni qué pierdes al borrarlo. Esto es lo que ocurre en el disco, y cuándo borrar es un error."
+pubDate: 2026-08-06
+hero: "https://images.pexels.com/photos/23322329/pexels-photo-23322329.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Un estrecho pasillo acorazado cubierto del suelo al techo por cientos de pequeñas cajas de madera, con una puerta cerrada al fondo"
+keyword: "borrar archivos en cuarentena"
+tags: ["quarantine", "defender", "false-positive", "removal", "windows", "backup"]
+translationKey: "should-i-delete-quarantined-files"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Tu antivirus encontró algo, pulsaste el botón, y ahora tienes ahí una lista de elementos en cuarentena. El impulso siguiente es vaciarla. Antes de hacerlo, conviene saber qué hizo ya la cuarentena, porque cambia la respuesta.
+
+## La cuarentena no es una carpeta a la que se movió tu archivo
+
+Se parece más a una caja sellada que a un cajón. En Windows, Microsoft Defender guarda los elementos en cuarentena en `ProgramData\Microsoft\Windows Defender\Quarantine`, divididos en dos partes: **Entries**, que contiene los metadatos sobre cuándo y por qué se puso algo en cuarentena, y **ResourceData**, que contiene el contenido del propio archivo.
+
+Ambas partes están **cifradas con RC4**. Por eso no puedes ir a la carpeta y abrir lo que hay dentro, y por eso el archivo ya no puede ejecutarse, ser abierto por otro programa ni ser lanzado por una tarea programada. Ha quedado fuera de circulación.
+
+## El detalle que impide que «cifrado» signifique «seguro»
+
+Aquí está la parte que la mayoría de los artículos omite. Investigadores forenses que aplicaron ingeniería inversa al formato descubrieron que la clave RC4 está **codificada de forma fija en `mpengine.dll`**. Es la misma clave en todas partes, y es públicamente conocida.
+
+No es un escándalo, porque nunca pretendió ser un secreto. La cuarentena existe para volver un archivo **inerte**, no para hacerlo confidencial. Pero fija el límite con honestidad: un archivo en cuarentena está a salvo de ejecutarse por accidente, y no es una caja fuerte. Cualquiera con acceso a la máquina y con el formato publicado puede reconstruir el original.
+
+![Una pequeña caja fuerte electrónica negra con teclado dorado, fotografiada con la llave aún puesta en la cerradura.](https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Entonces, ¿hay que borrarlos?
+
+Para la mayoría de la gente, la mayor parte del tiempo: **no hay urgencia ni una razón de peso.** El archivo ya está neutralizado. Borrarlo no te protege más de lo que ya te protegió la cuarentena; solo vuelve la acción definitiva.
+
+Lo que sí cambia el borrado es tu capacidad de deshacer un error. Los antivirus producen falsos positivos, y estos golpean con más fuerza precisamente lo que no se puede reemplazar con facilidad: una utilidad de nicho, una modificación de un juego, una herramienta salida de un instalador legítimo, un script escrito por uno mismo. Si ese archivo se borra en lugar de ponerse en cuarentena, se ha perdido.
+
+Tres casos en los que borrar es razonable:
+
+**Has identificado con certeza el archivo y es realmente malicioso.** No «lo dijo el antivirus»: miraste de dónde venía y no pinta nada ahí.
+
+**El espacio en disco importa de verdad.** La cuarentena almacena el contenido completo, así que un archivo grande detectado ocupa su tamaño entero por duplicado hasta que se purga.
+
+**La política lo exige.** En un entorno gestionado, la decisión no es tuya.
+
+Y el caso en que borrar es un error: **no estás seguro, y el archivo es algo que no puedes volver a descargar.** Déjalo. No está haciendo nada donde está.
+
+## No cuentes con la limpieza automática
+
+Leerás que los elementos en cuarentena desaparecen a los treinta días. La documentación de Microsoft sobre la restauración de archivos en cuarentena **no** indica ningún periodo de conservación, y el comportamiento de purga es configurable. Trata la eliminación automática como algo que puede ocurrir, no como una garantía sobre la que planificar, en ningún sentido. Si quieres que un elemento desaparezca, elimínalo deliberadamente.
+
+## Cómo recuperar un archivo, si concluyes que fue un falso positivo
+
+Desde la interfaz: abre **Seguridad de Windows**, ve a **Protección antivirus y contra amenazas**, luego a **Historial de protección** bajo Amenazas actuales, filtra por **Elementos en cuarentena**, selecciona el elemento y elige **Restaurar**.
+
+Desde la línea de comandos, en un símbolo del sistema elevado, `MpCmdRun.exe -Restore -ListAll` muestra todo lo que está en cuarentena, y `MpCmdRun.exe -Restore -Name <nombredearchivo>` restaura uno concreto.
+
+Si restauras algo que el antivirus sigue considerando malicioso, espera que lo vuelva a detectar. Restaurar no es lo mismo que confiar: puede que también necesites una exclusión, y una exclusión es una decisión que deberías poder justificar.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Si borrar un archivo en cuarentena da reparo, es porque puede ser la única copia. La cuarentena no es una copia de seguridad: es una zona de espera que puede purgarse, y solo contiene lo que tu antivirus marcó. Si perder un archivo por un falso positivo doliera de verdad, lo que falta es la copia de seguridad, no la lista de cuarentena." />
+
+## En resumen
+
+La cuarentena ya hizo lo importante: el archivo está cifrado, inerte y no puede ejecutarse. Borrarlo no añade protección y te quita la posibilidad de revertir un falso positivo. Borra cuando estés seguro o cuando el espacio lo exija, conserva cuando no lo estés, y no confíes en que la carpeta se limpie sola.
+
+*Las rutas de cuarentena y la separación entre Entries y ResourceData, el cifrado RC4 y la clave fija en mpengine.dll proceden de investigación forense publicada sobre el formato de cuarentena de Windows Defender. Los procedimientos de restauración mediante Seguridad de Windows y MpCmdRun proceden de la documentación de Microsoft, consultada en el momento de escribir; esa página no indica ningún periodo de conservación. Verifica la documentación actual del fabricante antes de fiarte de un detalle concreto. Los enlaces comerciales llevan el atributo rel="sponsored nofollow"; puede aplicarse una comisión de afiliación sin coste adicional para ti.*

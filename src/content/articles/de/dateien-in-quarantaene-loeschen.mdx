@@ -1,0 +1,63 @@
+---
+title: "Sollte ich Dateien in Quarantäne löschen? Was die Quarantäne wirklich mit ihnen macht"
+description: "Jede Entfernungsanleitung sagt, man solle in Quarantäne verschieben. Fast keine sagt, wohin die Datei geht, ob sie noch gefährlich ist, oder was man durch Löschen verliert. Das passiert auf der Festplatte, und so erkennen Sie, wann Löschen falsch ist."
+pubDate: 2026-08-06
+hero: "https://images.pexels.com/photos/23322329/pexels-photo-23322329.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Ein schmaler Tresorgang, vom Boden bis zur Decke mit Hunderten kleiner Holzschließfächer ausgekleidet, am Ende eine geschlossene Tür"
+keyword: "Dateien in Quarantäne löschen"
+tags: ["quarantine", "defender", "false-positive", "removal", "windows", "backup"]
+translationKey: "should-i-delete-quarantined-files"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+Ihr Virenscanner hat etwas gefunden, Sie haben auf die Schaltfläche geklickt, und nun liegt dort eine Liste von Elementen in Quarantäne. Der nächste Impuls ist, sie zu leeren. Vorher lohnt es sich zu wissen, was die Quarantäne bereits getan hat, denn das ändert die Antwort.
+
+## Quarantäne ist kein Ordner, in den Ihre Datei verschoben wurde
+
+Sie ähnelt eher einer versiegelten Kiste als einer Schublade. Unter Windows bewahrt Microsoft Defender Elemente in Quarantäne unter `ProgramData\Microsoft\Windows Defender\Quarantine` auf, aufgeteilt in zwei Teile: **Entries** mit den Metadaten darüber, wann und warum etwas in Quarantäne kam, und **ResourceData** mit dem Inhalt der Datei selbst.
+
+Beide Teile sind **mit RC4 verschlüsselt**. Deshalb können Sie den Ordner nicht einfach öffnen und hineinsehen, und deshalb kann die Datei nicht mehr ausgeführt, von einem anderen Programm geöffnet oder von einer geplanten Aufgabe gestartet werden. Sie ist aus dem Verkehr gezogen.
+
+## Das Detail, das „verschlüsselt“ daran hindert, „sicher“ zu bedeuten
+
+Hier ist der Teil, den die meisten Artikel weglassen. Forensiker, die das Format rückentwickelt haben, stellten fest, dass der RC4-Schlüssel **fest in `mpengine.dll` einprogrammiert** ist. Es ist überall derselbe Schlüssel, und er ist öffentlich bekannt.
+
+Das ist kein Skandal, denn er sollte nie ein Geheimnis sein. Quarantäne gibt es, um eine Datei **wirkungslos** zu machen, nicht um sie vertraulich zu machen. Aber sie zieht die Grenze ehrlich: Eine Datei in Quarantäne ist davor geschützt, versehentlich ausgeführt zu werden, und sie ist kein Tresor. Wer Zugang zum Rechner hat und das veröffentlichte Format kennt, kann das Original wiederherstellen.
+
+![Ein kleiner schwarzer elektronischer Safe mit goldenem Tastenfeld, fotografiert mit noch steckendem Schlüssel im Schloss.](https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Sollten Sie sie also löschen?
+
+Für die meisten Menschen, in den meisten Fällen: **Es eilt nicht, und es spricht wenig dafür.** Die Datei ist bereits unschädlich gemacht. Sie zu löschen schützt Sie nicht mehr, als die Quarantäne es schon tut; es macht den Schritt nur endgültig.
+
+Was das Löschen sehr wohl ändert, ist Ihre Fähigkeit, einen Fehler rückgängig zu machen. Scanner erzeugen Fehlalarme, und die treffen am härtesten das, was sich nicht leicht ersetzen lässt: ein Nischenwerkzeug, eine Spielmodifikation, ein Programm aus einem legitimen Installer, ein selbst geschriebenes Skript. Wird diese Datei gelöscht statt in Quarantäne gestellt, ist sie weg.
+
+Drei Fälle, in denen Löschen sinnvoll ist:
+
+**Sie haben die Datei eindeutig identifiziert und sie ist tatsächlich bösartig.** Nicht „der Scanner sagt das“ - Sie haben nachgesehen, woher sie kam, und sie gehört dort nicht hin.
+
+**Speicherplatz zählt wirklich.** Die Quarantäne speichert den vollständigen Inhalt, eine große erkannte Datei belegt ihre volle Größe also doppelt, bis sie bereinigt wird.
+
+**Die Richtlinie verlangt es.** In einer verwalteten Umgebung ist das nicht Ihre Entscheidung.
+
+Und der Fall, in dem Löschen ein Fehler ist: **Sie sind unsicher, und die Datei ist etwas, das Sie nicht erneut herunterladen können.** Lassen Sie sie liegen. Sie richtet dort keinen Schaden an.
+
+## Verlassen Sie sich nicht auf die automatische Bereinigung
+
+Sie werden lesen, Elemente in Quarantäne verschwänden nach dreißig Tagen. Microsofts eigene Dokumentation zum Wiederherstellen von Dateien in Quarantäne nennt **keine** Aufbewahrungsfrist, und das Bereinigungsverhalten ist konfigurierbar. Behandeln Sie die automatische Entfernung als etwas, das geschehen kann, nicht als Zusicherung, mit der Sie in irgendeine Richtung planen. Soll ein Element weg sein, entfernen Sie es bewusst.
+
+## Wie Sie eine Datei zurückholen, falls Sie auf Fehlalarm schließen
+
+Über die Oberfläche: Öffnen Sie **Windows-Sicherheit**, gehen Sie zu **Viren- & Bedrohungsschutz**, dann unter Aktuelle Bedrohungen auf **Schutzverlauf**, filtern Sie auf **Elemente in Quarantäne**, wählen Sie den Eintrag und dann **Wiederherstellen**.
+
+Über die Befehlszeile zeigt `MpCmdRun.exe -Restore -ListAll` in einer Eingabeaufforderung mit erhöhten Rechten alles derzeit in Quarantäne Befindliche an, und `MpCmdRun.exe -Restore -Name <Dateiname>` stellt einen bestimmten Eintrag wieder her.
+
+Stellen Sie etwas wieder her, das der Scanner weiterhin für bösartig hält, wird es erneut erfasst. Wiederherstellen ist nicht dasselbe wie Vertrauen: Möglicherweise brauchen Sie zusätzlich eine Ausnahme, und eine Ausnahme ist eine Entscheidung, die Sie begründen können sollten.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Dass sich das Löschen einer Datei in Quarantäne riskant anfühlt, liegt daran, dass sie die einzige Kopie sein könnte. Quarantäne ist keine Sicherung - sie ist ein Wartebereich, der bereinigt werden kann, und sie enthält immer nur das, was Ihr Scanner markiert hat. Wenn der Verlust einer Datei durch einen Fehlalarm wirklich wehtäte, fehlt die Sicherung, nicht die Quarantäneliste." />
+
+## Kurz gefasst
+
+Die Quarantäne hat das Wesentliche bereits erledigt: Die Datei ist verschlüsselt, wirkungslos und kann nicht ausgeführt werden. Sie zu löschen bringt keinen zusätzlichen Schutz und nimmt Ihnen die Möglichkeit, einen Fehlalarm rückgängig zu machen. Löschen Sie, wenn Sie sicher sind oder der Platz es verlangt, behalten Sie, wenn Sie es nicht sind, und verlassen Sie sich nicht darauf, dass sich der Ordner selbst aufräumt.
+
+*Die Quarantänepfade und die Aufteilung in Entries und ResourceData, die RC4-Verschlüsselung und der fest einprogrammierte Schlüssel in mpengine.dll stammen aus veröffentlichter forensischer Forschung zum Quarantäneformat von Windows Defender. Die Wiederherstellungswege über Windows-Sicherheit und MpCmdRun stammen aus Microsofts eigener Dokumentation, geprüft zum Zeitpunkt des Schreibens; diese Seite nennt keine Aufbewahrungsfrist. Prüfen Sie die aktuelle Herstellerdokumentation, bevor Sie sich auf ein bestimmtes Detail verlassen. Kommerzielle Links tragen das Attribut rel="sponsored nofollow"; eine Affiliate-Provision kann anfallen, ohne Mehrkosten für Sie.*

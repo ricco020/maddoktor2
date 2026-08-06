@@ -1,0 +1,63 @@
+---
+title: "Devo apagar os ficheiros em quarentena? O que a quarentena lhes faz realmente"
+description: "Todos os guias de remoção mandam pôr em quarentena. Quase nenhum diz para onde vai o ficheiro, se continua perigoso, nem o que se perde ao apagá-lo. Eis o que acontece no disco, e quando apagar é o erro."
+pubDate: 2026-08-06
+hero: "https://images.pexels.com/photos/23322329/pexels-photo-23322329.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "Um corredor estreito de cofres revestido do chão ao teto por centenas de pequenas caixas de madeira, com uma porta fechada ao fundo"
+keyword: "apagar ficheiros em quarentena"
+tags: ["quarantine", "defender", "false-positive", "removal", "windows", "backup"]
+translationKey: "should-i-delete-quarantined-files"
+---
+import AffiliateCTA from '../../../components/AffiliateCTA.astro';
+
+O seu antivírus encontrou alguma coisa, carregou no botão, e agora está ali uma lista de itens em quarentena. O impulso seguinte é esvaziá-la. Antes disso, vale a pena saber o que a quarentena já fez, porque muda a resposta.
+
+## A quarentena não é uma pasta para onde o ficheiro foi movido
+
+Assemelha-se mais a uma caixa selada do que a uma gaveta. No Windows, o Microsoft Defender guarda os itens em quarentena em `ProgramData\Microsoft\Windows Defender\Quarantine`, divididos em duas partes: **Entries**, que contém os metadados sobre quando e porquê algo foi posto em quarentena, e **ResourceData**, que contém o conteúdo do próprio ficheiro.
+
+Ambas as partes estão **cifradas com RC4**. É por isso que não consegue navegar até à pasta e abrir o que lá está, e é por isso que o ficheiro já não pode ser executado, aberto por outro programa nem lançado por uma tarefa agendada. Foi retirado de circulação.
+
+## O detalhe que impede «cifrado» de significar «seguro»
+
+Eis a parte que a maioria dos artigos omite. Investigadores forenses que fizeram engenharia inversa ao formato descobriram que a chave RC4 está **fixada no código de `mpengine.dll`**. É a mesma chave em todo o lado, e é publicamente conhecida.
+
+Não é um escândalo, porque nunca se pretendeu que fosse um segredo. A quarentena existe para tornar um ficheiro **inerte**, não para o tornar confidencial. Mas fixa o limite com honestidade: um ficheiro em quarentena está a salvo de ser executado por acidente, e não é um cofre. Qualquer pessoa com acesso à máquina e ao formato publicado consegue reconstruir o original.
+
+![Um pequeno cofre eletrónico preto com teclado dourado, fotografado com a chave ainda na fechadura.](https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
+## Então, devem ser apagados?
+
+Para a maioria das pessoas, na maioria das vezes: **não há urgência nem uma razão forte.** O ficheiro já está neutralizado. Apagá-lo não o protege mais do que a quarentena já protegeu; apenas torna a ação definitiva.
+
+O que apagar muda mesmo é a sua capacidade de desfazer um erro. Os antivírus produzem falsos positivos, e estes atingem com mais força precisamente aquilo que não se substitui facilmente: um utilitário de nicho, uma modificação de um jogo, uma ferramenta saída de um instalador legítimo, um script escrito pelo próprio. Se esse ficheiro for apagado em vez de posto em quarentena, perdeu-se.
+
+Três casos em que apagar é razoável:
+
+**Identificou o ficheiro com certeza e ele é realmente malicioso.** Não «o antivírus disse»: foi ver de onde veio e não tem ali nada que fazer.
+
+**O espaço em disco conta mesmo.** A quarentena guarda o conteúdo completo, por isso um ficheiro grande detetado ocupa o seu tamanho inteiro a dobrar até ser purgado.
+
+**A política exige-o.** Num ambiente gerido, a decisão não é sua.
+
+E o caso em que apagar é um erro: **não tem a certeza, e o ficheiro é algo que não consegue voltar a descarregar.** Deixe-o. Não está a fazer nada onde está.
+
+## Não conte com a limpeza automática
+
+Vai ler que os itens em quarentena desaparecem ao fim de trinta dias. A documentação da Microsoft sobre a restauração de ficheiros em quarentena **não** indica qualquer período de conservação, e o comportamento de purga é configurável. Trate a remoção automática como algo que pode acontecer, não como uma garantia com que planear, em nenhum dos sentidos. Se quer um item fora, remova-o deliberadamente.
+
+## Como recuperar um ficheiro, se concluir que foi um falso positivo
+
+Pela interface: abra a **Segurança do Windows**, vá a **Proteção contra vírus e ameaças**, depois a **Histórico de proteção** em Ameaças atuais, filtre por **Itens em quarentena**, selecione o item e escolha **Restaurar**.
+
+Pela linha de comandos, numa consola elevada, `MpCmdRun.exe -Restore -ListAll` mostra tudo o que está em quarentena, e `MpCmdRun.exe -Restore -Name <nomedoficheiro>` restaura um em concreto.
+
+Se restaurar algo que o antivírus continua a considerar malicioso, conte que volte a ser apanhado. Restaurar não é o mesmo que confiar: pode também precisar de uma exclusão, e uma exclusão é uma decisão que deve conseguir justificar.
+
+<AffiliateCTA href="/go/easeus-todobackup" product="EaseUS Todo Backup" blurb="Se apagar um ficheiro em quarentena causa desconforto, é porque pode ser a única cópia. A quarentena não é uma cópia de segurança: é uma zona de espera que pode ser purgada, e contém apenas o que o seu antivírus assinalou. Se perder um ficheiro por um falso positivo doesse mesmo, o que falta é a cópia de segurança, não a lista de quarentena." />
+
+## Em resumo
+
+A quarentena já fez o essencial: o ficheiro está cifrado, inerte e não pode ser executado. Apagá-lo não acrescenta proteção e retira-lhe a possibilidade de reverter um falso positivo. Apague quando tiver a certeza ou quando o espaço o exigir, guarde quando não tiver, e não conte que a pasta se limpe sozinha.
+
+*Os caminhos de quarentena e a separação entre Entries e ResourceData, a cifragem RC4 e a chave fixa em mpengine.dll provêm de investigação forense publicada sobre o formato de quarentena do Windows Defender. Os procedimentos de restauração através da Segurança do Windows e do MpCmdRun provêm da documentação da própria Microsoft, consultada à data de escrita; essa página não indica qualquer período de conservação. Verifique a documentação atual do fabricante antes de confiar num detalhe específico. As ligações comerciais têm o atributo rel="sponsored nofollow"; pode aplicar-se uma comissão de afiliação sem custo adicional para si.*
