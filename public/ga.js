@@ -45,4 +45,39 @@
   } else {
     initBanner();
   }
+  // ── Mesure des clics affilies ────────────────────────────────────────────
+  // Ajoute le 2026-08-10. Ce site fait 6 sessions sur 30 jours et sert bien
+  // des encarts affilies, mais GA4 n'en recevait QUE page_view, session_start,
+  // first_visit et user_engagement : aucun evenement de clic, pas meme le
+  // 'click' automatique. Sa conversion n'etait donc pas mauvaise, elle etait
+  // inobservable — on ne pouvait ni la constater ni l'ameliorer.
+  //
+  // Le code vit ici et pas dans un script inline parce que la CSP du site
+  // interdit l'inline (script-src 'self' googletagmanager) : ce fichier est
+  // deja same-origin, deja charge, et porte deja la logique de consentement.
+  //
+  // Memes noms d'evenement et de parametres que vpnsmith et wethepurple, pour
+  // que les trois soient comparables dans une seule exploration GA4.
+  function localeOf(path) {
+    var seg = path.split('/').filter(Boolean)[0];
+    return seg && /^[a-z]{2}$/i.test(seg) ? seg.toLowerCase() : '';
+  }
+  document.addEventListener('click', function (e) {
+    var link = e.target && e.target.closest ? e.target.closest('a[href*="/go/"]') : null;
+    if (!link) return;
+    var slug = (link.getAttribute('href') || '').split('/go/')[1] || '';
+    slug = slug.split(/[?#]/)[0].replace(/\/$/, '');
+    if (!slug) return;
+    var path = window.location.pathname;
+    var params = {
+      affiliate_program: slug.split('-')[0],
+      affiliate_slug: slug,
+      landing_path: path,
+      locale: localeOf(path),
+      link_url: link.href,
+      transport_type: 'beacon'
+    };
+    gtag('event', 'affiliate_click', params);
+    gtag('event', 'go_click', params);
+  }, true);
 })();
