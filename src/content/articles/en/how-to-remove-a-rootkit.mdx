@@ -23,6 +23,8 @@ A rootkit is one of the hardest kinds of malware to deal with, for a simple reas
 
 The common thread: if the rootkit is already running when you scan, it can hide from the scan. The fix is to scan when it is **not** running.
 
+Rootkits are not the only family built to be invisible: [fileless malware](/articles/what-is-fileless-malware) takes the opposite route and never writes a file to disk at all, which defeats scanners that look for one. The removal logic differs, so it is worth knowing which of the two you are facing before you start.
+
 ## Signs you might have a rootkit
 
 Rootkits are stealthy by design, so symptoms are indirect:
