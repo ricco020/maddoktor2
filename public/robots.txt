@@ -70,5 +70,3 @@ Allow: /
 Disallow: /go/
 
 Sitemap: https://maddoktor2.com/sitemap-index.xml
-
-<!-- deploy-hook test 2026-08-13 -->
