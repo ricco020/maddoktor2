@@ -50,7 +50,7 @@
   // des encarts affilies, mais GA4 n'en recevait QUE page_view, session_start,
   // first_visit et user_engagement : aucun evenement de clic, pas meme le
   // 'click' automatique. Sa conversion n'etait donc pas mauvaise, elle etait
-  // inobservable — on ne pouvait ni la constater ni l'ameliorer.
+  // inobservable, on ne pouvait ni la constater ni l'ameliorer.
   //
   // Le code vit ici et pas dans un script inline parce que la CSP du site
   // interdit l'inline (script-src 'self' googletagmanager) : ce fichier est
