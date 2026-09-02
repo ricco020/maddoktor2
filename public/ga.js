@@ -16,6 +16,41 @@
     gtag('config', 'G-0SWEEWZHKP', { anonymize_ip: true });
   };
 
+  // CAPTEUR DE CLIC SORTANT (2026-09-02).
+  //
+  // POURQUOI ICI. `clics-sortants-28j.py` rendait 0 clic pour ce site et GA4 ne connait
+  // que 4 types d evenements sur 365 jours: c etait le DERNIER site du reseau sans
+  // capteur, alors qu il sert bien des liens affilies (29 liens `/go/` sur 16 pages
+  // lues depuis son sitemap, dont un sur l accueil). Sans capteur, aucun budget envoye
+  // ici ne pourrait etre juge.
+  //
+  // ⛔ CE QU IL NE MESURERA PAS, ET C EST STRUCTUREL. Sur ce site, GA4 n est charge
+  // qu APRES un consentement explicite (`so-consent === 'yes'`), la ou les autres sites
+  // du reseau chargent par defaut sauf refus. Le capteur ne verra donc que la part des
+  // visiteurs ayant accepte. **Le chiffre de maddoktor2 est un plancher d une autre
+  // nature que celui des autres sites, et il ne leur est pas directement comparable.**
+  // On ne contourne pas le consentement pour uniformiser: c est la mesure qui s adapte
+  // au choix du visiteur, pas l inverse.
+  //
+  // Memes noms d evenement que le reste du reseau (`affiliate_click`, `go_click`) pour
+  // que les sites restent lisibles dans une seule exploration GA4. Le site n emettait
+  // AUCUN de ces deux evenements: aucun risque de double comptage.
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('/go/') === -1) return;
+    if (typeof window.gtag !== 'function') return;   // pas de consentement, pas de mesure
+    var params = {
+      affiliate_slug: href.replace(/^.*\/go\//, '').replace(/[?#].*$/, ''),
+      landing_path: window.location.pathname,
+      link_url: a.href,
+      transport_type: 'beacon'
+    };
+    window.gtag('event', 'affiliate_click', params);
+    window.gtag('event', 'go_click', params);
+  }, true);
+
   // If the visitor already accepted in a previous visit, load immediately.
   try {
     if (localStorage.getItem('so-consent') === 'yes') window.loadAnalytics();
