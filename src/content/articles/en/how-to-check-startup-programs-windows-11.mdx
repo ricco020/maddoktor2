@@ -1,0 +1,84 @@
+---
+title: "How to Check Startup Programs in Windows 11, and the Two Places Task Manager Does Not Look"
+description: "Task Manager shows one list. Malware that wants to survive a reboot rarely puts itself there. The four locations Windows actually starts things from, how to read each one, and what a suspicious entry looks like."
+pubDate: 2026-09-05
+hero: "https://images.pexels.com/photos/6804613/pexels-photo-6804613.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroAlt: "A dark office desk with a widescreen monitor showing lines of code, a mechanical keyboard and mouse in front, a tower case lit with a strip of coloured lights on the right and cables running across the desktop"
+keyword: "how to check startup programs windows 11"
+tags: ["windows 11", "startup", "persistence", "malware removal", "task manager"]
+translationKey: "how-to-check-startup-programs-windows-11"
+---
+
+Task Manager has a Startup apps tab, it lists a dozen entries, and most guides stop there. That list is genuine and it is also the **one place a program hiding from you would avoid**.
+
+Windows starts things from at least four different mechanisms. Anything that wants to survive a reboot without being noticed uses one of the other three.
+
+## The list everyone knows, and what it is good for
+
+`Ctrl` + `Shift` + `Esc`, then **Startup apps**. You get a name, a publisher, a status and a startup impact rating.
+
+It is worth reading first, for one reason: it is where legitimate software puts itself. Your cloud storage client, your graphics driver panel, your password manager. **Disabling things here is how you make a machine boot faster, and it is almost never how you find malware.**
+
+Two columns matter more than the rest. **Publisher blank** on an entry you do not recognise is worth a second look, because signed software normally names its publisher. **High startup impact** on something you have never heard of deserves the same.
+
+Right click gives you **Open file location**, which is the single most useful action in this tab. An entry whose file sits in `C:\Program Files\` is ordinary. One that sits in `%APPDATA%`, `%TEMP%`, or `C:\Users\<you>\AppData\Local\Temp` is not, whatever its name suggests.
+
+![A queue of about ten people standing with their backs to the camera at an orange ticket office window in a station, waiting their turn while two are served at the counter](https://images.pexels.com/photos/3848898/pexels-photo-3848898.jpeg?auto=compress&cs=tinysrgb&w=1600)
+
+## Place two: the Startup folders
+
+Two folders, one for you and one for every user of the machine. Anything placed in them runs at login, and neither is shown in Task Manager's list in the same way.
+
+Press `Win` + `R` and enter:
+
+```
+shell:startup
+shell:common startup
+```
+
+The first is your own, the second applies to all users and is the one worth checking on a shared or family machine. Both should be nearly empty. A shortcut here pointing at a script, a `.vbs`, a `.bat`, or an executable in a temporary folder is a finding rather than a curiosity.
+
+## Place three: the registry Run keys
+
+This is where persistent malware has lived for twenty years, and it remains the most common location.
+
+Open `regedit` and read these four keys:
+
+```
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce
+```
+
+Each value is a name and a command line. **Read the command line, not the name**, because the name is chosen by whoever created the entry and can say anything at all.
+
+What should make you stop: a path inside `AppData` or `Temp`, a `powershell.exe` invocation carrying `-enc`, `-w hidden` or `-nop`, a `rundll32` call pointing at a file with an unusual extension, or a command line so long it scrolls off the dialog. None of these is proof on its own. All of them are worth identifying before you go further.
+
+## Place four: Task Scheduler, the one people forget
+
+A scheduled task can run at logon, at boot, or on a timer, and it does not appear in any startup list at all.
+
+Open Task Scheduler, expand **Task Scheduler Library**, and look for tasks with no author, names that imitate Windows components with a spelling difference, or triggers set to At log on combined with an action pointing somewhere writable.
+
+Legitimate software does use scheduled tasks, updaters especially, so this list is noisier than the Run keys. Sort by author and by trigger rather than reading it top to bottom.
+
+## Reading it all in one place
+
+The four locations above can be inspected together with Microsoft's own **Autoruns**, part of Sysinternals. It shows every persistence mechanism Windows offers, which is far more than the four here, and it has two options that make the list usable: **Hide Microsoft entries** removes the signed operating system noise, and **Verify code signatures** flags anything unsigned.
+
+An unsigned entry outside `Program Files` is the shape of thing worth investigating. It is still not proof: plenty of small legitimate tools are unsigned.
+
+## What to do with something suspicious
+
+**Do not delete it first.** Note the full path and the command line, then disable the entry rather than removing it, so the change is reversible if you were wrong.
+
+Upload the file to a multi engine scanner before deciding. A single antivirus opinion, in either direction, is thinner evidence than people assume, and a clean result on one engine is not a clearance.
+
+If several engines agree it is malicious, the removal itself follows the normal route: [how to remove malware from Windows](/articles/how-to-remove-malware-from-windows), and if the entry keeps returning after removal, that is the signature of something running while you work, which [safe mode removal](/articles/safe-mode-malware-removal) addresses.
+
+## The habit worth keeping
+
+Check these four places when a machine starts behaving oddly, not on a schedule. **A startup list you have never read is useless as a baseline**, so the useful move is to read it once while everything is fine, and take a screenshot. Comparing against a known good state is a different activity from staring at a list and wondering.
+
+Related: [how to know if your computer has a virus](/articles/how-to-know-if-your-computer-has-a-virus).
