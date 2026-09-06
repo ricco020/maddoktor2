@@ -2,6 +2,7 @@
 title: "Cryptojacking: The Malware That Steals Electricity Instead of Data"
 description: "A coin miner does not touch your files or your passwords. It takes your processor and your power bill. Why that makes it hard to notice, the infection chain Microsoft documents, and the one setting most people leave switched off."
 pubDate: 2026-08-01
+updatedDate: 2026-09-06
 hero: "https://images.pexels.com/photos/10359908/pexels-photo-10359908.jpeg?auto=compress&cs=tinysrgb&w=1600"
 heroAlt: "A Cooler Master case fan mounted inside a desktop PC with memory modules visible behind it"
 keyword: "cryptojacking"
@@ -44,7 +45,7 @@ The third is the one people underestimate, because it requires no installation a
 
 Microsoft publishes a concrete example, and it is worth following because every step is an ordinary technique rather than anything exotic.
 
-A Word document carrying a **DDE exploit**, detected as `Exploit:O97M/DDEDownloader.PA`, launches a cmdlet. That cmdlet runs a malicious **PowerShell** script, detected as `Trojan:PowerShell/Maponeir.A`. The script downloads a trojanized miner: a modified build of **XMRig**, which then mines **Monero**.
+A Word document carrying a **DDE exploit**, detected as `Exploit:O97M/DDEDownloader.PA`, launches a cmdlet. That cmdlet runs a malicious **PowerShell** script, detected as `Trojan:PowerShell/Maponeir.A`. The script downloads a trojanized miner: a modified build of **XMRig**, which then mines **Monero**. Monero is the currency of choice here for a structural reason: since its November 2019 fork it uses the **RandomX** algorithm, which is deliberately optimised for ordinary CPUs rather than the specialised ASIC hardware that dominates Bitcoin. A stolen office PC is therefore competitive mining equipment, which it would not be on most other chains.
 
 Two things stand out. The miner at the end is a **modified version of a legitimate tool**, which is why signature-based detection struggles. And the delivery mechanism, DDE exploits in Office documents, was previously used to distribute ransomware. The same doors are used for different rooms.
 
@@ -54,7 +55,7 @@ Because nothing is stolen in the usual sense, the symptoms are physical rather t
 
 **The machine is hot and loud when it should be idle.** A fan running hard on a laptop doing nothing is the single most common first clue.
 
-**Everything feels slower**, especially anything that needs the processor. Mining takes what it can get.
+**Everything feels slower**, especially anything that needs the processor. Mining takes what it can get. RandomX in its fast mode also allocates a **2080 MB** dataset per mining instance, so an unexplained process holding roughly two gigabytes of memory alongside sustained CPU use is a more specific clue than the heat alone.
 
 **Battery life collapses** on a laptop, and the device is warm even on light tasks.
 

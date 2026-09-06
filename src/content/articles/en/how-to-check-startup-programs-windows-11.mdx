@@ -2,6 +2,7 @@
 title: "How to Check Startup Programs in Windows 11, and the Two Places Task Manager Does Not Look"
 description: "Task Manager shows one list. Malware that wants to survive a reboot rarely puts itself there. The four locations Windows actually starts things from, how to read each one, and what a suspicious entry looks like."
 pubDate: 2026-09-05
+updatedDate: 2026-09-06
 hero: "https://images.pexels.com/photos/6804613/pexels-photo-6804613.jpeg?auto=compress&cs=tinysrgb&w=1600"
 heroAlt: "A dark office desk with a widescreen monitor showing lines of code, a mechanical keyboard and mouse in front, a tower case lit with a strip of coloured lights on the right and cables running across the desktop"
 keyword: "how to check startup programs windows 11"
@@ -15,7 +16,7 @@ Windows starts things from at least four different mechanisms. Anything that wan
 
 ## The list everyone knows, and what it is good for
 
-`Ctrl` + `Shift` + `Esc`, then **Startup apps**. You get a name, a publisher, a status and a startup impact rating.
+`Ctrl` + `Shift` + `Esc`, then **Startup apps**. You get four columns: a name, a publisher, a status and a startup impact rating. Windows sorts that impact into three bands, Low, Medium and High, plus **Not measured** for anything added since the last boot.
 
 It is worth reading first, for one reason: it is where legitimate software puts itself. Your cloud storage client, your graphics driver panel, your password manager. **Disabling things here is how you make a machine boot faster, and it is almost never how you find malware.**
 
@@ -36,7 +37,7 @@ shell:startup
 shell:common startup
 ```
 
-The first is your own, the second applies to all users and is the one worth checking on a shared or family machine. Both should be nearly empty. A shortcut here pointing at a script, a `.vbs`, a `.bat`, or an executable in a temporary folder is a finding rather than a curiosity.
+The first resolves to `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`, the second to the same path under `%PROGRAMDATA%`. The second applies to all users and is the one worth checking on a shared or family machine. Both should be nearly empty. A shortcut here pointing at a script, a `.vbs`, a `.bat`, or an executable in a temporary folder is a finding rather than a curiosity.
 
 ## Place three: the registry Run keys
 
@@ -73,7 +74,7 @@ An unsigned entry outside `Program Files` is the shape of thing worth investigat
 
 **Do not delete it first.** Note the full path and the command line, then disable the entry rather than removing it, so the change is reversible if you were wrong.
 
-Upload the file to a multi engine scanner before deciding. A single antivirus opinion, in either direction, is thinner evidence than people assume, and a clean result on one engine is not a clearance.
+Upload the file to a multi engine scanner before deciding. VirusTotal runs a submission past more than 70 engines at once and accepts files up to 650 MB, which covers anything you are likely to find in a Run key. A single antivirus opinion, in either direction, is thinner evidence than people assume, and a clean result on one engine is not a clearance.
 
 If several engines agree it is malicious, the removal itself follows the normal route: [how to remove malware from Windows](/articles/how-to-remove-malware-from-windows), and if the entry keeps returning after removal, that is the signature of something running while you work, which [safe mode removal](/articles/safe-mode-malware-removal) addresses.
 

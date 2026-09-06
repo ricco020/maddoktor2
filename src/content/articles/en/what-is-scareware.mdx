@@ -2,6 +2,7 @@
 title: "What Is Scareware? The One Fact That Settles Every Fake Virus Alert"
 description: "A web page cannot scan your computer. It has no way to see your files, your processes or your drives. That single technical fact identifies every fake alert you will ever meet, without needing to know which scam is which."
 pubDate: 2026-08-12
+updatedDate: 2026-09-06
 hero: "https://images.pexels.com/photos/23720104/pexels-photo-23720104.jpeg?auto=compress&cs=tinysrgb&w=1600"
 heroAlt: "A yellow triangular Danger Of Death Keep Out warning sign bolted to a galvanised steel palisade fence"
 keyword: "what is scareware"
@@ -19,6 +20,8 @@ The usual advice is a list of warning signs to memorise - misspellings, urgency,
 **A web page cannot scan your computer.**
 
 This is not a matter of degree or of how good the scam is. A page running in a browser tab is sandboxed: it has no access to your file system, your running processes, your drives or your antivirus. It cannot count your infections because it cannot see that anything exists.
+
+The rule that enforces this has a name and a date. The **same-origin policy**, standardised since Netscape 2 in 1995, confines a page to content sharing its own scheme, host and port, and the local file system is none of the three. A page reads a file only when you hand it one through a file picker, one file at a time.
 
 So any alert that appears **inside a browser tab** and claims to have found viruses on your machine is false by construction. Not suspicious - false. It did not find anything, because it could not look. It is a picture of a scan.
 
@@ -49,7 +52,7 @@ Scareware is a delivery method rather than a single scam. The fear is the same; 
 
 ## Why the pop-up will not close
 
-Part of the effect comes from a browser trick rather than an infection. A page can open a dialog in a loop, so dismissing it produces another. It can go full screen and draw a fake browser interface, so the close button you are clicking is a picture. It can play audio you cannot find the tab for.
+Part of the effect comes from a browser trick rather than an infection. A page can open a dialog in a loop, so dismissing it produces another. Browsers have countered this: after the **second** consecutive dialog from the same page, Chrome and Firefox both add a checkbox that suppresses any further ones, which breaks the loop without closing anything. It can go full screen and draw a fake browser interface, so the close button you are clicking is a picture. It can play audio you cannot find the tab for.
 
 None of that means the machine is infected. It means a tab is misbehaving, and a tab can be ended.
 

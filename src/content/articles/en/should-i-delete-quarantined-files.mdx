@@ -2,6 +2,7 @@
 title: "Should I Delete Quarantined Files? What Quarantine Actually Does to Them"
 description: "Every removal guide tells you to quarantine. Almost none say where the file goes, whether it is still dangerous, or what you lose by deleting it. Here is what happens on disk, and when deleting is the wrong move."
 pubDate: 2026-08-06
+updatedDate: 2026-09-06
 hero: "https://images.pexels.com/photos/23322329/pexels-photo-23322329.jpeg?auto=compress&cs=tinysrgb&w=1600"
 heroAlt: "A narrow vault corridor lined floor to ceiling with hundreds of small wooden lockboxes, a closed door at the far end"
 keyword: "should i delete quarantined files"
@@ -16,7 +17,7 @@ Your scanner found something, you clicked the button, and now there is a list of
 
 It is closer to a sealed box than a drawer. On Windows, Microsoft Defender keeps quarantined items under `ProgramData\Microsoft\Windows Defender\Quarantine`, split into two parts: **Entries**, which holds the metadata about when and why something was quarantined, and **ResourceData**, which holds the contents of the file itself.
 
-Both parts are **encrypted with RC4**. That is why you cannot browse to the folder and open what is inside, and why the file can no longer run, be opened by another program, or be picked up by a scheduled task. It has been taken out of circulation.
+Both parts are **encrypted with RC4**, a stream cipher published in 1987 that encrypts one byte at a time and takes a key of anywhere from 40 to 2048 bits. That is why you cannot browse to the folder and open what is inside, and why the file can no longer run, be opened by another program, or be picked up by a scheduled task. It has been taken out of circulation.
 
 ## The detail that stops "encrypted" from meaning "safe"
 
@@ -44,7 +45,7 @@ And the case where deleting is a mistake: **you are not sure, and the file is so
 
 ## Do not count on automatic cleanup
 
-You will read that quarantined items disappear after thirty days. Microsoft's own documentation on restoring quarantined files does **not** state a retention period, and the purge behaviour is configurable. Treat automatic removal as something that may happen, not as a guarantee you can plan around in either direction. If you want an item gone, remove it deliberately.
+You will read that quarantined items disappear after thirty days. Microsoft's own documentation on restoring quarantined files does **not** state a retention period, and the purge behaviour is configurable: the Group Policy setting is **Configure removal of items from Quarantine folder**, expressed as a number of days, and its default value of `0` means items are never removed automatically. Treat automatic removal as something that may happen, not as a guarantee you can plan around in either direction. If you want an item gone, remove it deliberately.
 
 ## How to get a file back, if you decide it was a false positive
 

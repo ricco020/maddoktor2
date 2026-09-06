@@ -2,6 +2,7 @@
 title: "How to Remove a RAT (2026): Cut It Off, Clean It Out, Then Lock Down Your Accounts"
 description: "A RAT (Remote Access Trojan) hands an attacker live control of your machine: files, webcam, keystrokes and saved logins. How to detect and remove a RAT, when a full reinstall is the only safe fix, and the step that actually protects you afterward."
 pubDate: 2026-07-21
+updatedDate: 2026-09-06
 hero: "/images/how-to-remove-a-rat-hero.jpg"
 heroAlt: "A laptop screen showing lines of code in a dark room"
 keyword: "how to remove a rat"
@@ -41,7 +42,7 @@ Restart into [**Safe Mode**](/articles/safe-mode-malware-removal), which loads o
 
 ## Step 3 - Check startup entries and scheduled tasks
 
-RATs work hard to survive a reboot, so a scan alone may not be enough. Open Task Manager and review the **Startup** tab for programs you do not recognize, check installed programs for anything you did not add, and look through **Task Scheduler** for scheduled tasks that relaunch an unknown program. These are common ways a RAT re-establishes itself after you think it is gone. When you are unsure about a specific entry, search its exact name before disabling it so you do not break something legitimate. For the wider cleanup routine this sits inside, see our guide to [removing spyware](/articles/how-to-remove-spyware).
+RATs work hard to survive a reboot, so a scan alone may not be enough. Open Task Manager and review the **Startup** tab for programs you do not recognize, check installed programs for anything you did not add, and look through **Task Scheduler** for scheduled tasks that relaunch an unknown program. Those are not the only launch points: Windows starts programs from four common mechanisms in all, the Startup tab, the two Startup folders reached with `shell:startup` and `shell:common startup`, the registry Run keys, and Task Scheduler. These are common ways a RAT re-establishes itself after you think it is gone. When you are unsure about a specific entry, search its exact name before disabling it so you do not break something legitimate. For the wider cleanup routine this sits inside, see our guide to [removing spyware](/articles/how-to-remove-spyware).
 
 ## Step 4 - When to wipe and reinstall
 
@@ -52,7 +53,7 @@ A RAT can give an attacker deep, privileged access, so if the infection keeps co
 This is the part people skip, and after a RAT it is the most important. Assume that while the RAT was active it could see and capture everything, including the passwords saved in your browser and anything you typed. Once the machine is clean:
 
 - Change your important passwords, starting with **email** (it resets everything else), then banking and any reused passwords, and do it **from a different, known-clean device**, not the one you just cleaned.
-- Turn on **two-factor authentication** everywhere it is offered, so a stolen password alone is not enough to log in.
+- Turn on **two-factor authentication** everywhere it is offered, so a stolen password alone is not enough to log in. The app-based kind follows RFC 6238, which specifies a **6** digit code regenerated on a **30** second step, so a code captured by a keylogger is worthless within half a minute. That is the property a stolen password does not have.
 - Use a **password manager**. It is an honest, direct defense here: a manager fills your logins by autofill instead of you typing them, so there are no keystrokes for a logger to capture, and it lets every account have a unique, strong password so one exposed credential cannot unlock the rest.
 
 <AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="A RAT can log your keystrokes and read saved logins, so autofill plus 2FA is a real defense: Proton Pass fills your logins instead of you typing them, keeps every password unique, and stores your vault end-to-end encrypted. Reset your passwords in it from a clean device after cleanup." />

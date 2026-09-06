@@ -2,6 +2,7 @@
 title: "How to Remove a Rootkit (2026): Offline Scans, and When to Wipe"
 description: "A rootkit hides deep in your system, so a normal scan often misses it. How to detect and remove a rootkit with offline and boot-time scans, and when the only safe fix is to wipe and reinstall."
 pubDate: 2026-07-14
+updatedDate: 2026-09-06
 hero: "/images/how-to-remove-a-rootkit-hero.jpg"
 heroAlt: "Close-up of a laptop screen displaying cybersecurity text in a dark room"
 keyword: "how to remove a rootkit"
@@ -42,7 +43,7 @@ Any one of these has other causes too, but a security tool that keeps getting tu
 
 This is the key move. Instead of scanning from inside Windows (where the rootkit is running and hiding), scan before Windows fully loads:
 
-- **Microsoft Defender Offline** is built into Windows and does exactly this. It restarts your PC into a small, trusted environment and scans from there, before the rootkit can load. Open Windows Security, go to Virus & threat protection, choose Scan options, select **Microsoft Defender Offline scan**, and let it restart and run. This alone catches many rootkits that a normal scan misses.
+- **Microsoft Defender Offline** is built into Windows and does exactly this. It restarts your PC into a small, trusted environment and scans from there, before the rootkit can load. Open Windows Security, go to Virus & threat protection, choose Scan options, select **Microsoft Defender Offline scan**, and let it restart and run. Microsoft puts the scan at roughly **15 minutes**, and it is one of four options in that list alongside Quick, Full and Custom. This alone catches many rootkits that a normal scan misses.
 
 Because the scan runs before the operating system, the rootkit is not active to conceal itself - which is the entire point.
 
@@ -68,7 +69,7 @@ A rootkit may have logged keystrokes or stolen credentials the whole time it was
 
 ## How to avoid the next one
 
-- Keep **Secure Boot** enabled in your firmware - it is specifically designed to block bootkits from loading.
+- Keep **Secure Boot** enabled in your firmware - it is specifically designed to block bootkits from loading. Part of the UEFI specification since version 2.3.1 in 2011, it checks each boot component's signature against firmware key databases before handing over control, and it is a hard requirement for installing Windows 11.
 - Do not run cracked software, fake installers or random "codecs" - the classic way rootkits get in.
 - Keep Windows and your firmware updated, and use a standard (non-administrator) account for daily use.
 
