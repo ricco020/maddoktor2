@@ -1,0 +1,167 @@
+{
+	auto_https off
+	admin off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	@h1 path_regexp ^/go/(.*)$
+	header @h1 X-Robots-Tag "noindex, nofollow"
+	@h2 path_regexp ^/_astro/(.*)$
+	header @h2 Cache-Control "public, max-age=31536000, immutable"
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), interest-cohort=()"
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+		Content-Security-Policy "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://images.pexels.com https://pixabay.com https://cdn.pixabay.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+		X-Permitted-Cross-Domain-Policies "none"
+	}
+
+	route {
+		@r0 {
+			path /es/articles/how-to-remove-ransomware
+		}
+		redir @r0 "/es/articles/como-eliminar-ransomware/" 308
+		@r1 {
+			path /es/articles/how-to-remove-ransomware/
+		}
+		redir @r1 "/es/articles/como-eliminar-ransomware/" 308
+		@r2 {
+			path /de/articles/how-to-remove-ransomware
+		}
+		redir @r2 "/de/articles/ransomware-entfernen/" 308
+		@r3 {
+			path /de/articles/how-to-remove-ransomware/
+		}
+		redir @r3 "/de/articles/ransomware-entfernen/" 308
+		@r4 {
+			path /it/articles/how-to-remove-ransomware
+		}
+		redir @r4 "/it/articles/come-rimuovere-ransomware/" 308
+		@r5 {
+			path /it/articles/how-to-remove-ransomware/
+		}
+		redir @r5 "/it/articles/come-rimuovere-ransomware/" 308
+		@r6 {
+			path /fr/articles/how-to-remove-ransomware
+		}
+		redir @r6 "/fr/articles/comment-supprimer-ransomware/" 308
+		@r7 {
+			path /fr/articles/how-to-remove-ransomware/
+		}
+		redir @r7 "/fr/articles/comment-supprimer-ransomware/" 308
+		@r8 {
+			path /pt/articles/how-to-remove-ransomware
+		}
+		redir @r8 "/pt/articles/como-remover-ransomware/" 308
+		@r9 {
+			path /pt/articles/how-to-remove-ransomware/
+		}
+		redir @r9 "/pt/articles/como-remover-ransomware/" 308
+		@r10 {
+			path /es/articles/how-to-remove-a-rootkit
+		}
+		redir @r10 "/es/articles/como-eliminar-un-rootkit/" 308
+		@r11 {
+			path /es/articles/how-to-remove-a-rootkit/
+		}
+		redir @r11 "/es/articles/como-eliminar-un-rootkit/" 308
+		@r12 {
+			path /de/articles/how-to-remove-a-rootkit
+		}
+		redir @r12 "/de/articles/rootkit-entfernen/" 308
+		@r13 {
+			path /de/articles/how-to-remove-a-rootkit/
+		}
+		redir @r13 "/de/articles/rootkit-entfernen/" 308
+		@r14 {
+			path /it/articles/how-to-remove-a-rootkit
+		}
+		redir @r14 "/it/articles/come-rimuovere-un-rootkit/" 308
+		@r15 {
+			path /it/articles/how-to-remove-a-rootkit/
+		}
+		redir @r15 "/it/articles/come-rimuovere-un-rootkit/" 308
+		@r16 {
+			path /fr/articles/how-to-remove-a-rootkit
+		}
+		redir @r16 "/fr/articles/comment-supprimer-un-rootkit/" 308
+		@r17 {
+			path /fr/articles/how-to-remove-a-rootkit/
+		}
+		redir @r17 "/fr/articles/comment-supprimer-un-rootkit/" 308
+		@r18 {
+			path /pt/articles/how-to-remove-a-rootkit
+		}
+		redir @r18 "/pt/articles/como-remover-um-rootkit/" 308
+		@r19 {
+			path /pt/articles/how-to-remove-a-rootkit/
+		}
+		redir @r19 "/pt/articles/como-remover-um-rootkit/" 308
+		@r20 {
+			path /articles/fake-github-repos-infostealer
+		}
+		redir @r20 "/articles/github-fake-repos-infostealer" 308
+		@r21 {
+			host asap.maddoktor2.com
+			path_regexp r21 ^/(.*)$
+		}
+		redir @r21 "https://maddoktor2.com/heritage/" 308
+		@r22 {
+			host forums.maddoktor2.com
+			path_regexp r22 ^/(.*)$
+		}
+		redir @r22 "https://maddoktor2.com/heritage/" 308
+		@r23 {
+			path /index.php
+		}
+		redir @r23 "/heritage/" 308
+		@r24 {
+			path_regexp r24 ^/forums(?:/(.*))?$
+		}
+		redir @r24 "/heritage/" 308
+		@r25 {
+			path_regexp r25 ^/forum(?:/(.*))?$
+		}
+		redir @r25 "/heritage/" 308
+		@r26 {
+			path /go/proton-mail /go/proton-mail/
+		}
+		redir @r26 "https://go.getproton.me/aff_c?offer_id=7&aff_id=18294" 307
+		@r27 {
+			path /go/proton-vpn /go/proton-vpn/
+		}
+		redir @r27 "https://go.getproton.me/aff_c?offer_id=26&aff_id=18294" 307
+		@r28 {
+			path /go/proton-pass /go/proton-pass/
+		}
+		redir @r28 "https://go.getproton.me/aff_c?offer_id=38&aff_id=18294" 307
+		@r29 {
+			path /go/proton-drive /go/proton-drive/
+		}
+		redir @r29 "https://go.getproton.me/aff_c?offer_id=43&aff_id=18294" 307
+		@r30 {
+			path /go/easeus /go/easeus/
+		}
+		redir @r30 "https://www.jdoqocy.com/click-101853515-15414522" 307
+		@r31 {
+			path /go/easeus-todobackup /go/easeus-todobackup/
+		}
+		redir @r31 "https://www.jdoqocy.com/click-101853515-15414522?url=https%3A%2F%2Fwww.easeus.com%2Fbackup-software%2Ftb-free.html" 307
+		@r32 {
+			path /go/surfshark /go/surfshark/
+		}
+		redir @r32 "https://www.anrdoezrs.net/click-101853515-15438560" 307
+		file_server
+	}
+
+	handle_errors {
+		@404 expression {err.status_code} == 404
+		rewrite @404 /404.html
+		file_server
+	}
+}
