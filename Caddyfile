@@ -156,6 +156,30 @@
 			path /go/surfshark /go/surfshark/
 		}
 		redir @r32 "https://www.anrdoezrs.net/click-101853515-15438560" 307
+		@r33 {
+			path /go/surfshark-en /go/surfshark-en/
+		}
+		redir @r33 "https://www.anrdoezrs.net/click-101853515-15438560?url=https%3A%2F%2Fsurfshark.com%2Fantivirus%3Fcoupon%3Dsurfsharkdeal" 307
+		@r34 {
+			path /go/surfshark-es /go/surfshark-es/
+		}
+		redir @r34 "https://www.anrdoezrs.net/click-101853515-15438560?url=https%3A%2F%2Fsurfshark.com%2Fes%2Fantivirus%3Fcoupon%3Dsurfsharkdeal" 307
+		@r35 {
+			path /go/surfshark-de /go/surfshark-de/
+		}
+		redir @r35 "https://www.anrdoezrs.net/click-101853515-15438560?url=https%3A%2F%2Fsurfshark.com%2Fde%2Fantivirus%3Fcoupon%3Dsurfsharkdeal" 307
+		@r36 {
+			path /go/surfshark-fr /go/surfshark-fr/
+		}
+		redir @r36 "https://www.anrdoezrs.net/click-101853515-15438560?url=https%3A%2F%2Fsurfshark.com%2Ffr%2Fantivirus%3Fcoupon%3Dsurfsharkdeal" 307
+		@r37 {
+			path /go/surfshark-it /go/surfshark-it/
+		}
+		redir @r37 "https://www.anrdoezrs.net/click-101853515-15438560?url=https%3A%2F%2Fsurfshark.com%2Fit%2Fantivirus%3Fcoupon%3Dsurfsharkdeal" 307
+		@r38 {
+			path /go/surfshark-pt /go/surfshark-pt/
+		}
+		redir @r38 "https://www.anrdoezrs.net/click-101853515-15438560?url=https%3A%2F%2Fsurfshark.com%2Fpt-br%2Fantivirus%3Fcoupon%3Dsurfsharkdeal" 307
 		file_server
 	}
 
