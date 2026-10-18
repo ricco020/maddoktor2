@@ -1,8 +1,8 @@
 ---
-title: "Cómo eliminar un troyano de Windows (paso a paso)"
-description: "Guía clara y paso a paso para eliminar un troyano de Windows: modo seguro, análisis con Defender y Malwarebytes, limpieza y cómo seguir protegido."
+title: "Cómo eliminar un troyano de Windows 10 y 11 (paso a paso)"
+description: "Cómo eliminar un troyano de tu PC con Windows 10 u 11: qué hacer si Defender ya lo detectó, cómo distinguir un aviso falso, modo seguro, doble análisis, persistencia y cómo comprobar que sigue sin estar activo."
 pubDate: 2026-06-22
-updatedDate: 2026-07-30
+updatedDate: 2026-10-18
 hero: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 heroAlt: "Una pantalla de ordenador oscura llena de paneles de terminal con registros del sistema, con varias líneas marcadas ERROR en rojo"
 keyword: "how to remove trojan virus"
@@ -22,6 +22,28 @@ Un troyano es malware que se disfraza de algo legítimo - un juego pirateado, un
 
 Ninguna de estas señales por sí sola confirma un troyano, pero juntas indican que toca un análisis.
 
+## Si Windows Defender ya te avisó de un troyano
+
+Muchas personas llegan aquí después de una notificación de Seguridad de Windows. Antes de hacer nada, mira qué dice exactamente:
+
+1. Abre **Seguridad de Windows → Protección antivirus y contra amenazas → Historial de protección**.
+2. Haz clic en la detección para ver el **nombre de la amenaza**, el **archivo afectado** (su ruta completa) y el **estado**.
+
+El nombre sigue el formato *Tipo:Plataforma/Familia*, por ejemplo `Trojan:Win32/Wacatac.B!ml` o `Trojan:Script/...`. Dos detalles importan:
+
+- **El sufijo `!ml`** significa que la detección viene del aprendizaje automático, no de una firma exacta. Es la categoría con más falsos positivos (programas recién compilados, cracks, herramientas poco conocidas). No es una garantía de inocencia, pero sí un motivo para verificar el archivo antes de entrar en pánico.
+- **El estado.** *En cuarentena* o *Quitado* significa que ese archivo ya está neutralizado. *Acción necesaria* o *Error* significa que Defender no pudo terminar: en ese caso sigue la guía completa desde el Paso 1.
+
+**¿Puede seguir activo aunque Defender lo detectó?** Si el archivo se bloqueó en el momento de descargarlo o de abrir un adjunto (detecciones tipo `Script` o de archivos en *Descargas*), lo normal es que nunca llegara a ejecutarse. Si en cambio la ruta apunta a `AppData`, `ProgramData`, `Temp` o una tarea programada, el troyano sí llegó a correr, y pudo haber descargado otros componentes que Defender no ha visto. Ahí no basta con la cuarentena: ejecuta el **Análisis sin conexión** (Paso 3), una segunda opinión (Paso 4) y revisa la persistencia (Paso 5b).
+
+**¿Un archivo en `C:\Windows` marcado como troyano?** Los archivos legítimos de Windows (`svchost.exe`, `explorer.exe`, `rundll32.exe`) viven en `C:\Windows` o `C:\Windows\System32` y están firmados por Microsoft: clic derecho → **Propiedades → Firmas digitales**. Una copia sin firma, con un nombre ligeramente distinto (`scvhost.exe`) o en otra carpeta es sospechosa. Puedes calcular su huella y compararla con las bases de datos públicas con nuestro [comprobador de hash de archivos](/es/file-hash-checker/), sin subir el archivo.
+
+Para decidir qué hacer con lo que hay en cuarentena, consulta [¿Debo borrar los archivos en cuarentena?](/es/articles/debo-borrar-los-archivos-en-cuarentena/).
+
+## ¿Troyano real o aviso falso?
+
+Si el aviso de «tienes un troyano» aparece **en el navegador**, con un número de teléfono, una cuenta atrás o un botón para «limpiar ahora», casi seguro que es un aviso falso (scareware), no una detección real. Seguridad de Windows nunca muestra teléfonos de soporte ni pide pagar. Esos avisos vienen de una página web o de notificaciones que aceptaste sin querer, y se quitan bloqueando las notificaciones del sitio y limpiando el navegador: lo explicamos en [cómo eliminar el virus de pop-ups](/es/articles/como-eliminar-virus-pop-up/). No llames al número ni instales lo que te propone: eso sí sería el troyano.
+
 ## Paso 1 - Desconéctate de internet
 
 Si sospechas de un troyano activo, desconecta el Wi-Fi o desenchufa el cable Ethernet. Muchos troyanos se comunican con un servidor de mando y control para recibir instrucciones o exfiltrar datos. Cortar la conexión limita el daño durante la limpieza. Reconéctate solo cuando necesites descargar herramientas o actualizaciones.
@@ -35,8 +57,6 @@ El Modo seguro carga Windows con un conjunto mínimo de controladores y servicio
 3. Cuando aparezca la lista, pulsa **5** (o **F5**) para **Modo seguro con funciones de red**.
 
 La red permite actualizar tus escáneres; si ya lo tienes todo descargado, basta con el Modo seguro normal.
-
-<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Tras limpiar una infección, cambia tus contraseñas desde un dispositivo limpio. Proton Pass las guarda cifradas de extremo a extremo." />
 
 ## Paso 3 - Ejecuta un análisis completo de Microsoft Defender
 
@@ -97,6 +117,8 @@ Los troyanos roban con frecuencia contraseñas guardadas y cookies de sesión. U
 
 Un gestor de contraseñas hace mucho menos doloroso renovar decenas de credenciales, y usar uno significa que no reutilizas la misma contraseña en varios sitios.
 
+<AffiliateCTA href="/go/proton-pass" product="Proton Pass" blurb="Tras limpiar una infección, cambia tus contraseñas desde un dispositivo limpio. Proton Pass las guarda cifradas de extremo a extremo." />
+
 ## Cómo saber si de verdad ha desaparecido
 
 «El análisis salió limpio» es una prueba más débil de lo que parece, porque un escáner solo encuentra lo que reconoce. Merece la pena hacer tres comprobaciones unos días después.
@@ -120,6 +142,12 @@ Unos pocos errores explican la mayoría de los casos en que un troyano vuelve en
 **Cambiar las contraseñas desde la máquina infectada.** Si un registrador de teclas sigue activo, acabas de entregar también las contraseñas nuevas. Usa un móvil u otro ordenador.
 
 **Pararse en el primer análisis limpio.** Ejecuta un segundo análisis completo tras reiniciar, con un motor distinto si es posible.
+
+## Evitar la reinfección
+
+La mayoría de los troyanos domésticos entran por la misma puerta: un programa pirateado, un instalador descargado de un anuncio, un adjunto o un enlace acortado. Si esa costumbre no cambia, el troyano vuelve. Microsoft Defender activado y actualizado es una base suficiente para muchas personas. Si quieres una capa más, lo útil es algo que bloquee los dominios maliciosos antes de que la descarga empiece.
+
+<AffiliateCTA href="/go/surfshark" product="Surfshark One" blurb="Antivirus en tiempo real más CleanWeb, que bloquea a nivel de red anuncios, rastreadores y dominios maliciosos conocidos: justo las páginas de descarga falsas por las que suelen entrar los troyanos. Incluye VPN y alertas de filtraciones de datos para vigilar las cuentas que el troyano pudo tocar." />
 
 ## Cuándo plantearse una reinstalación limpia
 

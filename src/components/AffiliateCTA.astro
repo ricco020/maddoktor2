@@ -5,12 +5,25 @@ interface Props {
   blurb: string;
 }
 const { href, product, blurb } = Astro.props;
+
+// Locale from the URL: EN at the root, others under /fr, /es, /de, /it, /pt.
+const seg = Astro.url.pathname.split('/')[1];
+const lang = ['fr', 'es', 'de', 'it', 'pt'].includes(seg) ? seg : 'en';
+const L: Record<string, { script: string; label: string; get: (p: string) => string; trust: string }> = {
+  en: { script: 'Prescription · malware remedy', label: 'Recommended tool', get: (p) => `Get ${p}`, trust: 'Affiliate link · we only prescribe tools we’d run on our own machines.' },
+  fr: { script: 'Ordonnance · remède anti-malware', label: 'Outil recommandé', get: (p) => `Obtenir ${p}`, trust: 'Lien affilié · nous ne prescrivons que des outils que nous utiliserions sur nos propres machines.' },
+  es: { script: 'Receta · remedio contra el malware', label: 'Herramienta recomendada', get: (p) => `Conseguir ${p}`, trust: 'Enlace de afiliado · solo recetamos herramientas que usaríamos en nuestros propios equipos.' },
+  de: { script: 'Rezept · Mittel gegen Malware', label: 'Empfohlenes Tool', get: (p) => `${p} holen`, trust: 'Affiliate-Link · wir empfehlen nur Tools, die wir auf unseren eigenen Geräten nutzen würden.' },
+  it: { script: 'Ricetta · rimedio anti-malware', label: 'Strumento consigliato', get: (p) => `Scopri ${p}`, trust: 'Link di affiliazione · consigliamo solo strumenti che useremmo sui nostri computer.' },
+  pt: { script: 'Receita · remédio contra malware', label: 'Ferramenta recomendada', get: (p) => `Obter ${p}`, trust: 'Link de afiliado · só recomendamos ferramentas que usaríamos nos nossos próprios computadores.' },
+};
+const t = L[lang];
 ---
 
 <aside class="rx not-prose">
   <div class="rx-head">
     <span class="rx-mark" aria-hidden="true">℞</span>
-    <span class="rx-script">Prescription · screen-time remedy</span>
+    <span class="rx-script">{t.script}</span>
     <svg class="rx-shield" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M12 2.5 4 5.2v6.1c0 4.7 3.2 8.2 8 10.2 4.8-2 8-5.5 8-10.2V5.2L12 2.5Z"/>
       <path class="rx-check" d="m8.6 12 2.3 2.3 4.5-4.6"/>
@@ -18,7 +31,7 @@ const { href, product, blurb } = Astro.props;
   </div>
 
   <div class="rx-body">
-    <p class="rx-label">Recommended tool</p>
+    <p class="rx-label">{t.label}</p>
     <p class="rx-product">{product}</p>
     <p class="rx-blurb">{blurb}</p>
 
@@ -27,13 +40,13 @@ const { href, product, blurb } = Astro.props;
       rel="sponsored nofollow noopener noreferrer"
       class="rx-cta"
     >
-      <span>Get {product}</span>
+      <span>{t.get(product)}</span>
       <span class="rx-arrow" aria-hidden="true">→</span>
     </a>
 
     <p class="rx-trust">
       <span class="rx-dot" aria-hidden="true"></span>
-      Affiliate link · we only prescribe tools we’d run on our own machines.
+      {t.trust}
     </p>
   </div>
 </aside>
