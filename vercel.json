@@ -144,22 +144,22 @@
     },
     {
       "source": "/go/proton-mail",
-      "destination": "https://go.getproton.me/aff_c?offer_id=7&aff_id=18294",
+      "destination": "https://go.getproton.me/aff_c?offer_id=7&aff_id=18294&aff_sub=maddoktor2",
       "permanent": false
     },
     {
       "source": "/go/proton-vpn",
-      "destination": "https://go.getproton.me/aff_c?offer_id=26&aff_id=18294",
+      "destination": "https://go.getproton.me/aff_c?offer_id=26&aff_id=18294&aff_sub=maddoktor2",
       "permanent": false
     },
     {
       "source": "/go/proton-pass",
-      "destination": "https://go.getproton.me/aff_c?offer_id=38&aff_id=18294",
+      "destination": "https://go.getproton.me/aff_c?offer_id=38&aff_id=18294&aff_sub=maddoktor2",
       "permanent": false
     },
     {
       "source": "/go/proton-drive",
-      "destination": "https://go.getproton.me/aff_c?offer_id=43&aff_id=18294",
+      "destination": "https://go.getproton.me/aff_c?offer_id=43&aff_id=18294&aff_sub=maddoktor2",
       "permanent": false
     },
     {

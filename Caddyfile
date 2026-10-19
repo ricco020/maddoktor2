@@ -131,19 +131,19 @@
 		@r26 {
 			path /go/proton-mail /go/proton-mail/
 		}
-		redir @r26 "https://go.getproton.me/aff_c?offer_id=7&aff_id=18294" 307
+		redir @r26 "https://go.getproton.me/aff_c?offer_id=7&aff_id=18294&aff_sub=maddoktor2" 307
 		@r27 {
 			path /go/proton-vpn /go/proton-vpn/
 		}
-		redir @r27 "https://go.getproton.me/aff_c?offer_id=26&aff_id=18294" 307
+		redir @r27 "https://go.getproton.me/aff_c?offer_id=26&aff_id=18294&aff_sub=maddoktor2" 307
 		@r28 {
 			path /go/proton-pass /go/proton-pass/
 		}
-		redir @r28 "https://go.getproton.me/aff_c?offer_id=38&aff_id=18294" 307
+		redir @r28 "https://go.getproton.me/aff_c?offer_id=38&aff_id=18294&aff_sub=maddoktor2" 307
 		@r29 {
 			path /go/proton-drive /go/proton-drive/
 		}
-		redir @r29 "https://go.getproton.me/aff_c?offer_id=43&aff_id=18294" 307
+		redir @r29 "https://go.getproton.me/aff_c?offer_id=43&aff_id=18294&aff_sub=maddoktor2" 307
 		@r30 {
 			path /go/easeus /go/easeus/
 		}
