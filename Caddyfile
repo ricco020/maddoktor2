@@ -22,6 +22,10 @@
 	}
 
 	route {
+		# Alias Railway (*.up.railway.app) : servait le site entier en 200, doublon public
+		# du domaine. Ticket RAILWAY|ALIAS du controle post-push, 23/10.
+		@railway_alias host *.up.railway.app
+		redir @railway_alias https://maddoktor2.com{uri} 301
 		@r0 {
 			path /es/articles/how-to-remove-ransomware
 		}
